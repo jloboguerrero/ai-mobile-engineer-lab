@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contador</title>
+</head>
+<body>
+  <h1>Contador</h1>
+  <p>Número: <span id="numero">0</span></p>
+  <button onclick="incrementar()">Aumentar</button>
+  <button onclick="decrementar()">Disminuir</button>
+
+  <script>
+    let contador = 0;
+
+    function incrementar() {
+      contador++;
+      document.getElementById('numero').textContent = contador;
+    }
+
+    function decrementar() {
+      contador--;
+      document.getElementById('numero').textContent = contador;
+    }
+  </script>
+</body>
+</html>
