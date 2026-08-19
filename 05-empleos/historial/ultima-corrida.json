@@ -1,0 +1,17 @@
+{
+  "_meta": "Marca de tiempo del ultimo escaneo EXITOSO por portal. Si un portal fallo (Cloudflare, login, 0 resultados por error), su marca NO avanza y la proxima corrida lo escanea con ventana mas ancha.",
+  "ultimaCorridaGlobal": "2026-08-18T12:00:00-05:00",
+  "portales": {
+    "linkedin": "2026-08-18T12:00:00-05:00",
+    "indeed": "2026-08-18T12:00:00-05:00",
+    "glassdoor": "2026-08-18T12:00:00-05:00",
+    "remoteok": "2026-08-18T12:00:00-05:00",
+    "weworkremotely": "2026-08-18T12:00:00-05:00",
+    "wellfound": "2026-08-18T12:00:00-05:00",
+    "himalayas": null,
+    "getonbrd": "2026-08-18T12:00:00-05:00",
+    "torre": "2026-08-18T12:00:00-05:00",
+    "computrabajo": "2026-08-18T12:00:00-05:00",
+    "talently": null
+  }
+}

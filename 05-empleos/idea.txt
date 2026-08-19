@@ -1,0 +1,7 @@
+Estoy buscando en este momento trabajo.
+
+Soy un Senior Flutter Mobile Developer.
+
+Quiero crear dos agentes:
+- Un Agente que se encargue de aplicar por mi todos los días en nuevas ofertas laborales donde yo encaje bien al puesto.
+- Un agente que busque nuevos portales laborales o empresas que contraten desarrolladores Flutter

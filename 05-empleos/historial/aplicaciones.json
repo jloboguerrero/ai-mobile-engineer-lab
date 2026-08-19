@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1c37799fe88a",
+    "empresa": "BairesDev",
+    "titulo": "Flutter Developer - Remote Work",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4454785557/",
+    "urlAts": "https://applicants.bairesdev.com/job/490/114572/apply",
+    "score": 90,
+    "fechaOferta": "2026-08-18",
+    "fechaAplicacion": "2026-08-18T00:00:00-05:00",
+    "estado": "resuelta_manual",
+    "notas": "Revisada y resuelta por el usuario a mano el 2026-08-18.",
+    "fechaResolucion": "2026-08-18"
+  },
+  {
+    "id": "e066f89812d5",
+    "empresa": "BairesDev",
+    "titulo": "Senior Flutter & Node.js Engineer - Remote Work",
+    "portal": "wellfound",
+    "url": "https://wellfound.com/jobs/4594124-senior-flutter-node-js-engineer-remote-work",
+    "score": 95,
+    "fechaOferta": "2026-08-14",
+    "fechaAplicacion": "2026-08-18T00:00:00-05:00",
+    "estado": "resuelta_manual",
+    "notas": "Revisada y resuelta por el usuario a mano el 2026-08-18.",
+    "fechaResolucion": "2026-08-18"
+  },
+  {
+    "id": "9144b281653d",
+    "empresa": "BairesDev",
+    "titulo": "Senior Flutter & Dart Engineer - Remote Work",
+    "portal": "wellfound",
+    "url": "https://wellfound.com/jobs/4591484-senior-flutter-dart-engineer-remote-work",
+    "score": 90,
+    "fechaOferta": "2026-08-13",
+    "fechaAplicacion": "2026-08-18T00:00:00-05:00",
+    "estado": "resuelta_manual",
+    "notas": "Revisada y resuelta por el usuario a mano el 2026-08-18.",
+    "fechaResolucion": "2026-08-18"
+  }
+]
