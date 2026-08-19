@@ -18,30 +18,75 @@ el usuario decide que se promueve aqui.
 ## Tier 1 — Alto volumen (prioridad en cada corrida)
 
 ### LinkedIn
-Requiere sesion iniciada. `f_TPR=r86400` = ultimas 24h · `f_WT=2` = remoto · `geoId=92000000` = mundial.
+Requiere sesion iniciada. **No hay una lista fija de URLs: se generan por regla** desde
+`datos/linkedin-geos.json` (27 paises + 2 regionales). Plantilla:
 
-> **`geoId=92000000` (Worldwide) es obligatorio.** Sin parametro de ubicacion, LinkedIn inyecta la
-> ubicacion por defecto de la cuenta (Estados Unidos) y la busqueda devuelve 0 resultados utiles o
-> puro EE.UU. con work-authorization requerida. Verificado en la corrida del 2026-08-18.
+```
+https://www.linkedin.com/jobs/search/?keywords={Q}&geoId={GEO}&f_TPR={TPR}&sortBy=DD[&f_WT=2]
+```
 
-- Flutter remoto, mundial, 24h:
-  `https://www.linkedin.com/jobs/search/?keywords=Flutter&geoId=92000000&f_TPR=r86400&f_WT=2&sortBy=DD`
-- Flutter Colombia, 24h:
-  `https://www.linkedin.com/jobs/search/?keywords=Flutter&location=Colombia&f_TPR=r86400&sortBy=DD`
-- Flutter LatAm (captura vacantes regionales que no salen en la mundial):
-  `https://www.linkedin.com/jobs/search/?keywords=Flutter%20Developer&location=Latin%20America&f_TPR=r86400&sortBy=DD`
+**`{Q}` — dos consultas booleanas por ubicacion.** LinkedIn acepta `OR`, `AND` y comillas en
+`keywords`. Dos consultas cubren los cinco titulos que el usuario buscaba a mano (Flutter, Flutter
+Developer, Mobile Developer, Mobile Engineer, Dart Developer) sin disparar a 5 paginas por pais:
 
-> **No uses `geoId=91000003` para LatAm — es Asia-Pacifico.** Devuelve 400+ vacantes presenciales en
-> India. Para LatAm usa `location=Latin%20America`. Verificado en la corrida del 2026-08-18.
-- Mobile Developer Flutter, mundial, 24h (ofertas sin "Flutter" en el titulo):
-  `https://www.linkedin.com/jobs/search/?keywords=Mobile%20Developer%20Flutter&geoId=92000000&f_TPR=r86400&f_WT=2&sortBy=DD`
+| | keywords (sin encodear) | keywords (URL-encoded) |
+|---|---|---|
+| Q1 | `("Flutter" OR "Dart")` | `%28%22Flutter%22%20OR%20%22Dart%22%29` |
+| Q2 | `("Mobile Developer" OR "Mobile Engineer") AND Flutter` | `%28%22Mobile%20Developer%22%20OR%20%22Mobile%20Engineer%22%29%20AND%20Flutter` |
+
+Q1 trae los titulos que dicen Flutter o Dart. Q2 trae los puestos moviles genericos que solo
+mencionan Flutter en el cuerpo — los que la busqueda por titulo se pierde.
+
+**`{GEO}` — geoId verificado**, tomado de `datos/linkedin-geos.json`. Nunca de memoria.
+Un pais con `geoId: null` **se salta y se reporta en la Fase 5**; no se adivina.
+`geoId=92000000` (Worldwide) sigue siendo consulta valida y ya esta verificada.
+
+> **El parametro de ubicacion es obligatorio.** Sin el, LinkedIn inyecta la ubicacion por defecto
+> de la cuenta (Estados Unidos) y la busqueda devuelve 0 resultados utiles o puro EE.UU. con
+> work-authorization requerida. Verificado en la corrida del 2026-08-18.
+
+> **No uses `geoId=91000003` para LatAm — es Asia-Pacifico.** Devuelve 400+ vacantes presenciales
+> en India. Para LatAm como region usa `location=Latin%20America`, que si esta verificada y va
+> como consulta extra fuera de la matriz por pais.
+
+**`{TPR}` — sale de la ventana adaptativa, no es fijo.** Ver la tabla de mapeo en la Fase 1 de
+`.claude/agents/job-apply.md`. `r86400` = 24h, `r172800` = 2d, `r259200` = 3d, `r604800` = 7d.
+
+**`f_WT=2` (remoto) — se agrega si y solo si `remotoObligatorio == true`.** Regla del usuario:
+en **Colombia** valen presencial, hibrido y remoto (la URL de Colombia va **sin** `f_WT`); en
+**cualquier otro pais**, solo remoto. En `linkedin-geos.json` Colombia es el unico pais con
+`remotoObligatorio: false`.
+
+Ejemplos generados (con ventana de 24h):
+
+- Colombia, Q1, sin filtro de modalidad:
+  `https://www.linkedin.com/jobs/search/?keywords=%28%22Flutter%22%20OR%20%22Dart%22%29&geoId={CO}&f_TPR=r86400&sortBy=DD`
+- Mexico, Q1, solo remoto:
+  `https://www.linkedin.com/jobs/search/?keywords=%28%22Flutter%22%20OR%20%22Dart%22%29&geoId={MX}&f_TPR=r86400&f_WT=2&sortBy=DD`
+- Mundial, Q2, solo remoto:
+  `https://www.linkedin.com/jobs/search/?keywords=%28%22Mobile%20Developer%22%20OR%20%22Mobile%20Engineer%22%29%20AND%20Flutter&geoId=92000000&f_TPR=r86400&f_WT=2&sortBy=DD`
+- LatAm regional (usa `location=`, no `geoId`):
+  `https://www.linkedin.com/jobs/search/?keywords=%28%22Flutter%22%20OR%20%22Dart%22%29&location=Latin%20America&f_TPR=r86400&f_WT=2&sortBy=DD`
+
+#### Rutina de verificacion de geoId (una vez por pais, antes de usarlo)
+
+La ejecuta `job-scout`, o el usuario a mano. Por cada pais con `geoId: null`:
+
+1. `navigate` a `https://www.linkedin.com/jobs/search/?keywords=Flutter&location=<Pais>`.
+2. Leer la URL resultante con `javascript_tool` (`location.href`): LinkedIn resuelve el texto a
+   `geoId=<n>` y lo reescribe en la barra de direcciones.
+3. Leer 3 ubicaciones del listado y confirmar que son de ese pais.
+4. Escribir `geoId` y `verificado: "<fecha ISO>"` en `datos/linkedin-geos.json`.
 
 > **No uses `f_AL=true` (Easy Apply)** en las busquedas de Flutter: casi ninguna vacante Flutter
 > LatAm/remota usa Easy Apply, ese filtro solo borra resultados validos. La mayoria salen a un ATS
 > externo, que el agente sabe manejar.
 
-> **Cuidado**: LinkedIn detecta automatizacion. Una pagina a la vez, sin ráfagas de clicks.
-> Si aparece un challenge de seguridad, parar la corrida en LinkedIn y avisar al usuario.
+> **Cuidado, y ahora mas que antes**: la matriz son ~56 paginas de LinkedIn por corrida (27 paises
+> x 2 consultas, mas las 2 regionales). LinkedIn detecta automatizacion. Recorre **tier por tier**
+> (A -> B -> C -> D), una pagina a la vez, sin rafagas de clicks. Al primer challenge de seguridad:
+> **parar LinkedIn entero**, avisar al usuario, y dejar sin avanzar la marca de los tiers no
+> escaneados — la ventana adaptativa hara que manana se miren con ventana mas ancha.
 
 ### Indeed
 `fromage=1` = ultimo dia. Cloudflare/CAPTCHA frecuente → si aparece, saltar el portal y avisar.

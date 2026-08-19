@@ -21,7 +21,12 @@
       "Venezuelan"
     ],
     "pronouns": null,
-    "cityDisplay": "Bogota, Colombia"
+    "cityDisplay": "Bogota, Colombia",
+    "postalCode": "110931",
+    "addressLine1": null,
+    "telegram": null,
+    "telegramNota": "El usuario NO usa Telegram (confirmado 2026-08-19). Cuando un formulario lo pida: si es opcional, dejar vacio; si es obligatorio, poner \"N/A - WhatsApp +57 316 707 1771\". NUNCA inventar un handle: un usuario falso o no existe o es de otra persona, y el reclutador que escribe por ahi y no obtiene respuesta descarta al candidato.",
+    "addressNota": "Codigo postal 110931 (Bogota) confirmado por el usuario 2026-08-19. addressLine1 sigue sin dato: si un ATS la exige como obligatoria, PREGUNTAR al usuario, no inventar una calle."
   },
   "links": {
     "linkedin": "https://www.linkedin.com/in/jonathanloboguerrero/",

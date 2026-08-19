@@ -125,7 +125,48 @@ dedupe contra el historial → **para y pide aprobación** → rellena y envía 
 con estado en `historial/ultima-corrida.json`. La marca de un portal avanza **solo si el escaneo
 tuvo éxito**, así que un portal bloqueado por Cloudflare se mira con ventana más ancha al día
 siguiente. Los portales de bajo volumen publican 1–2 vacantes Flutter por semana; 24h fijas las
-perdían.
+perdían. La ventana se traduce al **parámetro de fecha de la URL** antes de navegar
+(`f_TPR` en LinkedIn, `fromage` en Indeed, `fromAge` en Glassdoor, `pubdate` en Computrabajo) —
+antes quedaba clavada en 24h y la lógica adaptativa no llegaba al Tier 1. La marca de `linkedin`
+es **por país** (clave = `slug` de `linkedin-geos.json`), no por tier ni una sola: si la corrida se
+corta a mitad del Tier A, los países ya escaneados sí avanzan. La granularidad por tier se probó y
+era demasiado gruesa — el 2026-08-19 obligó a tirar el crédito de medio tier escaneado.
+
+**Matriz de LinkedIn (país × consulta).** LinkedIn ya no tiene URLs fijas en `portales.md`: el
+agente las genera desde `datos/linkedin-geos.json` — **27 países** (LatAm + Norteamérica, Europa
+anglo/hispana, Europa de trabajo en inglés, otros angloparlantes) **× 2 consultas booleanas**
+(`("Flutter" OR "Dart")` y `("Mobile Developer" OR "Mobile Engineer") AND Flutter`), más Worldwide
+y LatAm regional. ~56 páginas por corrida, recorridas tier por tier con ritmo humano.
+
+Dos reglas la gobiernan:
+
+- **Remoto según país** (regla del usuario): en **Colombia** valen presencial, híbrido y remoto —
+  su URL va **sin** `f_WT=2`. En cualquier otro país, **solo remoto**. Es el único país con
+  `remotoObligatorio: false`.
+- **Ningún `geoId` se escribe de memoria.** Nacen en `null` y se capturan de la URL real de
+  LinkedIn (rutina en `portales.md`). Un país sin verificar se **salta y se reporta**; inventar uno
+  fue exactamente lo que vació la corrida del 2026-08-18. Pero saltarlo no es el estado deseado:
+  el agente **captura los `geoId` faltantes y los persiste** con su fecha en `verificado`. Se paga
+  una vez; después la matriz corre completa y barata a diario.
+
+**Cobertura completa, no recortada** (regla dura 9, agregada 2026-08-19). La matriz entera se
+recorre hasta el final: **no se recorta por tiempo ni por consumo de tokens**. Lo único que
+autoriza abandonar LinkedIn a mitad es un challenge de seguridad del portal. Una corrida que
+abandona sin bloqueo real es un fallo y se reporta como tal, con el conteo `n/m países` por tier.
+
+**Prioridad por frescura.** La tabla de la Fase 3 se ordena por **antigüedad ascendente** (no por
+score), con columna `Edad` y ⚡ para lo publicado hace <24h; la Fase 4 envía en ese mismo orden.
+Llegar temprano pesa más que un par de puntos de compatibilidad: entre antes aplique, más probable
+que lo llamen.
+
+**Chequeo previo del navegador.** La Fase 0 prueba `tabs_context_mcp`/`tabs_create_mcp` antes de
+escanear. Si el clasificador de permisos las deniega, la corrida **para ahí** y pide salir del modo
+automático — el 2026-08-19 se escanearon 13 portales para descubrir en la Fase 4 que no se podía
+enviar nada.
+
+Complementos de scoring para la matriz ampliada: descarte con motivo `work-auth` cuando la oferta
+es remota **pero** exige residir o estar autorizado en ese país, y **−15** cuando exige horario
+local en un huso sin solape con UTC-5 (APAC — penaliza, no descarta).
 
 **Fallback "Apply on company website":** cuando el botón de aplicar abre una pestaña fuera del grupo
 MCP (Wellfound), el agente intenta extraer la URL destino con `javascript_tool` y, si no puede, deja
@@ -147,7 +188,8 @@ aunque el título no diga "Senior".
 | `datos/perfil.json` | Datos canónicos para formularios. **Derivado del PDF** — regenerable con la extracción CID de arriba. Campos `null` (ciudad, salario, disponibilidad) los pregunta el agente y los persiste; nunca los inventa. |
 | `datos/respuestas.md` | Banco de respuestas EN para screening. El agente copia de aquí, no improvisa. |
 | `datos/cover-letter-base.md` | Plantilla EN con `{PLACEHOLDERS}`. Nunca se envía sin sustituir. |
-| `portales.md` | Catálogo de URLs de búsqueda **verificadas**, por tier. Ninguna URL entra sin probarse contra el portal real. |
+| `datos/linkedin-geos.json` | Matriz de LinkedIn: 27 países con su `geoId` **verificado**, tier, `remotoObligatorio` y `husoAPAC`. `geoId: null` = sin verificar → el país se salta. |
+| `portales.md` | Catálogo de URLs de búsqueda **verificadas**, por tier. Ninguna URL entra sin probarse contra el portal real. LinkedIn es la excepción: allí define la plantilla y las reglas, no una lista de URLs. |
 | `historial/aplicaciones.json` | Fuente de verdad del dedupe. `id` = sha1(empresa + título normalizado), no de la URL. |
 | `historial/aplicaciones.md` | Bitácora legible. |
 | `historial/descartadas.json` | Ofertas ya evaluadas y rechazadas, para no reprocesarlas. |

@@ -1,0 +1,275 @@
+{
+  "_meta": "Matriz pais x consulta para LinkedIn. Los geoId se capturan de la URL REAL de LinkedIn (ver 'Rutina de verificacion' en portales.md). NUNCA escribir un geoId de memoria: el 2026-08-18 un geoId inventado (91000003, en realidad Asia-Pacifico) vacio una corrida entera. Un pais con geoId null se SALTA y se reporta en Fase 5.",
+  "_reglas": {
+    "remoto": "f_WT=2 se agrega si y solo si remotoObligatorio == true. Colombia va sin filtro de modalidad.",
+    "husoAPAC": "true => la oferta arrastra -15 de score por falta de solape horario con UTC-5 (ver Fase 2).",
+    "verificado": "Fecha ISO en que se capturo el geoId contra LinkedIn real. null = sin verificar."
+  },
+  "regionales": [
+    {
+      "slug": "worldwide",
+      "nombre": "Worldwide",
+      "geoId": "92000000",
+      "tier": "global",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-18"
+    },
+    {
+      "slug": "latam",
+      "nombre": "Latin America",
+      "geoId": null,
+      "locationParam": "Latin%20America",
+      "tier": "global",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-18",
+      "nota": "Verificada como location= texto, no como geoId. No sustituir por geoId=91000003 (Asia-Pacifico)."
+    }
+  ],
+  "paises": [
+    {
+      "slug": "colombia",
+      "nombre": "Colombia",
+      "geoId": "100876405",
+      "tier": "A",
+      "remotoObligatorio": false,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "mexico",
+      "nombre": "Mexico",
+      "geoId": "106262181",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "argentina",
+      "nombre": "Argentina",
+      "geoId": "100446943",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "chile",
+      "nombre": "Chile",
+      "geoId": "104621616",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "peru",
+      "nombre": "Peru",
+      "geoId": "102927786",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "brazil",
+      "nombre": "Brazil",
+      "geoId": "106057199",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "uruguay",
+      "nombre": "Uruguay",
+      "geoId": "100867946",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "costa-rica",
+      "nombre": "Costa Rica",
+      "geoId": "101739942",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "panama",
+      "nombre": "Panama",
+      "geoId": "100808673",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "guatemala",
+      "nombre": "Guatemala",
+      "geoId": "100877388",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "dominican-republic",
+      "nombre": "Dominican Republic",
+      "geoId": "105057336",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "ecuador",
+      "nombre": "Ecuador",
+      "geoId": "106373116",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "united-states",
+      "nombre": "United States",
+      "geoId": "103644278",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "canada",
+      "nombre": "Canada",
+      "geoId": "101174742",
+      "tier": "A",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "united-kingdom",
+      "nombre": "United Kingdom",
+      "geoId": "101165590",
+      "tier": "B",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "ireland",
+      "nombre": "Ireland",
+      "geoId": "104738515",
+      "tier": "B",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "spain",
+      "nombre": "Spain",
+      "geoId": "105646813",
+      "tier": "B",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "portugal",
+      "nombre": "Portugal",
+      "geoId": "100364837",
+      "tier": "B",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "germany",
+      "nombre": "Germany",
+      "geoId": "101282230",
+      "tier": "C",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "netherlands",
+      "nombre": "Netherlands",
+      "geoId": "102890719",
+      "tier": "C",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "poland",
+      "nombre": "Poland",
+      "geoId": "105072130",
+      "tier": "C",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "estonia",
+      "nombre": "Estonia",
+      "geoId": "102974008",
+      "tier": "C",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "sweden",
+      "nombre": "Sweden",
+      "geoId": "105117694",
+      "tier": "C",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "south-africa",
+      "nombre": "South Africa",
+      "geoId": "104035573",
+      "tier": "D",
+      "remotoObligatorio": true,
+      "husoAPAC": false,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "australia",
+      "nombre": "Australia",
+      "geoId": "101452733",
+      "tier": "D",
+      "remotoObligatorio": true,
+      "husoAPAC": true,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "new-zealand",
+      "nombre": "New Zealand",
+      "geoId": "105490917",
+      "tier": "D",
+      "remotoObligatorio": true,
+      "husoAPAC": true,
+      "verificado": "2026-08-19"
+    },
+    {
+      "slug": "singapore",
+      "nombre": "Singapore",
+      "geoId": "102454443",
+      "tier": "D",
+      "remotoObligatorio": true,
+      "husoAPAC": true,
+      "verificado": "2026-08-19"
+    }
+  ]
+}

@@ -71,3 +71,19 @@ salvo instruccion explicita del usuario. Son voluntarias y no afectan la candida
 ## Preguntas nuevas pendientes de responder
 
 <!-- El agente agrega aqui las preguntas que encontro y no supo responder -->
+
+## Datos de contacto y administrativos
+
+**Telegram username** — Jonathan no usa Telegram (confirmado 2026-08-19).
+- Campo opcional → dejar vacio.
+- Campo obligatorio de texto libre → `N/A - WhatsApp +57 316 707 1771`.
+- Campo con validacion estricta de formato `@usuario` → no se puede completar: dejar la oferta en
+  `pendientes-manual.md` y avisar al usuario, que decidira si crea una cuenta real.
+- **Nunca inventar un handle.** Un usuario falso o no existe o pertenece a otra persona; el
+  reclutador que escribe por ahi y no recibe respuesta descarta al candidato. Es peor que vacio.
+
+**Direccion postal**
+- Codigo postal: `110931` (Bogota, confirmado 2026-08-19).
+- Ciudad / Pais: `Bogota` / `Colombia`.
+- `Address Line 1` (calle): **sin dato**. Si un ATS la exige como obligatoria, preguntar al usuario.
+  No inventar una calle: en una aplicacion formal es un dato falso verificable.

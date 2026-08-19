@@ -1,5 +1,5 @@
 ---
-description: Busca ofertas Flutter de las ultimas 24h, las puntua y aplica tras tu aprobacion
+description: Busca ofertas Flutter dentro de la ventana adaptativa, las puntua y aplica tras tu aprobacion
 argument-hint: [portal] [--dry-run]
 ---
 

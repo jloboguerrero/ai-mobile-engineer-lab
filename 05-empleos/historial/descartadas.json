@@ -78,5 +78,117 @@
     "_resumen": "Portales sin candidatas nuevas. LinkedIn mundial 7 crudas (todas ya en historial). LinkedIn Colombia 1 (BairesDev, ya vista). LinkedIn LatAm 9 (2 nuevas, ambas presencial/hibrido). LinkedIn 'Mobile Developer Flutter' >300 resultados de ruido sin Flutter. Indeed CO y US: 0 resultados para Flutter en 24h. Glassdoor: 0. RemoteOK: nada Flutter, lo mas reciente 26d. WeWorkRemotely: 0. Working Nomads y JustRemote: ignoran el parametro de busqueda, ningun Flutter. GetOnBoard: 8 crudas, lo mas reciente ago-14 y los Flutter son hibridos en Santiago. Torre.ai: 1 resultado irrelevante. Computrabajo: 0.",
     "_incidencias": "Himalayas bloqueado por challenge de Cloudflare (no se resuelve por politica). glassdoor.com.co no resuelve DNS. talently.tech/empleos devuelve 404. LinkedIn geoId=91000003 es Asia-Pacifico, NO LatAm.",
     "fechaDescarte": "2026-08-18"
+  },
+  {
+    "id": "b7c1f4a9e2d6",
+    "empresa": "Canonical",
+    "titulo": "Web Frontend Engineer - JS, CSS, React, Flutter",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4286647452/",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "Descarte inmediato: stack principal es JS/CSS/React (Vanilla Framework de Canonical). Flutter es 'tecnologia nueva' en exploracion, no el foco del rol. Aparecio en Colombia, Mexico, Argentina, Chile, Peru, Brasil, US, Canada, UK, Irlanda, Espana, Worldwide y LatAm (mismo posting global)."
+  },
+  {
+    "id": "a1e3c8f0b4d2",
+    "empresa": "Grupo Boticario",
+    "titulo": "Pessoa Desenvolvedora Flutter Especialista II (Lojas)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Flutter&location=Brazil",
+    "score": 30,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "Vacante en portugues, empresa retail brasilena, sin senal clara de seniority ('Especialista II') ni de LatAm-friendly fuera de Brasil. Tambien aparece en RemoteRocketship con vacante hermana 'Fullstack Developer - Flutter, Node Specialist I', ambas con requisito de portugues."
+  },
+  {
+    "id": "f9d4b2a7c1e8",
+    "empresa": "Instaffo",
+    "titulo": "Mobile Engineer (m/w/d) in Consulting",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Flutter&geoId=92000000",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "Descarte work-auth: vacante alemana (m/w/d), salario en EUR, consultoria local de Berlin. No se confirma remoto worldwide/LatAm."
+  },
+  {
+    "id": "c3e7a1d9f5b6",
+    "empresa": "SME Careers",
+    "titulo": "Dart Team Lead",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Flutter&geoId=92000000",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "No es un rol de desarrollo de software: es QA/revision de datos de entrenamiento de IA para Dart/Flutter (rubric review de codigo generado por IA), sin proyecto activo. No aplica al perfil de Jonathan."
+  },
+  {
+    "id": "d8f2b6a3c9e1",
+    "empresa": "AttainX",
+    "titulo": "Senior Software Developer - 100% Remote",
+    "portal": "indeed-glassdoor",
+    "url": "https://www.indeed.com/jobs?q=Flutter+developer&l=Remote&fromage=1&sort=date",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "Work-auth: exige ciudadania US y elegibilidad Public Trust clearance. Stack primario React Native/.NET, Flutter solo mencionado como alternativa mobile."
+  },
+  {
+    "id": "e2a9c4f7d1b3",
+    "empresa": "Koin Limited",
+    "titulo": "AI Product Engineer",
+    "portal": "indeed",
+    "url": "https://co.indeed.com/jobs?q=Flutter&fromage=1&sort=date",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "No es un rol Flutter/mobile: stack es Next.js/Supabase/n8n orientado a automatizacion con IA. Aparecio como sugerencia porque la busqueda de 'Flutter' en Indeed CO no tuvo resultados."
+  },
+  {
+    "id": "b5d1f8a2c6e4",
+    "empresa": "Parvana",
+    "titulo": "Flutter Developer",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/?page=1&sort=DateAdded&jobTitle=Flutter",
+    "score": 20,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "Sudafrica (fuera de Colombia/LatAm), mid-senior mezclado con Ionic/Kotlin/Swift en vez de Flutter puro."
+  },
+  {
+    "id": "f4c8a2e6b9d3",
+    "empresa": "Various (DailyRemote/Jobgether)",
+    "titulo": "Software Engineer Mobile (Flutter) / varias vacantes 'Flutter Developer'",
+    "portal": "dailyremote-jobgether",
+    "url": "https://www.dailyremote.com/remote-jobs?search=flutter",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "DailyRemote: unico resultado (Reino Unido) pide 2-5 anos, no cumple nivel senior. Jobgether: 8 resultados, todos publicados hace 9-30+ dias, fuera de la ventana adaptativa maxima de 7 dias."
+  },
+  {
+    "_lote": "corrida-2026-08-19",
+    "_resumen": "LinkedIn Tier A (Colombia, Mexico, Argentina, Chile, Peru, Brasil, US, Canada) x Q1, Colombia x Q2, Worldwide y LatAm regional x Q1+Q2, Tier B parcial (UK, Irlanda, Espana x Q1). El grueso de resultados son BairesDev republicando la misma oferta generica de 'Mobile Engineer (Flutter)' pais por pais (mismo hash de dedupe, ya cubierto). GetOnBoard: 7 crudas, todas hibridas en Santiago o remoto no-Flutter. Torre.ai: la URL con ?q= sigue redirigiendo a /app/search-job sin query (rota, igual que 2026-08-18). Talently.tech: no tiene buscador en el home, solo landing page; la ruta /empleos?search= sigue en 404. Wellfound: 0 resultados esta vez (ventana 24h). Himalayas: bloqueado por Cloudflare de nuevo.",
+    "_incidencias": "Torre.ai URL rota persiste desde 2026-08-18 (?q= se pierde en la redireccion). Talently no tiene ruta de busqueda verificable sin login. Uruguay, Costa Rica, Panama, Guatemala, Republica Dominicana y Ecuador (Tier A) no se escanearon por limite de tiempo de la corrida; su marca de ventana no avanzo.",
+    "fechaDescarte": "2026-08-19"
+  },
+  {
+    "id": "f7c2e9a4d6b1",
+    "empresa": "Online Jobs Philippines - Work at Home",
+    "titulo": "MUSICX: Senior Flutter Mobile Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4451726723/",
+    "score": 0,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "Listado sin descripcion (pagina no carga 'Acerca del empleo' tras reintento con espera). Publicado via agregador de staffing filipino sobre una vacante en Nueva York; sin datos suficientes para evaluar fit ni redactar cover letter con confianza. No se descarta el interes futuro, solo la falta de informacion."
+  },
+  {
+    "id": "e4b8a1f6c3d9",
+    "empresa": "Gravitas Recruitment Group (Global) Ltd",
+    "titulo": "Senior Mobile Engineering Lead (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=%28%22Flutter%22%20OR%20%22Dart%22%29&geoId=101165590",
+    "score": null,
+    "fechaDescarte": "2026-08-19",
+    "motivo": "No es descarte: la oferta ya aparece marcada 'Solicitado' en LinkedIn (aplicada previamente, fuera del tracking de este agente). Se anota aqui solo para dedupe; no reproponer."
+  },
+  {
+    "_lote": "corrida-2026-08-19-tarde-matriz-completa",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados (geoId capturado y persistido en linkedin-geos.json) x 2 consultas booleanas, mas Worldwide y LatAm regional x 2 consultas = 58 paginas recorridas sin bloqueos de seguridad. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2. El 95% de resultados son BairesDev republicando 'Mobile Engineer (Flutter)' pais por pais (mismo hash, ya cubierto) o vacantes ya en descartadas.json de la corrida de la manana. Unica candidata nueva genuina: Salmon Group Ltd (Flutter Developer, Polonia/remoto). Complementado con revision de Indeed, Glassdoor, RemoteOK, WeWorkRemotely, Wellfound, HiringCafe, RemoteRocketship, GetOnBoard, Computrabajo, DailyRemote y Jobgether (ventana 24h-7d por marca reciente); HiringCafe aporto 2 candidatas nuevas (Hudu, Digitech) no indexadas por LinkedIn con score exacto en el umbral (70).",
+    "_incidencias": "Torre.ai y Talently siguen rotos (mismo diagnostico que la corrida de la manana). Jobgether: los 8 resultados de rol Flutter son todos de 9 a 30+ dias, fuera de ventana. GetOnBoard: nada nuevo, solo hibridos Santiago o vacantes viejas. RemoteRocketship top resultados ya en descartadas (Parvana, Grupo Boticario).",
+    "fechaDescarte": "2026-08-19"
   }
 ]

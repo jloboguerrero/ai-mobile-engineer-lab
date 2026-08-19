@@ -11,7 +11,8 @@
     "fechaAplicacion": "2026-08-18T00:00:00-05:00",
     "estado": "resuelta_manual",
     "notas": "Revisada y resuelta por el usuario a mano el 2026-08-18.",
-    "fechaResolucion": "2026-08-18"
+    "fechaResolucion": "2026-08-18",
+    "fecha": "2026-08-18"
   },
   {
     "id": "e066f89812d5",
@@ -24,7 +25,8 @@
     "fechaAplicacion": "2026-08-18T00:00:00-05:00",
     "estado": "resuelta_manual",
     "notas": "Revisada y resuelta por el usuario a mano el 2026-08-18.",
-    "fechaResolucion": "2026-08-18"
+    "fechaResolucion": "2026-08-18",
+    "fecha": "2026-08-18"
   },
   {
     "id": "9144b281653d",
@@ -37,6 +39,78 @@
     "fechaAplicacion": "2026-08-18T00:00:00-05:00",
     "estado": "resuelta_manual",
     "notas": "Revisada y resuelta por el usuario a mano el 2026-08-18.",
-    "fechaResolucion": "2026-08-18"
+    "fechaResolucion": "2026-08-18",
+    "fecha": "2026-08-18"
+  },
+  {
+    "id": "dde0799f0eb8",
+    "empresa": "JIXAAR AI",
+    "titulo": "Senior Mobile Engineer (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4453413505/",
+    "score": 75,
+    "fechaOferta": "2026-08-19",
+    "fechaAplicacion": null,
+    "estado": "enviada_manual",
+    "notas": "Aprobada por el usuario 2026-08-19. Bloqueo tecnico: el clasificador de modo automatico denego tabs_context_mcp/tabs_create_mcp incluso tras reintento autorizado. Cover letter y respuestas de screening listas en historial/pendientes-manual.md.",
+    "fecha": "2026-08-19",
+    "notaEstado": "Enviada a mano por el usuario el 2026-08-19 (el clasificador de modo auto bloqueo el navegador)."
+  },
+  {
+    "id": "052b5d76571d",
+    "empresa": "BairesDev",
+    "titulo": "Lead Flutter Engineer - Remote Work",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4455977365/",
+    "score": 70,
+    "fechaOferta": "2026-08-19",
+    "fechaAplicacion": null,
+    "estado": "enviada_manual",
+    "notas": "Aprobada por el usuario 2026-08-19. Bloqueo tecnico: el clasificador de modo automatico denego tabs_context_mcp/tabs_create_mcp incluso tras reintento autorizado. Cover letter y respuestas de screening listas en historial/pendientes-manual.md.",
+    "fecha": "2026-08-19",
+    "notaEstado": "Enviada a mano por el usuario el 2026-08-19 (el clasificador de modo auto bloqueo el navegador)."
+  },
+  {
+    "id": "a34f820fb83d",
+    "empresa": "Salmon Group Ltd",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4387720782/",
+    "urlAts": "https://jobs.ashbyhq.com/salmon-group/0215e0ea-9718-48f2-84c2-560ae3388615/application",
+    "score": 80,
+    "fechaOferta": "2026-08-17",
+    "fechaAplicacion": "2026-08-19T00:00:00-05:00",
+    "estado": "aplicada",
+    "notas": "Aprobada por el usuario 2026-08-19. Formulario Ashby retomado desde un intento previo ya diligenciado (Telegram Username = 'N/A - WhatsApp +57 316 707 1771', declarado explicito por no usar Telegram); el usuario autorizo explicitamente marcar la casilla de consentimiento de tratamiento de datos (enlace salmon.ph/privacy-policy, vigencia 1 ano) que bloqueaba el envio. Horario nucleo 12PM-6PM GMT+8 (Filipinas) respondido con honestidad ('No', no encaja) y relocation a Filipinas 'No', ambos senalados en la cover letter. Confirmacion de envio recibida: 'Your application was successfully submitted.'",
+    "fecha": "2026-08-19"
+  },
+  {
+    "id": "c6feb9305f55",
+    "empresa": "Digitech (Sarnova)",
+    "titulo": "Flutter Developer - Digitech - Remote",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4448477023/",
+    "urlAts": "https://jobs.dayforcehcm.com/en-US/sarnova/CANDIDATEPORTAL/jobs/1307/apply/manualApplication",
+    "score": 70,
+    "fechaOferta": "2026-08-13",
+    "fechaAplicacion": "2026-08-19",
+    "estado": "aplicada",
+    "notas": "Aprobada por el usuario 2026-08-19. NO enviada: el formulario de Dayforce (Apply without an Account) exige Address Line 1 y Zip/Postal Code obligatorios; perfil.json solo tiene ciudad (Bogota), sin direccion postal ni codigo postal. No se invento el dato. Resto del formulario (nombre, email, telefono +57, LinkedIn, Colombia/Distrito Capital de Bogota) ya quedo diligenciado en el navegador pero no se envio.",
+    "fecha": "2026-08-19",
+    "notaEstado": "SUPOSICION, no confirmacion. Este sistema NUNCA vio un mensaje de envio exitoso. Al enviar el formulario de Dayforce el 2026-08-19, el ATS respondio \"You've already applied for this job\", presumiblemente por el intento previo que quedo diligenciado en el navegador sin confirmacion. El usuario decidio darla por valida en vez de reintentar (evitando un duplicado real en el ATS de Sarnova). Si no hay respuesta del reclutador, ESTE es el primer sitio donde mirar: puede que la candidatura nunca entrara. Contacto sugerido por el propio formulario: recruitingteam@sarnova.com"
+  },
+  {
+    "id": "1b4a9845667b",
+    "empresa": "Hudu",
+    "titulo": "Flutter Engineer",
+    "portal": "hiringcafe/ashby",
+    "url": "https://hiringcafe.com/job/flutter-engineer-hudu-united-states-x42ttjtfm3nrbzfs",
+    "urlAts": "https://jobs.ashbyhq.com/hudu/30022059-d2c1-4427-8cd0-17cd628140c8/application",
+    "score": 70,
+    "fechaOferta": "2026-08-12",
+    "fechaAplicacion": "2026-08-19T00:00:00-05:00",
+    "estado": "aplicada",
+    "notas": "Aprobada por el usuario 2026-08-19. ENVIADA via Ashby. Screening respondido con honestidad: 'Are you legally authorized to work in the United States?' = No, 'Will you now or in the future require sponsorship?' = No (preferencia de contractor remoto, no sponsorship). Puesto es empleo W2 full-time (no contractor) con salario estimado USD 90K-110K/ano; se indico salario deseado USD 54,000/ano equivalente a tarifa de contractor. Alto riesgo de no avanzar por el mismatch de work authorization, aplicado de todas formas segun aprobacion del usuario. Confirmacion: 'Success - Thank you for your interest in joining our team!'",
+    "fecha": "2026-08-19"
   }
 ]
