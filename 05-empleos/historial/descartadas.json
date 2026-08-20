@@ -190,5 +190,71 @@
     "_resumen": "Matriz LinkedIn completa: 27 paises verificados (geoId capturado y persistido en linkedin-geos.json) x 2 consultas booleanas, mas Worldwide y LatAm regional x 2 consultas = 58 paginas recorridas sin bloqueos de seguridad. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2. El 95% de resultados son BairesDev republicando 'Mobile Engineer (Flutter)' pais por pais (mismo hash, ya cubierto) o vacantes ya en descartadas.json de la corrida de la manana. Unica candidata nueva genuina: Salmon Group Ltd (Flutter Developer, Polonia/remoto). Complementado con revision de Indeed, Glassdoor, RemoteOK, WeWorkRemotely, Wellfound, HiringCafe, RemoteRocketship, GetOnBoard, Computrabajo, DailyRemote y Jobgether (ventana 24h-7d por marca reciente); HiringCafe aporto 2 candidatas nuevas (Hudu, Digitech) no indexadas por LinkedIn con score exacto en el umbral (70).",
     "_incidencias": "Torre.ai y Talently siguen rotos (mismo diagnostico que la corrida de la manana). Jobgether: los 8 resultados de rol Flutter son todos de 9 a 30+ dias, fuera de ventana. GetOnBoard: nada nuevo, solo hibridos Santiago o vacantes viejas. RemoteRocketship top resultados ya en descartadas (Parvana, Grupo Boticario).",
     "fechaDescarte": "2026-08-19"
+  },
+  {
+    "id": "7f77daa164b0",
+    "empresa": "Ladders (cliente confidencial, Finance & Insurance)",
+    "titulo": "Sr Software Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4453877835/",
+    "score": 0,
+    "fechaDescarte": "2026-08-20",
+    "motivo": "Stack principal .NET/C#/Node.js/Python; Flutter aparece solo en una lista larga de 'skills deseables' junto con React Native, Kotlin, Java Android. Ademas exige residencia US sin patrocinio de visa ('US based candidates only, no visa sponsorship available') -> descarte adicional work-auth."
+  },
+  {
+    "id": "b939a8394a32",
+    "empresa": "LABHOUSE",
+    "titulo": "Lead Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4453859198/",
+    "score": 0,
+    "fechaDescarte": "2026-08-20",
+    "motivo": "work-auth: oferta describe 'Remote work from anywhere in Spain', lo que implica residencia en Espana para calificar. Stack (Flutter/Dart, Firebase, AWS/GCP, liderazgo, integracion de IA) hubiera puntuado muy alto (~95) de no ser por la restriccion geografica."
+  },
+  {
+    "id": "fcdca5ce9efb",
+    "empresa": "RemoteMore (agencia, cliente sin identificar)",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin/weworkremotely",
+    "url": "https://www.linkedin.com/jobs/view/4453873496/",
+    "score": 0,
+    "fechaDescarte": "2026-08-20",
+    "motivo": "Para aplicar exige registrarse en la plataforma RemoteMore (crear cuenta) -> bloqueado por regla dura (no crear cuentas). Stack y remoto global hubieran calificado."
+  },
+  {
+    "id": "b57909ac7b2c",
+    "empresa": "Social Discovery Group",
+    "titulo": "Senior Mobile Engineer (Flutter)",
+    "portal": "linkedin/remoterocketship",
+    "url": "https://www.linkedin.com/jobs/view/4453888945/",
+    "score": 0,
+    "fechaDescarte": "2026-08-20",
+    "motivo": "Requiere 'Fluent Russian' como requisito obligatorio, que Jonathan no cumple (honestidad, no se maquilla). Stack Flutter/Dart/BLoC/Provider hubiera calificado muy alto de no ser por el idioma."
+  },
+  {
+    "id": "6a5c6ac8b1ee",
+    "empresa": "Matys, A Cegid Company",
+    "titulo": "Developpeur Mobile (Flutter) Talentsoft",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4446832888/",
+    "score": 0,
+    "fechaDescarte": "2026-08-20",
+    "motivo": "Puesto hibrido/presencial en Marruecos (oficinas Rabat/Casablanca, 'teletravail partiel', transporte de empresa) -> fuera de Colombia, no remoto global. Ademas sin senal clara de seniority (no dice 'Senior', solo 'un certain nombre de competences')."
+  },
+  {
+    "id": "bf178d9c4359",
+    "empresa": "Confidencial (via DailyRemote)",
+    "titulo": "Software Engineer, Mobile (Flutter)",
+    "portal": "dailyremote",
+    "url": "https://dailyremote.com/remote-jobs?search=flutter",
+    "score": 40,
+    "fechaDescarte": "2026-08-20",
+    "motivo": "Reino Unido, requiere 2-5 anos de experiencia (mid-level, sin componente senior claro); equipo distribuido San Francisco/Hyderabad. Descartada por nivel de seniority insuficiente."
+  },
+  {
+    "_lote": "corrida-2026-08-20",
+    "_resumen": "Matriz LinkedIn completa: 27 paises x 2 consultas + Worldwide y LatAm regional x 2 consultas = 58 paginas, Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. La inmensa mayoria de resultados fueron 0 (busqueda con f_TPR=r86400 muy limpia) o promociones/sugeridos irrelevantes de LinkedIn (Kake, Stefanini, Capgemini, AgileEngine, etc. -- ninguno Flutter). 6 candidatas geniunamente nuevas evaluadas y descartadas una por una (Ladders, LABHOUSE, RemoteMore, Social Discovery Group, Matys/Cegid, DailyRemote-UK). Complementado con Indeed US/CO (0), Glassdoor (0), RemoteOK (0 dentro de ventana), WeWorkRemotely (0), Himalayas (bloqueado Cloudflare, sin avanzar marca), Wellfound (0), HiringCafe (164 vacantes activas revisadas, ninguna con Flutter como stack principal dentro de la ventana de 2 dias), RemoteRocketship (1 resultado, ya descartado por Social Discovery Group), GetOnBoard (0 nuevo relevante), Torre.ai (sigue roto, ?q= se pierde en redireccion a /app/search-job), Computrabajo (0), Talently (confirmado: no tiene buscador publico de vacantes, es landing B2B de agencia de recruiting -- se mantiene en null), Jobgether (0 dentro de ventana, todo 10+ dias con location=latam sin filtrar).",
+    "_incidencias": "Torre.ai roto persiste desde 2026-08-18 (tercera corrida consecutiva). Talently confirmado sin ruta de busqueda usable, no vale la pena seguir intentando salvo que el usuario decida contactarlos como agencia B2B. Cero candidatas sobrevivieron el umbral de score >=70 en esta corrida -- el mercado Flutter senior remoto tuvo un dia flojo.",
+    "fechaDescarte": "2026-08-20"
   }
 ]
