@@ -256,5 +256,77 @@
     "_resumen": "Matriz LinkedIn completa: 27 paises x 2 consultas + Worldwide y LatAm regional x 2 consultas = 58 paginas, Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. La inmensa mayoria de resultados fueron 0 (busqueda con f_TPR=r86400 muy limpia) o promociones/sugeridos irrelevantes de LinkedIn (Kake, Stefanini, Capgemini, AgileEngine, etc. -- ninguno Flutter). 6 candidatas geniunamente nuevas evaluadas y descartadas una por una (Ladders, LABHOUSE, RemoteMore, Social Discovery Group, Matys/Cegid, DailyRemote-UK). Complementado con Indeed US/CO (0), Glassdoor (0), RemoteOK (0 dentro de ventana), WeWorkRemotely (0), Himalayas (bloqueado Cloudflare, sin avanzar marca), Wellfound (0), HiringCafe (164 vacantes activas revisadas, ninguna con Flutter como stack principal dentro de la ventana de 2 dias), RemoteRocketship (1 resultado, ya descartado por Social Discovery Group), GetOnBoard (0 nuevo relevante), Torre.ai (sigue roto, ?q= se pierde en redireccion a /app/search-job), Computrabajo (0), Talently (confirmado: no tiene buscador publico de vacantes, es landing B2B de agencia de recruiting -- se mantiene en null), Jobgether (0 dentro de ventana, todo 10+ dias con location=latam sin filtrar).",
     "_incidencias": "Torre.ai roto persiste desde 2026-08-18 (tercera corrida consecutiva). Talently confirmado sin ruta de busqueda usable, no vale la pena seguir intentando salvo que el usuario decida contactarlos como agencia B2B. Cero candidatas sobrevivieron el umbral de score >=70 en esta corrida -- el mercado Flutter senior remoto tuvo un dia flojo.",
     "fechaDescarte": "2026-08-20"
+  },
+  {
+    "id": "62a11799c262",
+    "empresa": "Nava | Tech for Business",
+    "titulo": "Desenvolvedor(a) Flutter Senior",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=%28%22Flutter%22%20OR%20%22Dart%22%29&geoId=106057199",
+    "score": 30,
+    "fechaDescarte": "2026-08-21",
+    "motivo": "Vacante en portugues, Brasil-only (banco BV), salario 6.000-9.000 BRL/mes (~USD 1.100-1.700), muy por debajo del rango esperado (USD 4.000-5.000). Sin senal de remoto fuera de Brasil."
+  },
+  {
+    "id": "70286648ad18",
+    "empresa": "DataAnnotation",
+    "titulo": "Flutter Developer - AI Trainer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4457021855/",
+    "score": 0,
+    "fechaDescarte": "2026-08-21",
+    "motivo": "No es un puesto de desarrollo de producto: es trabajo por tareas de anotacion/evaluacion de codigo generado por IA (gig freelance pagado por hora via PayPal), enfocado en Android/Kotlin. Reaparece en varios paises (Reino Unido, Nueva Zelanda) como el mismo posting. No aplica al perfil."
+  },
+  {
+    "id": "b5a1f8a2c6e5",
+    "empresa": "Stefanini Brasil",
+    "titulo": "Full Stack Developer - Flutter, Java, Angular",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/?page=1&sort=DateAdded&jobTitle=Flutter",
+    "score": 20,
+    "fechaDescarte": "2026-08-21",
+    "motivo": "Brasil-only, portugues obligatorio, full stack con Flutter como una de tres tecnologias (Java y Angular tambien), nivel Mid/Senior mezclado. No es foco Flutter."
+  },
+  {
+    "id": "a8c3f1e9d2b7",
+    "empresa": "Tide",
+    "titulo": "Senior Software Engineer, Flutter",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4444393551/",
+    "score": 0,
+    "fechaDescarte": "2026-08-22",
+    "motivo": "work-auth: vacante ligada a Bengaluru, Karnataka, India (tambien republicada para Delhi e Hyderabad hibrido). Fintech con operacion India/UK/Alemania/Francia, sin senal de remoto global ni LatAm-friendly. Stack Flutter/Dart/BLoC muy fuerte (hubiera puntuado ~90) pero la ubicacion indica contratacion local india."
+  },
+  {
+    "id": "c4d7e2a8f1b9",
+    "empresa": "App Akademie",
+    "titulo": "Mentor fur AI-gestutzte Softwareentwicklung (Werkstudent)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4455052276/",
+    "score": 0,
+    "fechaDescarte": "2026-08-22",
+    "motivo": "Descarte inmediato: Werkstudent (estudiante/parcial), tarifa 17-20 EUR/hora. Nivel junior/practicante, no aplica a perfil senior."
+  },
+  {
+    "id": "e5f8a3d1c9b4",
+    "empresa": "Vetifi",
+    "titulo": "SDE Intern - Flutter",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4455027459/",
+    "score": 0,
+    "fechaDescarte": "2026-08-22",
+    "motivo": "Descarte inmediato: puesto de intern (India). No aplica a perfil senior."
+  },
+  {
+    "_lote": "corrida-2026-08-22",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll/paginacion dentro de cada URL (rutina de profundidad completa). Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana efectiva ~25h (f_TPR=r90000, ultima corrida hace ~25h). La inmensa mayoria de paises devolvio 0 resultados dentro de la ventana estrecha. Candidatas geniunamente nuevas: Clinica PsicoSalud (Chile, freelance MVP via email, ver aplicaciones/nota), Tide (descartada work-auth India), App Akademie y Vetifi (descartadas, junior/intern). Avenue Code (Argentina) ya estaba 'Solicitado' en LinkedIn (fuera del tracking de este agente, no se reproponer). Complementado con Indeed US/CO (0 relevante), Glassdoor (0 relevante, 1 resultado backend no-Flutter), RemoteOK (0 relevante, ruido no-tech), WeWorkRemotely (0), Himalayas (bloqueado Cloudflare, sin avanzar marca), Wellfound (0), HiringCafe (166 vacantes activas, ninguna Flutter-senior nueva dentro de ~25h), RemoteRocketship (1 candidata nueva: DevFixr 'Senior Flutter Developer' UK-remote/offshore staffing, pero el boton Apply exige crear cuenta -> bloqueado por regla dura 3, igual que Rimutee en corridas previas), GetOnBoard (0 nuevo relevante), Torre.ai (sigue roto, quinta corrida consecutiva), Computrabajo (0), Talently (confirmado sin ruta de busqueda publica, landing B2B, se mantiene en null), DailyRemote (mismo resultado UK ya descartado por nivel), Jobgether (0 dentro de ventana, todo 12+ dias).",
+    "_incidencias": "Torre.ai y Talently siguen rotos (quinta corrida consecutiva para Torre). DevFixr (RemoteRocketship) exige crear cuenta para aplicar, igual que Rimutee -> queda para decision manual del usuario. Clinica PsicoSalud (LinkedIn, Chile) no tiene boton de aplicacion funcional: exige enviar correo a una direccion Gmail personal con respuestas a 3 preguntas tecnicas y cotizacion de tarifa -> fuera del alcance de las herramientas de este agente (no hay herramienta de email), queda como candidata para revision manual del usuario.",
+    "fechaDescarte": "2026-08-22"
+  },
+  {
+    "_lote": "corrida-2026-08-21",
+    "_resumen": "Matriz LinkedIn completa: 27 paises x 2 consultas + Worldwide y LatAm regional x 2 consultas = 58 paginas, Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad, ventana de 2 dias (f_TPR=r172800, ultima corrida hace ~27h). La gran mayoria de resultados repiten el mismo posting de Jobgether 'Senior Mobile Engineer (Flutter)' republicado pais por pais (Social Discovery Group, requiere ruso fluido, ya descartado en corridas previas). Candidatas geniunamente nuevas evaluadas: Nava/Tech for Business (Brasil, portugues, salario bajo), DataAnnotation (gig de anotacion IA, no es desarrollo de producto), Stefanini Brasil (portugues obligatorio). Complementado con Indeed US/CO (0), Glassdoor (0), RemoteOK (0 relevante, mas reciente 29d), WeWorkRemotely (0), Himalayas (bloqueado Cloudflare, sin avanzar marca), Wellfound (54 resultados, ninguno Flutter puro dentro de ventana; GoFasti Mobile Engineer fuera de ventana a 3 dias), HiringCafe (170 vacantes activas, ninguna con Flutter como stack principal dentro de ~27h), RemoteRocketship (UNA candidata nueva genuina: Rimutee 'Desarrollador Flutter', LatAm remoto, 5+ anos, score 90), GetOnBoard (0 nuevo relevante, solo hibridos Santiago o vacantes viejas), Torre.ai (sigue roto, ?q= se pierde en redireccion a /app/search-job), Computrabajo (0), Talently (sin ruta de busqueda usable, se mantiene en null), DailyRemote (mismo resultado UK ya descartado por nivel), Jobgether (0 dentro de ventana, todo 11+ dias).",
+    "_incidencias": "Torre.ai y Talently siguen rotos (cuarta corrida consecutiva). Ninguna otra URL del catalogo fallo.",
+    "fechaDescarte": "2026-08-21"
   }
 ]

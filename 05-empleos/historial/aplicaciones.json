@@ -112,5 +112,44 @@
     "estado": "aplicada",
     "notas": "Aprobada por el usuario 2026-08-19. ENVIADA via Ashby. Screening respondido con honestidad: 'Are you legally authorized to work in the United States?' = No, 'Will you now or in the future require sponsorship?' = No (preferencia de contractor remoto, no sponsorship). Puesto es empleo W2 full-time (no contractor) con salario estimado USD 90K-110K/ano; se indico salario deseado USD 54,000/ano equivalente a tarifa de contractor. Alto riesgo de no avanzar por el mismatch de work authorization, aplicado de todas formas segun aprobacion del usuario. Confirmacion: 'Success - Thank you for your interest in joining our team!'",
     "fecha": "2026-08-19"
+  },
+  {
+    "id": "61b74513fe19",
+    "empresa": "DevFixr",
+    "titulo": "Senior Flutter Developer",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/publicjobs/company/devfixr/jobs/senior-flutter-developer-united-kingdom-remote/",
+    "score": 100,
+    "fechaOferta": "2026-08-22",
+    "fechaAplicacion": null,
+    "estado": "manual",
+    "notas": "Aprobada por el usuario 2026-08-22. NO enviada: el boton 'Apply Now' exige crear una cuenta en RemoteRocketship ('Sign up now to apply to this job'). Regla dura 3 (nunca crear cuentas). Agencia de staffing offshore UK-focused, coherente con perfil LatAm remoto. Datos, cover letter corta y respuestas de screening preparados en historial/pendientes-manual.md.",
+    "fecha": "2026-08-22"
+  },
+  {
+    "id": "721d46595663",
+    "empresa": "Clinica PsicoSalud",
+    "titulo": "Desarrollador Full-Stack Senior (Flutter / IA) - Marketplace & EdTech Global",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4454672678/",
+    "score": 100,
+    "fechaOferta": "2026-08-21",
+    "fechaAplicacion": null,
+    "estado": "manual",
+    "notas": "Aprobada por el usuario 2026-08-22. NO enviada: no hay formulario en LinkedIn, la oferta exige enviar correo a app.desarrolloscv@gmail.com con respuestas a 3 preguntas tecnicas y cotizacion de tarifa; este agente no tiene herramienta de envio de email. Nota de riesgo: anunciante es una clinica de psicologia publicando un MVP tech no relacionado, contacto en Gmail personal (no dominio corporativo) -- verificar legitimidad antes de escribir. Asunto de correo, CV y borrador honesto de las 4 respuestas (sin inventar experiencia en Stripe Connect/DRM) preparados en historial/pendientes-manual.md.",
+    "fecha": "2026-08-22"
+  },
+  {
+    "id": "efab67509585",
+    "empresa": "Rimutee",
+    "titulo": "Desarrollador Flutter",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/publicjobs/company/rimutee-3/jobs/desarrollador-flutter-latin-america-remote/",
+    "score": 90,
+    "fechaOferta": "2026-08-20",
+    "fechaAplicacion": null,
+    "estado": "manual",
+    "notas": "Aprobada por el usuario 2026-08-21. NO enviada: el boton 'Apply Now' de RemoteRocketship exige crear una cuenta ('Sign up now to apply to this job') antes de mostrar el formulario. Regla dura 3 (nunca crear cuentas). El enlace 'Website' de Rimutee apunta a app.rimutee.com, su propia plataforma de talento, que previsiblemente exige el mismo registro. Queda para que el usuario decida si crea la cuenta el mismo.",
+    "fecha": "2026-08-21"
   }
 ]

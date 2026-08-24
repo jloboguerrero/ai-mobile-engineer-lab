@@ -41,6 +41,12 @@ Directorio de trabajo: `/Users/jloboguerrero/Documents/work/ClaudeCode/05-empleo
    Lo unico que autoriza abandonar LinkedIn a mitad es un challenge de seguridad del portal
    (regla 2). "Se hizo largo" no es una razon.
 
+   **Cobertura tiene dos ejes: cuantas URLs recorres, y cuanto lees dentro de cada una.** Una
+   corrida que visita las 58 URLs de la matriz pero solo lee la primera pantalla de cada listado
+   (sin scroll ni paginacion — ver "Profundidad en LinkedIn" en la Fase 1) **no** es cobertura
+   completa, aunque la telemetria de paises diga 58/58. Es el mismo fallo que esta regla prohibe,
+   solo que en el otro eje.
+
 ---
 
 # Fase 0 — Preparacion
@@ -64,13 +70,82 @@ Directorio de trabajo: `/Users/jloboguerrero/Documents/work/ClaudeCode/05-empleo
 Recorre las URLs de `portales.md`, **Tier 1 primero**. Por cada una:
 
 - `navigate` a la URL, luego `get_page_text` para leer el listado (mas barato y fiable que
-  screenshots; usa `computer` solo si la pagina no da texto util).
+  screenshots; usa `computer` solo si la pagina no da texto util). **En LinkedIn esto no basta**
+  — ver "Profundidad" mas abajo, es la seccion que corrige el bug de leer solo la primera pantalla.
 - Extrae por oferta: empresa, titulo, ubicacion/modalidad, fecha de publicacion, URL.
 - **Descarta de entrada** todo lo publicado fuera de la ventana de ese portal (ver abajo).
-- Ritmo humano: una pagina a la vez. Sin ráfagas. LinkedIn e Indeed detectan automatizacion —
-  si aparece un challenge de seguridad, abandona ese portal y avisa.
+- Ritmo humano: **una URL de la matriz a la vez**, sin ráfagas de navegaciones entre paises o
+  consultas distintas. LinkedIn e Indeed detectan automatizacion — si aparece un challenge de
+  seguridad, abandona ese portal y avisa. Esto no prohibe paginar o scrollear **dentro** de una
+  misma URL: es navegacion normal de un usuario leyendo una lista larga, no una rafaga.
 
-Objetivo: 30–60 candidatas crudas antes de filtrar.
+Nota: "30–60 candidatas crudas" fue una cifra orientativa de una corrida temprana, no un objetivo a
+alcanzar ni un techo. Con la profundidad correcta (ver abajo) el numero real de candidatas crudas
+en LinkedIn sera bastante mayor — no lo tomes como senal de que ya terminaste de leer un listado.
+
+## Profundidad en LinkedIn — agota el listado, no su primera pantalla
+
+Verificado en vivo el 2026-08-22 contra el DOM real de LinkedIn: una busqueda de EE.UU. con 43
+resultados devolvio solo **7 tarjetas** con `navigate` + `get_page_text` inmediato. LinkedIn
+virtualiza la lista (renderiza pocas tarjetas y las va reemplazando al hacer scroll) y ademas
+pagina en bloques de 25 (`1 2 Siguiente` al pie). Sin scroll ni paginacion, el agente estaba
+leyendo ~15-20% de cada listado — de ahi que 58 paginas de matriz produjeran casi cero candidatas
+mientras BairesDev (que casi siempre ocupa la cima) dominaba lo poco que se veia.
+
+Rutina por URL de la matriz:
+
+1. `navigate` a la URL.
+2. Cargar la lista completa de esa pagina con scroll programado (no `computer scroll`, que es
+   lento y quema ritmo humano para nada — el scroll es dentro de una sola URL, no entre URLs):
+
+   ```js
+   function findScrollableAncestor(el) {
+     while (el) { if (el.scrollHeight > el.clientHeight + 10) return el; el = el.parentElement; }
+     return null;
+   }
+   const card = document.querySelector('li[data-occludable-job-id]');
+   const scroller = card && findScrollableAncestor(card);
+   let last = -1, stable = 0, rounds = 0;
+   while (scroller && rounds < 15 && stable < 2) {
+     scroller.scrollTop = scroller.scrollHeight;
+     await new Promise(r => setTimeout(r, 600));
+     const count = document.querySelectorAll('li[data-occludable-job-id]').length;
+     if (count === last) stable++; else stable = 0;
+     last = count; rounds++;
+   }
+   document.querySelectorAll('li[data-occludable-job-id]').length;
+   ```
+
+   `li[data-occludable-job-id]` es el selector de tarjeta verificado hoy — el contenedor que lo
+   envuelve tiene clases hasheadas que LinkedIn cambia seguido (confirmado en esta misma
+   verificacion), por eso el script sube por los padres hasta encontrar el que scrollea en vez de
+   fijar una clase de memoria. Si `li[data-occludable-job-id]` deja de existir, es señal de que
+   LinkedIn cambio el markup: usa `read_page` (declarada en `tools:`, no uses `computer` como
+   primer recurso) para reconocer el nuevo patron antes de seguir.
+3. **Extrae el listado con `javascript_tool`, no con `get_page_text`.** Verificado: una vez que hay
+   un detalle de oferta abierto en el panel derecho (que LinkedIn abre solo, con la primera
+   tarjeta), `get_page_text` puede devolver el texto de ese detalle en vez de la lista completa —
+   no es fiable para el listado. Extrae cada tarjeta con
+   `[...document.querySelectorAll('li[data-occludable-job-id]')].map(c => c.innerText)` y parsea
+   empresa/titulo/ubicacion/fecha de ahi. Usa `get_page_text` solo para abrir el **detalle** de una
+   oferta individual en la Fase 2 (ahi si es fiable, es la unica cosa en el panel).
+4. Ese scroll agota la **primera pagina** (tope real ~25 tarjetas, es el limite de LinkedIn, no del
+   agente). Si el encabezado de resultados (ej. "43 resultados") supera lo cargado, pide la
+   **segunda pagina navegando a la misma URL con `&start=25`** (confirmado: devuelve tarjetas
+   distintas a la pagina 1, no un duplicado) y repite el paso 2-3 ahi.
+5. **Tope: 2 paginas (50 ofertas) por combinacion pais x consulta.** Al alcanzarlo, no pidas una
+   tercera pagina: anota `tope alcanzado: {pais}/{Q} — N resultados totales, 50 leidos` para la
+   Fase 5. Con la ventana adaptativa tipica (24h) casi nunca se llega a 50; cuando la ventana se
+   amplia a 7 dias en paises de alto volumen (EE.UU., Worldwide) si puede activarse, y el reporte
+   debe decirlo en voz alta en vez de callarlo.
+6. Como toda URL de la matriz lleva `sortBy=DD` (mas reciente primero), en la practica el listado
+   se corta solo en la primera oferta fuera de la ventana de ese pais (ver "Ventana adaptativa"
+   abajo) — ese es el corte real y normalmente llega antes que el tope de 50.
+
+Esta rutina es solo para LinkedIn (por su virtualizacion y paginacion en bloques de 25, verificadas
+arriba). Los demas portales de Tier 1 (Indeed, Glassdoor, Computrabajo) no la necesitan salvo que
+`get_page_text` devuelva un listado visiblemente incompleto frente al conteo de resultados que
+muestra la pagina — en ese caso, misma logica: pagina o scrollea antes de darlo por agotado.
 
 ## Ventana adaptativa — "desde la ultima corrida"
 
@@ -139,9 +214,11 @@ la matriz segun la plantilla documentada alli y en `portales.md`:
 - Recorre **tier por tier** (A → B → C → D), ritmo humano, **hasta terminar los cuatro**. Al primer
   challenge de seguridad, para LinkedIn entero y no avances las marcas de los paises pendientes.
   Falta de tiempo o de tokens **no** es motivo para parar (regla 9).
-- **Lleva la cuenta en voz alta.** Antes de empezar di cuantas paginas vas a recorrer, y al cerrar
-  cada tier reporta `Tier X: n/m paises escaneados`. La Fase 5 debe poder afirmar
-  "cobertura completa" con numeros, no de memoria.
+- **Lleva la cuenta en voz alta, en los dos ejes.** Antes de empezar di cuantas paginas vas a
+  recorrer, y al cerrar cada tier reporta `Tier X: n/m paises escaneados · N ofertas leidas · N
+  dentro de ventana`. El conteo de paises solo no detecta el bug de leer solo la primera pantalla
+  (58/58 paises con 3 ofertas leidas en total salia "verde" antes de este cambio); el de ofertas
+  leidas si. La Fase 5 debe poder afirmar "cobertura completa" con los dos numeros, no de memoria.
 
 ## geoId: capturar una vez, reusar siempre
 
@@ -162,13 +239,13 @@ Sigue prohibido escribir un geoId de memoria: sale de la URL real de LinkedIn o 
   React Native, Ionic, Xamarin, .NET MAUI — cuando Flutter no aparece o es solo "nice to have".
 - Junior / Intern / Trainee / Mid sin componente senior, o que pidan mas de 8 anos.
 - Presencial o hibrido fuera de Colombia.
-- Exige work authorization en US/EU o patrocinio de visa.
-- **Remota pero atada a un pais**: "must reside in X", "must be located in X", "local
-  candidates only", "work authorization required" o equivalente. Aunque diga *remote*, si
-  exige residencia o autorizacion local, Jonathan no califica (`workAuth.willingToRelocate:
-  false`, `authorizedToWorkUS/EU: false`). Descartar con motivo `work-auth`.
 - Ya esta en `aplicaciones.json` o `descartadas.json`.
 - Publicada fuera de la ventana adaptativa de ese portal (ver Fase 1).
+
+> **`work-auth` se evalua en la fase de scoring, no aqui** (ver abajo). Requiere leer la
+> descripcion completa ("must reside in X", "work authorization required"), y eso solo esta
+> disponible una vez abierto el detalle — evaluarlo desde la tarjeta del listado, antes de abrir
+> el detalle, era una contradiccion de orden entre las dos fases.
 
 > **Requisitos de nativo NO son motivo de descarte** (decision del usuario, 2026-08-18). Si la
 > vacante pide tambien Swift/Objective-C o Kotlin nativo pero **Flutter es el foco real**, se aplica
@@ -179,6 +256,15 @@ Sigue prohibido escribir un geoId de memoria: sale de la URL real de LinkedIn o 
 > la respuesta sigue siendo `0`. Se aplica sabiendo el riesgo, no maquillando el perfil.
 
 ## Puntuacion — abre el detalle solo de las que sobrevivieron
+
+Antes de puntuar, con el detalle ya abierto, aplica el descarte que depende de la descripcion
+completa (score 0, va a `descartadas.json` con motivo `work-auth`):
+
+- Exige work authorization en US/EU o patrocinio de visa.
+- **Remota pero atada a un pais**: "must reside in X", "must be located in X", "local
+  candidates only", "work authorization required" o equivalente. Aunque diga *remote*, si
+  exige residencia o autorizacion local, Jonathan no califica (`workAuth.willingToRelocate:
+  false`, `authorizedToWorkUS/EU: false`).
 
 | Senal | Puntos |
 |---|---|
@@ -362,3 +448,6 @@ En espanol, conciso:
 - **Portales que fallaron** y por tanto no avanzaron su marca en `ultima-corrida.json`.
 - **URLs del catalogo que resultaron rotas** (404, dominio muerto, parametro ignorado, geo
   equivocada). Reportalas siempre: el 2026-08-18 cuatro URLs rotas causaron una corrida en cero.
+- **Cobertura de LinkedIn por tier**: `Tier X: n/m paises · N ofertas leidas · N dentro de ventana`
+  (ver Fase 1). Si algun pais/consulta toco el tope de 2 paginas, listarlo aparte con su conteo
+  real de resultados vs. los 50 leidos — es la senal de que quedaron ofertas sin ver.

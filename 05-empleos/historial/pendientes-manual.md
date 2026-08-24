@@ -7,7 +7,86 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
 
 ## Pendientes
 
-_(sin pendientes)_
+### 2026-08-22 — DevFixr + Clinica PsicoSalud (2)
+
+- [ ] **DevFixr** — Senior Flutter Developer (United Kingdom — Remote)
+  - Link: https://www.remoterocketship.com/publicjobs/company/devfixr/jobs/senior-flutter-developer-united-kingdom-remote/
+  - Empresa: agencia de staffing offshore enfocada en UK (developer staffing, "typical cost savings
+    of up to 50% versus hiring directly in the UK") — coherente con perfil LatAm remoto.
+  - Motivo: el boton "Apply Now" abre un modal "Sign up now to apply to this job" — RemoteRocketship
+    exige crear una cuenta antes de dejar aplicar. Regla dura del agente: nunca crear cuentas.
+  - Resumen de la oferta: build/ship un MVP web en Flutter, Riverpod para estado, RESTful APIs
+    (Retrofit) para datos financieros, Golden tests, dato sensible financiero. Contrato de 3 meses
+    con posible extension segun presupuesto. Requiere 5-10 anos de experiencia, 5+ anos con Flutter.
+  - Datos para el formulario: Bogota, Colombia · remoto · USD 4,000-5,000/mes (o tarifa de contractor
+    equivalente, negociable segun alcance) · disponibilidad inmediata · CV: `HojaVidaJonathanIngles.pdf`
+    · LinkedIn `in/jonathanloboguerrero` · GitHub `github.com/jloboguerrero` · Tel `+57 316 707 1771`.
+  - Screening (si aparecen): Years Flutter/Dart `6` · Years Riverpod `1` · Years total software `8` ·
+    Work-auth UK `No` · Sponsorship `No — remote independent contractor from Colombia` · Willing to
+    relocate `No` · Notice period `Immediately available`.
+  - Cover letter corta sugerida (pegar si hay campo de mensaje al aplicar):
+
+    ```
+    Senior Flutter developer, 6+ years, iOS and Android. Shipped an app with 500K+ downloads at
+    Tul (Latam) and worked with US startups on rideshare and healthcare apps — Clean Architecture,
+    BLoC/Riverpod, Firebase. Comfortable with RESTful API integration and sensitive data handling.
+    Remote contractor from Colombia (UTC-5), advanced English. Would love to talk about the Senior
+    Flutter Developer role building your web-based Flutter MVP.
+
+    Jonathan Lobo Guerrero · jloboguerrero@gmail.com
+    ```
+
+- [ ] **Clinica PsicoSalud** — Desarrollador Full-Stack Senior (Flutter / IA) - Marketplace & EdTech
+      Global (Web + iOS + Android) — Chile, freelance 100% remoto
+  - Link: https://www.linkedin.com/jobs/view/4454672678/
+  - **Motivo: no hay formulario de aplicacion en LinkedIn.** La oferta exige enviar un correo
+    manualmente a `app.desarrolloscv@gmail.com` — este agente no tiene herramienta de envio de
+    email, asi que queda fuera de su alcance incluso con aprobacion.
+  - **Nota de riesgo (revisar antes de escribir):** el anunciante es una clinica de psicologia
+    ("Clinica PsicoSalud") publicando un MVP tecnologico no relacionado a su rubro, con contacto en
+    una direccion Gmail personal en vez de un dominio corporativo. Podria ser legitimo (agencia de
+    reclutamiento externa) o de baja calidad/riesgo. Verificar antes de compartir datos personales.
+  - Asunto de correo exigido por la oferta: `Postulacion MVP - Desarrollador Full-Stack Jonathan
+    Lobo Guerrero`
+  - CV a adjuntar: `HojaVidaJonathanIngles.pdf`
+  - **Borrador de respuestas a las 4 preguntas obligatorias** (honestas, sin inventar experiencia —
+    revisar y ajustar el tono antes de enviar):
+    1. **¿Como resolverias la proteccion antipirateria de los videos y su caducidad automatica?**
+       > I haven't implemented DRM/anti-piracy specifically, but the standard approach I'd bring is:
+       > signed, time-limited URLs (short TTL) served through a video platform with built-in DRM
+       > (e.g. Mux, Cloudflare Stream, or AWS MediaPackage), token-based playback tied to the
+       > authenticated user/session, and disabling downloads/screen recording where the platform
+       > allows it. Expiration would be enforced server-side (not just client-side), re-validating
+       > the token on each playback request.
+    2. **¿Que experiencia tienes implementando cobros divididos y suscripciones con Stripe Connect?**
+       > I don't have direct production experience with Stripe Connect specifically. I have
+       > integrated payment-adjacent SDKs (Firebase, CleverTap, Segment) and built subscription-style
+       > flows in Flutter apps, and I'm comfortable ramping up on Stripe Connect quickly — the
+       > concepts (split payments, connected accounts, webhooks) map closely to REST API integration
+       > work I've done before.
+    3. **¿Que herramientas de IA utilizas para acelerar el desarrollo web/movil simultaneo?**
+       > I'm currently building fluency with AI-assisted development (Claude Code, GitHub Copilot)
+       > as part of growing into more full-stack/AI-hybrid work. I haven't shipped a project with
+       > FlutterFlow specifically.
+    4. **Pretension de renta (presupuesto estimado cerrado) para el MVP:**
+       > USD 4,000-5,000 (equivalente a mi tarifa mensual como contractor remoto), a ajustar segun
+       > alcance final de hitos — abierto a conversarlo.
+  - Datos de contacto: Jonathan Lobo Guerrero · jloboguerrero@gmail.com · +57 316 707 1771 ·
+    Bogota, Colombia · LinkedIn `in/jonathanloboguerrero` · GitHub `github.com/jloboguerrero`.
+
+### 2026-08-21 — Rimutee (1)
+
+- [ ] **Rimutee** — Desarrollador Flutter (Latin America — Remote)
+  - Link: https://www.remoterocketship.com/publicjobs/company/rimutee-3/jobs/desarrollador-flutter-latin-america-remote/
+  - Motivo: el boton "Apply Now" abre un modal "Sign up now to apply to this job" — RemoteRocketship
+    exige crear una cuenta antes de dejar aplicar. Regla dura del agente: nunca crear cuentas.
+  - Alternativa sin explorar a fondo: el enlace "Website" de Rimutee (`https://app.rimutee.com/`) es
+    su propia plataforma de talento LatAm — previsiblemente pide el mismo tipo de registro como
+    candidato. Si el usuario ya tiene o quiere crear una cuenta ahi, puede que el flujo de aplicacion
+    sea distinto al de RemoteRocketship.
+  - Datos para el formulario: Bogota, Colombia · remoto LatAm · USD 4.000-5.000/mes · disponibilidad
+    inmediata · CV: `HojaVidaJonathanIngles.pdf` · LinkedIn `in/jonathanloboguerrero` ·
+    GitHub `github.com/jloboguerrero` · Tel `+57 316 707 1771` · Espanol nativo (requisito de la oferta).
 
 ---
 

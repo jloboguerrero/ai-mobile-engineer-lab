@@ -22,7 +22,7 @@ Requiere sesion iniciada. **No hay una lista fija de URLs: se generan por regla*
 `datos/linkedin-geos.json` (27 paises + 2 regionales). Plantilla:
 
 ```
-https://www.linkedin.com/jobs/search/?keywords={Q}&geoId={GEO}&f_TPR={TPR}&sortBy=DD[&f_WT=2]
+https://www.linkedin.com/jobs/search/?keywords={Q}&geoId={GEO}&f_TPR={TPR}&sortBy=DD[&f_WT=2][&start={N}]
 ```
 
 **`{Q}` — dos consultas booleanas por ubicacion.** LinkedIn acepta `OR`, `AND` y comillas en
@@ -57,6 +57,14 @@ en **Colombia** valen presencial, hibrido y remoto (la URL de Colombia va **sin*
 **cualquier otro pais**, solo remoto. En `linkedin-geos.json` Colombia es el unico pais con
 `remotoObligatorio: false`.
 
+**`{N}` — paginacion, omitido en la primera pagina.** LinkedIn sirve los resultados en bloques de
+25 y ademas virtualiza el listado (no renderiza las 25 de una, hay que hacer scroll dentro de la
+pagina para que carguen — ver "Profundidad en LinkedIn" en la Fase 1 de `job-apply.md`). Verificado
+en vivo el 2026-08-22: una busqueda de EE.UU. con 43 resultados solo mostraba 7 tarjetas sin
+scroll, y `&start=25` devolvio las 18 restantes (confirmadas distintas a la pagina 1, no repetidas).
+El agente pagina hasta agotar el listado o hasta el tope de 2 paginas (50 resultados) por
+combinacion pais x consulta — ver el mismo apartado para el detalle y el manejo del tope.
+
 Ejemplos generados (con ventana de 24h):
 
 - Colombia, Q1, sin filtro de modalidad:
@@ -78,15 +86,27 @@ La ejecuta `job-scout`, o el usuario a mano. Por cada pais con `geoId: null`:
 3. Leer 3 ubicaciones del listado y confirmar que son de ese pais.
 4. Escribir `geoId` y `verificado: "<fecha ISO>"` en `datos/linkedin-geos.json`.
 
+**Selector de tarjeta verificado (2026-08-22):** `li[data-occludable-job-id]`. El contenedor que lo
+envuelve usa clases hasheadas que LinkedIn rota seguido (confirmado en la misma verificacion) —
+nunca fijes esa clase de memoria en el script de scroll; sube por los padres hasta encontrar el
+elemento que scrollea (`scrollHeight > clientHeight`). Rutina completa en "Profundidad en LinkedIn"
+de la Fase 1 de `job-apply.md`. Si `li[data-occludable-job-id]` deja de existir en una corrida
+futura, es señal de que LinkedIn cambio el markup: re-verificar con `read_page` antes de asumir que
+el listado esta vacio.
+
 > **No uses `f_AL=true` (Easy Apply)** en las busquedas de Flutter: casi ninguna vacante Flutter
 > LatAm/remota usa Easy Apply, ese filtro solo borra resultados validos. La mayoria salen a un ATS
 > externo, que el agente sabe manejar.
 
-> **Cuidado, y ahora mas que antes**: la matriz son ~56 paginas de LinkedIn por corrida (27 paises
+> **Cuidado, y ahora mas que antes**: la matriz son ~56 URLs de LinkedIn por corrida (27 paises
 > x 2 consultas, mas las 2 regionales). LinkedIn detecta automatizacion. Recorre **tier por tier**
-> (A -> B -> C -> D), una pagina a la vez, sin rafagas de clicks. Al primer challenge de seguridad:
-> **parar LinkedIn entero**, avisar al usuario, y dejar sin avanzar la marca de los tiers no
-> escaneados — la ventana adaptativa hara que manana se miren con ventana mas ancha.
+> (A -> B -> C -> D), **una URL de la matriz a la vez**, sin rafagas de navegaciones entre paises o
+> consultas. Esto no aplica al scroll ni a la segunda pagina (`&start=25`) **dentro** de una misma
+> URL — eso es lectura normal de un listado largo, no una rafaga, y es necesario: sin scroll el
+> agente solo ve ~7 de cada listado (ver "Profundidad en LinkedIn", Fase 1 de `job-apply.md`). Al
+> primer challenge de seguridad: **parar LinkedIn entero**, avisar al usuario, y dejar sin avanzar
+> la marca de los tiers no escaneados — la ventana adaptativa hara que manana se miren con ventana
+> mas ancha.
 
 ### Indeed
 `fromage=1` = ultimo dia. Cloudflare/CAPTCHA frecuente → si aparece, saltar el portal y avisar.
