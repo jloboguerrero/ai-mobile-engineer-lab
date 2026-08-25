@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{NOMBRE}} - CV</title>
+<!--
+  PLANTILLA ATS-SAFE. Reglas que NO se deben romper al editar:
+  - Una sola columna. Nada de <table>, float, ni grid de dos columnas:
+    los parsers de ATS leen en orden de DOM y una segunda columna les desordena todo.
+  - Encabezados de seccion literales y estandar (SUMMARY, SKILLS, PROFESSIONAL EXPERIENCE...).
+  - Sin iconos, sin imagenes, sin SVG, sin cajas de texto. Contacto en texto plano.
+  - Sin webfonts: el ATS no las descarga y Chrome tampoco en headless offline.
+  Placeholders los sustituye scripts/generar-cv.py.
+-->
+<style>
+  @page {
+    size: Letter;
+    margin: 0.5in 0.55in;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.34;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---------- Encabezado ---------- */
+
+  h1 {
+    font-size: 19pt;
+    line-height: 1.1;
+    margin: 0 0 1.5pt 0;
+    letter-spacing: 0.2pt;
+    font-weight: bold;
+  }
+
+  .target-title {
+    font-size: 11.5pt;
+    font-weight: bold;
+    color: #2a2a2a;
+    margin: 0 0 4pt 0;
+  }
+
+  .contact {
+    font-size: 9.4pt;
+    color: #333333;
+    margin: 0 0 2pt 0;
+  }
+
+  .contact a { color: #333333; text-decoration: none; }
+
+  /* ---------- Secciones ---------- */
+
+  h2 {
+    font-size: 10.4pt;
+    font-weight: bold;
+    letter-spacing: 0.9pt;
+    text-transform: uppercase;
+    margin: 12pt 0 4pt 0;
+    padding-bottom: 2pt;
+    border-bottom: 1px solid #999999;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p { margin: 0 0 4pt 0; }
+
+  .summary { margin: 0; text-align: left; }
+
+  /* ---------- Skills ---------- */
+
+  .skill-line { margin: 0 0 2.5pt 0; }
+  .skill-label { font-weight: bold; }
+  .familiar { margin-top: 3pt; color: #333333; }
+
+  /* ---------- Experiencia ---------- */
+
+  .job {
+    margin: 0 0 8pt 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Nada de float ni de posicionamiento aqui: un `float: right` en las fechas
+     hace que el extractor de texto las pinte ANTES del nombre del candidato
+     (verificado el 2026-08-24). Las fechas van en el flujo, en la meta-linea. */
+  .job-header { margin: 0 0 1pt 0; }
+  .job-title { font-weight: bold; font-size: 10.6pt; }
+  .job-company { font-weight: bold; font-size: 10.6pt; }
+  .job-meta {
+    font-size: 9.4pt;
+    color: #444444;
+    margin: 0 0 2.5pt 0;
+  }
+  .job-dates { font-weight: bold; color: #333333; }
+  .job-context { font-style: italic; }
+
+  ul {
+    margin: 0;
+    padding-left: 15pt;
+    list-style-type: disc;
+  }
+
+  li {
+    margin: 0 0 1.8pt 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* ---------- Educacion / certificaciones ---------- */
+
+  .edu-line { margin: 0 0 2pt 0; }
+  .edu-degree { font-weight: bold; }
+
+  .cert-list { margin: 0; padding-left: 15pt; }
+  .cert-list li { margin: 0 0 1.2pt 0; }
+
+  .apps-line { margin: 0; font-size: 9.6pt; }
+</style>
+</head>
+<body>
+
+<h1>{{NOMBRE}}</h1>
+<div class="target-title">{{TITULO_OBJETIVO}}</div>
+<div class="contact">{{CONTACTO_LINEA1}}</div>
+<div class="contact">{{CONTACTO_LINEA2}}</div>
+
+<h2>Summary</h2>
+<p class="summary">{{SUMMARY}}</p>
+
+<h2>Skills</h2>
+{{SKILLS_BLOCK}}
+
+<h2>Professional Experience</h2>
+{{EXPERIENCE_BLOCK}}
+
+<h2>Education</h2>
+{{EDUCATION_BLOCK}}
+
+<h2>Certifications</h2>
+{{CERTIFICATIONS_BLOCK}}
+
+{{APPS_BLOCK}}
+
+</body>
+</html>

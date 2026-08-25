@@ -127,6 +127,84 @@
     "fecha": "2026-08-22"
   },
   {
+    "id": "a5bcabdbf4b1",
+    "empresa": "Empresa Confidencial",
+    "titulo": "Senior iOS Developer (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4455882720/",
+    "score": null,
+    "fechaOferta": "2026-08-24",
+    "fechaAplicacion": "2026-08-24",
+    "estado": "aplicada_manual",
+    "notas": "El agente la descarto por datos insuficientes (panel de descripcion de LinkedIn bloqueado durante la corrida del 2026-08-24, no pudo confirmar work-auth/stack). El usuario aplico a mano de todas formas.",
+    "fecha": "2026-08-24"
+  },
+  {
+    "id": "33149b15d911",
+    "empresa": "Randstad Digital Portugal",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4455864708/",
+    "score": null,
+    "fechaOferta": "2026-08-24",
+    "fechaAplicacion": "2026-08-24",
+    "estado": "aplicada_manual",
+    "notas": "El agente la descarto por datos insuficientes (panel de descripcion de LinkedIn bloqueado durante la corrida del 2026-08-24). El usuario aplico a mano de todas formas.",
+    "fecha": "2026-08-24"
+  },
+  {
+    "id": "2233a6c08595",
+    "empresa": "agap2 Italia",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4442806570/",
+    "score": null,
+    "fechaOferta": "2026-08-24",
+    "fechaAplicacion": "2026-08-24",
+    "estado": "aplicada_manual",
+    "notas": "El agente la descarto por datos insuficientes (panel de descripcion de LinkedIn bloqueado durante la corrida del 2026-08-24). El usuario aplico a mano de todas formas.",
+    "fecha": "2026-08-24"
+  },
+  {
+    "id": "ee4ffc7c9995",
+    "empresa": "Binance",
+    "titulo": "Flutter Engineer (iOS/Android)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4320978481/",
+    "score": null,
+    "fechaOferta": "2026-08-24",
+    "fechaAplicacion": "2026-08-24",
+    "estado": "aplicada_manual",
+    "notas": "El agente la descarto por datos insuficientes (panel de descripcion de LinkedIn bloqueado durante la corrida del 2026-08-24; ademas huso APAC, -15 por regla de horario). El usuario aplico a mano de todas formas.",
+    "fecha": "2026-08-24"
+  },
+  {
+    "id": "73aa4178dc9e",
+    "empresa": "Jobgether",
+    "titulo": "Senior Mobile Developer (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4456847130/",
+    "score": null,
+    "fechaOferta": "2026-08-24",
+    "fechaAplicacion": "2026-08-24",
+    "estado": "aplicada_manual",
+    "notas": "El agente la descarto por datos insuficientes (panel de descripcion de LinkedIn bloqueado; oferta republicada en 10 paises con el mismo hash). El usuario aplico a mano de todas formas.",
+    "fecha": "2026-08-24"
+  },
+  {
+    "id": "243e754fe06f",
+    "empresa": "Ladders",
+    "titulo": "Senior Software Engineer - Mobile (REMOTE)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4455856723/",
+    "score": null,
+    "fechaOferta": "2026-08-24",
+    "fechaAplicacion": "2026-08-24",
+    "estado": "aplicada_manual",
+    "notas": "El agente la descarto por datos insuficientes (panel de descripcion de LinkedIn bloqueado, 0/9 aptitudes visibles coincidieron). El usuario aplico a mano de todas formas pese a la senal debil.",
+    "fecha": "2026-08-24"
+  },
+  {
     "id": "721d46595663",
     "empresa": "Clinica PsicoSalud",
     "titulo": "Desarrollador Full-Stack Senior (Flutter / IA) - Marketplace & EdTech Global",
@@ -151,5 +229,29 @@
     "estado": "manual",
     "notas": "Aprobada por el usuario 2026-08-21. NO enviada: el boton 'Apply Now' de RemoteRocketship exige crear una cuenta ('Sign up now to apply to this job') antes de mostrar el formulario. Regla dura 3 (nunca crear cuentas). El enlace 'Website' de Rimutee apunta a app.rimutee.com, su propia plataforma de talento, que previsiblemente exige el mismo registro. Queda para que el usuario decida si crea la cuenta el mismo.",
     "fecha": "2026-08-21"
+  },
+  {
+    "id": "7836244a74fb",
+    "empresa": "Atos",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "fechaOferta": "2026-08-25",
+    "fechaAplicacion": "2026-08-25",
+    "estado": "aplicada_manual",
+    "cv": "salidas/cv/2026-08-25_Atos_Flutter-Developer_Jonathan-Lobo-Guerrero_CV.pdf",
+    "notas": "El agente la descarto de la corrida automatica por datos insuficientes (panel de descripcion de LinkedIn bloqueado en la corrida del 2026-08-25). El usuario pego la descripcion manualmente, se genero un CV a medida via Fase 3.5 (sin mencionar MQTT/WiFi, que no esta en el banco de hechos) y el usuario aplico a mano.",
+    "fecha": "2026-08-25"
+  },
+  {
+    "id": "9e50c19e89ad",
+    "empresa": "Synmatch AI",
+    "titulo": "Mobile App Developer - Cross Platform Flutter",
+    "portal": "linkedin",
+    "fechaOferta": "2026-08-25",
+    "fechaAplicacion": "2026-08-25",
+    "estado": "aplicada_manual",
+    "cv": "salidas/cv/2026-08-25_SynmatchAI_Mobile-App-Developer_Jonathan-Lobo-Guerrero_CV.pdf",
+    "notas": "El agente la descarto de la corrida automatica por datos insuficientes (panel de descripcion de LinkedIn bloqueado en la corrida del 2026-08-25). El usuario pego la descripcion manualmente. Riesgo detectado y aceptado por el usuario: salario en INR (~USD 33k/yr) sugiere nomina local en India, no remoto global. CV a medida via Fase 3.5 (sin mencionar Bluetooth LE/Wi-Fi/USB, que no esta en el banco de hechos; incluye offline-first de Soluciones Auditivas como el match mas fuerte al requisito). El usuario aplico a mano.",
+    "fecha": "2026-08-25"
   }
 ]

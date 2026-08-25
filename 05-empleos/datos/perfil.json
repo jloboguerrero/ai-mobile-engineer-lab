@@ -226,5 +226,10 @@
     "default": "Decline to self-identify"
   },
   "cvPath": "HojaVidaJonathanIngles.pdf",
-  "cvFileName": "Jonathan_Lobo_Guerrero_Flutter_CV.pdf"
+  "cvFileName": "Jonathan_Lobo_Guerrero_Flutter_CV.pdf",
+  "cvNota": "cvPath es el CV BASE, el fallback. Desde 2026-08-24 cada aplicacion lleva un CV generado para esa oferta en la Fase 3.5 (ver cvFuente/cvSalidas). El base solo se usa si la generacion falla o el usuario no confirma el diff.",
+  "cvFuente": "datos/cv-fuente.json",
+  "cvPlantilla": "datos/cv-plantilla.html",
+  "cvGenerador": "scripts/generar-cv.py",
+  "cvSalidas": "salidas/cv/"
 }

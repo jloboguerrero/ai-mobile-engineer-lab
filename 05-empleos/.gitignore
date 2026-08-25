@@ -1,0 +1,8 @@
+# Documentos generados por oferta (Fase 3.5 de job-apply).
+# Son decenas de PDF/HTML por semana con datos personales; el historial de que
+# se envio a quien vive en historial/aplicaciones.json, no aqui.
+salidas/
+
+# Python
+__pycache__/
+*.pyc

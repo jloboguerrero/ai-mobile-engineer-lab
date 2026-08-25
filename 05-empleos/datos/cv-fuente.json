@@ -1,0 +1,241 @@
+{
+  "_meta": {
+    "proposito": "Banco de hechos del CV. Fuente de verdad del CONTENIDO del curriculum, separada de perfil.json (que es para rellenar formularios).",
+    "actualizado": "2026-08-24",
+    "fuenteNiveles": "Niveles core/working confirmados desde HojaVidaJonathanIngles.pdf. Niveles exposure confirmados por el usuario en la entrevista del 2026-08-24.",
+    "niveles": {
+      "core": "Skill principal. Va primero en SKILLS y puede aparecer en bullets de experiencia sin matiz.",
+      "working": "Uso real y repetido. Va en SKILLS sin matiz.",
+      "exposure": "Tocado, no dominado. Va agrupado al final como 'Familiar with: ...'. NUNCA se afirma como experiencia principal en un bullet."
+    },
+    "reglaBullets": "bulletsVariantes reformulan el MISMO hecho con otro vocabulario. Elegir la variante que mas terminos de la oferta cubra. Un bullet no listado aqui es un claim sin respaldo: se marca verificado:false y se aprueba con el usuario."
+  },
+
+  "skills": [
+    { "nombre": "Flutter", "nivel": "core", "categoria": "mobile", "alias": ["Flutter SDK", "Flutter framework"] },
+    { "nombre": "Dart", "nivel": "core", "categoria": "mobile", "alias": [] },
+    { "nombre": "BLoC", "nivel": "core", "categoria": "mobile", "alias": ["flutter_bloc", "Cubit"] },
+    { "nombre": "Riverpod", "nivel": "core", "categoria": "mobile", "alias": [] },
+    { "nombre": "Provider", "nivel": "core", "categoria": "mobile", "alias": [] },
+    { "nombre": "State management", "nivel": "core", "categoria": "mobile", "alias": ["state management patterns"] },
+    { "nombre": "Clean Architecture", "nivel": "core", "categoria": "arquitectura", "alias": ["layered architecture"] },
+    { "nombre": "SOLID", "nivel": "core", "categoria": "arquitectura", "alias": ["SOLID principles", "clean code"] },
+    { "nombre": "RESTful APIs", "nivel": "core", "categoria": "arquitectura", "alias": ["REST", "API integration", "HTTP APIs"] },
+    { "nombre": "Firebase", "nivel": "core", "categoria": "cloud", "alias": ["Firestore", "Firebase Auth", "Cloud Messaging", "FCM", "Crashlytics"] },
+    { "nombre": "Git", "nivel": "core", "categoria": "devops", "alias": ["version control", "GitFlow"] },
+    { "nombre": "iOS deployment", "nivel": "core", "categoria": "mobile", "alias": ["App Store", "App Store Connect", "TestFlight"] },
+    { "nombre": "Android deployment", "nivel": "core", "categoria": "mobile", "alias": ["Google Play", "Play Console"] },
+    { "nombre": "Code review", "nivel": "core", "categoria": "proceso", "alias": ["pull request review", "peer review"] },
+    { "nombre": "Agile / Scrum", "nivel": "core", "categoria": "proceso", "alias": ["agile", "scrum", "sprints", "cross-functional teams"] },
+
+    { "nombre": "Modular", "nivel": "working", "categoria": "mobile", "alias": ["flutter_modular"] },
+    { "nombre": "CleverTap", "nivel": "working", "categoria": "analitica", "alias": ["engagement platform"] },
+    { "nombre": "Segment", "nivel": "working", "categoria": "analitica", "alias": ["customer data platform", "event tracking"] },
+    { "nombre": "Google Maps SDK", "nivel": "working", "categoria": "mobile", "alias": ["Google Maps", "geolocation", "maps integration"] },
+    { "nombre": "Agora", "nivel": "working", "categoria": "mobile", "alias": ["real-time video", "live streaming", "WebRTC-based video"] },
+    { "nombre": "Unit testing", "nivel": "working", "categoria": "testing", "alias": ["unit tests", "package:test", "mocktail", "mockito"] },
+    { "nombre": "Widget & integration testing", "nivel": "working", "categoria": "testing", "alias": ["flutter_test", "integration_test", "widget tests", "automated testing"] },
+    { "nombre": "TDD", "nivel": "working", "categoria": "testing", "alias": ["test-driven development"] },
+    { "nombre": "GitLab CI/CD", "nivel": "working", "categoria": "devops", "alias": ["CI/CD", "continuous integration", "build pipelines"] },
+    { "nombre": "SQLite", "nivel": "working", "categoria": "datos", "alias": ["local database", "offline storage", "sqflite", "Drift"] },
+    { "nombre": "MySQL", "nivel": "working", "categoria": "datos", "alias": ["SQL", "relational databases"] },
+    { "nombre": "Linux", "nivel": "working", "categoria": "devops", "alias": ["Debian", "Ubuntu", "shell", "bash"] },
+    { "nombre": "Elasticsearch", "nivel": "working", "categoria": "datos", "alias": ["search", "log analysis"] },
+    { "nombre": "Kibana", "nivel": "working", "categoria": "datos", "alias": ["dashboards", "observability"] },
+    { "nombre": "UX/UI", "nivel": "working", "categoria": "producto", "alias": ["pixel-perfect UI", "Figma handoff", "responsive design", "accessibility"] },
+    { "nombre": "JavaScript", "nivel": "working", "categoria": "web", "alias": ["JS", "ES6"] },
+    { "nombre": "HTML5 / CSS", "nivel": "working", "categoria": "web", "alias": ["HTML", "CSS3"] },
+    { "nombre": "PHP", "nivel": "working", "categoria": "web", "alias": ["PHP7"] },
+    { "nombre": "Mentoring", "nivel": "working", "categoria": "proceso", "alias": ["mentorship", "coaching junior developers", "technical leadership"] },
+    { "nombre": "Flutter Web", "nivel": "working", "categoria": "mobile", "alias": ["web builds", "multiplatform"] },
+
+    { "nombre": "Node.js", "nivel": "exposure", "categoria": "backend", "alias": ["Express", "Express.js", "JavaScript backend"] },
+    { "nombre": "GraphQL", "nivel": "exposure", "categoria": "backend", "alias": ["Apollo", "queries and mutations"] },
+    { "nombre": "Python", "nivel": "exposure", "categoria": "backend", "alias": ["Django", "Flask", "FastAPI", "scripting"] },
+    { "nombre": "AWS", "nivel": "exposure", "categoria": "cloud", "alias": ["Amazon Web Services", "S3", "EC2", "Lambda"] },
+    { "nombre": "Google Cloud Platform", "nivel": "exposure", "categoria": "cloud", "alias": ["GCP", "Cloud Functions", "Cloud Run"] },
+    { "nombre": "GitHub Actions", "nivel": "exposure", "categoria": "devops", "alias": ["GitHub CI"] },
+    { "nombre": "Codemagic", "nivel": "exposure", "categoria": "devops", "alias": ["mobile CI"] },
+    { "nombre": "Fastlane", "nivel": "exposure", "categoria": "devops", "alias": ["release automation"] },
+    { "nombre": "Swift", "nivel": "exposure", "categoria": "nativo", "alias": ["iOS native", "Xcode", "platform channels", "SwiftUI"] },
+    { "nombre": "Kotlin", "nivel": "exposure", "categoria": "nativo", "alias": ["Android native", "Gradle", "Jetpack Compose"] },
+    { "nombre": "React Native", "nivel": "exposure", "categoria": "nativo", "alias": ["RN"] },
+    { "nombre": "React", "nivel": "exposure", "categoria": "web", "alias": ["Angular", "Vue", "SPA frameworks"] },
+    { "nombre": "LLM / AI APIs", "nivel": "exposure", "categoria": "ia", "alias": ["OpenAI API", "Anthropic API", "GenAI", "RAG", "AI integration"] },
+
+    { "nombre": "Xen virtualization", "nivel": "working", "categoria": "infra", "alias": ["virtualization", "hypervisor"] },
+    { "nombre": "Asterisk PBX", "nivel": "working", "categoria": "infra", "alias": ["VoIP", "telephony"] },
+    { "nombre": "Cloudflare", "nivel": "working", "categoria": "infra", "alias": ["CDN", "WAF", "DNS"] },
+    { "nombre": "Bitrix24 CRM", "nivel": "working", "categoria": "producto", "alias": ["CRM integration"] }
+  ],
+
+  "summaryVariantes": [
+    {
+      "id": "generico",
+      "texto": "Senior Mobile Developer with 6+ years building and shipping production Flutter applications for iOS and Android, including one with 500K+ downloads. Strong in Clean Architecture, state management (BLoC, Riverpod, Provider) and integrating REST APIs, cloud services and third-party SDKs. Experienced working remotely with distributed US and LatAm startup teams.",
+      "keywords": []
+    },
+    {
+      "id": "escala",
+      "texto": "Senior Flutter Developer with 6+ years delivering high-traffic mobile products for iOS and Android, including a marketplace app with 500K+ downloads across Latin America. Focused on scalable, maintainable architecture, performance and analytics-driven iteration in fast-moving startup environments.",
+      "keywords": ["scale", "high traffic", "performance", "growth", "marketplace", "consumer app", "e-commerce"]
+    },
+    {
+      "id": "arquitectura",
+      "texto": "Senior Mobile Engineer with 6+ years specialized in Flutter/Dart, applying Clean Architecture, SOLID and layered design to keep large codebases testable and maintainable. Experienced mentoring developers, running code reviews and setting mobile engineering standards inside product teams.",
+      "keywords": ["architecture", "clean code", "SOLID", "maintainable", "mentoring", "lead", "standards", "code quality", "testing"]
+    },
+    {
+      "id": "producto",
+      "texto": "Senior Flutter Developer with 6+ years partnering closely with product and design to ship user-facing mobile features end to end. Comfortable owning a feature from Figma handoff through release to the App Store and Google Play, and iterating on it with analytics and user feedback.",
+      "keywords": ["product", "design", "user experience", "UX", "ownership", "end to end", "cross-functional", "collaboration"]
+    },
+    {
+      "id": "integraciones",
+      "texto": "Senior Mobile Developer with 6+ years building Flutter applications that lean heavily on integrations: third-party SDKs, real-time video, geolocation, payments-adjacent flows, analytics platforms and cloud backends. Used to reading vendor documentation and making unfamiliar SDKs work in production.",
+      "keywords": ["SDK", "integration", "third-party", "APIs", "real-time", "video", "geolocation", "hardware"]
+    }
+  ],
+
+  "empresas": {
+    "Knotion - Doc": {
+      "dominios": ["healthcare", "health tech", "digital health", "telehealth", "telemedicine", "biometrics", "computer vision", "real-time video", "SDK integration", "US market", "regulated industry", "startup"],
+      "contextoBase": "Healthcare startup in the United States.",
+      "contextoVariantes": [
+        { "texto": "Digital health startup in the United States.", "keywords": ["digital health", "health tech", "healthtech"] },
+        { "texto": "US telehealth startup building a remote patient monitoring product.", "keywords": ["telehealth", "telemedicine", "remote patient monitoring", "patient"] },
+        { "texto": "Early-stage US startup in the healthcare space.", "keywords": ["early stage", "seed", "series a", "startup", "0 to 1"] }
+      ],
+      "bulletsBase": [
+        "Developed a new healthcare app for the United States market.",
+        "Implemented Clean Architecture and BLoC state management, improving maintainability and scalability.",
+        "Integrated the shenai SDK to capture real blood pressure and heart rate values via facial scan.",
+        "Built live webcam features with Agora.",
+        "Reviewed pull requests and collaborated with other mobile developers."
+      ],
+      "bulletsVariantes": [
+        { "texto": "Built a cross-platform iOS and Android healthcare application from the ground up for the US market.", "keywords": ["greenfield", "from scratch", "0 to 1", "cross-platform", "iOS and Android", "new product"] },
+        { "texto": "Structured the codebase around Clean Architecture and BLoC, keeping business logic isolated, unit-testable and independent of the UI layer.", "keywords": ["testable", "unit test", "testing", "separation of concerns", "architecture", "maintainable", "scalable"] },
+        { "texto": "Integrated the shenai computer-vision SDK to derive blood pressure and heart rate from a facial scan, handling camera permissions, real-time frame processing and error states.", "keywords": ["computer vision", "camera", "real time", "SDK", "machine learning", "signal processing", "biometrics", "sensors"] },
+        { "texto": "Implemented live video sessions with the Agora SDK, including call lifecycle, permissions and reconnection handling.", "keywords": ["video", "live", "streaming", "WebRTC", "real time", "communication", "chat", "calls"] },
+        { "texto": "Reviewed pull requests and worked with a distributed mobile team across time zones, keeping code standards consistent.", "keywords": ["remote", "distributed", "async", "collaboration", "code review", "standards", "team"] },
+        { "texto": "Worked directly with product on requirements for a regulated healthcare product, translating clinical requirements into mobile features.", "keywords": ["product", "requirements", "regulated", "compliance", "HIPAA", "clinical", "stakeholders"] }
+      ]
+    },
+
+    "Halen": {
+      "dominios": ["rideshare", "mobility", "on-demand", "two-sided marketplace", "logistics", "delivery", "last-mile", "dispatch", "geolocation", "real-time tracking", "maps", "transportation", "gig economy", "US market", "startup"],
+      "contextoBase": "Rideshare startup in the USA (Uber-like driver service).",
+      "contextoVariantes": [
+        { "texto": "US on-demand mobility startup operating a two-sided marketplace of drivers and riders.", "keywords": ["marketplace", "two-sided", "on-demand", "mobility", "supply and demand"] },
+        { "texto": "US startup in the transportation and last-mile logistics space.", "keywords": ["logistics", "last mile", "delivery", "transportation", "fleet", "dispatch", "supply chain"] },
+        { "texto": "Early-stage US rideshare startup building both sides of the platform from scratch.", "keywords": ["early stage", "startup", "0 to 1", "greenfield", "from scratch"] }
+      ],
+      "bulletsBase": [
+        "Developed new apps for Drivers and Customers in the United States.",
+        "Implemented Riverpod state management, improving maintainability and scalability.",
+        "Integrated Google Maps and Firebase.",
+        "Coordinated with product and backend teams on new features."
+      ],
+      "bulletsVariantes": [
+        { "texto": "Built two production Flutter apps in parallel — a driver app and a customer app — sharing a common architecture and design system.", "keywords": ["multiple apps", "design system", "shared code", "monorepo", "white label", "cross-platform"] },
+        { "texto": "Implemented real-time trip tracking with Google Maps: live driver location, route rendering, ETA display and geolocation permission handling.", "keywords": ["real time", "tracking", "maps", "geolocation", "GPS", "routing", "ETA", "location", "dispatch", "logistics"] },
+        { "texto": "Adopted Riverpod for state management across both apps, reducing boilerplate and making async state and error handling explicit.", "keywords": ["Riverpod", "state management", "async", "error handling", "boilerplate"] },
+        { "texto": "Integrated Firebase for authentication, push notifications and real-time data synchronization between the driver and customer apps.", "keywords": ["Firebase", "authentication", "push notifications", "FCM", "real time", "sync", "backend"] },
+        { "texto": "Worked closely with backend engineers on API contracts and with product on the driver and rider flows, shipping in weekly iterations.", "keywords": ["API", "contract", "backend", "product", "agile", "iteration", "sprint", "cross-functional"] }
+      ]
+    },
+
+    "Tul": {
+      "dominios": ["e-commerce", "B2B marketplace", "retail", "construction", "hardware", "building materials", "distribution", "supply chain", "logistics", "inventory", "ordering", "fulfillment", "catalog", "checkout", "payments", "high scale", "consumer app", "LatAm", "growth stage startup"],
+      "contextoBase": "Leading Latam startup in the hardware and construction sector.",
+      "contextoVariantes": [
+        { "texto": "Leading Latin American B2B e-commerce marketplace for construction and hardware supplies.", "keywords": ["e-commerce", "ecommerce", "marketplace", "B2B", "retail", "commerce", "catalog", "checkout"] },
+        { "texto": "Latin American startup digitizing distribution and supply chain for hardware stores.", "keywords": ["logistics", "supply chain", "distribution", "inventory", "fulfillment", "warehouse", "orders", "operations"] },
+        { "texto": "High-growth LatAm startup; the mobile app was the primary sales channel for thousands of merchants.", "keywords": ["scale", "growth", "high traffic", "users", "revenue", "sales"] }
+      ],
+      "bulletsBase": [
+        "Developed and maintained an app with over 500K downloads, enhancing the purchasing experience for businesses across Latin America.",
+        "Implemented Clean Architecture and BLoC/Provider state management.",
+        "Integrated CleverTap and Segment, enhancing analytics and user engagement.",
+        "Reviewed pull requests and mentored junior developers as part of the Flutter Chapter.",
+        "Coordinated with product and backend teams on new features."
+      ],
+      "bulletsVariantes": [
+        { "texto": "Developed and maintained a B2B e-commerce app with 500K+ downloads, covering product catalog, search, cart, checkout and order tracking for merchants across Latin America.", "keywords": ["e-commerce", "ecommerce", "catalog", "search", "cart", "checkout", "orders", "marketplace", "B2B", "commerce", "shopping"] },
+        { "texto": "Built and maintained the ordering and fulfillment flows of an app with 500K+ downloads, including order history, delivery status and inventory availability for thousands of merchants.", "keywords": ["logistics", "supply chain", "fulfillment", "inventory", "delivery", "orders", "tracking", "distribution", "operations", "warehouse"] },
+        { "texto": "Owned features in an app with 500K+ downloads over four years, from first spec to release and post-launch iteration.", "keywords": ["ownership", "end to end", "long term", "feature", "release", "iteration"] },
+        { "texto": "Applied Clean Architecture with BLoC and Provider to a large, long-lived codebase, keeping four years of feature growth maintainable and testable.", "keywords": ["architecture", "legacy", "large codebase", "maintainable", "refactor", "technical debt", "testable", "scalable"] },
+        { "texto": "Instrumented the app with CleverTap and Segment, giving product and growth teams the event data behind funnel, retention and engagement decisions.", "keywords": ["analytics", "events", "tracking", "funnel", "retention", "engagement", "growth", "A/B testing", "data-driven", "metrics"] },
+        { "texto": "Mentored junior Flutter developers and led code reviews inside the company's Flutter Chapter, defining shared conventions across mobile squads.", "keywords": ["mentoring", "mentorship", "lead", "leadership", "code review", "standards", "conventions", "junior", "team", "guild", "chapter"] },
+        { "texto": "Worked in a cross-functional squad with product, design and backend, shipping continuously to the App Store and Google Play.", "keywords": ["cross-functional", "squad", "agile", "scrum", "product", "design", "release", "continuous delivery", "App Store", "Google Play"] },
+        { "texto": "Optimized app performance and startup time on the low-end Android devices common among the merchant user base.", "keywords": ["performance", "optimization", "startup time", "memory", "low-end", "Android", "profiling", "responsiveness"] }
+      ]
+    },
+
+    "Data & Business": {
+      "dominios": ["martech", "marketing technology", "CRM", "automotive", "data analytics", "search", "web platforms", "relationship marketing", "on-premise", "B2B"],
+      "contextoBase": "Relationship marketing solutions for the automotive sector.",
+      "contextoVariantes": [
+        { "texto": "Marketing technology company serving the automotive sector.", "keywords": ["martech", "marketing", "automotive", "adtech"] },
+        { "texto": "B2B software company building data-driven marketing platforms.", "keywords": ["B2B", "data", "analytics", "SaaS", "platform"] }
+      ],
+      "bulletsBase": [
+        "Developed web platforms with PHP7/JavaScript/HTML5/CSS, optimizing digital marketing processes.",
+        "Implemented Elasticsearch and Kibana for large-scale data analysis.",
+        "Managed Linux servers, DNS/VPN configuration and on-premise deployments.",
+        "Integrated Bitrix24 CRM with internal systems."
+      ],
+      "bulletsVariantes": [
+        { "texto": "Built full-stack web platforms with PHP7, JavaScript, HTML5 and CSS, covering both the backend logic and the user-facing interface.", "keywords": ["full stack", "fullstack", "backend", "web", "frontend", "PHP", "JavaScript"] },
+        { "texto": "Implemented Elasticsearch and Kibana pipelines to index and analyze large datasets, exposing dashboards for business stakeholders.", "keywords": ["data", "search", "Elasticsearch", "analytics", "dashboards", "big data", "indexing", "observability", "reporting"] },
+        { "texto": "Administered Linux servers, DNS and VPN configuration and on-premise deployments, with responsibility for uptime.", "keywords": ["Linux", "servers", "DevOps", "infrastructure", "deployment", "uptime", "networking", "on-premise"] },
+        { "texto": "Integrated the Bitrix24 CRM with internal systems through its REST API, automating data flow between marketing and sales.", "keywords": ["CRM", "integration", "REST", "API", "automation", "third-party", "webhooks"] }
+      ]
+    },
+
+    "Soluciones Auditivas": {
+      "dominios": ["healthcare", "medical", "accessibility", "audio", "audiology", "diagnostics", "offline-first", "freelance"],
+      "contextoBase": "Hearing-loss measurement app.",
+      "contextoVariantes": [
+        { "texto": "Freelance project: a mobile hearing-loss screening tool for a healthcare provider.", "keywords": ["healthcare", "medical", "diagnostics", "screening", "health"] },
+        { "texto": "Freelance project focused on accessibility and audio processing on mobile.", "keywords": ["accessibility", "a11y", "audio", "sound", "inclusive design"] }
+      ],
+      "bulletsBase": [
+        "Built a cross-platform Android/iOS app to measure hearing loss using Flutter.",
+        "Integrated SQLite, advanced animations and Firebase for storage and notifications.",
+        "Designed accessible, user-friendly UX/UI for non-technical users."
+      ],
+      "bulletsVariantes": [
+        { "texto": "Delivered a cross-platform Flutter app end to end as a solo developer, from requirements to store release.", "keywords": ["solo", "end to end", "ownership", "freelance", "autonomy", "full lifecycle"] },
+        { "texto": "Implemented offline-first local storage with SQLite so results could be captured without connectivity and synced later.", "keywords": ["offline", "offline-first", "SQLite", "local database", "sync", "connectivity"] },
+        { "texto": "Built custom animations and an accessible interface designed for non-technical and older users.", "keywords": ["animations", "accessibility", "a11y", "UX", "UI", "custom widgets", "inclusive"] }
+      ]
+    },
+
+    "IP Consultores S.A.S.": {
+      "dominios": ["IT infrastructure", "systems administration", "networking", "security", "monitoring", "observability", "VoIP", "virtualization"],
+      "contextoBase": "IT infrastructure for a German institute.",
+      "contextoVariantes": [
+        { "texto": "IT services company; infrastructure and support for a German institute in Colombia.", "keywords": ["infrastructure", "IT", "support", "enterprise"] }
+      ],
+      "bulletsBase": [
+        "Managed Debian/Ubuntu servers, Xen virtualization and Asterisk PBX.",
+        "Monitored network and security with Packetbeat, Filebeat, Metricbeat and Cloudflare.",
+        "Coordinated development projects and provided advanced technical support."
+      ],
+      "bulletsVariantes": [
+        { "texto": "Administered Debian/Ubuntu servers, Xen virtualization and Asterisk VoIP telephony for the whole organization.", "keywords": ["Linux", "servers", "virtualization", "VoIP", "sysadmin", "infrastructure"] },
+        { "texto": "Set up network and security monitoring with the Beats stack and Cloudflare, catching incidents before users reported them.", "keywords": ["monitoring", "observability", "security", "incidents", "logging", "metrics", "alerting", "SRE"] },
+        { "texto": "Coordinated internal development projects and provided tier-3 technical support to end users.", "keywords": ["coordination", "project management", "support", "stakeholders", "communication"] }
+      ]
+    }
+  },
+
+  "reglasDeSeleccion": {
+    "maxBulletsPorEmpresa": { "reciente": 5, "antigua": 3 },
+    "empresasSiempreCompletas": ["Knotion - Doc", "Halen", "Tul"],
+    "empresasComprimibles": ["Data & Business", "Soluciones Auditivas", "IP Consultores S.A.S."],
+    "nota": "Si el CV no cabe en 2 paginas, se recortan primero los bullets de empresasComprimibles, nunca los de las tres primeras. Soluciones Auditivas (2 meses, freelance) es la primera candidata a caer entera."
+  }
+}

@@ -170,6 +170,7 @@ verificado 2026-08-18): Working Nomads, JustRemote.
 | Talently | `https://talently.tech/` → buscador interno, keyword `Flutter` | LatAm remoto, USD. La ruta `/empleos?search=` da **404** (verificado 2026-08-18) |
 | DailyRemote | `https://www.dailyremote.com/remote-jobs?search=flutter` | **raspable con `curl` puro** — trae `datePosted` exacto en JSON-LD, sin gastar navegador |
 | Jobgether | `https://jobgether.com/search-offers?role=flutter-developer&location=latam` | marginal (8 vacantes al promoverlo). `location=latam` **no restringe nada**; la ruta `/remote-jobs/latam/flutter-developer` da **410** |
+| FlutterGigs | `https://fluttergigs.com/jobs` | board 100% dedicado a Flutter, ~20 vacantes, sin login ni anti-bot. **Sin filtro de fecha visible**; Apply pasa por la agencia Evacorp en nombre del empleador real. Promovido desde `portales-sugeridos.md` el 2026-08-24 |
 
 **Descartado del Tier 3**: elempleo — ignora el parametro `Search` y redirige al listado completo.
 

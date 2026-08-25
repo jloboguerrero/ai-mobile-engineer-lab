@@ -13,6 +13,79 @@ el parametro de busqueda, los resultados son Flutter el framework, y hay activid
 
 <!-- Las corridas de /explorar se agregan debajo, la mas reciente primero -->
 
+# Corrida 2026-08-24 — `/explorar` (los cuatro focos)
+
+Foco: portales · empresas · agencias · comunidades. Todo lo de abajo fue probado contra el sitio
+real el 2026-08-24. Se leyo primero `portales.md` completo (incluidos descartados) y la corrida
+anterior de este archivo para no repetir trabajo. Nada de aqui esta activo hasta que el usuario lo
+promueva a `portales.md`.
+
+## Verificadas y recomendadas
+
+### FlutterGigs — Tier 3 sugerido
+- URL probada: `https://fluttergigs.com/jobs` → ~20 vacantes (5 paginas x 4 tarjetas)
+- Respeta el parametro: n/a — es un board 100% dedicado a Flutter (no tiene busqueda generica que
+  comparar; toda la oferta del sitio es Flutter)
+- Los resultados son Flutter real: **si**, confirmado abriendo el detalle de "Senior Mobile
+  Developer by PetroApp" (Flutter + iOS, senior, full remote) — descripcion tecnica real, no ruido
+- Filtro de fecha: **no visible** en el listado ni en el detalle (limitacion notada, no se pudo
+  confirmar antiguedad de las vacantes)
+- Login: no para listar · Anti-bot: no · Apply: boton "Get the opportunity" que dice "let Evacorp
+  know you found this job on FlutterGigs" — las vacantes parecen intermediadas por una agencia
+  (Evacorp) que las publica en nombre de las empresas reales (PetroApp, Cloudwalk, IT LINK, Coding
+  Mind), no que Evacorp sea el empleador
+- Verificado: 2026-08-24
+- Nota: volumen bajo (~20) pero 100% relevante por diseño. Sirve como red de seguridad de bajo
+  ruido, similar a Jobgether. La ausencia de fecha visible es su debilidad frente a HiringCafe/DailyRemote
+
+## Verificadas y descartadas — no reintentar
+
+| Fuente | URL probada | Motivo |
+|---|---|---|
+| **jobsinflutter.com** (tambien resuelve desde `.io`) | `jobsinflutter.com/?q=Flutter` | **Trampa de nombre, no de framework**: es un marketplace de "trabajos para humanos y agentes de IA" sin relacion real con el SDK Flutter. El contador de resultados es **identico** (2.610) con y sin el parametro `q`, y el primer resultado sin filtrar es "Senior Mobile Engineer, iOS" en Mozilla. Mismo patron que "Flutter Brazil" y "Flutter UK & Ireland" de la corrida anterior — el nombre coincide, el contenido no |
+| **Jooble** | `jooble.org/SearchResult?ukw=flutter` | **Cloudflare challenge** ("Just a moment...") tanto con `curl` como con navegador real. No se pudo verificar el listado. No reintentar sin razon para creer que quito el anti-bot |
+| **DevJobsScanner** (re-verificado) | `devjobsscanner.com/remote-flutter-jobs/` | Confirmado con navegador (la corrida anterior solo probo `curl`, que dio 403): tambien Cloudflare challenge en el navegador. Se mueve de "pendiente" a **descartado definitivo** |
+| **WeAreDevelopers** | `wearedevelopers.com/jobs/s/flutter` | Marginal, no descartado del todo pero no recomendado como fuente principal: el filtro `s/flutter` **si cambia el listado** (compare con `/jobs?country=all`, resultados distintos), pero mete bastante ruido — de 20 tarjetas revisadas, ~8 no mencionan Flutter en el titulo ("Tech Lead .Net", "JD Edwards", "Full Stack backend", "Mobile Digital Payments Architect"). El resto si son Flutter real ("Android/Flutter Developer", "Desarrollador Flutter Senior - Cloud/Firebase (Remoto)", "Senior Mobile Engineer (Flutter)"). Mercado fuertemente Europa/Espana. Queda anotado, no recomendado para promocion sin mejor filtrado |
+
+## Empresas nuevas (o actualizadas) confirmadas usando Flutter
+
+Rastreadas hacia atras desde `historial/aplicaciones.json` (empresas que ya tienen una aplicacion
+enviada, prueba directa de que la vacante Flutter era real) y desde busqueda de producto:
+
+| Empresa | Evidencia | ATS | Nota |
+|---|---|---|---|
+| **Tide** (fintech UK) | Multiples vacantes Flutter activas en su board propio | `job-boards.greenhouse.io/tide` (Greenhouse, confirmado por `<title>` real) | Stack calcado: Flutter + Dart + flutter_bloc. Vacantes vistas mayormente Europa/India, verificar aceptacion LatAm caso a caso |
+| **Social Discovery Group** (dating/social, incluye Cupid Media) | 3+ vacantes Flutter activas, 1000+ empleados distribuidos globalmente | `social-discovery-ventures.breezy.hr` (Breezy HR) | Buen fit: 3+ anos Flutter/Dart, sin exigir seniority extrema, contrata LatAm |
+| **Salmon Group Ltd** (fintech Filipinas) | Ya en `historial/aplicaciones.json` — vacante Flutter real aplicada | `jobs.ashbyhq.com/salmon-group` (slug confirmado real, no el falso-positivo generico de Ashby) | No es LatAm pero ya validada por el propio historial de aplicaciones |
+| **Digitech Computer** (actualizacion de entrada existente) | Vacante ya conocida desde 2026-08-18, ahora con ATS localizado via `historial/aplicaciones.json` | `jobs.dayforcehcm.com/en-US/sarnova` (Dayforce, tenant `sarnova` — Digitech es proveedor de Sarnova) | Antes figuraba `ats: ninguno`. Se actualizo la entrada existente en `datos/empresas.json`, no se duplico |
+
+**No se pudo verificar con evidencia solida** (se descarta agregar a `empresas.json` esta corrida):
+JIXAAR AI (sin presencia web identificable mas alla de la vacante de LinkedIn ya en el historial) y
+"Clinica PsicoSalud" (el nombre de empleador en la vacante de LinkedIn no calza con el titulo
+"Marketplace & EdTech Global" — probable error de parsing del nombre real del cliente; no se
+encontro una empresa verificable con ese nombre y ese giro).
+
+## Agencias de staffing LatAm
+
+| Agencia | Estado | Nota |
+|---|---|---|
+| **Rimutee** | bolsa propia real, `rimutee.com` (200) | Plataforma de matching LatAm-remoto (Rimutee OnDemand / Rimutee Hunting), pago en USD como contractor. Ya genero una aplicacion real (`historial/aplicaciones.json`, vacante "Desarrollador Flutter" via RemoteRocketship). No se creo cuenta ni se navego el flujo de registro, solo se confirmo que la empresa y el modelo son reales |
+| **DevFixr** | staffing UK-LatAm/offshore, sin board propio con buscador | Empresa real (staff augmentation UK con desarrolladores offshore), ya genero una aplicacion real en el historial ("Senior Flutter Developer" via RemoteRocketship). Sus vacantes se ven mejor indirectamente via RemoteRocketship/Jobaaj que en su propio sitio |
+| **BairesDev** | sin cambios desde 2026-08-18 | El dato de si multiples postulaciones cuentan como una sola candidatura de perfil **sigue abierto** — no resoluble sin iniciar sesion, y `job-scout` no crea cuentas |
+
+## Reclutadores y comunidades — REQUIEREN ACCION HUMANA DEL USUARIO
+
+> `job-scout` **no** se une, **no** escribe y **no** se registra. Esto es un inventario, nada mas.
+
+| Fuente | Que es | Como se accede |
+|---|---|---|
+| `github.com/workifit/latam-tech-communities` (200) | Directorio curado en GitHub de comunidades tech LatAm en Slack/Discord, incluye entradas de Flutter (menciona Flutter Medellin) | Publico, de solo lectura. Punto de partida mejor que buscar comunidades una por una |
+| `github.com/FlutterComunidadeBR` (200) | Organizacion de GitHub de la comunidad Flutter de Brasil | Publico. Utilidad limitada para LatAm hispanohablante pero relevante si se amplia la busqueda a Brasil (ya aparecen vacantes PT-BR descartadas en el historial) |
+
+**No se contacto a ningun reclutador ni se envio ningun mensaje en esta corrida.**
+
+---
+
 # Corrida 2026-08-18 — `/explorar` (los cuatro focos)
 
 Foco: portales · empresas · agencias · comunidades. Todo lo de abajo fue probado contra el sitio

@@ -172,6 +172,52 @@ local en un huso sin solape con UTC-5 (APAC — penaliza, no descarta).
 MCP (Wellfound), el agente intenta extraer la URL destino con `javascript_tool` y, si no puede, deja
 la oferta en `historial/pendientes-manual.md` con el link directo en vez de abortar la corrida.
 
+### CV adaptado por oferta (Fase 3.5, agregada 2026-08-24)
+
+Hasta esa fecha se enviaba el **mismo PDF estático** a todas las ofertas. La hipótesis del usuario
+—que un filtro ATS descarta la aplicación antes de que un humano la lea, por falta de coincidencia
+de vocabulario— motivó una fase nueva entre la aprobación y el envío:
+
+```
+Fase 3 (aprobación) → Fase 3.5 (analizar oferta → CV JSON → HTML → PDF → diff → confirmar) → Fase 4
+```
+
+Se ejecuta **solo sobre lo aprobado** y **antes** de intentar enviar. Ese orden es deliberado: si
+el portal después bloquea (Workday, login, "apply on company website"), los documentos ya están
+en `salidas/cv/` y `pendientes-manual.md` los referencia por ruta — el usuario los manda a mano sin
+rehacer nada.
+
+**Dos reglas distintas para dos cosas distintas** (reformulación de la regla dura 6). Los
+**formularios** se responden con cifras exactas: años de Swift nativo = `0`, siempre; una cifra
+falsa es fraude declarativo y se cae en la primera entrevista técnica. El **CV** sí se reescribe
+por oferta. Lo que la oferta pide y no está en el banco de hechos se puede añadir —el usuario lo
+autorizó explícitamente el 2026-08-24— pero queda marcado como `claimsSinRespaldo`, se muestra en
+el diff con ⚠ y se aprueba antes de adjuntar. El agente no decide solo qué afirmar sobre los
+empleadores anteriores del usuario; el usuario da fe.
+
+**Niveles de skill.** `cv-fuente.json` clasifica cada skill en `core` (va primero), `working` (va
+sin matiz) y `exposure` (va agrupado al final como `Familiar with: …`). Un `exposure` **nunca** sube
+a un grupo de skills ni aparece en un bullet como experiencia principal: ahí es donde una entrevista
+técnica revienta. Los `exposure` actuales (confirmados por el usuario el 2026-08-24) son Node.js,
+GraphQL, Python, AWS/GCP, GitHub Actions/Fastlane/Codemagic, Swift, Kotlin, React Native, React y
+APIs de LLM.
+
+**Restricción técnica que manda el diseño.** No hay pandoc, wkhtmltopdf, weasyprint, libreoffice,
+reportlab ni fpdf en esta máquina. La única ruta HTML→PDF es **Chrome headless**, y se lanza desde
+`scripts/generar-cv.py` (no como `Bash` directo) porque `settings.local.json` auto-aprueba
+`python3 *` pero no el binario de Chrome: así la corrida no pide permiso por cada oferta.
+
+Dos cosas que costaron depuración el 2026-08-24 y no hay que volver a descubrir:
+
+- **Chrome 151 escribe el PDF y no termina** — se queda vivo con `GoogleUpdater` colgando del
+  proceso. `subprocess.run(..., timeout=N)` cuelga siempre. El script espera a que el archivo
+  aparezca y deje de crecer, y **mata** el proceso.
+- **`float: right` en las fechas rompe el orden del texto.** Con `float`, el extractor pintaba
+  `Aug 2025 – Present` *antes* del nombre del candidato. Un ATS ve lo mismo. Las fechas van en el
+  flujo, en la meta-línea. Ninguna regla de la plantilla es decorativa: una sola columna, sin
+  `<table>`, sin `float`, sin iconos, encabezados literales (`SUMMARY`, `SKILLS`,
+  `PROFESSIONAL EXPERIENCE`…).
+
 **Filtro de compatibilidad:** descarte inmediato cuando el stack principal **no** es Flutter —
 Swift/Kotlin nativo, React Native, Ionic, Xamarin, MAUI como el puesto en sí. Un requisito de nativo
 *junto a* Flutter **no** descarta (decisión del usuario, 2026-08-18): Flutter pesa más y el nativo se
@@ -185,9 +231,13 @@ aunque el título no diga "Senior".
 
 | Ruta | Rol |
 |---|---|
-| `datos/perfil.json` | Datos canónicos para formularios. **Derivado del PDF** — regenerable con la extracción CID de arriba. Campos `null` (ciudad, salario, disponibilidad) los pregunta el agente y los persiste; nunca los inventa. |
+| `datos/perfil.json` | Datos canónicos para **formularios**. **Derivado del PDF** — regenerable con la extracción CID de arriba. Campos `null` (ciudad, salario, disponibilidad) los pregunta el agente y los persiste; nunca los inventa. |
+| `datos/cv-fuente.json` | Banco de hechos del **contenido del CV**, separado de `perfil.json`. Skills con nivel `core`/`working`/`exposure`; por empresa, dominios reales y variantes de redacción del mismo hecho con sus `keywords`. Lo que no está aquí es un claim sin respaldo. |
+| `datos/cv-plantilla.html` | Plantilla ATS-safe. Sus reglas están comentadas dentro del archivo y **no son decorativas** (ver arriba). |
+| `scripts/generar-cv.py` | JSON de oferta → HTML → PDF vía Chrome headless. Solo stdlib. Verifica que el texto del PDF sea extraíble y falla si no: un PDF que el script no puede leer, un ATS tampoco. |
+| `salidas/cv/` | Documentos generados, `<fecha>_<Empresa>_<Puesto>_Jonathan-Lobo-Guerrero_{CV.pdf,CV.html,CV.json,CoverLetter.txt}`. En `.gitignore`. |
 | `datos/respuestas.md` | Banco de respuestas EN para screening. El agente copia de aquí, no improvisa. |
-| `datos/cover-letter-base.md` | Plantilla EN con `{PLACEHOLDERS}`. Nunca se envía sin sustituir. |
+| `datos/cover-letter-base.md` | Plantilla EN con `{PLACEHOLDERS}`. Fallback: desde la Fase 3.5 la carta normal se genera del banco de hechos. Nunca se envía sin sustituir. |
 | `datos/linkedin-geos.json` | Matriz de LinkedIn: 27 países con su `geoId` **verificado**, tier, `remotoObligatorio` y `husoAPAC`. `geoId: null` = sin verificar → el país se salta. |
 | `portales.md` | Catálogo de URLs de búsqueda **verificadas**, por tier. Ninguna URL entra sin probarse contra el portal real. LinkedIn es la excepción: allí define la plantilla y las reglas, no una lista de URLs. |
 | `historial/aplicaciones.json` | Fuente de verdad del dedupe. `id` = sha1(empresa + título normalizado), no de la URL. |

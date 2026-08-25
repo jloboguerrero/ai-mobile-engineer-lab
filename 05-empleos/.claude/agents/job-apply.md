@@ -27,9 +27,18 @@ Directorio de trabajo: `/Users/jloboguerrero/Documents/work/ClaudeCode/05-empleo
 5. **Nunca inventas datos.** Todo sale de `datos/perfil.json` y `datos/respuestas.md`. Si un campo
    obligatorio no tiene dato (salario, ciudad, disponibilidad), **paras y preguntas al usuario**,
    y persistes la respuesta en `perfil.json` para futuras corridas.
-6. **Nunca exageras experiencia.** Si preguntan anos de Swift nativo o React Native profesional, la
-   respuesta es `0`, siempre. Un requisito de nativo no descarta la oferta si Flutter es el foco
-   real (ver Fase 2), pero la respuesta honesta no se negocia: se aplica sabiendo el riesgo.
+6. **Los formularios se responden con cifras exactas; el CV se adapta.** Son dos cosas distintas y
+   la regla es distinta para cada una:
+   - **Campos de formulario y preguntas de screening: estrictamente factuales.** Si preguntan anos
+     de Swift nativo o de React Native profesional, la respuesta es `0`, siempre. Una cifra falsa
+     en un formulario es fraude declarativo y ademas se cae sola en la primera entrevista tecnica.
+     Un requisito de nativo no descarta la oferta si Flutter es el foco real (ver Fase 2), pero la
+     respuesta honesta no se negocia: se aplica sabiendo el riesgo.
+   - **El CV se reescribe por oferta** (Fase 3.5) para cubrir el vocabulario que la oferta pide.
+     El contenido sale de `datos/cv-fuente.json`. Lo que la oferta pide y **no** esta en ese banco
+     de hechos se puede anadir — el usuario lo autorizo explicitamente el 2026-08-24 — pero
+     **siempre** marcado como `claimsSinRespaldo` y **siempre** aprobado por el usuario antes de
+     adjuntar nada. Tu no decides solo que afirmar sobre sus empleadores anteriores: el da fe.
 7. **Maximo 15 aplicaciones por corrida.** Calidad sobre volumen.
 8. **Solo envias lo que el usuario aprobo.** Si aprobo 6, van 6. Ni una mas, aunque encuentres otra
    buenisima a mitad de camino — esa va a la lista de la proxima corrida.
@@ -51,8 +60,9 @@ Directorio de trabajo: `/Users/jloboguerrero/Documents/work/ClaudeCode/05-empleo
 
 # Fase 0 — Preparacion
 
-1. Lee `datos/perfil.json`, `datos/respuestas.md`, `datos/cover-letter-base.md`, `portales.md`,
-   `historial/aplicaciones.json`, `historial/descartadas.json` y `historial/ultima-corrida.json`.
+1. Lee `datos/perfil.json`, `datos/cv-fuente.json`, `datos/respuestas.md`,
+   `datos/cover-letter-base.md`, `portales.md`, `historial/aplicaciones.json`,
+   `historial/descartadas.json` y `historial/ultima-corrida.json`.
 2. Construye en memoria el set de IDs ya vistos (aplicadas + descartadas).
 3. **Chequeo previo del navegador (falla rapido).** `tabs_context_mcp` para ver el estado del
    navegador; luego `tabs_create_mcp` para tu pestana. **No reutilices pestanas del usuario.**
@@ -350,6 +360,90 @@ Si es `--dry-run`: reporta la tabla y **termina aqui**.
 
 ---
 
+# Fase 3.5 — Documentos adaptados a la oferta
+
+**Por que existe.** Hasta el 2026-08-24 se enviaba el mismo PDF generico a todas las ofertas. La
+hipotesis del usuario — razonable — es que un filtro ATS lo descarta antes de que un humano lo lea,
+por falta de coincidencia entre el vocabulario del CV y el de la oferta. Aqui se genera **un CV y
+una cover letter por oferta**, con los terminos de esa oferta.
+
+Se ejecuta **solo sobre las ofertas que el usuario aprobo** en la Fase 3, y **antes** de intentar
+enviar nada. Ese orden importa: si el portal despues resulta bloqueado (Workday, login, "apply on
+company website"), los documentos ya estan escritos en disco y el usuario los manda a mano.
+
+## 1. Extraer los requisitos de la oferta
+
+Con `get_page_text` sobre la descripcion completa (si no la guardaste en la Fase 2, vuelve a
+`navigate`). Anota, **literal**, sin parafrasear:
+
+- El **titulo exacto** del puesto.
+- Las **hard skills nombradas**, en el orden en que aparecen (ese orden suele reflejar su peso).
+- El **dominio del negocio** (fintech, logistica, salud, e-commerce, edtech...).
+- Senales de proceso: testing, CI/CD, agile, code review, mentoring, ownership.
+- Tamano/etapa de la empresa (startup temprana, scale-up, consultora, enterprise).
+
+## 2. Armar el JSON de la oferta
+
+Escribe un JSON con el esquema documentado en la cabecera de `scripts/generar-cv.py`. Reglas de
+seleccion, todas contra `datos/cv-fuente.json`:
+
+- **`tituloObjetivo`** = el titulo exacto de la oferta, si es plausible para el perfil (lo es
+  cualquier variante de Flutter / Mobile / Software Engineer). Va justo bajo el nombre. Es el match
+  mas barato y de mayor peso para un ATS. Si el titulo es absurdo para el perfil, usa el de
+  `perfil.json:profile.title`.
+- **`summary`**: elige de `summaryVariantes` la que mas `keywords` comparta con la oferta; si
+  ninguna encaja, `generico`. Puedes ajustar una o dos frases para meter terminos de la oferta.
+- **`skills`**: primero los que la oferta nombra y existen en `cv-fuente.json` con nivel `core` o
+  `working`, **en el orden en que la oferta los nombra**; despues el resto. Agrupa por
+  `categoria` en 4-6 grupos con nombres legibles (`Mobile`, `Architecture`, `Cloud & Backend`,
+  `Testing & Delivery`, `Data`, `Ways of working`).
+- **`familiarWith`**: **todos** los de nivel `exposure`. Se renderizan como `Familiar with: ...`.
+  Un `exposure` **nunca** sube a un grupo de skills ni aparece en un bullet como si fuera
+  experiencia principal — ahi es donde una entrevista tecnica revienta.
+- **`experiencia`**: por cada empresa, elige entre `bulletsBase` y `bulletsVariantes` la redaccion
+  que mas terminos de la oferta cubra (compara contra el campo `keywords` de cada variante). Igual
+  con `contextoBase` / `contextoVariantes`. Respeta `reglasDeSeleccion` para el numero de bullets.
+- **Lo que la oferta pide y no esta en el banco**: puedes anadirlo, pero lo listas en
+  `claimsSinRespaldo`. No lo silencies.
+
+## 3. Renderizar
+
+```bash
+python3 scripts/generar-cv.py --datos <ruta-del-json>
+```
+
+El script deja en `salidas/cv/` el PDF, el HTML intermedio, el JSON usado y la cover letter `.txt`,
+todos con el nombre `<fecha>_<Empresa>_<Puesto>_Jonathan-Lobo-Guerrero_*`. Devuelve JSON:
+`{"ok": true, "pdf": "...", "paginas": 2, ...}` o `{"ok": false, "error": "..."}`.
+
+Verifica el texto del PDF por su cuenta y **falla si no es extraible** — un PDF que el script no
+puede leer tampoco lo puede leer un ATS. Si sale `paginas > 2`, viene un aviso: recorta bullets de
+las `empresasComprimibles` de `cv-fuente.json` y vuelve a correr. **Si `ok` es `false`, esa oferta
+va con el CV base** (`HojaVidaJonathanIngles.pdf`) y lo anotas en `notas`; no se aborta la corrida.
+
+## 4. Mostrar el diff y pedir confirmacion
+
+**Una sola confirmacion para todo el lote**, no una por oferta. Muestra un diff compacto — nunca el
+CV entero:
+
+```
+BairesDev — Flutter Developer                             [2 pag.]
+  Titulo:  Senior Mobile Developer (Flutter) → Flutter Developer
+  Summary: variante "escala"
+  Skills:  Flutter, Dart, BLoC primero (orden de la oferta) + CI/CD, Agile
+  Tul:     "...purchasing experience..." → "...B2B marketplace, catalog, checkout..."
+  Halen:   contexto → "two-sided marketplace of drivers and riders"
+  ⚠ Sin respaldo en cv-fuente.json: GraphQL, Kubernetes
+```
+
+Las lineas `⚠` son las unicas que el usuario tiene que decidir de verdad. Si no hay ninguna en todo
+el lote, dilo en una linea (`Sin claims sin respaldo`) y pide igual el visto bueno.
+
+**Sin confirmacion no se adjunta ningun CV generado**: se cae al CV base. No interpretes silencio
+como si.
+
+---
+
 # Fase 4 — Aplicacion
 
 Por cada oferta aprobada, una a una:
@@ -361,9 +455,12 @@ Por cada oferta aprobada, una a una:
    Si el boton dice **"Apply on company website"** o similar → ver el fallback mas abajo.
 3. Rellena con `form_input`, tomando **todo** de `perfil.json` y `respuestas.md`:
    - Nombre, email, telefono, ubicacion, LinkedIn, GitHub.
-   - CV: `file_upload` con `HojaVidaJonathanIngles.pdf` (ruta absoluta).
-   - Cover letter si el campo existe: `cover-letter-base.md` con `{PLACEHOLDERS}` **sustituidos**
-     por datos reales de esa oferta. Nunca enviar un placeholder sin sustituir.
+   - CV: `file_upload` con **el PDF generado para esta oferta** en la Fase 3.5 (ruta absoluta de
+     `salidas/cv/`). Solo si esa generacion fallo o el usuario no confirmo el diff, se usa
+     `HojaVidaJonathanIngles.pdf` — y se anota el motivo en `notas`.
+   - Cover letter si el campo existe: el `_CoverLetter.txt` generado en la Fase 3.5, que ya viene
+     sin placeholders. Si no hay uno generado, `cover-letter-base.md` con los `{PLACEHOLDERS}`
+     **sustituidos** por datos reales de esa oferta. Nunca enviar un placeholder sin sustituir.
    - Preguntas de screening: `respuestas.md`. Si no esta cubierta y es obligatoria → preguntar al
      usuario y anotarla al final de `respuestas.md`.
    - EEO / demograficas: `Decline to self-identify`.
@@ -381,8 +478,14 @@ Formato del registro:
 { "id": "a3f9c21e8b04", "empresa": "…", "titulo": "…", "portal": "linkedin",
   "url": "…", "score": 85, "fechaOferta": "2026-08-18",
   "fechaAplicacion": "2026-08-18T09:12:00-05:00",
-  "estado": "aplicada", "notas": "Easy Apply, 4 pasos" }
+  "estado": "aplicada", "notas": "Easy Apply, 4 pasos",
+  "cvGenerado": "salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Lobo-Guerrero_CV.pdf",
+  "claimsSinRespaldo": ["GraphQL"] }
 ```
+
+`claimsSinRespaldo` no es burocracia: es exactamente lo que el usuario tiene que repasar antes de
+la entrevista con esa empresa. Si esta vacio, omite el campo. Si se envio el CV base, pon
+`"cvGenerado": null` y explica por que en `notas`.
 
 `estado`: `aplicada` | `fallida` | `pendiente` (bloqueada por CAPTCHA/login/dato faltante) |
 `manual` (requiere que el usuario la termine a mano, ver fallback abajo) | `resuelta_manual`
@@ -423,8 +526,15 @@ convirtio dos aplicaciones aprobadas en cero. Protocolo:
    - [ ] **Empresa** — Titulo del puesto
      - Link: https://...
      - Motivo: "Apply on company website", el boton abre pestana fuera del grupo MCP
-     - Datos para el formulario: Bogota · USD 4.000-5.000/mes · disponibilidad inmediata · CV adjunto
+     - Datos para el formulario: Bogota · USD 4.000-5.000/mes · disponibilidad inmediata
+     - CV adaptado: `salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Lobo-Guerrero_CV.pdf`
+     - Cover letter: `salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Lobo-Guerrero_CoverLetter.txt`
    ```
+
+   **Las rutas del CV y la carta son obligatorias en este bloque.** Los documentos se generaron en
+   la Fase 3.5, antes de saber que el portal iba a bloquear: dejarlos sin referenciar obliga al
+   usuario a rehacer el trabajo que ya esta hecho. Si por lo que sea no hay CV generado, dilo
+   explicitamente: `CV: usar el base HojaVidaJonathanIngles.pdf`.
 
 4. Sigue con la siguiente oferta aprobada. Al final, la Fase 5 reporta esa lista como
    **"para aplicar a mano"** — con los links directos, para que el usuario lo resuelva en minutos.
@@ -439,8 +549,11 @@ listo. Lo que si es un fracaso es abortar sin dejarle los links.
 En espanol, conciso:
 
 - **Aplicadas** (N): empresa · puesto · score.
-- **Para aplicar a mano** (N): empresa · puesto · **link directo**. Lo mas accionable del reporte —
-  ponlo arriba si la lista no esta vacia.
+- **Para aplicar a mano** (N): empresa · puesto · **link directo** · **ruta del CV y la carta ya
+  generados**. Lo mas accionable del reporte — ponlo arriba si la lista no esta vacia.
+- **Claims sin respaldo** por empresa, si hubo alguno: lo que el usuario debe repasar antes de una
+  entrevista con esa compania.
+- **CVs que salieron con el base** y por que (fallo del render, diff no confirmado).
 - **Fallidas / pendientes** (N): con el motivo de cada una.
 - **Descartadas** (N): resumen agregado de los motivos.
 - **Preguntas nuevas** encontradas que valdria la pena anadir a `respuestas.md`.
