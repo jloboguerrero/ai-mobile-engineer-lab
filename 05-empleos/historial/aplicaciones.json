@@ -253,5 +253,47 @@
     "cv": "salidas/cv/2026-08-25_SynmatchAI_Mobile-App-Developer_Jonathan-Lobo-Guerrero_CV.pdf",
     "notas": "El agente la descarto de la corrida automatica por datos insuficientes (panel de descripcion de LinkedIn bloqueado en la corrida del 2026-08-25). El usuario pego la descripcion manualmente. Riesgo detectado y aceptado por el usuario: salario en INR (~USD 33k/yr) sugiere nomina local en India, no remoto global. CV a medida via Fase 3.5 (sin mencionar Bluetooth LE/Wi-Fi/USB, que no esta en el banco de hechos; incluye offline-first de Soluciones Auditivas como el match mas fuerte al requisito). El usuario aplico a mano.",
     "fecha": "2026-08-25"
+  },
+  {
+    "id": "35a95f36501b",
+    "empresa": "memodio",
+    "titulo": "Flutter & Node.js Fullstack Engineer (f/m/d) - Fully Remote",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4457787520/",
+    "score": 90,
+    "fechaOferta": "2026-08-27",
+    "fechaAplicacion": "2026-08-27",
+    "estado": "aplicada_manual",
+    "cvGenerado": null,
+    "notas": "Aprobada por el usuario en la tabla de la corrida del 2026-08-27 (candidata #1, remoto mundial genuino, overlap 4h con Berlin, salario EUR 35-55K/ano). El usuario aplico a mano por su cuenta antes de que el agente llegara a la Fase 3.5/4; no se genero CV a medida ni se envio via formulario automatizado.",
+    "fecha": "2026-08-27"
+  },
+  {
+    "id": "101c7bab1148",
+    "empresa": "Modus Create",
+    "titulo": "Principal Mobile Engineer (Flutter / React Native, AI-Assisted Development)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4459849214/",
+    "score": 75,
+    "fechaOferta": "2026-08-27",
+    "fechaAplicacion": "2026-08-27",
+    "estado": "aplicada_manual",
+    "cvGenerado": null,
+    "notas": "Aprobada por el usuario en la tabla de la corrida del 2026-08-27 (candidata #2, remoto global, foco fuerte en IA-assisted development). El usuario aplico a mano por su cuenta antes de que el agente llegara a la Fase 3.5/4; no se genero CV a medida ni se envio via formulario automatizado.",
+    "fecha": "2026-08-27"
+  },
+  {
+    "id": "6e6ef804c0ed",
+    "empresa": "Labils",
+    "titulo": "Senior Software Engineer (Flutter)",
+    "portal": "labils.com (careers propio, ya no indexado en LinkedIn)",
+    "url": "https://labils.com/careers/senior-software-engineer-flutter",
+    "score": 80,
+    "fechaOferta": "2026-08-27",
+    "fechaAplicacion": "2026-08-27",
+    "estado": "aplicada_manual",
+    "cvGenerado": null,
+    "notas": "Aprobada por el usuario en la tabla de la corrida del 2026-08-27 (candidata #3, Hamburgo/Londres/Remoto, 5+ anos mobile, 3+ Flutter/Dart). El link original de LinkedIn (jobs/view/4458633096) dejo de cargar ('ID no valido o eliminado'); se recupero la URL correcta en el sitio propio de la empresa. El usuario aplico a mano ahi directamente antes de que el agente llegara a la Fase 3.5/4; no se genero CV a medida ni se envio via formulario automatizado.",
+    "fecha": "2026-08-27"
   }
 ]

@@ -488,5 +488,48 @@
     "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll dentro de cada URL. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana 24h (ultima corrida ~22h19m antes, redondeada al minimo del clamp). La inmensa mayoria de resultados en LatAm son BairesDev republicando el mismo posting generico 'Flutter Developer / Mobile Engineer (Flutter)' pais por pais con REF# distintos (Colombia, Mexico, Chile x2, Guatemala, Ecuador, Brasil) -- mismo patron de staffing mill de corridas anteriores, ya resuelto/aplicado 4 veces por el usuario, no se vuelve a proponer aunque el hash tecnico difiera por el numero de REF. Las 'promociones' que aparecieron identicas en absolutamente todos los paises (Kake, FullStack, Roca Alliances, Capgemini, Sezzle, Trilliant, Inetum, etc.) son sugerencias de LinkedIn ancladas a la ubicacion del perfil del usuario (Colombia), no resultados geo-filtrados reales, y ninguna menciona Flutter. Tier B/C/D dominados por un internship no pago de FOREO (AI/Python) republicado identico en 6 paises. Unica candidata nueva genuina con score >=70 en LinkedIn: Haystack 'Senior Flutter / Dart Mobile Engineer' (Los Angeles, remoto, 13h). Kforce Inc con el mismo titulo ya aparece marcado 'Solicitado' por el usuario fuera de este tracking, no se reproponer. Complementado con Indeed US/CO (0 relevante), Glassdoor (0 relevante), RemoteOK (0 relevante dentro de ventana), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare de nuevo, sin avanzar marca), Wellfound (48 resultados, ninguno Flutter fresco dentro de ventana), HiringCafe (184 vacantes, todas las de <24h con Flutter mencionado tienen otro stack principal -- Auth0/Foundant/Impruvon/1KOMMA5/Adobe/Adapty/Canva), RemoteRocketship (74 total, 1 nueva -- Avenga Junior/Mid descartada -- resto ya conocidas o fuera de ventana), GetOnBoard (ignora el parametro de busqueda como siempre; Flutter Engineer de Forest es hibrido en Santiago, descartado por modalidad), Torre.ai (sigue roto, octava corrida consecutiva, pierde el query param en la redireccion a /app/search-job), Computrabajo (0), Talently (se mantiene null, sin ruta de busqueda usable), DailyRemote (mismo resultado UK ya descartado por nivel), Jobgether (0 dentro de ventana, todo 16+ dias), FlutterGigs (4 vacantes via agencia Evacorp; Cloudwalk ya conocida, PetroApp nueva pero USD 2000/mes muy por debajo del rango, IT LINK y Coding Mind hibridas -- portal sigue sin fecha de publicacion ni detalle abrible).",
     "_incidencias": "Torre.ai y Talently siguen rotos. Himalayas bloqueado por Cloudflare. FlutterGigs sigue sin fecha de publicacion por oferta ni detalle accesible via click -- limitacion estructural persistente, no vale la pena seguir intentando abrir el detalle en corridas futuras salvo cambio de UI.",
     "fechaDescarte": "2026-08-26"
+  },
+  {
+    "id": "590bc13a017b",
+    "empresa": "Bolder Apps - AI Native AgentCy",
+    "titulo": "Mobile App Developer (Flutter / React Native)",
+    "portal": "linkedin/remoterocketship",
+    "score": 0,
+    "fechaDescarte": "2026-08-27",
+    "motivo": "Descarte inmediato: la propia descripcion dice 'hiring a mid-level mobile developer', sin componente senior. Republicado identico en Colombia, Mexico, Argentina, Chile, Brasil, Costa Rica (LinkedIn) y tambien en RemoteRocketship."
+  },
+  {
+    "id": "4b5f35e25b66",
+    "empresa": "Topaz",
+    "titulo": "Sr Developer Analyst (Frontend Mobile)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4456600253/",
+    "score": null,
+    "fechaDescarte": "2026-08-27",
+    "motivo": "Fuera de la ventana adaptativa de Colombia (24h): publicada hace 5 dias. Hibrido en Bogota, hubiera calificado para modalidad pero llega tarde."
+  },
+  {
+    "id": "8c1b1f8a0456",
+    "empresa": "cherry",
+    "titulo": "FLUTTER devs for CHARITY! Volunteer",
+    "portal": "linkedin",
+    "score": 0,
+    "fechaDescarte": "2026-08-27",
+    "motivo": "Descarte inmediato: puesto voluntario sin remuneracion, no es una oferta de empleo real."
+  },
+  {
+    "id": "496f9199fe74",
+    "empresa": "Bergman Engineering",
+    "titulo": "Junior Flutter Developer",
+    "portal": "linkedin",
+    "score": 0,
+    "fechaDescarte": "2026-08-27",
+    "motivo": "Descarte inmediato: nivel Junior explicito. Polonia."
+  },
+  {
+    "_lote": "corrida-2026-08-27",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll/paginacion dentro de cada URL, sin bloqueos de seguridad. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2. Ventana 24h (ultima corrida ~24h antes). Tres candidatas nuevas geniunas con score >=70: Modus Create 'Principal Mobile Engineer (Flutter / React Native, AI-Assisted Development)' (remoto global, ~1h, score 75), Labils 'Senior Software Engineer (Flutter)' (US remoto, ~2h, score 80), memodio 'Flutter & Node.js Fullstack Engineer (f/m/d) - Fully Remote' (remoto mundial genuino, ~40min, score 90). Babich & Associates 'Flutter/Dart Mobile Application Developer' aparecio marcado 'Solicitud enviada' (aplicada fuera de este tracking, no reproponer). Salmon Group Ltd y Binance (Bangkok) reaparecieron, ya conocidas/aplicadas. Complementado con Indeed US (0), Indeed CO (Modus Create, ya contado en LinkedIn), Glassdoor (0), RemoteOK (0 relevante, mas reciente 5d), WeWorkRemotely (0), Himalayas (bloqueado Cloudflare de nuevo, sin avanzar marca), Wellfound (49 resultados, nada Flutter fresco dentro de ventana), HiringCafe (185 vacantes, ninguna Flutter-primary nueva dentro de ventana ademas de Avenga ya conocida), RemoteRocketship (75 total, Bolder Apps 11h ya descartada mid-level), GetOnBoard (ignora el parametro como siempre, unico Flutter es hibrido Santiago), Torre.ai (sigue roto, novena corrida consecutiva), Computrabajo (0), Talently (confirmado otra vez sin ruta de busqueda, se mantiene null), DailyRemote (Modus Create, ya contado), Jobgether (0 dentro de ventana, todo 17+ dias), FlutterGigs (mismas 4 vacantes via Evacorp de corridas previas, sin fecha de publicacion visible).",
+    "_incidencias": "Torre.ai y Talently siguen rotos. Himalayas bloqueado por Cloudflare. FlutterGigs sigue sin fecha de publicacion por oferta.",
+    "fechaDescarte": "2026-08-27"
   }
 ]
