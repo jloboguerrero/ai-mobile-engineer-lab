@@ -435,5 +435,58 @@
     "portal": "fluttergigs",
     "fechaDescarte": "2026-08-25",
     "motivo": "USD 4000-6000/mes remoto via agencia Evacorp, pero FlutterGigs no muestra fecha de publicacion por oferta (limitacion estructural del portal) y el detalle nunca pudo abrirse. El usuario decidio no perseguirla manualmente esta sesion; se descarta por decision explicita, no por descalificacion tecnica."
+  },
+  {
+    "id": "131da6102723",
+    "empresa": "Klan Markets",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4457230910/",
+    "score": 65,
+    "fechaDescarte": "2026-08-26",
+    "motivo": "Score 65 < 70. Full-time Flutter developer remoto pero 'Location: Egypt' explicito (sugiere contratacion local, no global) y rango de 4-6 anos de experiencia sin componente senior claro en el titulo ni 5+ anos explicitos."
+  },
+  {
+    "id": "3604b237ecf8",
+    "empresa": "Plexus Tech",
+    "titulo": "Analista Programador/a App Movil (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4444574963/",
+    "score": 0,
+    "fechaDescarte": "2026-08-26",
+    "motivo": "Descarte inmediato: 'Analista Programador/a' con 3 anos de experiencia pedidos, nivel medio sin componente senior. Consultora espanola (IBEX35), titulacion reconocida en Espana sugiere residencia/autorizacion local."
+  },
+  {
+    "id": "8962da64c873",
+    "empresa": "Avenga",
+    "titulo": "Flutter Software Engineer",
+    "portal": "remoterocketship",
+    "score": 0,
+    "fechaDescarte": "2026-08-26",
+    "motivo": "Descarte inmediato: etiquetado Junior/Mid-level explicito en la tarjeta, sin componente senior. Ucrania remoto."
+  },
+  {
+    "id": "6d3b2a0f89e1",
+    "empresa": "Haystack",
+    "titulo": "Senior Flutter / Dart Mobile Engineer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4459086604/",
+    "score": 100,
+    "fechaDescarte": "2026-08-26",
+    "motivo": "work-auth: aprobada por el usuario en la Fase 3 pese al riesgo senalado (staffing firm, W2, sin autorizacion de trabajo en EE.UU. declarada). El usuario intento aplicar manualmente y el proceso de la firma de staffing NO permite candidatos fuera de Estados Unidos, confirmando el riesgo. Descartada por el usuario, no enviada por este agente."
+  },
+  {
+    "id": "b1a1e5a1c001",
+    "empresa": "Evacorp (PetroApp)",
+    "titulo": "Senior Mobile Developer",
+    "portal": "fluttergigs",
+    "fechaDescarte": "2026-08-26",
+    "motivo": "USD 2000/mes, muy por debajo del rango esperado (4000-5000). FlutterGigs sigue sin fecha de publicacion visible ni detalle abrible (misma limitacion estructural de corridas previas). No se pudo confirmar seniority real ni ubicacion; descartada por senal de compensacion insuficiente."
+  },
+  {
+    "_lote": "corrida-2026-08-26-linkedin-bairesdev",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll dentro de cada URL. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana 24h (ultima corrida ~22h19m antes, redondeada al minimo del clamp). La inmensa mayoria de resultados en LatAm son BairesDev republicando el mismo posting generico 'Flutter Developer / Mobile Engineer (Flutter)' pais por pais con REF# distintos (Colombia, Mexico, Chile x2, Guatemala, Ecuador, Brasil) -- mismo patron de staffing mill de corridas anteriores, ya resuelto/aplicado 4 veces por el usuario, no se vuelve a proponer aunque el hash tecnico difiera por el numero de REF. Las 'promociones' que aparecieron identicas en absolutamente todos los paises (Kake, FullStack, Roca Alliances, Capgemini, Sezzle, Trilliant, Inetum, etc.) son sugerencias de LinkedIn ancladas a la ubicacion del perfil del usuario (Colombia), no resultados geo-filtrados reales, y ninguna menciona Flutter. Tier B/C/D dominados por un internship no pago de FOREO (AI/Python) republicado identico en 6 paises. Unica candidata nueva genuina con score >=70 en LinkedIn: Haystack 'Senior Flutter / Dart Mobile Engineer' (Los Angeles, remoto, 13h). Kforce Inc con el mismo titulo ya aparece marcado 'Solicitado' por el usuario fuera de este tracking, no se reproponer. Complementado con Indeed US/CO (0 relevante), Glassdoor (0 relevante), RemoteOK (0 relevante dentro de ventana), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare de nuevo, sin avanzar marca), Wellfound (48 resultados, ninguno Flutter fresco dentro de ventana), HiringCafe (184 vacantes, todas las de <24h con Flutter mencionado tienen otro stack principal -- Auth0/Foundant/Impruvon/1KOMMA5/Adobe/Adapty/Canva), RemoteRocketship (74 total, 1 nueva -- Avenga Junior/Mid descartada -- resto ya conocidas o fuera de ventana), GetOnBoard (ignora el parametro de busqueda como siempre; Flutter Engineer de Forest es hibrido en Santiago, descartado por modalidad), Torre.ai (sigue roto, octava corrida consecutiva, pierde el query param en la redireccion a /app/search-job), Computrabajo (0), Talently (se mantiene null, sin ruta de busqueda usable), DailyRemote (mismo resultado UK ya descartado por nivel), Jobgether (0 dentro de ventana, todo 16+ dias), FlutterGigs (4 vacantes via agencia Evacorp; Cloudwalk ya conocida, PetroApp nueva pero USD 2000/mes muy por debajo del rango, IT LINK y Coding Mind hibridas -- portal sigue sin fecha de publicacion ni detalle abrible).",
+    "_incidencias": "Torre.ai y Talently siguen rotos. Himalayas bloqueado por Cloudflare. FlutterGigs sigue sin fecha de publicacion por oferta ni detalle accesible via click -- limitacion estructural persistente, no vale la pena seguir intentando abrir el detalle en corridas futuras salvo cambio de UI.",
+    "fechaDescarte": "2026-08-26"
   }
 ]
