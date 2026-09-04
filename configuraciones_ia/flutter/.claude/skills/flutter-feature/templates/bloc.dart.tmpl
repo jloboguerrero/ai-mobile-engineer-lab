@@ -1,0 +1,33 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../domain/domain.dart';
+
+part 'event.dart';
+part 'state.dart';
+
+class {{Feature}}Bloc extends Bloc<{{Feature}}Event, {{Feature}}State> {
+  {{Feature}}Bloc({Get{{Feature}}Usecase? get{{Feature}}Usecase})
+    : _get{{Feature}}Usecase = get{{Feature}}Usecase ?? Modular.get<Get{{Feature}}Usecase>(),
+      super(const {{Feature}}InitialState({{Feature}}Model())) {
+    on<Load{{Feature}}Event>(_onLoad{{Feature}}Event);
+  }
+
+  final Get{{Feature}}Usecase _get{{Feature}}Usecase;
+
+  Future<void> _onLoad{{Feature}}Event(
+    Load{{Feature}}Event event,
+    Emitter<{{Feature}}State> emit,
+  ) async {
+    emit({{Feature}}LoadingState(state.model));
+    try {
+      final entity = await _get{{Feature}}Usecase.execute(event.id);
+      if (isClosed) return;
+      emit({{Feature}}LoadedState(state.model.copyWith(id: entity.id)));
+    } catch (_) {
+      if (isClosed) return;
+      emit({{Feature}}ErrorState(state.model));
+    }
+  }
+}

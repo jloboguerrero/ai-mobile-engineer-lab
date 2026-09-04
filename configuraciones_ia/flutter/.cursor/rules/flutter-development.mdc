@@ -1,0 +1,121 @@
+---
+description: Flutter Clean Architecture, BLoC, imports, and coding standards for docflutter mobile packages
+globs: **/*.dart
+alwaysApply: false
+---
+
+# Flutter Development Standards (docflutter)
+
+Expert Flutter/Dart development following this monorepo's conventions (`mobile_patient_*`, `mobile_design_system`, `mobile_patient_core`, etc.).
+
+## Import Order
+
+Enforced by `directives_ordering` in `analysis_options.yaml`. Group imports with a blank line between each section:
+
+1. **`dart:`** — alphabetically (`dart:async`, `dart:ui`, …)
+2. **`package:` (third-party)** — alphabetically (`collection`, `meta`, …)
+3. **`package:flutter`** — separate blank line from other third-party when both exist
+4. **`package:mobile_*`** — project packages, alphabetically; prefer barrel imports (`core/core.dart`, `domain/domain.dart`, `mobile_patient_dependencies.dart`)
+5. **Relative** — alphabetically (`../entities/…`, `bloc/_bloc.dart`, …)
+
+```dart
+// ✅ GOOD
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import 'package:mobile_design_system/mobile_design_system.dart';
+import 'package:mobile_patient_core/mobile_patient_core.dart';
+import 'package:mobile_patient_dependencies/mobile_patient_dependencies.dart';
+
+import 'bloc/_bloc.dart';
+import 'utils/_utils.dart';
+```
+
+- Use barrel files (`_entities.dart`, `_repositories.dart`, `domain.dart`, `data.dart`) instead of deep relative paths when available.
+- BLoC files: imports only in `bloc.dart`; `event.dart` and `state.dart` are `part of 'bloc.dart'`.
+- Private widgets: use `part` / `part of` in the parent screen file when widgets are feature-local.
+
+## Parameters & Formatting
+
+- **Named parameters**: always alphabetical (constructors, methods, and call sites).
+- **Trailing commas**: required (`require_trailing_commas`, formatter `preserve`).
+- **Quotes**: single quotes (`prefer_single_quotes`).
+- **Comments**: English only; explain non-obvious business logic, not obvious code.
+- **`const`**: use const constructors for widgets when possible.
+- **Types**: explicit return and parameter types; avoid `dynamic`.
+
+```dart
+// ✅ GOOD — alphabetical named params
+const UpdateMedicationStatusEvent({
+  required this.day,
+  required this.idConsultation,
+  required this.idMedication,
+  required this.isCompleted,
+});
+
+await usecase.execute(
+  day: day,
+  idConsultation: idConsultation,
+  idMedication: idMedication,
+  isCompleted: isCompleted,
+);
+```
+
+## Clean Architecture (Feature-First)
+
+Dependencies point inward: **Presentation → Domain ← Data**.
+
+```text
+lib/features/<feature>/
+├── data/
+│   ├── datasources/     # API clients (I*Datasource / *DatasourceImpl)
+│   ├── models/          # DTOs; extend domain entities
+│   └── repositories/  # *RepositoryImpl
+├── domain/
+│   ├── entities/        # Pure business objects (Equatable)
+│   ├── repositories/    # Abstract I*Repository contracts
+│   └── usecases/        # Single-responsibility *Usecase classes
+├── presentation/
+│   ├── bloc/            # BLoC (event, state, bloc)
+│   ├── screens/         # Full-screen routes
+│   └── widgets/         # Feature-local sub-widgets
+├── module.dart            # flutter_modular binds & routes (when applicable)
+└── <feature>_exported.dart
+```
+
+- **Domain**: no `package:flutter`, no network clients (`dio`, `http`). May use `mobile_patient_dependencies` (e.g. `Equatable`).
+- **Data**: maps API/DB responses to models; models extend domain entities.
+- **Presentation**: UI and state only — no raw business logic in `build()`.
+
+## BLoC Conventions
+
+- State management: **`flutter_bloc` only** (no Riverpod, Provider, GetX).
+- Structure per bloc folder: `bloc.dart` + `part 'event.dart'` + `part 'state.dart'`.
+- States/events: `@immutable sealed class` extending `Equatable`; hold UI data in a `*Model` class inside `state.dart`.
+- Trigger changes via `bloc.add(Event())`, never public methods on the bloc.
+- Use `BlocBuilder` / `BlocSelector` for granular rebuilds.
+- Async handlers: check `if (isClosed) return` after awaits before `emit`.
+- DI: optional constructor params for testing; default to `Modular.get<T>()` in production.
+
+```dart
+// ✅ GOOD bloc skeleton
+class MedicationBloc extends Bloc<MedicationEvent, MedicationState> {
+  MedicationBloc({
+    UpdateMedicationStatusUsecase? updateMedicationStatusUsecase,
+  }) : _updateMedicationStatusUsecase =
+           updateMedicationStatusUsecase ??
+           Modular.get<UpdateMedicationStatusUsecase>(),
+       super(const MedicationInitialState(MedicationModel())) {
+    on<UpdateMedicationStatusEvent>(_onUpdateMedicationStatusEvent);
+  }
+}
+```
+
+## Naming & Error Handling
+
+- Interfaces: `IMedicationRepository`, `IMedicationDatasource`.
+- Implementations: `MedicationRepositoryImpl`, `MedicationDatasourceImpl`.
+- Use cases: `*Usecase` with `execute()` method.
+- Errors: handle in blocs with `try/catch`; inspect `Err` and typed exceptions (`AppException`, etc.) from `mobile_patient_core` / HTTP layer — do not bubble raw exceptions to the UI.
+- Keep files under ~100 lines; split large widgets into focused sub-widgets.

@@ -1,0 +1,13 @@
+import '../repositories/_repositories.dart';
+import '../entities/_entities.dart';
+
+class Get{{Feature}}Usecase {
+  const Get{{Feature}}Usecase({required I{{Feature}}Repository i{{Feature}}Repository})
+    : _i{{Feature}}Repository = i{{Feature}}Repository;
+
+  final I{{Feature}}Repository _i{{Feature}}Repository;
+
+  Future<{{Entity}}Entity> execute(String id) {
+    return _i{{Feature}}Repository.get{{Entity}}(id);
+  }
+}

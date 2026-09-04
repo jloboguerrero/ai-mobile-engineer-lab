@@ -1,0 +1,15 @@
+import '../models/_models.dart';
+
+abstract interface class I{{Feature}}Datasource {
+  Future<{{Entity}}Model> get{{Entity}}(String id);
+}
+
+class {{Feature}}DatasourceImpl implements I{{Feature}}Datasource {
+  const {{Feature}}DatasourceImpl();
+
+  @override
+  Future<{{Entity}}Model> get{{Entity}}(String id) async {
+    // TODO: wire the real HTTP client.
+    throw UnimplementedError();
+  }
+}

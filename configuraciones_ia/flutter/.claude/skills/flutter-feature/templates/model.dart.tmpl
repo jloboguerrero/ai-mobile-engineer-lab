@@ -1,0 +1,9 @@
+import '../../domain/domain.dart';
+
+class {{Entity}}Model extends {{Entity}}Entity {
+  const {{Entity}}Model({required super.id});
+
+  factory {{Entity}}Model.fromJson(Map<String, dynamic> json) {
+    return {{Entity}}Model(id: json['id'] as String);
+  }
+}

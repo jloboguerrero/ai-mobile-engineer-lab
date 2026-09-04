@@ -1,0 +1,14 @@
+import '../../domain/domain.dart';
+import '../datasources/_datasources.dart';
+
+class {{Feature}}RepositoryImpl implements I{{Feature}}Repository {
+  const {{Feature}}RepositoryImpl({required I{{Feature}}Datasource i{{Feature}}Datasource})
+    : _i{{Feature}}Datasource = i{{Feature}}Datasource;
+
+  final I{{Feature}}Datasource _i{{Feature}}Datasource;
+
+  @override
+  Future<{{Entity}}Entity> get{{Entity}}(String id) {
+    return _i{{Feature}}Datasource.get{{Entity}}(id);
+  }
+}

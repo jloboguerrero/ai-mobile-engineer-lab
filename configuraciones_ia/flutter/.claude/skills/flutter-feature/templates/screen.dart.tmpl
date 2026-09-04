@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../bloc/_bloc.dart';
+
+class {{Feature}}Screen extends StatelessWidget {
+  const {{Feature}}Screen();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => Modular.get<{{Feature}}Bloc>(),
+      child: BlocListener<{{Feature}}Bloc, {{Feature}}State>(
+        listener: _listener,
+        child: const _{{Feature}}Content(),
+      ),
+    );
+  }
+
+  void _listener(BuildContext context, {{Feature}}State state) {
+    if (state is {{Feature}}ErrorState) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Something went wrong.')),
+      );
+    }
+  }
+}
+
+class _{{Feature}}Content extends StatelessWidget {
+  const _{{Feature}}Content();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(body: Placeholder());
+  }
+}

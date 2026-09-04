@@ -1,0 +1,24 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - avoid_print
+    - prefer_single_quotes
+    - directives_ordering
+    - require_trailing_commas
+    - await_only_futures
+    - avoid_void_async
+    - discarded_futures
+    - unawaited_futures
+
+formatter:
+  trailing_commas: preserve
+
+analyzer:
+  errors:
+    depend_on_referenced_packages: false
+  exclude:
+    - lib/generated/*
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.mocks.dart"

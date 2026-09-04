@@ -1,0 +1,38 @@
+part of 'bloc.dart';
+
+@immutable
+sealed class {{Feature}}State extends Equatable {
+  const {{Feature}}State(this.model);
+  final {{Feature}}Model model;
+  @override
+  List<Object> get props => [model];
+}
+
+final class {{Feature}}InitialState extends {{Feature}}State {
+  const {{Feature}}InitialState(super.model);
+}
+
+final class {{Feature}}LoadingState extends {{Feature}}State {
+  const {{Feature}}LoadingState(super.model);
+}
+
+final class {{Feature}}LoadedState extends {{Feature}}State {
+  const {{Feature}}LoadedState(super.model);
+}
+
+final class {{Feature}}ErrorState extends {{Feature}}State {
+  const {{Feature}}ErrorState(super.model);
+}
+
+class {{Feature}}Model extends Equatable {
+  const {{Feature}}Model({this.id = ''});
+
+  final String id;
+
+  {{Feature}}Model copyWith({String? id}) {
+    return {{Feature}}Model(id: id ?? this.id);
+  }
+
+  @override
+  List<Object?> get props => [id];
+}
