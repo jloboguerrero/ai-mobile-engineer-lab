@@ -72,6 +72,17 @@ salvo instruccion explicita del usuario. Son voluntarias y no afectan la candida
 
 <!-- El agente agrega aqui las preguntas que encontro y no supo responder -->
 
+**Are you willing to work European hours? / ¿Estás dispuesto a trabajar en horario Europeo?**
+(Encontrada en TIVIT LATAM, 2026-09-03) → `No` — Jonathan no ha confirmado disponibilidad para
+alinearse a horario europeo; `perfil.json` solo registra ~6h de overlap con CET, no jornada
+europea completa. Responder honesto aunque la oferta lo marque como "requisito indispensable";
+si el usuario decide que sí quiere comprometerse a esto, debe decirlo explícitamente y se
+actualiza esta respuesta.
+
+**Are you using AI Coding tools (Claude Code, Cursor, etc.) to produce the majority of your code?**
+(Encontrada en Jumpspeak, 2026-09-03) → `No` — Jonathan está incorporando herramientas de IA a su
+flujo de trabajo pero no son la fuente de la mayoría de su código hoy. Si esto cambia, actualizar.
+
 ## Datos de contacto y administrativos
 
 **Telegram username** — Jonathan no usa Telegram (confirmado 2026-08-19).

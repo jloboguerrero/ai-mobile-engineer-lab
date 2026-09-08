@@ -13,6 +13,150 @@ el parametro de busqueda, los resultados son Flutter el framework, y hay activid
 
 <!-- Las corridas de /explorar se agregan debajo, la mas reciente primero -->
 
+# Corrida 2026-09-07 — `/explorar` (los cuatro focos)
+
+Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos
+descartados) y las tres corridas anteriores de este archivo antes de buscar. Nada de lo de abajo
+esta activo hasta que el usuario lo promueva a `portales.md`.
+
+## Verificadas y recomendadas
+
+### Built In (builtin.com) — Tier 3 sugerido (marginal, con ruido)
+- URL probada: `https://builtin.com/jobs?search=flutter` → **49 menciones de "flutter" en el HTML**
+  (via `curl`), 9 tarjetas visibles en la primera pagina del listado renderizado
+- Respeta el parametro: **si** — `https://builtin.com/jobs` (sin `search`) da **0** menciones de
+  "flutter" en el mismo `curl`; con navegador el listado cambia por completo
+- Los resultados son Flutter real: **mixto**. De las 9 tarjetas solo 2 son Flutter autentico:
+  "Bolder Apps — Mobile App Developer (Flutter / React Native)" (mid, remoto, 6 ubicaciones) e
+  "Immiland Canada Inc. — iOS & Flutter Developer" (senior, remoto, Colombia). El resto es ruido —
+  Sales Engineer, QA Engineer Mobile, Product Engineer, Technical Project Manager, Senior QA — el
+  buscador hace match por texto en toda la descripcion, no por titulo. Mismo patron que
+  mobile.career/WeAreDevelopers ya anotado en corridas previas
+- Filtro de fecha: no en la URL; cada tarjeta trae antiguedad relativa ("11 Days Ago", "16 Days Ago")
+- Login: no para listar · Anti-bot: no (`curl` entra a 200) · Apply: sale al sitio/ATS de cada empresa
+- Mas reciente: 11 dias (Bolder Apps) · Verificado: 2026-09-07
+- Nota: volumen bajo de resultados Flutter reales (2 de 9) y la vacante mas reciente ya tiene 11
+  dias. Util como red de seguridad adicional de muy bajo caudal, mismo nivel que mobile.career —
+  requiere revisar cada tarjeta a mano, no automatizable sin falsos positivos
+
+## Verificadas y descartadas — no reintentar
+
+| Fuente | URL probada | Motivo |
+|---|---|---|
+| **Lemon.io** | `lemon.io/` | Marketplace de contratistas freelance (te registras a la red de "vetted developers", no hay listado de vacantes puntuales por URL). Mismo patron que Toptal/Flexiple ya anotados el 2026-08-31: incompatible con el flujo de `job-apply` de aplicar por oferta |
+| **GoFasti** | `gofasti.com` / `gofasti.com/careers` (404) | Agencia de staffing LatAm con modelo lead-gen: el sitio es para que **empresas** pidan talento, no hay buscador de vacantes publicas. La ruta `/careers` (bolsa interna para "GoFastees") da 404. Se mueve a la tabla de agencias, no como portal |
+| **Truelogic Software** | `truelogic.io/careers/` (404) | Aparecio en Built In con "Mobile Engineer - Open Application" pero su propia pagina de careers no resuelve. Sin bolsa propia verificable esta corrida |
+| **Software Estratégico** | `softwareestrategico.com/careers` (timeout/000) | Empresa colombiana real (aparece repetida en Built In: "Mobile Engineer", "Senior QA"), pero su sitio no respondio en esta corrida. Reintentar en la proxima |
+
+## Empresas nuevas (o actualizadas) confirmadas usando Flutter
+
+| Empresa | Evidencia | ATS | Nota |
+|---|---|---|---|
+| **HighLevel** | Vacante "Software Development Engineer III (Mobile - Flutter)" ya vista y descartada en `historial/descartadas.json` (2026-08-xx) por exigir autorizacion de trabajo en India en el formulario real | `jobs.lever.co/gohighlevel` (Lever, confirmado 200) | SaaS de marketing/CRM, distribuida globalmente. La vacante concreta pedia work-auth India, pero vale la pena revisar otras vacantes mobile de la empresa — tienen ATS directo (Lever) |
+| **Tracsis** | Vacante "Flutter Developer" ya vista y descartada por exigir "right to work in the UK" en el formulario real | `tracsis.careers.hibob.com` (Hibob, confirmado 200) | Empresa de software ferroviario UK. Work-auth UK bloquea a Jonathan, pero confirma ATS directo por si cambia de politica |
+| **Immiland Canada Inc.** | Vacante "iOS & Flutter Developer", Colombia, senior, remoto — vista en Built In (builtin.com) | ninguno localizado (`immiland.com/careers` redirige a `immimentary.com`, bloqueado por Cloudflare) | Agencia de inmigracion/RRHH con sede Montreal, contratando explicitamente en Colombia. Alto fit geografico, ATS no localizado esta corrida |
+| **Bolder Apps — AI Native AgentCy** | Vacante "Mobile App Developer (Flutter / React Native)" republicada identica en Colombia, Mexico, Argentina, Chile, Brasil, Costa Rica (LinkedIn), RemoteRocketship y Built In | ninguno localizado | Nivel mid explicito en la descripcion ("hiring a mid-level mobile developer"), no encaja hoy pero republica seguido — vale la pena revisar si algun dia abre senior |
+
+## Agencias de staffing LatAm
+
+| Agencia | Estado | Nota |
+|---|---|---|
+| **GoFasti** | agencia real, `gofasti.com` (200), modelo lead-gen | Contrata en Brasil, Argentina, Colombia, Uruguay, Mexico, El Salvador, Panama segun su propio FAQ. Sin bolsa publica de vacantes — las empresas piden talento y GoFasti empareja. La ruta de "Find Work / Careers" es para roles internos de GoFasti (RRHH, DevOps, etc.), no para vacantes de clientes. No aplica al flujo de `job-apply` de buscar-por-URL |
+| **Truelogic Software** | staffing LatAm remoto, sin bolsa propia con buscador | Aparece en Built In con "Mobile Engineer - Open Application" (candidatura abierta, no vacante puntual). Su propio `/careers/` no resuelve — seguir rastreando via Built In/RemoteRocketship |
+| **Moovx** (Uruguay) | mencionada en busqueda web (Sr. Flutter Developer remoto LatAm) pero no se pudo confirmar bolsa propia con buscador en esta corrida | Pendiente de verificar en proxima corrida — el sitio respondio 200 pero no se encontro seccion de careers accesible por `curl` |
+
+## Reclutadores y comunidades — REQUIEREN ACCION HUMANA DEL USUARIO
+
+> `job-scout` **no** se une, **no** escribe y **no** se registra. Esto es un inventario, nada mas.
+
+| Fuente | Que es | Como se accede |
+|---|---|---|
+| `fluttermedellinmeetup.github.io/main/` (200) | Comunidad Flutter Medellin — pagina propia (mas especifica que el directorio generico `esflutter.dev` ya listado), menciona canal de **Slack** con ofertas de empleo | Publico. Unirse al Slack es accion humana del usuario |
+| `meetup.com/flutter-buenos-aires/` (200) | Meetup activo de Flutter Buenos Aires | Publico, requiere cuenta de Meetup para RSVP |
+| `meetup.com/flutter-lima/` (200) | Meetup activo de Flutter Lima | Publico, requiere cuenta de Meetup para RSVP |
+| `meetup.com/flutter-arequipa/` | Meetup de Flutter Arequipa (Peru) | No verificado con HTTP esta corrida — anotado desde busqueda, pendiente confirmar en vivo |
+| LatamRecruit (`linkedin.com/company/latamrecruitcom`) | Empresa de headhunting tech especializada en LatAm | Perfil de LinkedIn — contacto es accion humana del usuario |
+| Lupa (`lupahire.com/hire/flutter-developers`) | Agencia de recruiting tech que anuncia acceso a desarrolladores Flutter LatAm ($40-65/h) — orientada a **empresas que contratan**, no a candidatos que buscan | Solo informativo: confirma que hay demanda de Flutter LatAm en el mercado de recruiting, no es una fuente de vacantes para aplicar |
+
+**No se contacto a ningun reclutador ni se envio ningun mensaje en esta corrida.**
+
+---
+
+# Corrida 2026-08-31 — `/explorar` (los cuatro focos)
+
+Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos
+descartados) y las dos corridas anteriores de este archivo antes de buscar. Nada de lo de abajo
+esta activo hasta que el usuario lo promueva a `portales.md`.
+
+## Verificadas y recomendadas
+
+### mobile.career — Tier 3 sugerido (marginal, con ruido)
+- URL probada: `https://mobile.career/flutter-developer-jobs` → **15+ vacantes** listadas como "Flutter"
+- Respeta el parametro: **si** — comparado contra `https://mobile.career/jobs` (bolsa general, sin
+  filtro) el listado es distinto (Wise, BJAK, Capital One, Comcast generico vs. el filtrado que trae
+  Comcast Mobile Engineer *Flutter*, Asaas, Konfío)
+- Los resultados son Flutter real: **mixto**. Confirmados reales: Comcast "Mobile Engineer - Android
+  and Flutter" (11 ago), Asaas "Tech Leader Mobile" Brasil remoto (8 ago), Comcast "Mobile Engineer -
+  iOS and Flutter" (29 jul), Konfío "Mobile Engineer Sr." Mexico hibrido Flutter/Dart (3 jun). Pero
+  el filtro tambien mete vacantes sin Flutter (Comcast "Mobile Engineer - Android" sin mencion de
+  Flutter, JPMorgan "Lead Architect - iOS", BUSUP Android/iOS) — mismo patron de ruido que
+  WeAreDevelopers, ya anotado en la corrida anterior
+- Filtro de fecha: no en la URL, cada tarjeta trae fecha exacta de publicacion
+- Login: no · Anti-bot: no (`curl` entra a 200) · Apply: sale al ATS/sitio de cada empresa
+- Mas reciente: 11 de agosto (Comcast) · Verificado: 2026-08-31
+- Nota: volumen bajo y mercado mayormente US/Brasil, una vacante Mexico (Konfío). Util como red de
+  seguridad adicional, no como fuente principal — el ruido obliga a revisar cada tarjeta a mano
+
+## Verificadas y descartadas — no reintentar
+
+| Fuente | URL probada | Motivo |
+|---|---|---|
+| **EchoJobs** | `echojobs.io/?query=flutter` | **Ignora el parametro de URL**: la pagina siempre muestra el feed generico "latest openings" sin relacion con la busqueda (Assistant Engineering Manager, DevSecOps, etc.). El buscador real vive detras de una interaccion de UI/membresia de pago, no de la URL |
+| **Landing.Jobs** | `landing.jobs/jobs?search=flutter` | Respeta el parametro (1 resultado vs. 54 sin filtro) pero **no hay Flutter real**: el unico resultado es un "Founding Full Stack Software Engineer" sin relacion con el framework. Mercado casi 100% Portugal/hibrido backend — sin señal para este perfil |
+| **Jobspresso** | `jobspresso.co/?s=flutter` | Respeta el parametro (1 resultado) pero es falso positivo: "Social Media Coordinator" en FanDuel (casa de apuestas — "flutter" en el sentido de apuesta, mismo patron que "Flutter UK & Ireland" y "Flutter Brazil" de corridas previas) |
+| **Startup.jobs** | `startup.jobs/?search=flutter&remote=true` | **Ignora el parametro completo**: el listado con `search=flutter` muestra las mismas vacantes genericas (Customer Success, Strategy & Operations, AI Researcher) que la portada sin filtrar |
+| **jobsinflutter.com/.io** (re-verificado) | `jobsinflutter.com` (`.io` redirige al mismo sitio) | Re-confirma el hallazgo de la corrida 2026-08-24: trampa de nombre. La pagina de inicio mostro como resultado destacado "Mozilla — Senior Product Manager, Mobile", sin relacion con el framework Flutter |
+| **Toptal / Flexiple** | n/a | No se probaron a fondo: son marketplaces de contratistas freelance (te registras a la red, no aplicas a una vacante puntual), incompatibles con el flujo de `job-apply` de aplicar por oferta. Anotado para que no se reintenten esperando un listado convencional |
+
+## Empresas nuevas (o actualizadas) confirmadas usando Flutter
+
+Rastreadas hacia atras desde `historial/aplicaciones.json` (vacantes ya vistas/aplicadas 2026-08-25
+a 2026-08-27, que no estaban todavia en `datos/empresas.json`):
+
+| Empresa | Evidencia | ATS | Nota |
+|---|---|---|---|
+| **Atos** (IT services, Francia, global) | Vacante "Flutter developer" Mexico City, home office, ya aplicada el 2026-08-25 | `jobs.atos.net` (portal propio de Atos, confirmado 200) | Corporativo grande de consultoria/outsourcing con presencia LatAm real (Mexico City) |
+| **Modus Create** (consultoria digital remota, 55+ paises) | Vacante "Principal Mobile Engineer (Flutter / React Native, AI-Assisted Development)" Mexico, ya aplicada el 2026-08-27 — confirmada de nuevo en vivo el 2026-08-31 en `moduscreate.com/careers` junto a otras vacantes abiertas en Mexico, Colombia y Costa Rica | Greenhouse embebido en `moduscreate.com/careers` (el board publico `job-boards.greenhouse.io/moduscreate` redirige al mismo sitio) | Contrata LatAm activamente (Mexico/Colombia/Costa Rica visibles el mismo dia). Bonus hibrido de `job-apply` (+10 Flutter/IA) aplica directo a este puesto |
+| **memodio** (app medica de salud cognitiva, Alemania) | Vacante "Flutter & Node.js Fullstack Engineer (f/m/d) - Fully Remote", ya aplicada el 2026-08-27 | `join.com/companies/memodio` (ATS Join, confirmado con 2 vacantes activas) | Empresa chica (11-50 empleados), 100% remoto declarado, pero freelance/contract y rango €35k-55k — verificar si acepta LatAm caso a caso |
+| **Synmatch AI** (plataforma de hiring global, fundada 2025) | 2 vacantes activas: "Mobile App Developer - Cross Platform Flutter (iOS, Android, Windows)" y "Lead Architect - Cross-Platform Flutter" | `synmatchai.teamtailor.com/jobs` (Teamtailor, confirmado 200) | Base principal en Bengaluru/India con remoto; no confirmado si acepta LatAm — la mision declarada de la empresa es "hacer la contratacion global", vale la pena probar |
+| **Labils** (consultoria digital/IA, Londres) | Vacante "Senior Software Engineer (Flutter)" vista en LinkedIn, ya aplicada el 2026-08-27 | `labils.com/careers` (200, sin ATS de terceros identificado en esta corrida — pendiente confirmar el flujo real de aplicacion) | Empresa chica, boutique. Confirmar en proxima corrida si `careers` lista la vacante o si ya cerro |
+
+**Descartado esta corrida** (no se agrega a `empresas.json`): "Modus Jobs" en `jobs.ashbyhq.com/modus`
+es una **empresa distinta** (firma de auditoria/impuestos en Nueva York, vacantes de Audit/Tax/M&A) —
+no confundir con Modus Create pese al slug parecido. Confirma otra vez la regla de Ashby: el slug
+responde 200 pero hay que leer el `<title>` y el contenido, no solo el codigo HTTP.
+
+## Agencias de staffing LatAm
+
+Sin hallazgos nuevos esta corrida. Se reintento `Jobsity` por busqueda general (motivada por su
+aparicion recurrente en el historial de corridas previas) sin encontrar board propio nuevo — sigue
+sin bolsa publica accesible, como ya consta en `portales.md`. El dato abierto de **BairesDev**
+(si multiples postulaciones cuentan como una sola candidatura) sigue sin resolver — requiere sesion
+iniciada, fuera del alcance de `job-scout`.
+
+## Reclutadores y comunidades — REQUIEREN ACCION HUMANA DEL USUARIO
+
+> `job-scout` **no** se une, **no** escribe y **no** se registra. Esto es un inventario, nada mas.
+
+| Fuente | Que es | Como se accede |
+|---|---|---|
+| `flutterconflatam.dev` (200) | FlutterConf Latam 2026 — la conferencia de Flutter mas grande de LatAm, con sponsor oficial de Google/Flutter. Edicion 2026 el 22-23 de septiembre en Cancun, Mexico | Publico. Sitio de la conferencia + canales en Facebook/YouTube/Instagram (`facebook.com/flutterconflatam`, `youtube.com/@FlutterConfLatam`). Asistir/hacer networking ahi es accion humana del usuario, no algo que este agente pueda hacer |
+| Discord oficial `FlutterDev` (`discord.com/invite/rflutterdev`) | Servidor Discord con 73.000+ miembros de la comunidad Flutter (no oficial de Google, pero el mas grande y activo) | Requiere unirse manualmente. No confirmado si tiene canal de vacantes dedicado — revisar al entrar |
+
+**No se contacto a ningun reclutador ni se envio ningun mensaje en esta corrida.**
+
+---
+
 # Corrida 2026-08-24 — `/explorar` (los cuatro focos)
 
 Foco: portales · empresas · agencias · comunidades. Todo lo de abajo fue probado contra el sitio

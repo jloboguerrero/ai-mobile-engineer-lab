@@ -162,15 +162,20 @@ verificado 2026-08-18): Working Nomads, JustRemote.
 
 ## Tier 3 — LatAm / Colombia
 
+**Sacado del catalogo:** Torre.ai — roto 10 corridas seguidas (pierde el query param en la
+redireccion a `/app/search-job`), removido el 2026-08-31.
+
 | Portal | URL | Nota |
 |---|---|---|
-| Torre.ai | `https://torre.ai/search/jobs?q=Flutter` | buen match con perfil LatAm senior |
 | GetOnBoard | `https://www.getonbrd.com/jobs-mobile-development?q=flutter` | Chile/LatAm, ofertas en USD |
 | Computrabajo CO | `https://co.computrabajo.com/trabajo-de-flutter?pubdate=1` | `pubdate=1` = ultimo dia |
 | Talently | `https://talently.tech/` → buscador interno, keyword `Flutter` | LatAm remoto, USD. La ruta `/empleos?search=` da **404** (verificado 2026-08-18) |
 | DailyRemote | `https://www.dailyremote.com/remote-jobs?search=flutter` | **raspable con `curl` puro** — trae `datePosted` exacto en JSON-LD, sin gastar navegador |
 | Jobgether | `https://jobgether.com/search-offers?role=flutter-developer&location=latam` | marginal (8 vacantes al promoverlo). `location=latam` **no restringe nada**; la ruta `/remote-jobs/latam/flutter-developer` da **410** |
 | FlutterGigs | `https://fluttergigs.com/jobs` | board 100% dedicado a Flutter, ~20 vacantes, sin login ni anti-bot. **Sin filtro de fecha visible**; Apply pasa por la agencia Evacorp en nombre del empleador real. Promovido desde `portales-sugeridos.md` el 2026-08-24 |
+| mobile.career | `https://mobile.career/flutter-developer-jobs` | ⚠️ marginal, con ruido: respeta el parametro (comparado contra `/jobs`), ~15 vacantes, pero mezcla ofertas sin Flutter real. Revisar tarjeta por tarjeta. Promovido desde `portales-sugeridos.md` el 2026-08-31 |
+| WeAreDevelopers | `https://wearedevelopers.com/jobs/s/flutter` | ⚠️ marginal, con ruido: el filtro `s/flutter` si cambia el listado (vs `/jobs?country=all`), pero de 20 tarjetas ~8 no son Flutter real ("Tech Lead .Net", "JD Edwards", etc). Mercado fuerte Europa/Espana. Revisar tarjeta por tarjeta. Promovido desde `portales-sugeridos.md` el 2026-08-31 |
+| Built In | `https://builtin.com/jobs?search=flutter` | ⚠️ marginal, con ruido: respeta el parametro (0 menciones de "flutter" sin el vs 49 con el), pero de 9 tarjetas solo 2 son Flutter real (Bolder Apps, Immiland Canada). Sin filtro de fecha en la URL, cada tarjeta trae antiguedad relativa. Mas reciente vista: 11 dias. Revisar tarjeta por tarjeta. Promovido desde `portales-sugeridos.md` el 2026-09-07 |
 
 **Descartado del Tier 3**: elempleo — ignora el parametro `Search` y redirige al listado completo.
 
