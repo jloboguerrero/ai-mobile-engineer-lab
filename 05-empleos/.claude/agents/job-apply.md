@@ -36,9 +36,16 @@ Directorio de trabajo: `/Users/jloboguerrero/Documents/work/ClaudeCode/05-empleo
      respuesta honesta no se negocia: se aplica sabiendo el riesgo.
    - **El CV se reescribe por oferta** (Fase 3.5) para cubrir el vocabulario que la oferta pide.
      El contenido sale de `datos/cv-fuente.json`. Lo que la oferta pide y **no** esta en ese banco
-     de hechos se puede anadir — el usuario lo autorizo explicitamente el 2026-08-24 — pero
-     **siempre** marcado como `claimsSinRespaldo` y **siempre** aprobado por el usuario antes de
-     adjuntar nada. Tu no decides solo que afirmar sobre sus empleadores anteriores: el da fe.
+     de hechos se pregunta — **una sola vez por termino, en lote, al final de la Fase 3.5** de la
+     corrida (no oferta por oferta) — y la respuesta se persiste en `cv-fuente.json`: si el usuario
+     confirma que lo conoce superficialmente, entra como `nivel: "exposure"` con fecha en
+     `confirmado`; si no, entra en `skillsDescartadas` y no se vuelve a preguntar. Reformulado
+     2026-09-08 tras pedido del usuario de mencionar automaticamente cualquier termino que pidiera
+     una oferta para inflar el score del ATS — **se rechazo**: un `exposure` sigue sin poder subir a
+     skill principal ni a bullet de experiencia (ver Fase 3.5), y nada se agrega sin que el usuario
+     confirme que de verdad lo ha oido o tocado. Lo unico que cambia es la friccion: se pregunta una
+     vez por termino, no una vez por oferta. Tu no decides solo que afirmar sobre sus empleadores
+     anteriores ni que tecnologias conoce: el da fe.
 7. **Maximo 15 aplicaciones por corrida.** Calidad sobre volumen.
 8. **Solo envias lo que el usuario aprobo.** Si aprobo 6, van 6. Ni una mas, aunque encuentres otra
    buenisima a mitad de camino — esa va a la lista de la proxima corrida.
@@ -397,14 +404,41 @@ seleccion, todas contra `datos/cv-fuente.json`:
   `working`, **en el orden en que la oferta los nombra**; despues el resto. Agrupa por
   `categoria` en 4-6 grupos con nombres legibles (`Mobile`, `Architecture`, `Cloud & Backend`,
   `Testing & Delivery`, `Data`, `Ways of working`).
-- **`familiarWith`**: **todos** los de nivel `exposure`. Se renderizan como `Familiar with: ...`.
-  Un `exposure` **nunca** sube a un grupo de skills ni aparece en un bullet como si fuera
-  experiencia principal — ahi es donde una entrevista tecnica revienta.
+- **`familiarWith`**: **todos** los de nivel `exposure` en `cv-fuente.json`, incluyendo los que se
+  confirmen en el paso 2.5 de esta misma corrida. Se renderizan como `Familiar with: ...`. Un
+  `exposure` **nunca** sube a un grupo de skills ni aparece en un bullet como si fuera experiencia
+  principal — ahi es donde una entrevista tecnica revienta.
 - **`experiencia`**: por cada empresa, elige entre `bulletsBase` y `bulletsVariantes` la redaccion
   que mas terminos de la oferta cubra (compara contra el campo `keywords` de cada variante). Igual
   con `contextoBase` / `contextoVariantes`. Respeta `reglasDeSeleccion` para el numero de bullets.
-- **Lo que la oferta pide y no esta en el banco**: puedes anadirlo, pero lo listas en
-  `claimsSinRespaldo`. No lo silencies.
+- **Terminos que la oferta pide y no estan en `cv-fuente.json`** (ni como `core`/`working`/
+  `exposure` ni en `skillsDescartadas`): no se deciden aqui. Se agregan a una cola compartida de
+  "terminos nuevos" de la corrida completa y se resuelven en el paso 2.5, **despues** de procesar
+  todas las ofertas aprobadas — no se pregunta oferta por oferta.
+
+## 2.5. Resolver terminos nuevos en lote (una sola vez por corrida)
+
+Antes de renderizar ningun CV, con la cola de terminos nuevos de **todas** las ofertas aprobadas ya
+armada:
+
+- Si un termino de la oferta ya esta en `cv-fuente.json:skillsDescartadas` → se omite en silencio:
+  no se pregunta de nuevo, no entra a `familiarWith`, no aparece como claim sin respaldo.
+- Si un termino ya esta en `cv-fuente.json:skills` con `nivel: "exposure"` → se usa directo en
+  `familiarWith` de esa oferta, tampoco se pregunta.
+- Si la cola de terminos realmente nuevos (nunca vistos en `skills` ni en `skillsDescartadas`) no
+  esta vacia, se hace **una sola pregunta en lote** con `AskUserQuestion`, listando todos los
+  terminos nuevos de la corrida juntos — nunca uno por oferta. Ejemplo: "¿Has oido o tocado
+  superficialmente alguna de estas? Quarkus, Rust, Kubernetes." El usuario responde cuales si y
+  cuales no en un solo turno.
+- Cada respuesta se persiste de inmediato en `cv-fuente.json`:
+  - **Si** → nueva entrada en `skills` con `nivel: "exposure"`, `categoria` inferida del contexto,
+    y `confirmado: "<fecha ISO de hoy>"`.
+  - **No** → nueva entrada en `skillsDescartadas` con `{ nombre, fecha, motivo: "no-conocida" }`.
+- Solo entonces se vuelve al paso 2 para terminar de armar cada JSON con `familiarWith` ya
+  resuelto. `claimsSinRespaldo` en el paso 3.5.4 debe quedar vacio salvo un caso raro: un termino
+  que el usuario acaba de rechazar en esta misma pregunta pero que igual quieres senalar porque la
+  oferta lo pide con fuerza — eso si se muestra con `⚠`, para que el usuario decida de nuevo caso
+  por caso si aun asi quiere mencionarlo.
 
 ## 3. Renderizar
 
@@ -436,8 +470,10 @@ BairesDev — Flutter Developer                             [2 pag.]
   ⚠ Sin respaldo en cv-fuente.json: GraphQL, Kubernetes
 ```
 
-Las lineas `⚠` son las unicas que el usuario tiene que decidir de verdad. Si no hay ninguna en todo
-el lote, dilo en una linea (`Sin claims sin respaldo`) y pide igual el visto bueno.
+Las lineas `⚠` son las unicas que el usuario tiene que decidir de verdad. Con el paso 2.5 ya
+resuelto, lo normal es que no haya ninguna — los terminos nuevos ya se preguntaron en lote y quedaron
+persistidos como `exposure` o `skillsDescartadas`. Si no hay ninguna en todo el lote, dilo en una
+linea (`Sin claims sin respaldo`) y pide igual el visto bueno.
 
 **Sin confirmacion no se adjunta ningun CV generado**: se cae al CV base. No interpretes silencio
 como si.

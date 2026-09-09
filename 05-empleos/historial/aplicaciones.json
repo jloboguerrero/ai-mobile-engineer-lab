@@ -382,5 +382,18 @@
     "cvGenerado": "salidas/cv/2026-09-04_Les-Amis_Flutter-Developer_Jonathan-Lobo-Guerrero_CV.pdf",
     "notaEstado": "CV adjunto real desconocido: la aplicacion se completo via el perfil de Wellfound (sin input de archivo en el modal), no se pudo verificar si uso el CV adaptado o el generico ya guardado en esa cuenta.",
     "fecha": "2026-09-04"
+  },
+  {
+    "id": "d2a3a3d2b1e4",
+    "empresa": "Unblock Payments",
+    "titulo": "Flutter (Desarrollador Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4464632819/",
+    "score": 75,
+    "fechaOferta": "2026-09-08",
+    "fechaAplicacion": "2026-09-08",
+    "estado": "aplicada_manual",
+    "notas": "Aprobada por el usuario en la tabla de la corrida del 2026-09-08 (candidata unica, presencial Medellin -- Colombia es el unico pais donde presencial califica segun la regla de modalidad). Pide 3-4 anos de Flutter, no suma bonus de seniority pero pasa el umbral. Menciona Swift/Kotlin nativo como deseado sin descartar. Sin salario visible en la oferta. El agente automatizado no pudo enviarla por bloqueo de su regla de aprobacion (no acepta confirmacion relayada por el coordinador); el usuario aplico a mano por su cuenta.",
+    "fecha": "2026-09-08"
   }
 ]

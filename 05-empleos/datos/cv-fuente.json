@@ -8,7 +8,8 @@
       "working": "Uso real y repetido. Va en SKILLS sin matiz.",
       "exposure": "Tocado, no dominado. Va agrupado al final como 'Familiar with: ...'. NUNCA se afirma como experiencia principal en un bullet."
     },
-    "reglaBullets": "bulletsVariantes reformulan el MISMO hecho con otro vocabulario. Elegir la variante que mas terminos de la oferta cubra. Un bullet no listado aqui es un claim sin respaldo: se marca verificado:false y se aprueba con el usuario."
+    "reglaBullets": "bulletsVariantes reformulan el MISMO hecho con otro vocabulario. Elegir la variante que mas terminos de la oferta cubra. Un bullet no listado aqui es un claim sin respaldo: se marca verificado:false y se aprueba con el usuario.",
+    "skillsNuevas": "Cuando una oferta pide un termino que no esta en 'skills' ni en 'skillsDescartadas', se pregunta UNA VEZ en lote (Fase 3.5 paso 2.5 de job-apply.md) y la respuesta se persiste aqui: si el usuario confirma que lo conoce superficialmente, entra a 'skills' con nivel exposure y fecha en 'confirmado'; si no, entra a 'skillsDescartadas'. Asi no se vuelve a preguntar por el mismo termino en corridas futuras."
   },
 
   "skills": [
@@ -68,6 +69,8 @@
     { "nombre": "Cloudflare", "nivel": "working", "categoria": "infra", "alias": ["CDN", "WAF", "DNS"] },
     { "nombre": "Bitrix24 CRM", "nivel": "working", "categoria": "producto", "alias": ["CRM integration"] }
   ],
+
+  "skillsDescartadas": [],
 
   "summaryVariantes": [
     {
