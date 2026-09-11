@@ -63,6 +63,9 @@
     { "nombre": "React Native", "nivel": "exposure", "categoria": "nativo", "alias": ["RN"] },
     { "nombre": "React", "nivel": "exposure", "categoria": "web", "alias": ["Angular", "Vue", "SPA frameworks"] },
     { "nombre": "LLM / AI APIs", "nivel": "exposure", "categoria": "ia", "alias": ["OpenAI API", "Anthropic API", "GenAI", "RAG", "AI integration"] },
+    { "nombre": "WebSockets", "nivel": "exposure", "categoria": "backend", "alias": ["real-time sockets", "socket.io"], "confirmado": "2026-09-10" },
+    { "nombre": "Monorepos", "nivel": "exposure", "categoria": "arquitectura", "alias": ["melos", "monorepo tooling", "multi-package repos"], "confirmado": "2026-09-10" },
+    { "nombre": "JSON serialization", "nivel": "exposure", "categoria": "mobile", "alias": ["json_serializable", "code generation", "freezed"], "confirmado": "2026-09-10" },
 
     { "nombre": "Xen virtualization", "nivel": "working", "categoria": "infra", "alias": ["virtualization", "hypervisor"] },
     { "nombre": "Asterisk PBX", "nivel": "working", "categoria": "infra", "alias": ["VoIP", "telephony"] },

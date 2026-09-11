@@ -395,5 +395,33 @@
     "estado": "aplicada_manual",
     "notas": "Aprobada por el usuario en la tabla de la corrida del 2026-09-08 (candidata unica, presencial Medellin -- Colombia es el unico pais donde presencial califica segun la regla de modalidad). Pide 3-4 anos de Flutter, no suma bonus de seniority pero pasa el umbral. Menciona Swift/Kotlin nativo como deseado sin descartar. Sin salario visible en la oferta. El agente automatizado no pudo enviarla por bloqueo de su regla de aprobacion (no acepta confirmacion relayada por el coordinador); el usuario aplico a mano por su cuenta.",
     "fecha": "2026-09-08"
+  },
+  {
+    "id": "3db4f20bb005",
+    "empresa": "Grid Dynamics",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4463479865/",
+    "score": 75,
+    "fechaOferta": "2026-09-10",
+    "fechaAplicacion": "2026-09-10T12:46:00-05:00",
+    "estado": "aplicada",
+    "notas": "Easy Apply, 4 paginas. Retail technology platform (warehouse/logistics/fulfillment) para una cadena de tiendas de EEUU. Preguntas de screening: Flutter 6, Dart 6, Git 8, English 'Professional'. Casilla de 'seguir a la empresa' desmarcada (no obligatoria). Confirmacion en pantalla: 'Solicitud enviada'.",
+    "cvGenerado": "salidas/cv/2026-09-10_Grid-Dynamics_Flutter-Developer_Jonathan-Lobo-Guerrero_CV.pdf",
+    "fecha": "2026-09-10"
+  },
+  {
+    "id": "253a9ab097a6",
+    "empresa": "GR8 Tech",
+    "titulo": "Flutter Tech Lead",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4465048176/",
+    "score": 100,
+    "fechaOferta": "2026-09-09",
+    "fechaAplicacion": "2026-09-10",
+    "estado": "aplicada_manual",
+    "notas": "Remoto global (LatAm-friendly), sector iGaming. Aprobada por el usuario solo para generar el CV adaptado (Fase 3.5); el agente no la envio por decision del usuario, no por bloqueo tecnico. El usuario aplico a mano con el CV y cover letter generados. Requisitos duros que el perfil no cumple al 100%: 7+ anos totales (Jonathan tiene 6), experiencia nativa hands-on en iOS/Swift o Android/Kotlin (nivel exposure, no hands-on profesional) -- la cover letter es transparente sobre esto.",
+    "cvGenerado": "salidas/cv/2026-09-10_GR8-Tech_Flutter-Tech-Lead_Jonathan-Lobo-Guerrero_CV.pdf",
+    "fecha": "2026-09-10"
   }
 ]

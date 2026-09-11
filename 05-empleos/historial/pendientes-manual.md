@@ -92,7 +92,16 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
 
 ## Resueltas
 
+### 2026-09-10 — GR8 Tech
 
+ENVIADA A MANO por el usuario el 2026-09-10 con el CV adaptado generado en la Fase 3.5. Registrada
+como `enviada_manual` en `aplicaciones.json`; el dedupe no la volvera a proponer.
+
+- [x] **GR8 Tech** — Flutter Tech Lead (Remote, iGaming)
+  - Link LinkedIn: https://www.linkedin.com/jobs/view/4465048176/
+  - Link HiringCafe: https://hiringcafe.com/job/flutter-tech-lead-gr8-tech-north-america-v98h6q0zcm8psudx
+  - CV adaptado: `salidas/cv/2026-09-10_GR8-Tech_Flutter-Tech-Lead_Jonathan-Lobo-Guerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-10_GR8-Tech_Flutter-Tech-Lead_Jonathan-Lobo-Guerrero_CoverLetter.txt`
 
 ### 2026-08-18 — BairesDev (3)
 

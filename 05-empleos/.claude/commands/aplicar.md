@@ -15,5 +15,7 @@ con estas instrucciones:
 >
 > Recuerda: la Fase 3 es una parada obligatoria incluso sin `--dry-run`.
 
-Cuando el agente devuelva la lista de la Fase 3, **muestrasela al usuario tal cual** y espera su
-aprobacion. Solo entonces continua el agente con la Fase 4 (via SendMessage).
+El propio subagente pide la aprobacion de la Fase 3 con `AskUserQuestion` — no esperes una
+respuesta del usuario en este chat para relayarsela por `SendMessage`; el agente la rechaza por
+diseno (regla dura 1.1 de `job-apply.md`), venga de quien venga. Tu unico rol aca es lanzarlo y,
+cuando termine (con o sin envios), mostrarle al usuario el resultado final.
