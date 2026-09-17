@@ -92,6 +92,47 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
 
 ## Resueltas
 
+### 2026-09-16 — GR8_TECH + SETI S.A.S + Mamo (3)
+
+ENVIADAS A MANO por el usuario el 2026-09-16 (GR8_TECH y SETI S.A.S primero; Mamo despues, tras
+completar en el chat las 3 preguntas abiertas del formulario externo — performance/profiling,
+enfoque de testing, y el problema tecnico mas desafiante, con respuestas honestas basadas en
+`cv-fuente.json`, sin claims sin respaldo). Las 3 fueron aprobadas por el usuario y tienen CV a
+medida + cover letter generados en la Fase 3.5. El agente no pudo enviarlas automaticamente: la
+primera por una casilla de consentimiento obligatoria (regla dura 4), las otras dos porque el
+clasificador de modo automatico del navegador empezo a denegar la accion de escribir texto ("type",
+motivo "Real-World Transactions") a mitad del llenado del formulario de SETI.
+
+- [x] **GR8_TECH** — Founding Engineer (Flutter) — Eslovaquia/Europa, remoto
+  - Link LinkedIn: https://www.linkedin.com/jobs/view/4468265168/
+  - Link ATS (Greenhouse): https://job-boards.eu.greenhouse.io/gr8tech/jobs/4978613101
+  - CV adaptado: `salidas/cv/2026-09-16_GR8-TECH_Founding-Engineer-Flutter_Jonathan-Lobo-Guerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-16_GR8-TECH_Founding-Engineer-Flutter_Jonathan-Lobo-Guerrero_CoverLetter.txt`
+
+- [x] **SETI S.A.S** — Desarrollador de Aplicaciones Móviles (Flutter) — Colombia, remoto
+  - Link: https://www.linkedin.com/jobs/view/4465928112/
+  - CV adaptado: `salidas/cv/2026-09-16_SETI-S-A-S_Flutter-Developer_Jonathan-Lobo-Guerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-16_SETI-S-A-S_Flutter-Developer_Jonathan-Lobo-Guerrero_CoverLetter.txt`
+
+- [x] **Mamo** — Senior Flutter Developer — Polonia (Cracovia), remoto, FinTech
+  - Link: https://www.linkedin.com/jobs/view/4465907635/
+  - CV adaptado: `salidas/cv/2026-09-16_Mamo_Senior-Flutter-Developer_Jonathan-Lobo-Guerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-16_Mamo_Senior-Flutter-Developer_Jonathan-Lobo-Guerrero_CoverLetter.txt`
+  - Respuestas del formulario externo (screening abierto), basadas en `cv-fuente.json`:
+    performance/profiling en Tul (low-end Android, Flutter DevTools, Clean Architecture),
+    enfoque de testing (unit/widget/integration, mocktail, GitLab CI/CD), y el reto tecnico mas
+    dificil (integracion shenai SDK + Agora en Knotion).
+
+### 2026-09-15 — Arc.dev
+
+ENVIADA A MANO por el usuario el 2026-09-15.
+
+- [x] **Arc.dev** — Senior Flutter Developer (CIT/Logistics Mobile Platform) — LatAm/Norteamerica, remoto
+  - Link LinkedIn: https://www.linkedin.com/jobs/view/4467040363/
+  - Link ATS directo: https://arc.dev/remote-jobs/details/senior-flutter-developer-cit-logistics-mobile-platform-pt-latam-na-pjbrtg4n7h
+  - CV adaptado: `salidas/cv/2026-09-15_Arc-dev_Senior-Flutter-Developer-CIT-Logistics-M_Jonathan-Lobo-Guerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-15_Arc-dev_Senior-Flutter-Developer-CIT-Logistics-M_Jonathan-Lobo-Guerrero_CoverLetter.txt`
+
 ### 2026-09-10 — GR8 Tech
 
 ENVIADA A MANO por el usuario el 2026-09-10 con el CV adaptado generado en la Fase 3.5. Registrada
