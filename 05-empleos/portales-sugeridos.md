@@ -13,6 +13,94 @@ el parametro de busqueda, los resultados son Flutter el framework, y hay activid
 
 <!-- Las corridas de /explorar se agregan debajo, la mas reciente primero -->
 
+# Corrida 2026-09-19 — `/explorar` (los cuatro focos)
+
+Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos
+descartados) y las cuatro corridas anteriores de este archivo, ademas de `historial/descartadas.json`
+desde el 2026-09-07 para rastrear empresas nuevas hacia atras. Nada de lo de abajo esta activo hasta
+que el usuario lo promueva a `portales.md`.
+
+## Verificadas y recomendadas
+
+### freehire.me — Tier 2 sugerido
+- URL probada: `https://freehire.me/jobs?q=flutter` → **1.141 resultados** totales para "flutter"
+  (agregador de 3M+ vacantes multi-fuente: getonbrd, whatjobs, rippling, getmatch, etc.)
+- Respeta el parametro: **si** — `https://freehire.me/jobs` (sin `q`) da **0** menciones de "flutter"
+  en el mismo `curl`, con `q=flutter` da 220+ menciones y 28 tarjetas en la primera pagina
+- Los resultados son Flutter real: **si**, confirmado abriendo el detalle de "Flutter Developer —
+  Salmon Group" (empresa ya en `datos/empresas.json`, Ashby confirmado en el detalle — coincide con
+  el registro existente) y viendo "memodio" (tambien ya conocida) entre las tarjetas
+- Filtro de fecha: **no hay parametro de URL** (`remote=true` y `date_posted=today` se aceptan pero no
+  cambian el total), pero cada tarjeta trae **metadata JSON embebida** con `age_days` exacto y una
+  clasificacion `fresh`/`stale` por vacante (ej. `age_days:0, class:"fresh"` vs `age_days:97,
+  class:"stale"`) — mas rico que lo que ofrece cualquier otro portal del catalogo, se puede leer sin
+  abrir cada tarjeta
+- Login: no · Anti-bot: no (`curl` entra a 200 en listado y detalle) · Apply: la pagina propia agrega
+  boton "Apply" que enlaza al ATS original (confirmado Ashby en el caso de Salmon Group)
+- Mas reciente: age_days 0 (varias) · Verificado: 2026-09-19
+- Nota: volumen enorme pero con mucho ruido internacional (anuncios en ruso, kazajo, indio) mezclado
+  con vacantes reales relevantes. Necesita el mismo filtrado tarjeta-por-tarjeta que HiringCafe, pero
+  su metadata de frescura embebida es un dato util que ningun otro portal del catalogo expone tan
+  directo. Buen candidato para Tier 2, junto a HiringCafe y RemoteRocketship
+
+## Verificadas y marginales (no recomendadas como fuente principal)
+
+### flutterjobs.com/remote — marginal, ruido alto
+- URL probada: `https://flutterjobs.com/remote` → 25 tarjetas en la primera pagina, board 100%
+  dedicado a "Flutter" en el nombre
+- Respeta el parametro: n/a — no tiene busqueda por keyword, es directamente `/remote`
+- Los resultados son Flutter real: **mixto y de baja calidad**. Mezcla vacantes full-time reales
+  ("Front-End Mobile Engineer (Flutter)") con micro-tareas freelance estilo Upwork ("Add Tuya SDK to
+  Flutter mobile Application", "Fix Flutter App Codesigning for Code Magic", "Flutter Geocode lookup
+  with cache") — no son vacantes de empleo, son encargos puntuales
+- Filtro de fecha: no verificado (no se encontro el patron "X days ago" en el HTML)
+- Login: no · Anti-bot: no (`curl` entra a 200)
+- Verificado: 2026-09-19
+- Nota: descartado como fuente principal por el ruido de micro-tareas freelance, que no encajan con
+  el flujo de `job-apply` de aplicar a una vacante de empleo. Mismo patron de "board dedicado con
+  nombre prometedor pero contenido de baja calidad" que `jobsinflutter.com`
+
+## Verificadas y descartadas — no reintentar
+
+| Fuente | URL probada | Motivo |
+|---|---|---|
+| **github.com/jobsinflutter/Remote-Flutter-Jobs** | `raw.githubusercontent.com/.../README.md` | Mismo operador que `jobsinflutter.com` (ya descartado 2026-08-24 por ser trampa de nombre, sin relacion real con el framework). El repo espejo solo trae **5 vacantes**, ninguna relevante (GlobalLogic Ucrania, NinjaTrader Chicago, 3x Tide India duplicada) |
+| **Proxify** | `proxify.io/` y `/hire-developers` | **Cloudflare challenge** ("Just a moment...") en ambas rutas via `curl`. Ademas es un marketplace de freelancers (te registras a la red, no hay listado de vacantes puntuales) — mismo patron que Toptal/Flexiple ya descartados |
+| **FlexJobs** | `flexjobs.com/remote-jobs/app-jobs` y `/search?searchkeyword=flutter` | `curl` devuelve **código 000** (conexion bloqueada) en ambas rutas. Portal conocido por requerir **suscripcion de pago** para ver el listado completo — no verificable sin pagar, y `job-scout` no crea cuentas de pago |
+| **Instaffo** | `instaffo.com/` (200) / `/en/talents` (404) | Plataforma de matching estilo Hired/Vettery (Alemania): el candidato se registra y la plataforma lo empareja con empresas, no hay listado de vacantes navegable por URL. Incompatible con el flujo de busqueda por URL de `job-apply` |
+
+## Empresas nuevas (o actualizadas) confirmadas usando Flutter
+
+Rastreadas hacia atras desde `historial/descartadas.json` (vacantes vistas y descartadas entre
+2026-09-07 y 2026-09-18 que no estaban todavia en `datos/empresas.json`):
+
+| Empresa | Evidencia | ATS | Nota |
+|---|---|---|---|
+| **Droids On Roids** (Polonia, agencia mobile/web, adquirida por Apadmi 2025) | Vacante "Flutter Software Engineer - future opportunities" vista en LinkedIn Worldwide, descartada 2026-09-18 por ser talent-pool, no rol activo | `job-boards.eu.greenhouse.io/droidsonroids` (Greenhouse, confirmado 200 + `<title>` real) | Vigilar el board por si abre un rol activo real, no solo pipeline |
+| **Netguru** (Polonia, consultoria digital) | Vacante "Senior Flutter Developer - freelance" (Poznan) descartada 2026-09-10 por bug de panel de LinkedIn (descripcion no disponible) | `apply.workable.com/netguru` (Workable, confirmado 200 + `<title>` real) | Revisar el board directo ya que LinkedIn no mostro la descripcion completa |
+| **GFT Technologies** (Alemania, consultoria IT/banca, con GFT LATAM propio) | Vacante "Ingeniero de Desarrollo Movil Sr. 3" para banco regional LatAm via HiringCafe, score 65/70 — no cruzo el umbral pero casi, descartada 2026-09-18 | `jobs.gft.com` (portal propio, confirmado 200) | Operacion LATAM propia con 4 vacantes activas segun freehire.me — fuerte candidato a revisar cada corrida |
+| **CI&T** (Brasil/global, consultoria de transformacion tecnologica) | Vacante "Senior Flutter Developer, Brazil" (cliente Prudential Brasil) descartada 2026-09-10 por 100% portugues y presencia obligatoria en Campinas | `jobs.lever.co/ciandt` (Lever, confirmado 200) | Publica Flutter con frecuencia pero casi siempre exige presencia en Brasil — revisar modalidad posting por posting |
+| **Moovx** (Uruguay, staffing/dev a medida) | Cierra el pendiente de la corrida 2026-09-07: historicamente publica "Sr. Flutter Developer" via GetOnBrd | `getonbrd.com/companies/moovx` — su antiguo Greenhouse (`job-boards.greenhouse.io/moovx`) ahora da **404**, deprecado | Sin vacante Flutter activa hoy. Rastrear via GetOnBrd/RemoteRocketship, no tiene URL propia de busqueda |
+
+## Agencias de staffing LatAm
+
+Sin agencias nuevas con bolsa propia esta corrida. Se verifico **Proxify** (marketplace freelance
+EMEA, aparecio en el historial de descartadas) — bloqueado por Cloudflare, ver tabla de descartadas
+arriba. El pendiente de **BairesDev** (si multiples postulaciones cuentan como una sola candidatura)
+sigue sin resolver — requiere sesion iniciada, fuera del alcance de `job-scout`.
+
+## Reclutadores y comunidades — REQUIEREN ACCION HUMANA DEL USUARIO
+
+> `job-scout` **no** se une, **no** escribe y **no** se registra. Esto es un inventario, nada mas.
+
+| Fuente | Que es | Como se accede |
+|---|---|---|
+| `meetup.com/flutter-arequipa/` (200, re-verificado) | Meetup de Flutter Arequipa, Peru — quedo pendiente de confirmar en la corrida 2026-09-07, ahora confirmado en vivo | Publico, requiere cuenta de Meetup para RSVP |
+
+**No se contacto a ningun reclutador ni se envio ningun mensaje en esta corrida.**
+
+---
+
 # Corrida 2026-09-07 — `/explorar` (los cuatro focos)
 
 Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos

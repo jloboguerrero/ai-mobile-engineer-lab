@@ -1,5 +1,19 @@
 [
   {
+    "id": "0657ec24ac4c",
+    "empresa": "Creatio",
+    "titulo": "Mobile Developer",
+    "portal": "hiringcafe",
+    "url": "https://hiringcafe.com/job/mobile-developer-creatio-ukraine-7svaiqde0fc3m5s1",
+    "score": 45,
+    "fechaOferta": "2026-09-19",
+    "fechaAplicacion": "2026-09-19T00:00:00-05:00",
+    "estado": "resuelta_manual",
+    "notas": "Descartada por el agente (score 45 < 70 vigente entonces); el usuario aplico manualmente el 2026-09-19. Motivo del umbral bajado a 45 despues de este caso.",
+    "fechaResolucion": "2026-09-19",
+    "fecha": "2026-09-19"
+  },
+  {
     "id": "1c37799fe88a",
     "empresa": "BairesDev",
     "titulo": "Flutter Developer - Remote Work",

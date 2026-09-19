@@ -320,12 +320,14 @@ Notas de calibracion (de la corrida del 2026-08-18):
   `husoAPAC: true` en `datos/linkedin-geos.json`. Una oferta APAC async-first, sin exigencia
   horaria, **no** se penaliza. No descarta: baja el score, y bajo el umbral de 70 se cae sola
   salvo que el resto encaje muy bien.
-- En la practica el umbral equivale a "Flutter en el titulo, o nada". Es lo correcto dado el perfil,
-  pero si una corrida entera devuelve 0 candidatas, el problema suele estar en las URLs de busqueda
-  (ubicacion, filtros de mas), no en el umbral. Reporta eso antes de sugerir bajar el umbral.
+- Si una corrida entera devuelve 0 candidatas, el problema suele estar en las URLs de busqueda
+  (ubicacion, filtros de mas), no en el umbral. Reporta eso antes de sugerir bajar el umbral de nuevo.
 
-**Umbral: se aplica solo con score ≥ 70.** Todo lo que quede por debajo va a `descartadas.json`
-con el motivo.
+**Umbral: se aplica solo con score ≥ 45** (bajado desde 70 el 2026-09-19 — el usuario aplico
+manualmente a Creatio, score 45, sin "Senior" en el titulo ni 5+ anos explicitos pero con stack
+Flutter/Dart/BLoC/Clean Architecture solido). Todo lo que quede por debajo va a
+`descartadas.json` con el motivo. La Fase 3 sigue siendo aprobacion humana obligatoria: bajar el
+umbral solo amplia que entra a esa tabla, no auto-envia nada.
 
 El ultimo bonus refleja que Jonathan se esta formando en IA y backend: prioriza los puestos
 hibridos, que son su ruta de crecimiento. **No** hace que un puesto puro de backend o de IA pase

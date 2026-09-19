@@ -135,6 +135,7 @@ el listado esta vacio.
 | **Wellfound** | `https://wellfound.com/jobs?q=flutter` | requiere sesion. **Mejor fuente de Flutter senior LatAm hasta ahora** — ver nota abajo |
 | **HiringCafe** | `https://hiring.cafe/?searchState=%7B%22searchQuery%22%3A%22flutter%22%2C%22workplaceTypes%22%3A%5B%22Remote%22%5D%2C%22defaultToUserLocation%22%3Afalse%2C%22sortBy%22%3A%22date%22%7D` | ordenado por fecha; leer la antiguedad en cada tarjeta — ver nota abajo |
 | RemoteRocketship | `https://www.remoterocketship.com/?page=1&sort=DateAdded&jobTitle=Flutter` | orden por fecha. Trae seniority y pais en el listado. Requiere navegador (`curl` da 403) |
+| **freehire.me** | `https://freehire.me/jobs?q=flutter` | agregador de 3M+ vacantes (getonbrd, whatjobs, rippling, getmatch, etc.), 1.141 resultados "flutter". Sin filtro de fecha en la URL, pero cada tarjeta trae metadata JSON embebida con `age_days` exacto y clasificacion `fresh`/`stale` — leer eso en vez de abrir cada tarjeta. Volumen alto con ruido internacional (anuncios en ruso, kazajo, indio); revisar tarjeta por tarjeta igual que HiringCafe. Apply enlaza al ATS original. Promovido desde `portales-sugeridos.md` el 2026-09-19 |
 
 > ⚠️ **No uses `wellfound.com/role/l/flutter-developer/latin-america`**: responde 200 pero redirige
 > descartando la ubicacion y devuelve mercado India en rupias. Mantener `wellfound.com/jobs?q=flutter`.
