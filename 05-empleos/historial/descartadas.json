@@ -1389,5 +1389,77 @@
     "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con verificacion 'ZERO'/scroll-JS por pagina. Tier A 14/14 (0 candidatas nuevas con score >=70; Colombia trajo 4 ofertas junior/semi-senior, Brasil 2 ofertas Especialista/Pleno en portugues, EEUU solo Haystack ya conocido y ofertas Ladders no-Flutter), Tier B 4/4 (Reino Unido: charity volunteer descartada + TechShack IR35 descartada; Portugal: Valtech descartada por geo-tag + bug de panel), Tier C 5/5 (Polonia: Mamo ya conocida/aplicada + Droids On Roids 'future opportunities' descartada; resto 0), Tier D 4/4 (0 salvo Binance Singapur, APAC, descartada), regionales 2/2 (Worldwide: Marketflex Nigeria descartada, resto ya conocidas/descartadas; LatAm regional sin candidatas nuevas). Sin bloqueos de seguridad en ningun momento. Ventana efectiva ~3 dias en todo LinkedIn (f_TPR=r259200, ultima corrida ~49h antes, redondeado hacia arriba por exceder el escalon de 2d). Complementado con Indeed (ambos subdominios funcionaron con normalidad esta vez, ventana 7d por marca desactualizada desde 2026-09-11; unico resultado real es First Citizens Bank iOS/Cordova con Flutter como 'plus', ya descartado), Glassdoor (mismo resultado First Citizens Bank), RemoteOK (31 resultados, 0 relevante dentro de ventana), WeWorkRemotely (0), Wellfound (0 resultados para 'flutter' con los filtros guardados del usuario), Himalayas (bloqueado por Cloudflare, marca sin avanzar), GetOnBrd (ignora el parametro como siempre; unico candidato tangencial Routed Labs part-time, descartado), Computrabajo (1 resultado, mismo Semi Senior Colsubsidio ya visto/postulado en LinkedIn), HiringCafe (195 jobs revisados dentro de ventana ~3d; candidata mas fuerte GFT Technologies Costa Rica con score 65, no cruza umbral; Creatio Ukraine y Kwanii Philippines tambien evaluadas y descartadas por seniority/modalidad insuficiente), RemoteRocketship (78 jobs; Valtech con geo-tag Portugal explicito, GR8 Tech y Gray Media ya conocidos/descartados), DailyRemote (unico resultado es Modus Create, ya aplicado 2026-08-27, fuera de ventana ademas), Jobgether (8 resultados, todos 16+ dias fuera de ventana), FlutterGigs (mismas 4 vacantes de Evacorp ya conocidas, sin fecha visible por oferta), mobile.career (Tide hibrido EU/India ya conocido/descartado, Lighthouse Android nativo Brasil descartado), WeAreDevelopers (unica vacante Flutter potencialmente remota resulto ser presencial en Madrid, descartada), Built In (Softgic entry-level, Bolder Apps/Immiland/Truelogic fuera de ventana de 20-27 dias).",
     "_incidencias": "Cero candidatas cruzaron el umbral de score >=70 en esta corrida -- coincide con el patron ya documentado de dias flojos para el mercado Flutter senior remoto (ver corrida 2026-08-20). La mas cercana fue GFT Technologies/Costa Rica con 65 puntos. Himalayas bloqueado por Cloudflare (sin avanzar marca). Talently no revisitado, confirmado sin ruta de busqueda usable en corridas anteriores, se mantiene en null. Ninguna URL del catalogo aparecio rota esta vez. Cobertura completa en los dos ejes: 58/58 paginas de LinkedIn con verificacion de resultados reales (no solo conteo de paises), 195 ofertas de HiringCafe y 78 de RemoteRocketship revisadas.",
     "fechaDescarte": "2026-09-18"
+  },
+  {
+    "id": "dc48008dcc22",
+    "empresa": "Beyond Menu",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin/lever",
+    "url": "https://www.linkedin.com/jobs/view/4467657514/",
+    "urlAts": "https://jobs.lever.co/beyondmenu/097f62fd-7f4e-4eda-8c38-8d7476803419",
+    "score": 0,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "El panel de LinkedIn no cargaba la descripcion (bug recurrente), pero se recupero completa desde el ATS real (Lever). Descarte por modalidad: 'Remote, with a required in-person day every two weeks in Fifth Settlement, Masr El Gedida, or Madinet Nasr' -- hibrido con presencia fisica obligatoria en El Cairo, Egipto, fuera de Colombia. Stack hubiera calificado muy alto (Flutter/Dart, Melos monorepo, Clean Architecture)."
+  },
+  {
+    "id": "9d29fd271920",
+    "empresa": "SEVEN",
+    "titulo": "Flutter Developer (Remote)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4468765516/",
+    "score": null,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "Beirut, Libano, ~13h de publicado. Easy Apply sin ATS externo -- el panel de descripcion de LinkedIn no cargo (mismo bug recurrente) y al no haber URL de ATS que seguir, no se pudo verificar stack real ni work-auth. Descartada por datos insuficientes."
+  },
+  {
+    "id": "2382b749f435",
+    "empresa": "Vagmine Tech IT Pty",
+    "titulo": "Senior Frontend Engineer - Web & Mobile",
+    "portal": "wellfound",
+    "score": 0,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "Titulo generico de frontend web, sin mencion de Flutter en la tarjeta del listado; el click al detalle no abrio panel (posible bug de Wellfound). Sin senal de que Flutter sea el foco del puesto, se descarta por baja confianza en vez de aplicar a ciegas."
+  },
+  {
+    "id": "187b16df1050",
+    "empresa": "VaulFi",
+    "titulo": "Mobile App Engineer",
+    "portal": "wellfound",
+    "score": 0,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "Stack principal real (verificado en el detalle): TypeScript, React Native y Expo. Flutter no aparece en absoluto. Falso positivo del match de busqueda por 'Mobile'."
+  },
+  {
+    "id": "b3ddaeee871e",
+    "empresa": "INTAP",
+    "titulo": "Desarrollador Mobile",
+    "portal": "indeed",
+    "score": 0,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "Colombia remoto, pero stack mixto sin foco Flutter (Flutter, React Native, Kotlin, Swift, Xamarin o .NET MAUI listados como alternativas intercambiables) y solo 2 anos de experiencia minima requerida, sin senal de seniority."
+  },
+  {
+    "id": "0d3ecfb18780",
+    "empresa": "Latin Promo Multimedia S.A.S",
+    "titulo": "Project Manager Tecnologico",
+    "portal": "computrabajo",
+    "score": 0,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "No es un rol de desarrollo: es un puesto de Project Manager. Misma empresa (Migozz) que en la corrida del 2026-09-03 publico una vacante de desarrollador Flutter que el usuario decidio no perseguir."
+  },
+  {
+    "id": "salmon-group-freehire-dup",
+    "empresa": "Salmon Group / salmon-group",
+    "titulo": "Flutter Developer",
+    "portal": "freehire.me",
+    "score": null,
+    "fechaDescarte": "2026-09-21",
+    "motivo": "Dedupe por juicio, no por hash exacto: misma empresa (Salmon Group Ltd, fintech Filipinas) ya aplicada el 2026-08-19 (id a34f820fb83d, estado aplicada) y descartada tecnicamente por mismatch de horario (core hours Manila/GMT+8). Posting evergreen republicado por la agencia; no se reproponer."
+  },
+  {
+    "_lote": "corrida-2026-09-21",
+    "_resumen": "Ventana adaptativa recalculada: la marca de ultima-corrida.json databa de 2026-09-19T10:00 y la corrida arranco 2026-09-21T15:49, una brecha de ~54h (no 24h) -- la matriz de LinkedIn se recorrio DOS VECES: primero con f_TPR=r86400 (24h, error inicial) y luego completa otra vez con f_TPR=r194000 (~54h) para no perder el rango 24-54h. Matriz completa ambas veces: 27 paises x 2 consultas + Worldwide y LatAm regional x 2 consultas = 58 paginas, Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad en ningun momento. Unicas candidatas genuinamente nuevas en toda la matriz: Beyond Menu 'Senior Flutter Developer' (El Cairo, descartada por hibrido presencial en Egipto tras recuperar la descripcion real via Lever) y SEVEN 'Flutter Developer (Remote)' (Beirut, descartada por datos insuficientes, Easy Apply sin ATS externo y bug de panel de LinkedIn). El resto de tarjetas nuevas vistas (CI&T Mid Level Brazil, Jobgether Sr Brasil, Apex Global Mobility Ecuador, agap2 Italia) ya estaban cubiertas en descartadas.json o marcadas 'Solicitado'. Complementado con Indeed US (0) e Indeed CO (1: INTAP, descartada por stack mixto sin foco Flutter y seniority insuficiente), Glassdoor (0), RemoteOK (0 relevante), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare, marca sin avanzar), Wellfound (41 resultados; 2 candidatas evaluadas dentro de ventana -- Vagmine Tech IT Pty y VaulFi, ambas descartadas por stack mismatch/baja confianza), HiringCafe (194 jobs, 0 dentro de la ventana de ~54h que fueran Flutter-primary y calificaran; Capital on Tap, DeepMetis, PlannerPal y finanzen.net evaluadas y descartadas por stack secundario, salario bajo, work-auth UK o idioma aleman), RemoteRocketship (75 total, mas reciente a 3 dias, fuera de ventana), freehire.me (1.125 resultados para 'flutter'; unica candidata fresca -10h- es Salmon Group, dedupe por juicio con aplicacion ya existente del 2026-08-19), GetOnBrd (ignora el parametro como siempre, nada nuevo relevante dentro de ventana), Computrabajo (1 resultado nuevo: Latin Promo Multimedia 'Project Manager Tecnologico', descartado por no ser rol de desarrollo), Talently (confirmado otra vez sin ruta de busqueda publica, se mantiene null), DailyRemote (Modus Create, fuera de ventana), Jobgether (0 dentro de ventana, todo 19+ dias), FlutterGigs (sin fecha de publicacion visible, limitacion estructural persistente, no se evaluo en detalle esta corrida), mobile.career (mas reciente 17-sep, fuera de ventana), WeAreDevelopers (1 resultado a 3 dias, fuera de ventana), Built In (mas reciente a 6 dias, fuera de ventana).",
+    "_incidencias": "CERO candidatas cruzaron el umbral de score >=45 en toda la corrida -- ninguna oferta aprobable llego a la Fase 3, por lo que no hubo parada de aprobacion ni envios. Himalayas bloqueado por Cloudflare, marca sin avanzar. Talently sigue sin ruta de busqueda usable, se mantiene en null. FlutterGigs no se abrio en detalle esta corrida (limitacion estructural de fechas ya documentada en corridas previas, sin candidatas de alta senal visibles en el listado). Ninguna URL del catalogo aparecio rota. Cobertura completa en los dos ejes: 58 paginas de LinkedIn recorridas DOS VECES (una con ventana incorrecta de 24h detectada y corregida a mitad de corrida, otra con la ventana adaptativa correcta de ~54h), con scroll/paginacion dentro de cada URL.",
+    "fechaDescarte": "2026-09-21"
   }
 ]
