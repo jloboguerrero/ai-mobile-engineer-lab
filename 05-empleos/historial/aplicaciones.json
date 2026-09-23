@@ -1,5 +1,19 @@
 [
   {
+    "id": "035f9e45c779",
+    "empresa": "Praxis",
+    "titulo": "Desarrollador Movil - Flutter/Dart Senior",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4470990103/",
+    "score": 100,
+    "fechaOferta": "2026-09-23",
+    "fechaAplicacion": "2026-09-23",
+    "estado": "enviada_manual",
+    "notas": "Aprobada por el usuario en la corrida del 2026-09-23 (candidata unica, fintech/banca, remoto Colombia, contractor USD, Flutter/Dart core + BLoC, senior). El agente no la envio: la oferta pide aplicar por email a j2.Serna@staff.praxisglobe.com (sin formulario ni Easy Apply funcional para el posting de Colombia; existe un gemelo con Easy Apply pero geo-dirigido a Peru), y este agente no tiene herramienta de envio de email. CV adaptado y borrador de correo (cover letter) generados en Fase 3.5. ENVIADA A MANO por el usuario el 2026-09-23.",
+    "cvGenerado": "salidas/cv/2026-09-23_Praxis_Desarrollador-Movil-Flutter-Dart-Senior_Jonathan-Loboguerrero_CV.pdf",
+    "fecha": "2026-09-23"
+  },
+  {
     "id": "887511ed552a",
     "empresa": "Outsmart",
     "titulo": "Staff Mobile Engineer",

@@ -92,6 +92,17 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
 
 ## Resueltas
 
+### 2026-09-23 — Praxis (1)
+
+ENVIADA A MANO por el usuario el 2026-09-23 (correo, no ATS — no hay confirmación en pantalla que
+registrar).
+
+- [x] **Praxis** — Desarrollador Móvil – Flutter/Dart Senior (Colombia — Remoto, fintech/banca)
+  - Link LinkedIn: https://www.linkedin.com/jobs/view/4470990103/
+  - Enviada por correo a `j2.Serna@staff.praxisglobe.com`.
+  - CV adaptado: `salidas/cv/2026-09-23_Praxis_Desarrollador-Movil-Flutter-Dart-Senior_Jonathan-Loboguerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-23_Praxis_Desarrollador-Movil-Flutter-Dart-Senior_Jonathan-Loboguerrero_CoverLetter.txt`
+
 ### 2026-09-16 — GR8_TECH + SETI S.A.S + Mamo (3)
 
 ENVIADAS A MANO por el usuario el 2026-09-16 (GR8_TECH y SETI S.A.S primero; Mamo despues, tras

@@ -235,7 +235,7 @@ aunque el título no diga "Senior".
 | `datos/cv-fuente.json` | Banco de hechos del **contenido del CV**, separado de `perfil.json`. Skills con nivel `core`/`working`/`exposure`; por empresa, dominios reales y variantes de redacción del mismo hecho con sus `keywords`. Lo que no está aquí es un claim sin respaldo. |
 | `datos/cv-plantilla.html` | Plantilla ATS-safe. Sus reglas están comentadas dentro del archivo y **no son decorativas** (ver arriba). |
 | `scripts/generar-cv.py` | JSON de oferta → HTML → PDF vía Chrome headless. Solo stdlib. Verifica que el texto del PDF sea extraíble y falla si no: un PDF que el script no puede leer, un ATS tampoco. |
-| `salidas/cv/` | Documentos generados, `<fecha>_<Empresa>_<Puesto>_Jonathan-Lobo-Guerrero_{CV.pdf,CV.html,CV.json,CoverLetter.txt}`. En `.gitignore`. |
+| `salidas/cv/` | Documentos generados, `<fecha>_<Empresa>_<Puesto>_Jonathan-Loboguerrero_{CV.pdf,CV.html,CV.json,CoverLetter.txt}`. En `.gitignore`. |
 | `datos/respuestas.md` | Banco de respuestas EN para screening. El agente copia de aquí, no improvisa. |
 | `datos/cover-letter-base.md` | Plantilla EN con `{PLACEHOLDERS}`. Fallback: desde la Fase 3.5 la carta normal se genera del banco de hechos. Nunca se envía sin sustituir. |
 | `datos/linkedin-geos.json` | Matriz de LinkedIn: 27 países con su `geoId` **verificado**, tier, `remotoObligatorio` y `husoAPAC`. `geoId: null` = sin verificar → el país se salta. |

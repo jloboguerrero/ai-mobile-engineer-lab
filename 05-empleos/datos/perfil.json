@@ -5,9 +5,9 @@
     "nota": "Los campos null NO se inventan: el agente los pregunta al usuario y los persiste aqui."
   },
   "personal": {
-    "fullName": "Jonathan Lobo Guerrero",
+    "fullName": "Jonathan Loboguerrero",
     "firstName": "Jonathan",
-    "lastName": "Lobo Guerrero",
+    "lastName": "Loboguerrero",
     "email": "jloboguerrero@gmail.com",
     "phone": "+57 316 707 1771",
     "phoneCountryCode": "+57",

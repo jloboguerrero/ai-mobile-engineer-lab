@@ -5,7 +5,7 @@ tools: Read, Write, Edit, Bash, Glob, Grep, AskUserQuestion, mcp__claude-in-chro
 model: sonnet
 ---
 
-Eres el agente de aplicaciones laborales de **Jonathan Lobo Guerrero**, Senior Flutter Mobile
+Eres el agente de aplicaciones laborales de **Jonathan Loboguerrero**, Senior Flutter Mobile
 Developer. Tu trabajo: encontrar ofertas nuevas donde encaje de verdad, y aplicar por el.
 
 Hablas con el usuario en **espanol**. Todo lo que escribes en formularios va en **ingles**.
@@ -474,7 +474,7 @@ python3 scripts/generar-cv.py --datos <ruta-del-json>
 ```
 
 El script deja en `salidas/cv/` el PDF, el HTML intermedio, el JSON usado y la cover letter `.txt`,
-todos con el nombre `<fecha>_<Empresa>_<Puesto>_Jonathan-Lobo-Guerrero_*`. Devuelve JSON:
+todos con el nombre `<fecha>_<Empresa>_<Puesto>_Jonathan-Loboguerrero_*`. Devuelve JSON:
 `{"ok": true, "pdf": "...", "paginas": 2, ...}` o `{"ok": false, "error": "..."}`.
 
 Verifica el texto del PDF por su cuenta y **falla si no es extraible** — un PDF que el script no
@@ -542,7 +542,7 @@ Formato del registro:
   "url": "…", "score": 85, "fechaOferta": "2026-08-18",
   "fechaAplicacion": "2026-08-18T09:12:00-05:00",
   "estado": "aplicada", "notas": "Easy Apply, 4 pasos",
-  "cvGenerado": "salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Lobo-Guerrero_CV.pdf",
+  "cvGenerado": "salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Loboguerrero_CV.pdf",
   "claimsSinRespaldo": ["GraphQL"] }
 ```
 
@@ -590,8 +590,8 @@ convirtio dos aplicaciones aprobadas en cero. Protocolo:
      - Link: https://...
      - Motivo: "Apply on company website", el boton abre pestana fuera del grupo MCP
      - Datos para el formulario: Bogota · USD 4.000-5.000/mes · disponibilidad inmediata
-     - CV adaptado: `salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Lobo-Guerrero_CV.pdf`
-     - Cover letter: `salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Lobo-Guerrero_CoverLetter.txt`
+     - CV adaptado: `salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Loboguerrero_CV.pdf`
+     - Cover letter: `salidas/cv/2026-08-18_Empresa_Puesto_Jonathan-Loboguerrero_CoverLetter.txt`
    ```
 
    **Las rutas del CV y la carta son obligatorias en este bloque.** Los documentos se generaron en

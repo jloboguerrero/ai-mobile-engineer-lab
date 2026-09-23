@@ -26,7 +26,7 @@ I work remotely from Colombia as an independent contractor, in UTC-5, which give
 overlap with US business hours. Happy to walk through any of this in more detail.
 
 Best regards,
-Jonathan Lobo Guerrero
+Jonathan Loboguerrero
 jloboguerrero@gmail.com · github.com/jloboguerrero
 ```
 
@@ -38,7 +38,7 @@ Tul (Latam) and worked with US startups on rideshare and healthcare apps — Cle
 BLoC/Riverpod, Firebase. Remote contractor from Colombia (UTC-5), full US-hours overlap,
 advanced English. Would love to talk about {PUESTO}.
 
-Jonathan Lobo Guerrero · jloboguerrero@gmail.com
+Jonathan Loboguerrero · jloboguerrero@gmail.com
 ```
 
 ## Reglas
