@@ -1,5 +1,20 @@
 [
   {
+    "id": "887511ed552a",
+    "empresa": "Outsmart",
+    "titulo": "Staff Mobile Engineer",
+    "portal": "builtin/ashby",
+    "url": "https://builtin.com/job/staff-mobile-engineer/11318048",
+    "urlAts": "https://jobs.ashbyhq.com/outsmart/ca787b6e-51ef-41a8-b327-a06415da14a1/application",
+    "score": 50,
+    "fechaOferta": "2026-09-22",
+    "fechaAplicacion": "2026-09-22T19:20:00-05:00",
+    "estado": "aplicada",
+    "notas": "Aprobada por el usuario (relay del coordinador tras la tabla de la Fase 3). El agregador Built In exige crear cuenta para aplicar (regla dura 3), asi que se busco el ATS real de la empresa: Ashby confirmo que el puesto real 'Staff Mobile Engineer' es LATAM/Remote genuino (distinto de otra vacante homonima US-based en Lehi/UT y LA que aparecia en Indeed/Glassdoor -- se verifico la descripcion completa en Ashby antes de aplicar para evitar el error de aplicar a la vacante equivocada). Formulario Ashby completo: nombre, email, telefono, empresa actual (Knotion-Doc), LinkedIn, GitHub, ubicacion (Bogota, Colombia), CV adaptado adjunto. Pregunta de screening 'Are you legally authorized to work in your country of residence in LATAM?' = Yes (honesto, autorizado en Colombia). EEO (genero/raza) y veterano = Decline to self-identify. Confirmacion de envio recibida: 'Your application was successfully submitted.'",
+    "cvGenerado": "salidas/cv/2026-09-22_Outsmart_Staff-Mobile-Engineer_Jonathan-Lobo-Guerrero_CV.pdf",
+    "fecha": "2026-09-22"
+  },
+  {
     "id": "0657ec24ac4c",
     "empresa": "Creatio",
     "titulo": "Mobile Developer",

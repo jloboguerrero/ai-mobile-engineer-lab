@@ -1461,5 +1461,104 @@
     "_resumen": "Ventana adaptativa recalculada: la marca de ultima-corrida.json databa de 2026-09-19T10:00 y la corrida arranco 2026-09-21T15:49, una brecha de ~54h (no 24h) -- la matriz de LinkedIn se recorrio DOS VECES: primero con f_TPR=r86400 (24h, error inicial) y luego completa otra vez con f_TPR=r194000 (~54h) para no perder el rango 24-54h. Matriz completa ambas veces: 27 paises x 2 consultas + Worldwide y LatAm regional x 2 consultas = 58 paginas, Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad en ningun momento. Unicas candidatas genuinamente nuevas en toda la matriz: Beyond Menu 'Senior Flutter Developer' (El Cairo, descartada por hibrido presencial en Egipto tras recuperar la descripcion real via Lever) y SEVEN 'Flutter Developer (Remote)' (Beirut, descartada por datos insuficientes, Easy Apply sin ATS externo y bug de panel de LinkedIn). El resto de tarjetas nuevas vistas (CI&T Mid Level Brazil, Jobgether Sr Brasil, Apex Global Mobility Ecuador, agap2 Italia) ya estaban cubiertas en descartadas.json o marcadas 'Solicitado'. Complementado con Indeed US (0) e Indeed CO (1: INTAP, descartada por stack mixto sin foco Flutter y seniority insuficiente), Glassdoor (0), RemoteOK (0 relevante), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare, marca sin avanzar), Wellfound (41 resultados; 2 candidatas evaluadas dentro de ventana -- Vagmine Tech IT Pty y VaulFi, ambas descartadas por stack mismatch/baja confianza), HiringCafe (194 jobs, 0 dentro de la ventana de ~54h que fueran Flutter-primary y calificaran; Capital on Tap, DeepMetis, PlannerPal y finanzen.net evaluadas y descartadas por stack secundario, salario bajo, work-auth UK o idioma aleman), RemoteRocketship (75 total, mas reciente a 3 dias, fuera de ventana), freehire.me (1.125 resultados para 'flutter'; unica candidata fresca -10h- es Salmon Group, dedupe por juicio con aplicacion ya existente del 2026-08-19), GetOnBrd (ignora el parametro como siempre, nada nuevo relevante dentro de ventana), Computrabajo (1 resultado nuevo: Latin Promo Multimedia 'Project Manager Tecnologico', descartado por no ser rol de desarrollo), Talently (confirmado otra vez sin ruta de busqueda publica, se mantiene null), DailyRemote (Modus Create, fuera de ventana), Jobgether (0 dentro de ventana, todo 19+ dias), FlutterGigs (sin fecha de publicacion visible, limitacion estructural persistente, no se evaluo en detalle esta corrida), mobile.career (mas reciente 17-sep, fuera de ventana), WeAreDevelopers (1 resultado a 3 dias, fuera de ventana), Built In (mas reciente a 6 dias, fuera de ventana).",
     "_incidencias": "CERO candidatas cruzaron el umbral de score >=45 en toda la corrida -- ninguna oferta aprobable llego a la Fase 3, por lo que no hubo parada de aprobacion ni envios. Himalayas bloqueado por Cloudflare, marca sin avanzar. Talently sigue sin ruta de busqueda usable, se mantiene en null. FlutterGigs no se abrio en detalle esta corrida (limitacion estructural de fechas ya documentada en corridas previas, sin candidatas de alta senal visibles en el listado). Ninguna URL del catalogo aparecio rota. Cobertura completa en los dos ejes: 58 paginas de LinkedIn recorridas DOS VECES (una con ventana incorrecta de 24h detectada y corregida a mitad de corrida, otra con la ventana adaptativa correcta de ~54h), con scroll/paginacion dentro de cada URL.",
     "fechaDescarte": "2026-09-21"
+  },
+  {
+    "id": "d2b9f726768e",
+    "empresa": "Benchmark Gensuite",
+    "titulo": "[US] Senior Full-Stack Engineer - Node.js, React & Flutter",
+    "portal": "linkedin/hiringcafe",
+    "score": 30,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Full-stack generalista: Node.js backend (4+ anos exigidos) y React web son el foco explicito, Flutter aparece tercero y sin anos minimos propios. No es un rol Flutter/mobile core."
+  },
+  {
+    "id": "44b3169e5ff5",
+    "empresa": "Linkard Inc.",
+    "titulo": "Product Engineer (Swift-main, Flutter secundario)",
+    "portal": "linkedin (Worldwide)",
+    "score": 0,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Descarte inmediato: titulo japones explicita 'Swiftメイン' (Swift como stack principal). Flutter es secundario. Tokio, Japon."
+  },
+  {
+    "id": "d860d37efb0f",
+    "empresa": "Linkard Inc.",
+    "titulo": "Product Engineer (Kotlin-main, Flutter secundario)",
+    "portal": "linkedin (Worldwide)",
+    "score": 0,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Descarte inmediato: mismo posting que el anterior pero 'Kotlinメイン' (Kotlin como stack principal). Flutter secundario. Tokio, Japon."
+  },
+  {
+    "id": "c4d793369915",
+    "empresa": "Crescent Techservices",
+    "titulo": "Flutter Developer (Contract)",
+    "portal": "linkedin (Worldwide)",
+    "score": null,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Chennai, Tamil Nadu, India nombrado explicitamente pese a etiqueta 'remoto' -- patron reiterado en corridas previas de contratacion local india. Descripcion no verificable por el bug de carga de LinkedIn (panel nunca cargo pese a reintentos)."
+  },
+  {
+    "id": "42a2191311f3",
+    "empresa": "WSSEL LABS",
+    "titulo": "Senior Flutter & Laravel / Technical Auditor - Food Delivery Platform",
+    "portal": "linkedin (Worldwide)",
+    "score": null,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Rol de 'Technical Auditor' (auditoria tecnica), no desarrollo de producto; empresa pequena en Egipto. Descripcion no verificable por el bug de carga de LinkedIn. Baja confianza."
+  },
+  {
+    "id": "a5b4710f478c",
+    "empresa": "KTO",
+    "titulo": "Flutter Developer",
+    "portal": "hiringcafe",
+    "score": 0,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Exige 'Advanced communication in English and Portuguese' como requisito duro. Jonathan no tiene portugues (mismo patron que descarto Social Discovery Group por ruso fluido). Brasil, iGaming, hubiera puntuado alto de otro modo."
+  },
+  {
+    "id": "1244f35e74ab",
+    "empresa": "Confidential Company (via Wellfound)",
+    "titulo": "Senior Mobile Engineer",
+    "portal": "wellfound",
+    "score": 0,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Descarte inmediato: stack principal iOS nativo (Swift) + Kotlin, sin Flutter en absoluto. California, USD 190k-240k."
+  },
+  {
+    "id": "5b7deed3482f",
+    "empresa": "Canva",
+    "titulo": "Principal Software Engineer - Mobile Platform",
+    "portal": "indeed",
+    "score": 15,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Exige reubicacion a Australia con visa de trabajo ('Role requires relocation to Australia'). Stack principal es React Native/React; Flutter y Kotlin Multiplatform solo se mencionan como experiencia comparable aceptable, no como el stack del puesto."
+  },
+  {
+    "id": "agileengine-id90602-dedupe-2026-09-22",
+    "empresa": "AgileEngine",
+    "titulo": "Flutter Developer ID90602",
+    "portal": "linkedin (todos los paises Tier A/B/C y regionales)",
+    "score": 0,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "Staffing mill: el mismo posting generico (ID90602) se republica identico en decenas de ciudades de LatAm, Europa del Este e Iberia, cada vez etiquetado 'En remoto' en LinkedIn. Confirmado cruzando con Built In (mismo ID90602, mismas ciudades colombianas) que la modalidad real es 'In-Office' y el nivel 'Mid level' -- descarte por nivel medio + presencial, no por duplicado. No se abre el detalle individual en cada pais, se trata como una sola decision."
+  },
+  {
+    "id": "dcb6232212a4",
+    "empresa": "AssetWatch",
+    "titulo": "Senior Mobile Engineer",
+    "portal": "hiringcafe",
+    "url": "https://hiringcafe.com/job/senior-mobile-engineer-assetwatch-united-states-qxvhgk8cels7cdsc",
+    "score": 55,
+    "fechaDescarte": "2026-09-22",
+    "motivo": "work-auth descubierto en Fase 4 (aprobada en la Fase 3 con riesgo senalado, no enviada tras verificar). El agregador HiringCafe mostraba 'Remote' sin geo-restriccion explicita, pero el ATS real (Greenhouse: job-boards.greenhouse.io/assetwatch) muestra el puesto anclado a 'United States' -- a diferencia de otros roles genuinamente remotos de la misma empresa que dicen solo 'Remote' sin pais. Ademas la pagina de carreras de AssetWatch solo tiene boards separados para 'USA & Canada' y 'Mexico'; Colombia no existe como opcion. CV y cover letter ya generados por si el usuario quiere intentarlo de todas formas por su cuenta.",
+    "cvGenerado": "salidas/cv/2026-09-22_AssetWatch_Senior-Mobile-Engineer_Jonathan-Lobo-Guerrero_CV.pdf",
+    "fecha": "2026-09-22"
+  },
+  {
+    "_lote": "corrida-2026-09-22",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll dentro de cada URL. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana usada 24h (f_TPR=r86400); la brecha real desde la ultima corrida exitosa (2026-09-21T15:49) fue de ~27.5h, ligeramente mayor a 24h -- se uso el escalon minimo del clamp por consistencia con corridas previas que hicieron lo mismo ante brechas similares, con el resultado de que la franja 24h-27.5h pudo perderse en paises de bajo volumen (riesgo bajo, reportado en Fase 5). Todos los paises de LatAm/Iberia siguen dominados por BairesDev 'Flutter Developer - Remote Work' (ya conocido, aplicado/resuelto en corridas previas) y AgileEngine 'Flutter Developer ID90602' republicado en decenas de ciudades (ver entrada de dedupe separada). Worldwide Q1 aporto el mayor caudal de candidatas nuevas genuinas (84 resultados totales, 50 leidos = TOPE DE 2 PAGINAS ALCANZADO, quedaron ~34 sin leer): Benchmark Gensuite, Linkard Inc x2 (Japon, Swift/Kotlin-main), Crescent Techservices (India), WSSEL LABS (Egipto) -- todas descartadas, ver entradas individuales. Complementado con Indeed US (1: Canva, descartada por reubicacion Australia + stack RN), Indeed CO (0 relevante), Glassdoor (0), RemoteOK (0 relevante), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare de nuevo, marca sin avanzar), Wellfound (43 resultados; 1 candidata dentro de ventana -- Confidential Company Senior Mobile Engineer, descartada por stack 100% nativo iOS/Kotlin sin Flutter), HiringCafe (203 jobs, 2 candidatas geniunamente nuevas y calificadas dentro de ventana -- AssetWatch 'Senior Mobile Engineer' USD165-175k y KTO 'Flutter Developer' Brasil/iGaming, esta ultima descartada por requisito de portugues -- AssetWatch SI paso a la tabla de aprobacion), RemoteRocketship (72 total, nada nuevo dentro de ventana ademas de Benchmark Gensuite ya contado y Netguru/Somnio ya aplicados), GetOnBrd (ignora el parametro como siempre, nada Flutter remoto nuevo), Computrabajo (1 resultado, Java developer sin relacion real a Flutter), freehire.me (1.135 resultados, nada dentro de ventana de 24h ademas de Salmon Group ya conocido/aplicado), DailyRemote (Modus Create, ya conocido), Jobgether (0 dentro de ventana, todo 20+ dias), FlutterGigs (mismas 4 vacantes de Evacorp de corridas previas, sin fecha de publicacion visible, sin cambios), mobile.career (OKX x10 postings HYBRID/ONSITE Asia descartados por modalidad, Lighthouse Android nativo Brasil descartado por stack, Tide x7 postings HYBRID ya conocido patron work-auth India/UK, IDT Corporation fuera de ventana a 14 dias), WeAreDevelopers (1 resultado a 3 dias, fuera de ventana), Built In (candidata NUEVA y calificada: Outsmart 'Staff Mobile Engineer' USD175-230k, Flutter core, ~1d -- paso a la tabla de aprobacion; tambien confirmo que AgileEngine ID90602 es realmente presencial/mid-level, ver dedupe).",
+    "_incidencias": "Ninguna URL del catalogo aparecio rota. Himalayas bloqueado por Cloudflare, marca sin avanzar. Talently sigue sin ruta de busqueda usable (se mantiene null). El panel de detalle de LinkedIn (bug recurrente desde 2026-08-24) volvio a fallar para 2 candidatas de Worldwide Q1 (Crescent Techservices, WSSEL LABS) que se descartaron por datos insuficientes en vez de aplicar a ciegas. Worldwide Q1 toco el tope de 2 paginas (50 de 84 resultados leidos) -- quedaron ~34 resultados sin revisar en esa combinacion especifica, reportado en Fase 5. Ventana usada (24h) fue ligeramente menor a la brecha real (~27.5h) -- riesgo bajo de perder candidatas publicadas en esa franja de 3.5h, ver nota en _resumen.",
+    "fechaDescarte": "2026-09-22"
   }
 ]
