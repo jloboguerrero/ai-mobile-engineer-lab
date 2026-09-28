@@ -92,6 +92,24 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
 
 ## Resueltas
 
+### 2026-09-26 — Michael Page (1)
+
+ENVIADA A MANO por el usuario el 2026-09-26. El agente completo Paso 1 y 2 (contacto, CV adjunto)
+y parte del Paso 3 (industria, rol actual) del formulario propio de Michael Page, pero el
+clasificador de modo automatico del navegador denego la accion "type" (motivo "Real-World
+Transactions") en los campos de fecha de disponibilidad y salario mensual actual — mismo patron que
+SETI S.A.S. el 2026-09-16. Ademas quedaba pendiente una casilla obligatoria de politica de
+privacidad (regla dura 4). El usuario termino y envio el formulario a mano.
+
+- [x] **Michael Page** — Flutter / Dart Developer (Colombia, Bogota — Presencial)
+  - Link LinkedIn: https://www.linkedin.com/jobs/view/4470786795/
+  - Link ATS (Michael Page Colombia, propio): https://www.michaelpage.com.co/job-apply/flutter-dart-developer/ref/jn-092026-7112483
+  - CV adaptado: `salidas/cv/2026-09-26_Michael-Page_Flutter-Dart-Developer_Jonathan-Loboguerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-09-26_Michael-Page_Flutter-Dart-Developer_Jonathan-Loboguerrero_CoverLetter.txt`
+  - Nota de riesgo en la oferta original: el salario mostrado (`COP1,440,000,000 -
+    COP3,000,000,000 por año`) parece un error de escala del sistema de Michael Page, no un dato
+    confiable.
+
 ### 2026-09-23 — Praxis (1)
 
 ENVIADA A MANO por el usuario el 2026-09-23 (correo, no ATS — no hay confirmación en pantalla que

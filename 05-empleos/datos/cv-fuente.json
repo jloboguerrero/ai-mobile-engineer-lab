@@ -69,6 +69,9 @@
     { "nombre": "MVVM", "nivel": "exposure", "categoria": "arquitectura", "alias": ["Model-View-ViewModel"], "confirmado": "2026-09-15" },
     { "nombre": "Docker", "nivel": "exposure", "categoria": "devops", "alias": ["containers", "containerization"], "confirmado": "2026-09-15" },
     { "nombre": "Jira", "nivel": "exposure", "categoria": "proceso", "alias": ["issue tracking", "Atlassian"], "confirmado": "2026-09-15" },
+    { "nombre": ".NET / C#", "nivel": "exposure", "categoria": "backend", "alias": [".NET", "C#", "ASP.NET", "dotnet"], "confirmado": "2026-09-26" },
+    { "nombre": "Azure", "nivel": "exposure", "categoria": "cloud", "alias": ["Microsoft Azure", "Azure cloud"], "confirmado": "2026-09-26" },
+    { "nombre": "Azure DevOps", "nivel": "exposure", "categoria": "devops", "alias": ["Azure Pipelines"], "confirmado": "2026-09-26" },
 
     { "nombre": "Xen virtualization", "nivel": "working", "categoria": "infra", "alias": ["virtualization", "hypervisor"] },
     { "nombre": "Asterisk PBX", "nivel": "working", "categoria": "infra", "alias": ["VoIP", "telephony"] },
@@ -76,7 +79,9 @@
     { "nombre": "Bitrix24 CRM", "nivel": "working", "categoria": "producto", "alias": ["CRM integration"] }
   ],
 
-  "skillsDescartadas": [],
+  "skillsDescartadas": [
+    { "nombre": "Microsoft Entra ID / Azure AD", "fecha": "2026-09-26", "motivo": "no-conocida" }
+  ],
 
   "summaryVariantes": [
     {

@@ -1595,5 +1595,170 @@
     "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll dentro de cada URL. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana 24h (brecha real ~19h desde la ultima corrida exitosa, por debajo del piso del clamp). Todos los paises de Tier B/C/D dominados por un unico posting duplicado de Proxify (EMEA-only, ver dedupe) y AgileEngine ID90602 (confirmado In-Office/Mid, ver dedupe). Tier A dominado por Praxis republicando su rol fintech Flutter/Dart en Colombia y Peru (2 variantes de titulo cada uno, mismo dedupe). Unica candidata nueva genuina con score alto: Praxis 'Desarrollador Movil - Flutter/Dart' (id 035f9e45c779) -- ver tabla de aprobacion, aplicacion es por EMAIL (sin formulario ni Easy Apply funcional para el posting dirigido a Colombia). Complementado con Indeed US (0), Indeed CO (4 resultados, ninguno con Flutter como stack principal -- EPAM Full-Stack JS con Flutter como 'nice to have', Coaches.com Full Stack Mobile sin Flutter explicito), Glassdoor (0), RemoteOK (31 resultados pero ninguno relacionado a Flutter real, ruido de categorias no-tech), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare de nuevo, marca sin avanzar), Wellfound (0), HiringCafe (203 jobs; candidatas dentro de ventana ya conocidas de la corrida anterior -- AssetWatch ya descartada por work-auth, KTO ya descartada por portugues -- mas OWN3D Mobile Developer Flutter Alemania/Austria 7h pero Mid-level explicito, descartada por nivel), RemoteRocketship (71 total; StreamTV 1h Mid-level descartado por nivel, KTO ya conocido, resto fuera de ventana), freehire.me (1.198 resultados; Apadmi descartado por nivel+ubicacion ver dedupe, Droids On Roids es solo 'future opportunities' sin rol concreto, AgileEngine ID90602 ya conocido), GetOnBrd (0 nuevo relevante, solo hibridos Santiago o vacantes ya conocidas), Computrabajo (1 resultado sin relacion a Flutter -- Oracle NetSuite), Talently (sigue sin ruta de busqueda, se mantiene null), DailyRemote (mismo resultado Modus Create ya conocido, 3 semanas), Jobgether (0 dentro de ventana, los 8 resultados de Flutter en LatAm son todos 21+ dias), FlutterGigs (mismas 4 vacantes de Evacorp sin cambios ni fecha de publicacion visible), mobile.career (todo fuera de ventana, mas reciente Sept 21 -- OKX x10 hibrido/onsite APAC, Tide x7 hibrido work-auth India/UK/Berlin/Lituania, Lighthouse Android nativo Brasil, IDT Corporation Senior Flutter remoto pero a 15 dias), WeAreDevelopers (1 resultado a 2 dias fuera de ventana, stack .NET con Flutter secundario), Built In (confirmo Outsmart ya aplicada en corrida anterior y AgileEngine ID90602 In-Office/Mid en 4 ciudades colombianas, nada nuevo).",
     "_incidencias": "Ninguna URL del catalogo aparecio rota. Himalayas bloqueado por Cloudflare, marca sin avanzar. Talently sigue sin ruta de busqueda usable (se mantiene null). El panel de detalle de LinkedIn no cargo para AgileEngine Guatemala y para Proxify (EMEA) tras varios reintentos -- se decidio por la etiqueta de ubicacion/tag visible en la tarjeta en vez de abrir la descripcion completa, documentado en cada entrada de dedupe. Ninguna corrida toco el tope de 2 paginas esta vez (todas las combinaciones pais x consulta quedaron muy por debajo de 25 resultados en la ventana de 24h).",
     "fechaDescarte": "2026-09-23"
+  },
+  {
+    "id": "b6c1a2d3e4f5",
+    "empresa": "Svitla Systems, Inc.",
+    "titulo": "Senior Flutter Engineer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4471144674/",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "work-auth: publicada bajo 'Argentina' en LinkedIn pero la descripcion dice literalmente 'a full-time position (40 hours per week) in Mexico'. Ademas exige hands-on Swift/Kotlin nativo como requisito duro (no solo Flutter) y full-time (no contractor). Stack Flutter/Dart solido hubiera puntuado ~80 de no ser por la atadura geografica a Mexico."
+  },
+  {
+    "id": "c7d2b3e4f5a6",
+    "empresa": "Software Mind",
+    "titulo": "Senior Mobile Developer (Flutter)",
+    "portal": "linkedin/remoterocketship",
+    "url": "https://www.linkedin.com/jobs/view/4471625689/",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "work-auth: el detalle de LinkedIn nunca cargo (bug de renderizado recurrente), pero el mismo posting en RemoteRocketship confirma la ubicacion real: 'Romania, Poland - Remote', atado a esos dos paises, no remoto global. Cliente de seguros britanico via consultora polaca. Senal de titulo fuerte (Senior, Flutter explicito) que hubiera puntuado alto de no ser por la restriccion geografica."
+  },
+  {
+    "id": "d8e3c4f5a6b7",
+    "empresa": "TechShack",
+    "titulo": "Flutter Developer - Contract",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4469688093/",
+    "score": null,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "Sin descripcion verificable: el panel de detalle de LinkedIn nunca cargo el cuerpo del anuncio pese a reintentos con espera. Reino Unido remoto, contrato, 100+ solicitudes, publicado hace 8h -- senal de titulo fuerte pero no se pudo confirmar work-auth ni stack real. Queda para revision manual del usuario si quiere perseguirla, no se descarta por descalificacion tecnica sino por falta de datos."
+  },
+  {
+    "id": "e9f4d5a6b7c8",
+    "empresa": "NeuroNation (via Synaptikon GmbH)",
+    "titulo": "App Developer (C#, Flutter) - Remote (Germany)",
+    "portal": "linkedin/hiringcafe/remoterocketship",
+    "url": "https://www.linkedin.com/jobs/view/4472013534/",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "work-auth: titulo y descripcion dicen explicitamente 'Remote (Germany)' / 'remote work within Germany'. Ademas el stack primario es C#, con Flutter secundario. Confirmado en tres portales (LinkedIn, HiringCafe, RemoteRocketship via Synaptikon GmbH), mismo posting."
+  },
+  {
+    "id": "f0a5e6b7c8d9",
+    "empresa": "StreamTV",
+    "titulo": "Mobile Developer, Flutter",
+    "portal": "remoterocketship",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "work-auth: 'Germany, Austria - Remote' explicito, no remoto global. Stack Flutter/Dart core, EUR60-70k/ano, hubiera puntuado bien de no ser por la restriccion geografica. No indexado en LinkedIn."
+  },
+  {
+    "id": "a1b6f7c8d9e0",
+    "empresa": "SmartLogic",
+    "titulo": "Staff Engineer/Senior Developer (Elixir, Ruby, Flutter) [4 variantes: full-time y contract, Washington DC y USA-wide]",
+    "portal": "linkedin",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "Descarte inmediato: Flutter es una de tres tecnologias (Elixir, Ruby, Flutter) listadas en ese orden en el titulo, sugiriendo que el foco real es backend Elixir/Ruby con Flutter como componente movil secundario. Ademas atado a EE.UU. (Washington DC / USA remote)."
+  },
+  {
+    "id": "b2c7a8d9e0f1",
+    "empresa": "Benchmark Gensuite",
+    "titulo": "[US] Full-Stack Software Engineer - Node.js, React & Flutter",
+    "portal": "linkedin/hiringcafe/remoterocketship",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "Descarte inmediato: titulo explicito '[US]', stack principal Node.js/React con Flutter como tercera tecnologia. No es un rol Flutter-focused. Confirmado en tres portales, mismo posting (Cincinnati, OH)."
+  },
+  {
+    "id": "c3d8b9e0f1a2",
+    "empresa": "Accomplice",
+    "titulo": "Founding Chief Technology Officer (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4471623695/",
+    "score": null,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "No es un rol de IC senior: es un puesto ejecutivo de Founding CTO (tipicamente con compromiso de equity/cofundador), no encaja con el perfil de Jonathan (Senior Mobile Developer). Descripcion nunca cargo (bug de LinkedIn) para confirmar mas detalles."
+  },
+  {
+    "id": "d4e9c0f1a2b3",
+    "empresa": "Alkami Technology",
+    "titulo": "Software Engieer - Flutter iOS",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4453382078/",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "work-auth: ubicacion Gurgaon, Haryana, India. Aunque etiquetada 'remoto' en LinkedIn, la ciudad especifica sugiere contratacion local india."
+  },
+  {
+    "id": "e5f0d1a2b3c4",
+    "empresa": "Toppz Dynamics LLP",
+    "titulo": "Flutter Bug-Fixing Expert",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4470073924/",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "Descarte inmediato: gig puntual de arreglo de bugs, no un puesto de desarrollador senior. Senal de agencia india de bajo perfil."
+  },
+  {
+    "id": "f6a1e2b3c4d5",
+    "empresa": "Lottomatica",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4467098850/",
+    "score": null,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "Sin descripcion verificable (bug de carga de LinkedIn). Ubicacion Roma, Italia, etiquetada 'En remoto' pero sin confirmar si es remoto global o atado a Italia -- empresa italiana de apuestas (Lottomatica), riesgo alto de residencia local. Queda para revision manual si el usuario quiere perseguirla."
+  },
+  {
+    "id": "a7b2f3c4d5e6",
+    "empresa": "[WCF] Confidencial",
+    "titulo": "Senior Mobile Developer (Flutter)",
+    "portal": "dailyremote",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "work-auth: ubicacion listada como 'Poland' sin confirmar alcance remoto global. Fintech, 5-10 anos exp, stack Swift/iOS/Android/Flutter. Empresa oculta en el listado."
+  },
+  {
+    "id": "b8c3a4d5e6f7",
+    "empresa": "Doda (varias, Japon)",
+    "titulo": "[Mobile Engineer] Flutter / Kotlin - remoto parcial",
+    "portal": "linkedin",
+    "score": 0,
+    "fechaDescarte": "2026-09-25",
+    "motivo": "Descarte inmediato: anuncio en japones, empresa japonesa, huso horario APAC sin solape razonable con UTC-5. Reaparece identico en Guatemala y Worldwide (misma vacante, distintos geoId de LinkedIn)."
+  },
+  {
+    "_lote": "corrida-2026-09-25",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll/paginacion dentro de cada URL. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana usada: 3 dias (f_TPR=r259200; brecha real desde la ultima corrida exitosa ~35h, redondeada hacia arriba al escalon de 3 dias por seguridad). Worldwide Q1 fue el unico caso que toco el tope de scroll/paginacion real de LinkedIn (34 resultados, 2 paginas, todos revisados). El grueso de resultados en toda la matriz fueron: Proxify 'Senior Mobile Developer (Android/Flutter)' (EMEA-only, ya conocido), AgileEngine 'Flutter Developer ID90602' (In-Office/Mid confirmado en corridas previas via Built In, republicado en Guatemala/Espana/Worldwide/LatAm), y el falso positivo Ingerop (ingenieria civil francesa, 'ouvrages d'art' matcheo por 'art'). Candidatas nuevas evaluadas una por una: Svitla Systems (Mexico-tied), Software Mind (Romania/Poland-tied, confirmado via RemoteRocketship), NeuroNation/Synaptikon (Germany-tied), SmartLogic x4 (stack Elixir/Ruby primario), Benchmark Gensuite (stack Node/React primario, US-tied), Accomplice (rol ejecutivo Founding CTO, no IC), Alkami Technology (India), Toppz Dynamics (gig menor), TechShack y Lottomatica (sin descripcion verificable por el mismo bug de renderizado de LinkedIn de corridas anteriores -- quedan anotadas para revision manual del usuario si asi lo decide), Capitani Group (Brasil, portugues, sin descripcion verificable), doda x2 (Japon/APAC). NINGUNA candidata de LinkedIn paso el filtro de geografia/stack esta corrida -- resultado inusual pero real, no un fallo de cobertura. Complementado con Indeed US (0), Indeed CO (0 relevante, solo sugeridos sin Flutter), Glassdoor (0), RemoteOK (31 resultados, mas reciente relacionado a Flutter a 1 mes, fuera de ventana), WeWorkRemotely (0), Himalayas (SIN bloqueo de Cloudflare esta vez -- 1 resultado, US-only, a 1 mes, fuera de ventana; marca avanzada), Wellfound (44 resultados, todo internships/voluntariado/no-Flutter dentro de ventana), HiringCafe (216 jobs; unico Flutter-core fresco fue OWN3D Alemania, Germany-tied, ya visto en corrida anterior con mismo motivo), RemoteRocketship (70 total, 5 nuevos esta semana: Synaptikon/NeuroNation, Software Mind, StreamTV, Benchmark Gensuite, KTO -- los 5 ya cubiertos arriba, ninguno paso el filtro), freehire.me (1190 resultados; Forest hibrido Santiago, GFT Poland/Lead, HR Ways Pakistan onsite, Apadmi Netherlands mid-level, Droids On Roids solo talent-pool, AgileEngine ya conocido, resto geo-atados o mid/junior -- 0 nuevo), GetOnBrd (Forest Flutter Mobile Developer, hibrido Santiago, descartado por modalidad -- Colombia es el unico pais donde hibrido califica), Computrabajo (1 resultado sin relacion a Flutter, Oracle NetSuite), Talently (confirmado de nuevo sin ruta de busqueda publica, se mantiene null), DailyRemote ([WCF] Senior Mobile Developer Flutter Poland-tied, unico resultado), Jobgether (7 resultados, todos 23+ dias fuera de ventana), FlutterGigs (mismas 4 vacantes de Evacorp sin cambios, sin fecha de publicacion visible -- PetroApp ya descartado por salario bajo, IT LINK y Coding Mind hibridas), mobile.career (unico dentro de ventana fue el lote OKX Hong Kong/Singapore, todo hibrido/onsite APAC), WeAreDevelopers (1 resultado a 2 dias, Java Developer con Flutter como skill menor, descartado), Built In (confirmo AgileEngine ID90602 republicado en 4 ciudades colombianas y Outsmart ya aplicada en corrida anterior, nada nuevo).",
+    "_incidencias": "Ninguna URL del catalogo aparecio rota. Himalayas NO estuvo bloqueado esta vez (primera vez en varias corridas) -- su marca avanza. El bug de renderizado del panel de detalle de LinkedIn (descripcion completa que se queda en skeleton) reaparecio de forma intermitente en 4 ofertas (TechShack, Lottomatica, Accomplice, y brevemente SmartLogic/Software Mind antes de reintentos exitosos) -- se resolvio con esperas de 2-3s y reintentos, pero TechShack y Lottomatica nunca cargaron pese a varios intentos y quedan sin score verificado.",
+    "fechaDescarte": "2026-09-25"
+  },
+  {
+    "id": "b7c9d0e1f2a3",
+    "empresa": "SmartLogic",
+    "titulo": "Staff Engineer/Senior Developer (Elixir, Ruby, Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4472059963/",
+    "score": 0,
+    "fechaDescarte": "2026-09-26",
+    "motivo": "Stack principal Ruby on Rails/Elixir/Phoenix (7+ anos exigidos); Flutter y/o React Native solo 2+ anos, no es el foco del rol. Ademas exige residencia en Estados Unidos y sus territorios ('fully remote within the United States and its Territories') -- descarte doble. Republicado como variante contract con el mismo motivo."
+  },
+  {
+    "id": "c8d0e1f2a3b4",
+    "empresa": "Vetifi",
+    "titulo": "Flutter Dev Intern",
+    "portal": "linkedin",
+    "score": 0,
+    "fechaDescarte": "2026-09-26",
+    "motivo": "Descarte inmediato: puesto de intern (India)."
+  },
+  {
+    "id": "d9e1f2a3b4c5",
+    "empresa": "RedTeam - Construction Technology",
+    "titulo": "DESARROLLADOR DE APLICACIONES MOVILES CON FLUTTER",
+    "portal": "himalayas",
+    "score": null,
+    "fechaDescarte": "2026-09-26",
+    "motivo": "Peru only, publicada hace 3 dias -- fuera de la ventana adaptativa de 24h de esta corrida (brecha real ~22h26m desde la ultima corrida exitosa)."
+  },
+  {
+    "_lote": "corrida-2026-09-26",
+    "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con scroll dentro de cada URL (ninguna combinacion pais/consulta supero las ~5 tarjetas, sin necesidad de segunda pagina). Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana usada: 24h (brecha real ~22h26m desde la ultima corrida exitosa del 2026-09-25T16:06, por debajo del piso del clamp). UNICA CANDIDATA NUEVA GENUINA de toda la matriz: Michael Page 'Flutter / Dart Developer' (Colombia, Bogota presencial -- valido, Colombia es el unico pais donde presencial califica; empresa multinacional via recruiter, integracion con plataformas Microsoft .NET/Azure, score 75). Resto de resultados de LinkedIn: SmartLogic 'Staff Engineer/Senior Developer (Elixir, Ruby, Flutter)' x2 (descartado, ver arriba), memodio 'Flutter & Node.js Fullstack Engineer' (repost exacto de la oferta ya aplicada a mano por el usuario el 2026-08-27, mismo hash de dedupe 35a95f36501b, no se reproponer), Vetifi 'Flutter Dev Intern' (descartado, ver arriba). Todos los demas paises/consultas de la matriz devolvieron 0 resultados dentro de la ventana de 24h. Complementado con Indeed US (0), Indeed CO (0 relevante, 'Flutter' sin resultados, solo sugeridos sin relacion), Glassdoor (0), RemoteOK (20 resultados 'Flutter' pero ninguno es Flutter el framework -- ruido de tags, mas reciente 1 mes), WeWorkRemotely (0), Himalayas (1 resultado, RedTeam Peru-only a 3 dias, fuera de ventana -- descartado arriba), Wellfound (42 resultados, ninguno dentro de ventana de 24h, mas cercano 3 dias), GetOnBrd (ignora el parametro de busqueda como siempre; unico Flutter real fue Forest, hibrido Santiago, ya descartado por modalidad en corridas previas), Computrabajo (0), Talently (confirmado de nuevo sin ruta de busqueda publica, se mantiene null), HiringCafe (216 vacantes; las mas frescas -19h a 1d- con Flutter mencionado tienen stack dominante distinto -Java/Spring Boot, Go/Kubernetes- o exigen residencia en Alemania -NeuroNation, 'remote work within Germany'-), RemoteRocketship (72 total, mismos resultados que HiringCafe -SmartLogic, NeuroNation- ya evaluados, nada nuevo dentro de ventana), freehire.me (1186 resultados; Forest Chile hibrido ya conocido es lo unico a 'yesterday', el resto 2 dias o mas), DailyRemote (1 resultado, Polonia, 2 dias, fuera de ventana), Jobgether (7 resultados LatAm, todos 24+ dias fuera de ventana), FlutterGigs (mismas 4 vacantes de Evacorp sin fecha de publicacion visible, limitacion estructural persistente, sin cambios), mobile.career (mas reciente 21-sep, 5+ dias, fuera de ventana), WeAreDevelopers (1 resultado, Java Developer con Flutter como skill menor, 2 dias, descartado por stack y ventana), Built In (confirma que AgileEngine 'Flutter Developer ID90602' sigue siendo In-Office/Mid-level en 4 ciudades colombianas, republicado 'ayer'; Outsmart ya aplicada en corrida anterior).",
+    "_incidencias": "Ninguna URL del catalogo aparecio rota. Ningun challenge de seguridad en LinkedIn ni en ningun otro portal. FlutterGigs sigue sin fecha de publicacion visible por oferta (limitacion estructural conocida). Talently sigue sin ruta de busqueda publica utilizable.",
+    "fechaDescarte": "2026-09-26"
   }
 ]

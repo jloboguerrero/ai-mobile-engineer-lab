@@ -553,5 +553,21 @@
     "notas": "Aprobada por el usuario en la tabla de la corrida del 2026-09-16 (candidata #3, Polonia/Cracovia remoto, FinTech). CV a medida generado en Fase 3.5. El agente no llego a abrir el formulario externo (ATS tipo Ashby/Greenhouse, 'Respuestas gestionadas fuera de LinkedIn') porque el clasificador de modo automatico del navegador ya habia empezado a denegar la accion 'type' ('Real-World Transactions') en la oferta anterior (SETI). El usuario abrio el formulario externo el mismo y respondio 3 preguntas abiertas de screening (performance/profiling, enfoque de testing, problema tecnico mas dificil) con respuestas honestas basadas en cv-fuente.json (Tul, Knotion/shenai+Agora), preparadas en el chat. ENVIADA A MANO por el usuario el 2026-09-16.",
     "cvGenerado": "salidas/cv/2026-09-16_Mamo_Senior-Flutter-Developer_Jonathan-Lobo-Guerrero_CV.pdf",
     "fecha": "2026-09-16"
+  },
+  {
+    "id": "1de0ad40b4f6",
+    "empresa": "Michael Page",
+    "titulo": "Flutter / Dart Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4470786795/",
+    "urlAts": "https://www.michaelpage.com.co/job-apply/flutter-dart-developer/ref/jn-092026-7112483",
+    "score": 75,
+    "fechaOferta": "2026-09-26",
+    "fechaAplicacion": "2026-09-26",
+    "estado": "enviada_manual",
+    "notas": "Aprobada por el usuario en la corrida del 2026-09-26 (Colombia, Bogota presencial, empresa multinacional via Michael Page como recruiter, integracion .NET/Azure). CV adaptado generado en Fase 3.5 con diff confirmado por el usuario. El agente completo Paso 1 (email) y Paso 2 (nombre, apellidos, telefono, ciudad, CV adjunto correctamente) y parte del Paso 3 (industria Healthcare/Salud, rol actual) del formulario propio de Michael Page, pero el clasificador de modo automatico del navegador denego la accion 'type' (motivo 'Real-World Transactions') en los campos de fecha de disponibilidad y salario mensual actual -- mismo patron que SETI S.A.S. el 2026-09-16. Ademas quedaba pendiente una casilla obligatoria de politica de privacidad que el agente no marca sin autorizacion explicita (regla dura 4). Detalle completo y datos sugeridos quedaron en historial/pendientes-manual.md. ENVIADA A MANO por el usuario el 2026-09-26. Nota de riesgo: el salario mostrado en la oferta original (COP1,440,000,000 - COP3,000,000,000/ano) parece un error de escala del sistema de Michael Page, no un dato confiable.",
+    "cvGenerado": "salidas/cv/2026-09-26_Michael-Page_Flutter-Dart-Developer_Jonathan-Loboguerrero_CV.pdf",
+    "fecha": "2026-09-26",
+    "notaEstado": "Enviada a mano por el usuario el 2026-09-26 (el clasificador de modo auto bloqueo el navegador en los campos de fecha de disponibilidad y salario)."
   }
 ]
