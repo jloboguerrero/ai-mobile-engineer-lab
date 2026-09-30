@@ -13,6 +13,89 @@ el parametro de busqueda, los resultados son Flutter el framework, y hay activid
 
 <!-- Las corridas de /explorar se agregan debajo, la mas reciente primero -->
 
+# Corrida 2026-09-28 — `/explorar` (los cuatro focos)
+
+Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos
+descartados), la corrida anterior de este archivo (2026-09-19), `historial/aplicaciones.json` desde
+el 2026-09-07 y `historial/descartadas.json` desde el 2026-09-19 para rastrear empresas nuevas hacia
+atras. Nada de lo de abajo esta activo hasta que el usuario lo promueva a `portales.md`.
+
+## Actualizacion a una fuente ya activa
+
+### Jobgether — mejorar la URL del catalogo (Tier 3)
+- `portales.md` tiene hoy `https://jobgether.com/search-offers?role=flutter-developer&location=latam`
+  (8 vacantes, marginal). Se probo en esta corrida `https://jobgether.com/search-offers?keyword=flutter`
+  (sin restringir ubicacion) y **el resultado es mucho mejor**: **99 vacantes**, mayoria Flutter real
+  (`Senior Flutter Engineer` en Kin+Carta, `Web Frontend Engineer - JS, CSS, React, Flutter` en
+  Canonical, etc.), top resultado de **hace 3 dias**
+- Respeta el parametro: **si** — `https://jobgether.com/search-offers` sin `keyword` devuelve
+  **208.594** jobs
+- `sortBy=date` se acepta en la URL pero **no cambia el orden** (queda en Relevance) — no confiar en
+  el, igual que `dateFetchedPastNDays` en HiringCafe. La relevancia ya trae los mas recientes arriba
+- Login: no para listar · Anti-bot: no · Apply: boton propio, empuje a premium (igual que se noto en
+  2026-08-18)
+- Verificado: 2026-09-28
+- **Recomendacion**: reemplazar la URL de `portales.md` por `?keyword=flutter` (sin `location=`).
+  El filtro de ubicacion estaba descartando la mayoria de vacantes Flutter reales sin necesidad —
+  practicamente todas ya son remoto global o listan pais explicito en la tarjeta, revisable igual
+  que HiringCafe
+
+## Verificadas y descartadas — no reintentar
+
+| Fuente | URL probada | Motivo |
+|---|---|---|
+| **flutterjobs.com** | `flutterjobs.com/remote` | Portal muerto: `datePosted` de las vacantes mas recientes es **2019-12-25**, nada mas nuevo en el listado. No confundir con `fluttergigs.com` (ya en Tier 3) ni con `flutterjobs.info` (ya descartado por el mismo motivo) |
+| **jobsinflutter/Flutter-Jobs** (GitHub) | `github.com/jobsinflutter/Flutter-Jobs` | Repo real, se actualiza a diario (`pushed_at` 2026-09-27), pero el volumen es bajo: **9 vacantes** listadas y la mas reciente es del **4 de septiembre** (24 dias). Sin vida suficiente para este perfil hoy; reevaluar si crece |
+| **startup.jobs** (rol Flutter Developer) | `startup.jobs/roles/flutter-developer` | Vacantes Flutter reales (Kin+Carta-style, Domus.Global en Uruguay), pero volumen bajo (~10) y la mas reciente es de **hace 3 semanas**. Ademas la mitad de los resultados frescos quedan detras de un muro "Startup Jobs Plus" (ver antes de las 24h). Marginal, no se recomienda como fuente principal |
+| **Jooble** | `jooble.org/jobs-flutter-remote` | **Cloudflare "Performing security verification"** bloquea el acceso incluso via navegador — no se intento resolver el challenge, por regla dura |
+
+## Agencias de staffing / marketplaces — nuevo hallazgo
+
+### Lemon.io
+- `https://lemon.io/for-developers/flutter-developer-jobs/` → 200, title real ("Flutter Developer -
+  Lemon.io")
+- Es un **marketplace de developers vetted** (como Toptal), no un board de vacantes individuales:
+  "aplicar" significa pasar su proceso de vetting/entrevista tecnica para entrar a su pool, no postular
+  a una oferta puntual
+- Cobertura declarada: LatAm, Europa, Canada, Ucrania, Reino Unido, con clientes en US/Europa
+- No se creo cuenta ni se inicio el flujo de aplicacion (regla dura). Queda documentado para que el
+  usuario decida si quiere pasar el proceso de vetting
+
+## Empresas nuevas confirmadas usando Flutter
+
+Rastreadas hacia atras desde `historial/aplicaciones.json` (2026-09-07 en adelante) — cada una ya
+genero una aplicacion real, prueba directa de que la vacante Flutter era real:
+
+| Empresa | Evidencia | ATS | Nota |
+|---|---|---|---|
+| **Praxis** | Vacante Flutter/Dart Senior aplicada 2026-09-23 | `job-boards.greenhouse.io/praxis` (title real) | Cuidado: no confundir con "Praxis Precision Medicines", board de Greenhouse distinto |
+| **Outsmart (Outsmart Education)** | Vacante "Staff Mobile Engineer" aplicada 2026-09-22, stack Flutter+Rive+Unity | `jobs.ashbyhq.com/outsmart` (slug real, title "Outsmart Jobs") | EdTech con IA, fundadores ex-Duolingo |
+| **Mamo (Mamopay)** | Vacante Flutter via LinkedIn en historial 2026-09-16 | `mamopay.com/careers/explore` (propio) | Fintech Dubai, no LatAm |
+| **GR8 Tech (GR8_TECH)** | 2 vacantes Flutter aplicadas (2026-09-10 y 2026-09-16) | `job-boards.greenhouse.io/gr8tech` (title real) | iGaming B2B, publica Flutter con frecuencia — vale seguir el board |
+| **Grid Dynamics** | Vacante "Senior/Staff UX Developer (Flutter)" (mineria de producto, no del historial) | `griddynamics.com/careers` (propio) | Consultora grande US; el rol visto es UX/edge devices, no mobile tradicional |
+| **Domus Global** | Vacante "Flutter Developer" en Uruguay via startup.jobs | ninguno localizado | LatAm real (Uruguay), rastrear via startup.jobs/RemoteRocketship |
+
+**No se pudo confirmar con evidencia solida** (quedan fuera de `empresas.json` esta corrida):
+Unblock Payments (sin pagina de empleo ni ATS localizable en esta corrida, solo el nombre en el
+historial), Creatio, Recodme, SETI S.A.S y Michael Page — esta ultima es una agencia de reclutamiento
+generalista (no staffing especializado en Flutter), no una empresa que use Flutter internamente.
+
+## Agencias de staffing LatAm
+
+| Agencia | Estado | Nota |
+|---|---|---|
+| **Lemon.io** | ver seccion de arriba | Marketplace vetted, no board tradicional |
+| **BairesDev** | sin cambios | El dato de si multiples postulaciones cuentan como una sola candidatura de perfil sigue abierto, no resoluble sin iniciar sesion |
+
+## Reclutadores y comunidades
+
+No se encontraron comunidades nuevas verificables esta corrida mas alla de las ya documentadas el
+2026-08-18 y 2026-09-19 (`esflutter.dev/community/`, `flutter.dev/community`, directorio
+`workifit/latam-tech-communities`, canales de Telegram citados). **No se contacto a ningun
+reclutador ni se envio ningun mensaje en esta corrida.**
+
+---
+
 # Corrida 2026-09-19 — `/explorar` (los cuatro focos)
 
 Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos

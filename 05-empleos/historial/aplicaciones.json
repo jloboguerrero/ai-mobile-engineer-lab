@@ -569,5 +569,18 @@
     "cvGenerado": "salidas/cv/2026-09-26_Michael-Page_Flutter-Dart-Developer_Jonathan-Loboguerrero_CV.pdf",
     "fecha": "2026-09-26",
     "notaEstado": "Enviada a mano por el usuario el 2026-09-26 (el clasificador de modo auto bloqueo el navegador en los campos de fecha de disponibilidad y salario)."
+  },
+  {
+    "id": "c6fea1d3eff1",
+    "empresa": "DRS IT Solutions Inc",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4472744107/",
+    "score": 95,
+    "fechaOferta": "2026-09-28",
+    "fechaAplicacion": "2026-09-28",
+    "estado": "enviada_manual",
+    "notas": "Unica candidata de la corrida del 2026-09-28 (remoto, contract, staffing IT con sede en Michigan publicando para California). Riesgo work-auth US no confirmado (patron Haystack). El agente no tenia AskUserQuestion y paro en la Fase 3; no se genero CV a medida. ENVIADA A MANO por el usuario el 2026-09-28.",
+    "fecha": "2026-09-28"
   }
 ]
