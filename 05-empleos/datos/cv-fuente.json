@@ -1,7 +1,7 @@
 {
   "_meta": {
     "proposito": "Banco de hechos del CV. Fuente de verdad del CONTENIDO del curriculum, separada de perfil.json (que es para rellenar formularios).",
-    "actualizado": "2026-08-24",
+    "actualizado": "2026-10-01",
     "fuenteNiveles": "Niveles core/working confirmados desde HojaVidaJonathanIngles.pdf. Niveles exposure confirmados por el usuario en la entrevista del 2026-08-24.",
     "niveles": {
       "core": "Skill principal. Va primero en SKILLS y puede aparecer en bullets de experiencia sin matiz.",
@@ -49,6 +49,7 @@
     { "nombre": "PHP", "nivel": "working", "categoria": "web", "alias": ["PHP7"] },
     { "nombre": "Mentoring", "nivel": "working", "categoria": "proceso", "alias": ["mentorship", "coaching junior developers", "technical leadership"] },
     { "nombre": "Flutter Web", "nivel": "working", "categoria": "mobile", "alias": ["web builds", "multiplatform"] },
+    { "nombre": "Platform channels", "nivel": "working", "categoria": "mobile", "alias": ["MethodChannel", "EventChannel", "native iOS/Android integration from Flutter", "native bridges"], "confirmado": "2026-10-01" },
 
     { "nombre": "Node.js", "nivel": "exposure", "categoria": "backend", "alias": ["Express", "Express.js", "JavaScript backend"] },
     { "nombre": "GraphQL", "nivel": "exposure", "categoria": "backend", "alias": ["Apollo", "queries and mutations"] },
@@ -58,7 +59,7 @@
     { "nombre": "GitHub Actions", "nivel": "exposure", "categoria": "devops", "alias": ["GitHub CI"] },
     { "nombre": "Codemagic", "nivel": "exposure", "categoria": "devops", "alias": ["mobile CI"] },
     { "nombre": "Fastlane", "nivel": "exposure", "categoria": "devops", "alias": ["release automation"] },
-    { "nombre": "Swift", "nivel": "exposure", "categoria": "nativo", "alias": ["iOS native", "Xcode", "platform channels", "SwiftUI"] },
+    { "nombre": "Swift", "nivel": "exposure", "categoria": "nativo", "alias": ["iOS native", "Xcode", "SwiftUI"] },
     { "nombre": "Kotlin", "nivel": "exposure", "categoria": "nativo", "alias": ["Android native", "Gradle", "Jetpack Compose"] },
     { "nombre": "React Native", "nivel": "exposure", "categoria": "nativo", "alias": ["RN"] },
     { "nombre": "React", "nivel": "exposure", "categoria": "web", "alias": ["Angular", "Vue", "SPA frameworks"] },
@@ -72,6 +73,18 @@
     { "nombre": ".NET / C#", "nivel": "exposure", "categoria": "backend", "alias": [".NET", "C#", "ASP.NET", "dotnet"], "confirmado": "2026-09-26" },
     { "nombre": "Azure", "nivel": "exposure", "categoria": "cloud", "alias": ["Microsoft Azure", "Azure cloud"], "confirmado": "2026-09-26" },
     { "nombre": "Azure DevOps", "nivel": "exposure", "categoria": "devops", "alias": ["Azure Pipelines"], "confirmado": "2026-09-26" },
+    { "nombre": "JWT", "nivel": "exposure", "categoria": "backend", "alias": ["JSON Web Tokens", "token-based authentication"], "confirmado": "2026-10-01" },
+    { "nombre": "GetX", "nivel": "exposure", "categoria": "mobile", "alias": ["get"], "confirmado": "2026-10-01" },
+    { "nombre": "Build flavors", "nivel": "exposure", "categoria": "mobile", "alias": ["flavors", "Gradle flavors", "CocoaPods", "build configurations"], "confirmado": "2026-10-01" },
+    { "nombre": "AI coding assistants", "nivel": "exposure", "categoria": "ia", "alias": ["Claude Code", "GitHub Copilot", "Copilot", "AI-assisted development"], "confirmado": "2026-10-01" },
+    { "nombre": "OneSignal", "nivel": "exposure", "categoria": "analitica", "alias": ["push notifications platform"], "confirmado": "2026-10-01" },
+    { "nombre": "AppsFlyer / Adjust", "nivel": "exposure", "categoria": "analitica", "alias": ["AppsFlyer", "Adjust", "mobile attribution"], "confirmado": "2026-10-01" },
+    { "nombre": "Sentry", "nivel": "exposure", "categoria": "devops", "alias": ["crash reporting", "error monitoring"], "confirmado": "2026-10-01" },
+    { "nombre": "Mixpanel", "nivel": "exposure", "categoria": "analitica", "alias": ["product analytics"], "confirmado": "2026-10-01" },
+    { "nombre": "Deep links", "nivel": "exposure", "categoria": "mobile", "alias": ["deep linking", "app links", "universal links"], "confirmado": "2026-10-01" },
+    { "nombre": "Dependency injection", "nivel": "exposure", "categoria": "arquitectura", "alias": ["get_it", "injectable", "DI"], "confirmado": "2026-10-01" },
+    { "nombre": "Repository pattern", "nivel": "exposure", "categoria": "arquitectura", "alias": ["repositories", "data layer"], "confirmado": "2026-10-01" },
+    { "nombre": "Material Design / Human Interface Guidelines", "nivel": "exposure", "categoria": "producto", "alias": ["Material Design", "HIG", "iOS Human Interface Guidelines"], "confirmado": "2026-10-01" },
 
     { "nombre": "Xen virtualization", "nivel": "working", "categoria": "infra", "alias": ["virtualization", "hypervisor"] },
     { "nombre": "Asterisk PBX", "nivel": "working", "categoria": "infra", "alias": ["VoIP", "telephony"] },
@@ -80,7 +93,11 @@
   ],
 
   "skillsDescartadas": [
-    { "nombre": "Microsoft Entra ID / Azure AD", "fecha": "2026-09-26", "motivo": "no-conocida" }
+    { "nombre": "Microsoft Entra ID / Azure AD", "fecha": "2026-09-26", "motivo": "no-conocida" },
+    { "nombre": "Braze", "fecha": "2026-10-01", "motivo": "no-conocida" },
+    { "nombre": "Emarsys", "fecha": "2026-10-01", "motivo": "no-conocida" },
+    { "nombre": "Datadog", "fecha": "2026-10-01", "motivo": "no-conocida" },
+    { "nombre": "Bitrise", "fecha": "2026-10-01", "motivo": "no-conocida" }
   ],
 
   "summaryVariantes": [

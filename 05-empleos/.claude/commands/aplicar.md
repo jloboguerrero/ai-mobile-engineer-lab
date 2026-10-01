@@ -15,7 +15,13 @@ con estas instrucciones:
 >
 > Recuerda: la Fase 3 es una parada obligatoria incluso sin `--dry-run`.
 
-El propio subagente pide la aprobacion de la Fase 3 con `AskUserQuestion` — no esperes una
-respuesta del usuario en este chat para relayarsela por `SendMessage`; el agente la rechaza por
-diseno (regla dura 1.1 de `job-apply.md`), venga de quien venga. Tu unico rol aca es lanzarlo y,
-cuando termine (con o sin envios), mostrarle al usuario el resultado final.
+En background el subagente casi nunca tiene `AskUserQuestion` disponible, asi que suele terminar
+la Fase 3 devolviendo la tabla de aprobacion como texto. Cuando pase:
+
+1. Mostrale la tabla al usuario en este chat y pregunta cuales aprueba (con `AskUserQuestion`).
+2. Reanuda al **mismo** agente con `SendMessage`, citando **literal** la respuesta del usuario y
+   la lista de ofertas aprobadas. Es la via valida segun la regla dura 1.2 de `job-apply.md`.
+3. No inventes ni amplies la aprobacion. Si el usuario no respondio, no relayes nada.
+
+Repite lo mismo si el agente vuelve a parar en la Fase 3.5 (terminos nuevos o diff del CV). Al
+final, mostrale al usuario el resultado: aplicadas, para aplicar a mano y fallidas.

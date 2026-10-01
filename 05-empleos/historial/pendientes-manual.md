@@ -308,3 +308,27 @@ parcialmente diligenciada en el navegador para agilizar, pero no se envio.
     `Distrito Capital de Bogota` · City `Bogota`.
   - **Pendiente de decidir con el usuario:** direccion y codigo postal a usar (o si usar una
     generica/de referencia es aceptable para este campo administrativo).
+
+### 2026-09-30 — Corrida sin envios: 4 aprobadas, 0 enviadas
+
+El usuario aprobo las 4 en el chat principal ("Apruebo las 4"). El agente `job-apply` se nego a
+continuar: no tiene `AskUserQuestion` en su set y rechaza aprobaciones relayadas (regla dura 1.1).
+El orquestador tampoco pudo ejecutarlas. **No se genero CV/carta ni se envio nada.**
+Las marcas de `ultima-corrida.json` ya avanzaron el 2026-09-30 (excepto Himalayas y Talently), asi
+que reescanear no las recupera: aplicar a mano con estos links.
+
+- [ ] **AgileGrid Solutions** — Flutter Developer (part-time, remoto US, 9am-1pm EST) · score 65
+  - https://www.linkedin.com/jobs/view/4473786478/
+- [ ] **INGEPSY** — Lead Flutter Developer, Greenfield iOS (Colombia) · score 90
+  - https://freehire.me/jobs/lead-flutter-developer-for-greenfield-ios-product-ingepsy-lt3dagmq
+  - Apply via redirect whatjobs; oferta original no verificada.
+- [ ] **Dynamic Human Capital** — Remote Senior Flutter Developer · score 105
+  - https://freehire.me/jobs/remote-senior-flutter-developer-dynamic-human-capital-pte-ltd-47dbm3op
+  - Aplica por email, pide CV en Word. Paga $2.5-3.75k/mes (bajo rango 4-5k).
+- [ ] **Apex Systems via AgileGrid** — Sr Mobile Developer (Flutter) · score 50
+  - https://www.linkedin.com/jobs/view/4473774744/
+  - Riesgo work-auth (staffing US).
+
+**Bug de flujo a arreglar:** `job-apply` no tiene `AskUserQuestion`, y /aplicar asume que si. La
+Fase 3 queda sin canal de aprobacion valido. Arreglar antes de la proxima corrida (dar la
+herramienta al agente, o partir Fase 3 al orquestador).

@@ -582,5 +582,44 @@
     "estado": "enviada_manual",
     "notas": "Unica candidata de la corrida del 2026-09-28 (remoto, contract, staffing IT con sede en Michigan publicando para California). Riesgo work-auth US no confirmado (patron Haystack). El agente no tenia AskUserQuestion y paro en la Fase 3; no se genero CV a medida. ENVIADA A MANO por el usuario el 2026-09-28.",
     "fecha": "2026-09-28"
+  },
+  {
+    "id": "11304411f2eb",
+    "empresa": "Rethink by Framework",
+    "titulo": "Desenvolvedor(a) Flutter - Sênior",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4474323710/",
+    "score": 95,
+    "fechaOferta": "2026-10-01",
+    "fechaAplicacion": "2026-10-01T12:00:00-05:00",
+    "estado": "aplicada",
+    "notas": "Easy Apply, 4 pasos. Aprobada por el usuario en el chat principal; Fases 3.5 y 4 ejecutadas por el orquestador (el subagente rechazo el relay). CV y carta en pt-BR por pedido del usuario (generar-cv.py ahora soporta idioma pt). Screening: Flutter 6, Clean Arch 5, estado 6, integraciones nativas 3 (cifra dada por el usuario), IA Yes, PJ R$ 20000 (dado por el usuario), ingles Proficiente. Riesgo: location Brasil, no dice si exige residir.",
+    "cvGenerado": "salidas/cv/2026-10-01_Rethink_Desenvolvedor-Flutter-Senior_Jonathan-Loboguerrero_CV.pdf"
+  },
+  {
+    "id": "617aedb5c2ac",
+    "empresa": "Concepta Tech",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4472921866/",
+    "score": 80,
+    "fechaOferta": "2026-10-01",
+    "fechaAplicacion": "2026-10-01T12:10:00-05:00",
+    "estado": "aplicada",
+    "notas": "Easy Apply, 4 pasos, contract. Screening: ingles Professional, Flutter 6, clientes angloparlantes Yes. Casilla de seguir empresa desmarcada. Riesgo: location contradictoria (Brasil en LinkedIn vs US Remote en RemoteRocketship).",
+    "cvGenerado": "salidas/cv/2026-10-01_Concepta-Tech_Senior-Flutter-Developer_Jonathan-Loboguerrero_CV.pdf"
+  },
+  {
+    "id": "972c9e3da4ba",
+    "empresa": "Foodics",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4474134962/",
+    "score": 95,
+    "fechaOferta": "2026-10-01",
+    "fechaAplicacion": "2026-10-01T12:20:00-05:00",
+    "estado": "aplicada",
+    "notas": "Easy Apply via Workable, 4 pasos. Screening: 5+ anos Yes, white-label No (honesto), areas: native SDK, iOS build/App Store, Android build/Play, troubleshooting de releases (platform channels sin marcar), notice: Immediately available, conoce a alguien: No, 'Why Foodics' redactado desde cv-fuente.json. Casilla de seguir empresa desmarcada. Riesgo: listado en Amman, posible restriccion de residencia.",
+    "cvGenerado": "salidas/cv/2026-10-01_Foodics_Senior-Flutter-Developer_Jonathan-Loboguerrero_CV.pdf"
   }
 ]

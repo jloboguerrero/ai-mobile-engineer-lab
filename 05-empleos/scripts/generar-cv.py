@@ -26,7 +26,8 @@ Esquema del JSON de entrada (los campos opcionales caen a perfil.json):
       "certificaciones": [...],     // opcional
       "mostrarApps": true,          // opcional
       "coverLetter": "...",         // opcional -> se escribe como _CoverLetter.txt
-      "claimsSinRespaldo": ["GraphQL"]
+      "claimsSinRespaldo": ["GraphQL"],
+      "idioma": "pt"                // opcional: "en" (defecto) | "pt"
     }
 
 Salida (junto al PDF): el .html intermedio, para poder depurar el layout.
@@ -61,6 +62,27 @@ CHROME_CANDIDATOS = [
 MESES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+# Textos fijos de la plantilla por idioma. "en" es la plantilla tal cual.
+# Encabezados literales y estandar del mercado de cada idioma: un ATS los busca asi.
+TEXTOS = {
+    "pt": {
+        "meses": ["jan", "fev", "mar", "abr", "mai", "jun",
+                  "jul", "ago", "set", "out", "nov", "dez"],
+        "presente": "Atual",
+        "familiar": "Familiaridade com:",
+        "plantilla": {
+            '<html lang="en">': '<html lang="pt-BR">',
+            "<h2>Summary</h2>": "<h2>Resumo</h2>",
+            "<h2>Skills</h2>": "<h2>Habilidades</h2>",
+            "<h2>Professional Experience</h2>": "<h2>Experiência Profissional</h2>",
+            "<h2>Education</h2>": "<h2>Formação Acadêmica</h2>",
+            "<h2>Certifications</h2>": "<h2>Certificações</h2>",
+            "<h2>Shipped Apps</h2>": "<h2>Apps Publicados</h2>",
+        },
+    },
+}
+IDIOMA = "en"
+
 
 class ErrorCV(Exception):
     """Fallo que debe abortar la generacion de ESTE CV, no de la corrida."""
@@ -85,15 +107,16 @@ def slug(texto, maxlen=40):
 
 def fecha_legible(valor):
     """'2021-06' -> 'Jun 2021'. None/'' -> 'Present'."""
+    textos = TEXTOS.get(IDIOMA, {})
     if not valor:
-        return "Present"
+        return textos.get("presente", "Present")
     m = re.match(r"^(\d{4})-(\d{1,2})$", str(valor).strip())
     if not m:
         return str(valor)
     anio, mes = int(m.group(1)), int(m.group(2))
     if not 1 <= mes <= 12:
         return str(valor)
-    return f"{MESES[mes - 1]} {anio}"
+    return f"{textos.get('meses', MESES)[mes - 1]} {anio}"
 
 
 def buscar_chrome():
@@ -130,7 +153,9 @@ def bloque_skills(skills, familiar):
     if familiar:
         partes.append(
             '<div class="skill-line familiar"><span class="skill-label">'
-            'Familiar with:</span> {}</div>'.format(e(" · ".join(familiar)))
+            '{}</span> {}</div>'.format(
+                e(TEXTOS.get(IDIOMA, {}).get("familiar", "Familiar with:")),
+                e(" · ".join(familiar)))
         )
     if not partes:
         raise ErrorCV("El JSON no trae ningun skill: el CV saldria sin seccion SKILLS.")
@@ -236,6 +261,9 @@ def renderizar_html(datos, perfil):
     plantilla = PLANTILLA.read_text(encoding="utf-8")
     for clave, valor in reemplazos.items():
         plantilla = plantilla.replace(clave, valor)
+
+    for original, traducido in TEXTOS.get(IDIOMA, {}).get("plantilla", {}).items():
+        plantilla = plantilla.replace(original, traducido)
 
     sobrantes = re.findall(r"\{\{[A-Z_]+\}\}", plantilla)
     if sobrantes:
@@ -417,6 +445,10 @@ def main():
     try:
         datos = json.loads(Path(args.datos).read_text(encoding="utf-8"))
         perfil = json.loads(PERFIL.read_text(encoding="utf-8"))
+        global IDIOMA
+        IDIOMA = datos.get("idioma", "en")
+        if IDIOMA != "en" and IDIOMA not in TEXTOS:
+            raise ErrorCV("Idioma no soportado: {}".format(IDIOMA))
 
         ruta_pdf = Path(args.salida).resolve() if args.salida else ruta_por_defecto(datos, perfil)
         ruta_pdf.parent.mkdir(parents=True, exist_ok=True)

@@ -1786,5 +1786,276 @@
     "_resumen": "Matriz LinkedIn completa: 27 paises verificados x 2 consultas booleanas + Worldwide y LatAm regional x 2 consultas = 58 paginas, con chequeo de 'No se han encontrado empleos' por pagina y scroll/extraccion completa en las que si tuvieron resultados. Tier A 14/14, Tier B 4/4, Tier C 5/5, Tier D 4/4, regionales 2/2, sin bloqueos de seguridad. Ventana usada: 2 dias (f_TPR=r172800; brecha real ~47h12m desde la ultima corrida exitosa del 2026-09-26T14:32). UNICA CANDIDATA NUEVA GENUINA de toda la matriz: DRS IT Solutions Inc 'Senior Flutter Developer' (California/remoto, contract, publicada hace 1h, score 95 pero con riesgo de work-auth no confirmado -- boutique de staffing IT con sede en Michigan, patron similar al caso Haystack de corridas previas que resulto exigir candidatos US-based pese a decir remoto). El resto de resultados de LinkedIn (Colombia, Mexico, Argentina, Chile, Peru, Brasil, Uruguay, Costa Rica, Panama, Guatemala, Rep. Dominicana, Ecuador, Canada y todo Tier B/C/D) devolvieron 0 resultados reales dentro de la ventana de 2 dias -- solo el fallback 'Empleos que podrian interesarte' de LinkedIn (promocionados sin relacion, mismo patron ya visto: Consultorsalud, EcomHub, Dapta, CI&T, etc., ninguno Flutter). Un unico resultado repetido en 8 paises de Tier B/C/D fue Canonical 'Web Frontend Engineer - JS, CSS, React, Flutter' (ya descartado en corridas anteriores, stack principal no es Flutter). Complementado con Indeed US (0, solo un Business Analyst irrelevante), Indeed CO (0 relevante, un Mobile Junior presencial de bajo salario), Glassdoor (0), RemoteOK (0 relevante, ruido de tags sin Flutter real, mas reciente 1 mes), WeWorkRemotely (0), Himalayas (bloqueado por Cloudflare de nuevo, sin avanzar marca), Wellfound (44 resultados, solo internships y roles React Native fuera de foco dentro de ventana), HiringCafe (211 vacantes, las de 1d-2d con Flutter tienen stack dominante distinto o requieren alemania/frances), RemoteRocketship (71 total, nada dentro de ventana de 2d -- mas cercano 3 dias, Software Mind Romania/Polonia), GetOnBrd (0 nuevo, Forest Santiago hibrido ya conocido), Computrabajo (0), Talently (confirmado de nuevo sin ruta de busqueda publica, se mantiene null), DailyRemote (1 resultado Polonia a 4 dias, fuera de ventana), Jobgether (0 dentro de ventana, todo 3+ dias), FlutterGigs (mismas 4 vacantes de Evacorp sin fecha visible, sin cambios), mobile.career (mas reciente 21-sep, fuera de ventana), WeAreDevelopers (24 resultados a '2 dias', 2 evaluados individualmente y descartados -- MOVISAT y Life.Church, ver entradas arriba -- resto ruido de keyword-stuffing sin Flutter real como foco), Built In (0 nuevo, solo AgileEngine in-office Colombia y Outsmart ya aplicada), freehire.me (1176 resultados, unico dentro de ventana fue MyRevue India in-office, descartado).",
     "_incidencias": "Himalayas bloqueado por Cloudflare (sin avanzar marca). Talently sigue sin ruta de busqueda publica utilizable (se mantiene null). Ninguna URL del catalogo aparecio rota ni hubo challenge de seguridad en ningun portal.",
     "fechaDescarte": "2026-09-28"
+  },
+  {
+    "id": "dca8159c6859",
+    "empresa": "Movate",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4472134112/",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "work-auth: Senior Flutter 7-9 anos, permanente, Chennai India con turno 2:30PM-1AM IST; no aplica desde Colombia"
+  },
+  {
+    "id": "10d5f21a325b",
+    "empresa": "RMG Recruitment Agency",
+    "titulo": "Senior Full-Stack & Mobile Developer (AI-Driven) – Fintech / Trading",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4473749864/",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Full-stack generalista, Flutter no es el foco; exige venir de una empresa forex/CFD"
+  },
+  {
+    "id": "1703afbb2571",
+    "empresa": "iteo",
+    "titulo": "Flutter Developer (Talent Pool)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4473289995/",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Exige polaco nativo y talent pool sin puesto concreto (work-auth/idioma)"
+  },
+  {
+    "id": "830bdbadd5e1",
+    "empresa": "Vuly Trampolines Pty",
+    "titulo": "Senior Full Stack Engineer (AWS + Flutter)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/senior-full-stack-engineer-aws-flutter-vuly-trampolines-pty-l2vzrhre",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Backend AWS/Node primario, Flutter secundario, Kuala Lumpur"
+  },
+  {
+    "id": "539b812c19da",
+    "empresa": "Vuly Trampolines Pty",
+    "titulo": "Senior Full Stack Engineer (AWS + Flutter) - High Impact",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/senior-full-stack-engineer-aws-flutter-high-impact-vuly-trampolines-pty-4yzofesm",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Backend AWS/Node primario, Flutter secundario, Kuala Lumpur (mismo rol que el otro posting)"
+  },
+  {
+    "id": "05fcc97d47e2",
+    "empresa": "loyaltykey",
+    "titulo": "Senior Mobile App Developer",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/senior-mobile-app-developer-loyaltykey-rzzutbgt",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "work-auth: presencial Copenhague, exige residencia y permiso de trabajo en Dinamarca"
+  },
+  {
+    "id": "89d6e27f9da5",
+    "empresa": "Anduril Industries",
+    "titulo": "Senior Software Engineer (Android Apps - Flutter/Dart)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "work-auth: region North America, contratista de defensa US; detalle no abierto (presumible US-persons only)"
+  },
+  {
+    "id": "ab2d05cced4b",
+    "empresa": "Angecom Computacion SpA (via Interfell)",
+    "titulo": "Desarrollador Front-end / Mobile",
+    "portal": "getonbrd",
+    "url": "https://www.getonbrd.com/jobs/desarrollo-mobile/desarrollador-frontend-mobile-interfell-remote",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Stack Angular + Android nativo (Jetpack Compose); Flutter no aparece"
+  },
+  {
+    "id": "8f2b9ffda6ba",
+    "empresa": "OCTO Technology",
+    "titulo": "Experienced Fullstack Consultant – Java, Python, Gen AI, React, Angular, Vue, Flutter",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Consultor fullstack Java/Python, Flutter es una de 7 tecnologias"
+  },
+  {
+    "id": "64230170234a",
+    "empresa": "Finonex",
+    "titulo": "Senior Mobile Developer (Flutter)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/senior-mobile-developer-flutter-finonex-t4tzngy2",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Presencial (on-site) segun freehire; detalle no abierto"
+  },
+  {
+    "id": "d1d8c88fb594",
+    "empresa": "Michael Page Colombia",
+    "titulo": "Software Engineer, Flutter Developer",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/software-engineer-flutter-developer-michael-page-colombia-65izglvv",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Mismo posting ya aplicado 2026-09-26 (Michael Page Flutter / Dart Developer)"
+  },
+  {
+    "id": "c87262961a5d",
+    "empresa": "Quik Hire Staffing",
+    "titulo": "Mobile App Developer (Remote)",
+    "portal": "wearedevelopers",
+    "url": "https://wearedevelopers.com/jobs/s/flutter",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "work-auth: remoto atado a Espana (Valencia/Badajoz)"
+  },
+  {
+    "id": "903fba5e1143",
+    "empresa": "Movilges IT Consulting",
+    "titulo": "Desarrollador/A Flutter Senior: Movil Y Web Con Api (Madrid)",
+    "portal": "wearedevelopers",
+    "url": "https://wearedevelopers.com/jobs/s/flutter",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "work-auth: presencial Madrid"
+  },
+  {
+    "id": "d4ff3be785fd",
+    "empresa": "Media Markt",
+    "titulo": "Experienced Flutter Developer - Retail Media",
+    "portal": "wearedevelopers",
+    "url": "https://wearedevelopers.com/jobs/s/flutter",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "work-auth: Santiago de Compostela, Espana, presencial"
+  },
+  {
+    "id": "9b5d297154f4",
+    "empresa": "Digia",
+    "titulo": "Flutter Developer Intern",
+    "portal": "wellfound",
+    "url": "https://wellfound.com/jobs?q=flutter",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Intern / junior (INR 5-10k)"
+  },
+  {
+    "id": "66a66c5c6393",
+    "empresa": "MAVR",
+    "titulo": "Frontend Development Intern (Mobile App Development)",
+    "portal": "wellfound",
+    "url": "https://wellfound.com/jobs?q=flutter",
+    "fechaDescarte": "2026-09-30",
+    "motivo": "Intern / junior"
+  },
+  {
+    "_lote": "corrida-2026-09-30",
+    "_resumen": "Ventana 2d. LinkedIn 58/58 paginas sin challenge; unica lectura profunda relevante: Worldwide Q1 (16 resultados, todos leidos). Resto de paises: solo BairesDev/Canonical/Proxify repetidos o 0 resultados reales. Indeed 0, Glassdoor 0, RemoteOK 0, WWR 0, Computrabajo 0, Himalayas bloqueado por Cloudflare, Built In/mobile.career/DailyRemote/Jobgether sin nada dentro de ventana. Ya descartadas/aplicadas y repetidas hoy: BairesDev (varios), Proxify, Benchmark Gensuite, Canonical.",
+    "fechaDescarte": "2026-09-30"
+  },
+  {
+    "id": "9e7bd4ce489b",
+    "empresa": "Faith Online",
+    "titulo": "Full Stack Engineer (Flutter, Mobile & Web)",
+    "portal": "indeed",
+    "url": "https://www.indeed.com/jobs?q=Flutter+developer&l=Remote",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Generalista full-stack (Flutter + Node + web) 20h/semana contract; exige profesar fe cristiana; no es foco Flutter"
+  },
+  {
+    "id": "d1961bb94839",
+    "empresa": "Koombea",
+    "titulo": "AI-First Mobile Developer",
+    "portal": "indeed",
+    "url": "https://co.indeed.com/jobs?q=Flutter&fromage=2&sort=date",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Score 35 <45: Flutter solo una opcion entre Swift/Kotlin/RN; pipeline de talento; Remote LatAm, 4-5+ anos, flujo AI-first"
+  },
+  {
+    "id": "5548999dd38b",
+    "empresa": "Klar",
+    "titulo": "Flutter Engineer (Remote from EU only)",
+    "portal": "hiringcafe",
+    "url": "https://hiring.cafe/",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "work-auth: exige residencia UE"
+  },
+  {
+    "id": "2da6799b507d",
+    "empresa": "Aubay Portugal",
+    "titulo": "Senior Flutter Mobile Developer (Lisbon office 2x/month)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4471652882/",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Hibrido en Lisboa (oficina 2x/mes), fuera de Colombia; aplica por email a Aubay"
+  },
+  {
+    "id": "2c209e21e825",
+    "empresa": "FLUID",
+    "titulo": "Mid/Senior Flutter Developer (Remoto, solo Italia)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4474369346/",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "work-auth: debe residir y estar autorizado en Italia"
+  },
+  {
+    "id": "71e1d54d7eee",
+    "empresa": "Niuro",
+    "titulo": "Senior AI Engineer, Mobile Voice and Salesforce Workflows",
+    "portal": "wellfound",
+    "url": "https://wellfound.com/jobs?q=flutter",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Titulo/stack AI+Salesforce; Flutter no aparece en el titulo ni es foco; detalle no verificado"
+  },
+  {
+    "id": "a070d255bf28",
+    "empresa": "Quik Hire Staffing",
+    "titulo": "Mobile App Developer - iOS/Android (RN/Flutter)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs?q=flutter",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "RN/Flutter generico, Europa, sin senioridad ni remoto claro"
+  },
+  {
+    "id": "fc8970f68a03",
+    "empresa": "Rome-Based Full-Stack Mobile Dev",
+    "titulo": "Rome-Based Full-Stack Mobile Dev (Flutter/Cordova)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs?q=flutter",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "work-auth: Roma/Italia"
+  },
+  {
+    "id": "12f077d7e967",
+    "empresa": "Crowe TAC",
+    "titulo": "Mobile Engineer (Flutter)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs?q=flutter",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Presencial CIS"
+  },
+  {
+    "id": "12f37171b245",
+    "empresa": "VIVERIS",
+    "titulo": "Ingenieur developpement Flutter/Dart - H/F",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs?q=flutter",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Francia, presencial/work-auth"
+  },
+  {
+    "id": "b6630a85175a",
+    "empresa": "DevTools (ДевТулз)",
+    "titulo": "Flutter Developer Middle (remote)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/flutter-developer-middle-remote-devtulz-bkdgtiro",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Mid sin componente senior, CIS/Belarus, USD 1800"
+  },
+  {
+    "id": "181edcab6f5f",
+    "empresa": "Sparks To Ideas",
+    "titulo": "Flutter Developer",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs/flutter-developer-sparks-to-ideas-uw2knhsb",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Junior, India"
+  },
+  {
+    "id": "6dd9f9ba4708",
+    "empresa": "Grupo Mariposa",
+    "titulo": "Front-end (Angular Flutter)",
+    "portal": "freehire",
+    "url": "https://freehire.me/jobs?q=flutter",
+    "fechaDescarte": "2026-10-01",
+    "motivo": "Mismo posting Apex Global Mobility ya visto; stack Angular+Flutter contract, no foco Flutter"
+  },
+  {
+    "_lote": "corrida-2026-10-01",
+    "_resumen": "Ventana ~27h (r172800/fromage=2). LinkedIn 58/58 paginas sin challenge. BairesDev (REF#300802/300801/302232/302261/300608), Canonical, Proxify, NeuroNation, cherry, Movate, RMG, Apex/AgileGrid repetidos o ya descartados/pendientes. Himalayas bloqueado Cloudflare, Talently sin ruta. Candidatas nuevas llevadas a la tabla: Rethink by Framework, Concepta Tech, Foodics, ITKX.",
+    "fechaDescarte": "2026-10-01"
   }
 ]
