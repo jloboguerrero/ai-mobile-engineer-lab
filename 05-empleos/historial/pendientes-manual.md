@@ -7,6 +7,58 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
 
 ## Pendientes
 
+### 2026-10-21 — Rimutee + Parser (2)
+
+- [ ] **Rimutee** — Desarrollador Mobile Flutter (LatAm Remote)
+  - Score: 90 | Portal: RemoteRocketship | Fecha oferta: 2026-10-21
+  - Link oferta: https://www.remoterocketship.com/publicjobs/company/rimutee/jobs/desarrollador-mobile-flutter-latin-america-remote/
+  - Sitio empresa: https://app.rimutee.com/ (plataforma de talento — puede tener formulario ahi)
+  - Motivo: boton "Apply Now" abre pestana fuera del grupo MCP; no hay URL en data-*, onclick ni href.
+    app.rimutee.com devuelve error page desde el agente — puede funcionar en un navegador normal.
+  - Datos: Bogota, Colombia · remoto LatAm · USD 4.000-5.000/mes · disponibilidad inmediata
+    · LinkedIn `in/jonathanloboguerrero` · GitHub `github.com/jloboguerrero` · Tel `+57 316 707 1771`
+  - CV adaptado: `salidas/cv/2026-10-21_Rimutee_Desarrollador-Mobile-Flutter_Jonathan-Loboguerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-10-21_Rimutee_Desarrollador-Mobile-Flutter_Jonathan-Loboguerrero_CoverLetter.txt`
+
+- [ ] **Parser** — Senior Mobile Engineer Flutter (Remote global / 11 ubicaciones)
+  - Score: 90 | Portal: Built In | Fecha oferta: 2026-10-21 (16h old at time of scan)
+  - Link oferta: https://builtin.com/job/senior-mobile-engineer-flutter/11784719
+  - Motivo: Built In exige login o crear cuenta para aplicar; no expone URL de ATS externo.
+    Parser es empresa con HQ en Londres (founded 2018, 174 employees, 4 offices including Spain/LatAm).
+    Contacto: https://builtin.com/company/parser — hay un "View Website" para ir al sitio directo.
+    Intenta buscar su ATS propio (Greenhouse/Lever) en la web corporativa antes de crear cuenta en Built In.
+  - Datos: Bogota, Colombia · remoto global · USD 4.000-5.000/mes · disponibilidad inmediata
+    · LinkedIn `in/jonathanloboguerrero` · GitHub `github.com/jloboguerrero` · Tel `+57 316 707 1771`
+  - CV adaptado: `salidas/cv/2026-10-21_Parser_Senior-Mobile-Engineer-Flutter_Jonathan-Loboguerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-10-21_Parser_Senior-Mobile-Engineer-Flutter_Jonathan-Loboguerrero_CoverLetter.txt`
+
+### 2026-10-07 — Droids On Roids (1) — FORMULARIO YA LLENADO, SOLO FALTA CONSENTIMIENTO
+
+- [ ] **Droids On Roids** — Full-stack Software Engineer (Flutter + Node.js)
+  - Link ATS (Greenhouse EU): https://job-boards.eu.greenhouse.io/droidsonroids/jobs/4999799101
+  - Score: 95 | Portal: LinkedIn | Fecha oferta: 2026-10-07
+  - Motivo: El formulario fue completado por el agente en su totalidad. El clasificador de
+    modo automatico bloqueo la aceptacion de los dos dropdowns de consentimiento GDPR al
+    final del formulario (requeridos para enviar). El usuario debe:
+    1. Abrir el link de arriba
+    2. Hacer scroll hasta el final del formulario — todo lo demas ya esta llenado:
+       - Nombre / Email / Telefono / Colombia: llenados
+       - CV: `2026-10-07_Droids-On-Roids_Full-stack-Software-Engineer-Flutter-Nod_Jonathan-Loboguerrero_CV.pdf` (ya adjunto)
+       - Flutter experience, JS/Node.js, widget, Flutter problem: llenados
+       - English = Yes | Polish = No | Start = Immediately available
+       - Financial = USD 25-27/hr B2B (approx. USD 4,000-5,000/month)
+       - How found = LinkedIn | LinkedIn Profile = https://www.linkedin.com/in/jonathanloboguerrero/
+       - "I understand that providing a phone number..." = Yes (ya seleccionado)
+    3. Seleccionar **Yes** en el dropdown: "I hereby consent to processing my personal data
+       included in my job application for the needs of this recruitment process..."
+    4. Seleccionar **Yes** en el dropdown: "I agree to the processing of my personal data,
+       included in the attached recruitment documents... in order to participate in the future
+       recruitment processes."
+    5. Hacer click en **Submit Application**
+  - CV adaptado: `salidas/cv/2026-10-07_Droids-On-Roids_Full-stack-Software-Engineer-Flutter-Nod_Jonathan-Loboguerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-10-07_Droids-On-Roids_Full-stack-Software-Engineer-Flutter-Nod_Jonathan-Loboguerrero_CoverLetter.txt`
+  - Claims sin respaldo: TypeScript (mencionado en familiarWith del CV como exposure)
+
 ### 2026-08-22 — DevFixr + Clinica PsicoSalud (2)
 
 - [ ] **DevFixr** — Senior Flutter Developer (United Kingdom — Remote)
@@ -87,6 +139,18 @@ Marca la casilla cuando la resuelvas. Las resueltas bajan a la seccion de abajo.
   - Datos para el formulario: Bogota, Colombia · remoto LatAm · USD 4.000-5.000/mes · disponibilidad
     inmediata · CV: `HojaVidaJonathanIngles.pdf` · LinkedIn `in/jonathanloboguerrero` ·
     GitHub `github.com/jloboguerrero` · Tel `+57 316 707 1771` · Espanol nativo (requisito de la oferta).
+
+---
+
+### 2026-10-26 — WE THINK APP (1) — FORMULARIO LISTO, solo marcar T&C y enviar
+
+- [ ] **WE THINK APP** — Flutter Developer
+  - Link: https://www.careers-page.com/we-think-app/job/L977757Y/apply
+  - Motivo: El clasificador auto-modo bloqueo el checkbox "I agree to the terms and conditions & privacy policy". Todos los demas campos estan rellenados y el CV subido. Solo falta: (1) marcar ese checkbox y (2) hacer click en Apply.
+  - Campos ya rellenados: Full Name = Jonathan Loboguerrero · Email = jloboguerrero@gmail.com · Phone = +57 316 707 1771 · Cover Letter = cargada · Resume = 2026-10-26_WE-THINK-APP_Flutter-Developer_Jonathan-Loboguerrero_CV.pdf
+  - CV adaptado: `salidas/cv/2026-10-26_WE-THINK-APP_Flutter-Developer_Jonathan-Loboguerrero_CV.pdf`
+  - Cover letter: `salidas/cv/2026-10-26_WE-THINK-APP_Flutter-Developer_Jonathan-Loboguerrero_CoverLetter.txt`
+  - ADVERTENCIA: La pagina puede haber refrescado. Si los campos estan vacios, rellenar con los datos de arriba.
 
 ---
 
@@ -332,3 +396,8 @@ que reescanear no las recupera: aplicar a mano con estos links.
 **Bug de flujo a arreglar:** `job-apply` no tiene `AskUserQuestion`, y /aplicar asume que si. La
 Fase 3 queda sin canal de aprobacion valido. Arreglar antes de la proxima corrida (dar la
 herramienta al agente, o partir Fase 3 al orquestador).
+
+## 2026-10-16 — Descartadas por el usuario
+
+- [x] **iFood** — Staff Flutter Software Engineer — DESCARTADA (riesgo Brasil, no aclara si exige residir)
+- [x] **Prism** — Flutter Developer (FD-01-26) — DESCARTADA (horario 2PM-11PM IST incompatible con UTC-5)

@@ -177,6 +177,7 @@ redireccion a `/app/search-job`), removido el 2026-08-31.
 | mobile.career | `https://mobile.career/flutter-developer-jobs` | ⚠️ marginal, con ruido: respeta el parametro (comparado contra `/jobs`), ~15 vacantes, pero mezcla ofertas sin Flutter real. Revisar tarjeta por tarjeta. Promovido desde `portales-sugeridos.md` el 2026-08-31 |
 | WeAreDevelopers | `https://wearedevelopers.com/jobs/s/flutter` | ⚠️ marginal, con ruido: el filtro `s/flutter` si cambia el listado (vs `/jobs?country=all`), pero de 20 tarjetas ~8 no son Flutter real ("Tech Lead .Net", "JD Edwards", etc). Mercado fuerte Europa/Espana. Revisar tarjeta por tarjeta. Promovido desde `portales-sugeridos.md` el 2026-08-31 |
 | Built In | `https://builtin.com/jobs?search=flutter` | ⚠️ marginal, con ruido: respeta el parametro (0 menciones de "flutter" sin el vs 49 con el), pero de 9 tarjetas solo 2 son Flutter real (Bolder Apps, Immiland Canada). Sin filtro de fecha en la URL, cada tarjeta trae antiguedad relativa. Mas reciente vista: 11 dias. Revisar tarjeta por tarjeta. Promovido desde `portales-sugeridos.md` el 2026-09-07 |
+| Gupy | `https://portal.gupy.io/job-search/term=flutter` | ⚠️ Brasil/portugues: 7 resultados, 2 Flutter remotos reales (Stefanini, Boticario). Respeta el parametro, no pide login. Probable residencia en Brasil. Promovido desde `portales-sugeridos.md` el 2026-10-20 |
 
 **Descartado del Tier 3**: elempleo — ignora el parametro `Search` y redirige al listado completo.
 

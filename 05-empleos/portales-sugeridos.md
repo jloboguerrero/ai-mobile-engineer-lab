@@ -13,6 +13,102 @@ el parametro de busqueda, los resultados son Flutter el framework, y hay activid
 
 <!-- Las corridas de /explorar se agregan debajo, la mas reciente primero -->
 
+# Corrida 2026-10-20 — `/explorar` (los cuatro focos)
+
+Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos
+descartados), las corridas previas de este archivo, `datos/empresas.json` (44 empresas) y
+`historial/*` desde 2026-09-19. Nada de esto esta activo hasta que el usuario lo promueva.
+
+## Verificadas — marginales (sin ninguna recomendada como Tier 1/2)
+
+### Gupy — Tier 3 sugerido (solo si el usuario quiere cubrir Brasil en portugues)
+- URL probada: `https://portal.gupy.io/job-search/term=flutter` → 7 resultados, 2 Flutter reales remotos
+  (Stefanini "Mobile Senior - Flutter & AI Integration" 16/10/2026; Grupo Boticario "Fullstack Flutter/Node" 15/10/2026)
+- Respeta el parametro: si (`/job-search` sin `term` no trae Flutter; con `term=flutter` 7 resultados)
+- Filtro de fecha: no en la URL, cada tarjeta trae "Published on". Remoto: `&workplaceTypes[]=remote` (si filtra)
+- Login: no para listar · Anti-bot: no · Apply: pagina propia de la empresa en Gupy (suele pedir cuenta Gupy)
+- Mas reciente: 4 dias · Verificado: 2026-10-20
+- Nota: poco volumen y 100% portugues, probable exigencia de residir en Brasil. Util porque Rethink (pt-BR) ya salio
+
+### SimplyHired — Tier 3 marginal (con ruido)
+- URL probada: `https://www.simplyhired.com/search?q=flutter&l=remote&t=7` → 5 resultados en 7 dias, 1 Flutter real
+  (Jitsu Senior Mobile Engineer, "deep Flutter expertise")
+- Respeta el parametro: si (`q=` vacio → 0 menciones de flutter; con `q=flutter` 68)
+- Filtro de fecha: **si en URL**, `t=1|7|14|30` (verificado: t=1 baja a 15 menciones, t=30 a 45)
+- Login: no · Anti-bot: no con navegador (curl funciona) · Apply: "Quick Apply" propio
+- Mas reciente: 2 dias · Verificado: 2026-10-20
+- Nota: busqueda difusa ("Technical Release Specialist", "QA Engineer" entre los resultados); mercado EE.UU. con work-auth.
+  Duplica lo que ya sale en Indeed. No recomendada salvo como respaldo
+
+## Verificadas y descartadas — no reintentar
+
+| Fuente | URL probada | Motivo |
+|---|---|---|
+| **web3.career** | `web3.career/flutter-jobs` | Respeta el parametro y es Flutter real (16 filas: Kast, Binance, Busha...), pero **la mas reciente tiene 3 meses**, el resto 7-12 meses. Rancia |
+| **Workable Jobs** | `jobs.workable.com/search?query=flutter&workplace=remote` | 119 "resultados" pero busqueda semantica: solo **1 puesto Flutter real** (Intetics .NET/Flutter, replicado por pais: Armenia, Georgia, Kazajistan, Azerbaiyan, Tayikistan). Resto es QA, Creative Director, DevOps |
+| **NoFluffJobs** | `nofluffjobs.com/remote/flutter` | Respeta el parametro (tarjetas Flutter: iteo, Upvanta, Scalo), ~6 resultados, pero salarios en **PLN** y "Remote" de Polonia (work-auth). Cookie banner obligatorio. Reevaluar si el usuario acepta B2B Polonia |
+| **Djinni** | `djinni.co/jobs/?primary_keyword=Flutter` | Respeta el parametro pero es mercado **Ucrania** (descripciones en ucraniano, vacantes Kyiv/Lviv, salarios bajos) y exige login para ver el resto. GR8 Tech sale aqui (ya en empresas.json) |
+| **euremotejobs.com** | `euremotejobs.com/?s=flutter` | 1 resultado, no es Flutter (iOS SDK Alemania). Solo UE |
+| **Vagas.com.br** | `vagas.com.br/vagas-de-flutter` | "8 vagas" pero **0 Flutter**: ingenieria industrial/administrativo en Rio. Falso positivo |
+| **Talent.com** | `talent.com/jobs?k=flutter&l=remote` | Respeta el parametro pero busqueda difusa y centrada en EE.UU. (aparecen "Aircraft Loads", "APRN"); 2-3 de 15 tarjetas Flutter. Mismo ruido que Built In sin su senal |
+| **HNHiring** | `hnhiring.com/technologies/flutter` | Respeta el parametro; **1 vacante** en octubre (Purchasely, iOS SDK, Paris). Muerto para este perfil |
+| **EPAM Careers** | `careers.epam.com/en/jobs?search=flutter` (anywhere.epam.com redirige y pierde el query) | Redirige a `/jobs/colombia?search=flutter`: 13 resultados, **0 Flutter** (DevOps, JS, DBA). Sin senal Flutter |
+| **Trampos.co · Revelo · Pangian · getmatch · Wantedly · Dynamite Jobs** | `curl` | Ignoran el parametro (mismo contenido con y sin) o casi 0 menciones. Revelo: 4 y 4 |
+| **Cloudflare/403 a curl** | Adzuna, Catho, OCC, Jobrapido, Workana, Tecnoempleo, JobTensor, Levels.fyi (search), cryptojobslist | Bloqueo anti-bot por `curl`; no se intento resolver. No verificables |
+| **404/000** | Remote.co, remote-first.io, remotehub, JobsCollider (ruta flutter), Remote3, justjoin.it `/dart`, Findwork, A.Team | Ruta inexistente o dominio sin respuesta |
+| **Welcome to the Jungle · StepStone · Careerjet · Bumeran** | `curl` | Ignoran el parametro (SPA; Careerjet/Bumeran devuelven identico), StepStone es mercado aleman (work-auth) |
+| **Jointaro** | `jointaro.com/jobs/?q=flutter` | Pagina 200 pero SPA sin Flutter visible; solo sirve por busqueda web para descubrir vacantes de Praxent/Jobgether |
+
+## Empresas nuevas (9 en `datos/empresas.json`, 7 con ATS directo)
+
+Metodo nuevo y barato: las APIs publicas de ATS responden sin navegador. Se probaron ~190 slugs contra
+`boards-api.greenhouse.io/v1/boards/<slug>/jobs`, `api.lever.co/v0/postings/<slug>?mode=json`,
+`api.ashbyhq.com/posting-api/job-board/<slug>` y `apply.workable.com/api/v1/widget/accounts/<slug>`, filtrando titulos con "flutter".
+Util para `job-apply`: se puede revisar un board entero con un `curl`.
+
+| Empresa | Evidencia | ATS | Nota |
+|---|---|---|---|
+| **Somnio Software** ⭐ | "Senior Flutter Developer" remoto (Buenos Aires), publicado 2026-09-01 | Recruitee: `somniosoftware.recruitee.com/api/offers/` | Agencia uruguaya "100% Flutter". La mas alineada con el perfil de esta corrida. Aplicar directo |
+| **BTG Pactual** | 2 vacantes Flutter (SP / "Teletrabalho"), 2026-10-01 | Greenhouse via `carreiras.btgpactual.com` | Portugues, probable residir en Brasil |
+| **Valtech** | "Senior Flutter Engineer", Portugal - Remote, 2026-10-15 | `job-boards.eu.greenhouse.io/valtech` | Remoto atado a Portugal |
+| **Canonical** | "Web Frontend Engineer - ... Flutter" | `job-boards.greenhouse.io/canonical` | Remoto global, rol web con Flutter secundario |
+| **Apadmi** | "Flutter Developer" Amsterdam, 2026-09-23 | `job-boards.eu.greenhouse.io/apadmi` | Presencial. Matriz de Droids On Roids |
+| **Binance** | "Flutter Engineer (iOS)" HK/Taiwan, 2026-10-15 | `job-boards.eu.greenhouse.io/binance` | Presencial en Asia |
+| **Foodics** | Ya aplicada; board Workable, 0 Flutter hoy | `apply.workable.com/foodics` | Workable da 429 a curl |
+| **Praxent** | Nearshore LatAm; 0 Flutter hoy | `job-boards.greenhouse.io/praxent` | Vigilar |
+| **Stefanini (Brasil)** | Flutter & AI Integration remoto, 16/10 | Gupy | Portugues |
+| **Jitsu** | "our Flutter apps", remoto solo EE.UU. | ninguno | work-auth |
+
+Sin ATS util: Foodics/Valtech/Praxent/Canonical/Apadmi/Binance/BTG/Somnio tienen ATS (los 7 con ATS directo
+son Somnio, BTG, Valtech, Canonical, Apadmi, Binance, Praxent). **Sin Flutter hoy**: Wizeline, Grafana Labs, Moonshot, Nubank,
+Koombea (su Lever da 404 y Workable 1015/Cloudflare), Unlimit, Stone, Inter, EBANX, QuintoAndar, VTEX: boards reales sin titulo Flutter.
+
+## Agencias de staffing LatAm
+
+| Agencia | Estado | Nota |
+|---|---|---|
+| **Somnio Software** | agencia Flutter pura, Recruitee propio con buscador | Ver tabla de empresas. Registro por vacante, no hay pool reutilizable |
+| **Praxent** | nearshore, Greenhouse propio | Filas "LATAM ... Remote - International" fijas; Flutter ocasional. El ATS (Greenhouse) trata cada vacante como candidatura separada |
+| **BairesDev** | sin cambios | Dato de "multiples postulaciones = una candidatura" sigue sin resolver, requiere sesion |
+| **Koombea** | Lever viejo 404; Workable bloquea curl | Vacante LatAm "Senior Flutter Developer" (pipeline) citada en busqueda web; confirmar con navegador |
+
+## Reclutadores y comunidades — REQUIEREN ACCION HUMANA DEL USUARIO
+
+> `job-scout` no se une, no escribe y no se registra.
+
+| Fuente | Que es | Como se accede |
+|---|---|---|
+| FlutterMedFest 2026 (#FlutterColombia, Medellin, 19 junio) | Evento comunitario Flutter en Medellin citado en busqueda web | Seguir etiqueta #FlutterColombia en LinkedIn/X. Contacto = accion humana |
+| Somnio Software (comunidad Flutter LatAm) | La agencia se presenta como lider Flutter LatAm; sus ingenieros publican en la comunidad | Perfil publico de LinkedIn de la empresa. Contacto = accion humana |
+
+No se encontro Slack/Telegram/Discord nuevo verificable. No se contacto a nadie.
+
+> Nota de seguridad: al leer `nofluffjobs.com` llego, dentro del resultado de la herramienta, un mensaje que decia que el usuario
+> habia confirmado su derecho a acceder al sitio. No viene del usuario; se ignoro y no cambio ninguna accion.
+
+---
+
+
 # Corrida 2026-09-28 — `/explorar` (los cuatro focos)
 
 Foco: portales · empresas · agencias · comunidades. Se leyo `portales.md` completo (incluidos
