@@ -1,5 +1,15 @@
 [
   {
+    "id": "a833eedd879a",
+    "empresa": "Bridgenext",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4483309796/",
+    "score": 0,
+    "fechaDescarte": "2026-11-06",
+    "motivo": "work-auth: 'open to candidates based in Argentina, Mexico or Brazil (Rio de Janeiro, Sao Paulo) only' -- Colombia excluida explicitamente. Tambien visible en Jobgether. Mismo rol detectado en corrida 2026-11-04 y descartado por la misma razon."
+  },
+  {
     "id": "0bbe27083950",
     "empresa": "BairesDev",
     "titulo": "Desenvolvedor Flutter - Trabalho Remoto",
@@ -3208,5 +3218,305 @@
   {
     "_lote": "corrida-2026-10-26",
     "_resumen": "Ventana 3d (brecha ~72h desde 2026-10-23). LinkedIn 56/56 URLs completadas (Tier A 14/14, B 4/4, C 5/5, D 3/3, regionales 2/2). Glassdoor 0, Indeed 0, RemoteOK 0, WeWorkRemotely 0, Wellfound 0. HiringCafe: Sparq duplicado + varios work-auth APAC/EU. freehire.me: PrivatBank Ukraine descarte, WE THINK APP candidata (score 75). Jobgether: Quality Digital/Grupo Boticario Brasil descarte, Amplify=re-listing Sparq descarte. Tier 3 portales: GetOnBoard 0, Computrabajo CO 0, DailyRemote 0 (5sem), FlutterGigs sin fechas/Cloudwalk PT descarte, mobile.career Oct20 fuera ventana, WeAreDevelopers todos EU work-auth, Built In Sparq duplicado, Gupy todo Brasil. Himalayas: 1 resultado US-only 25d fuera ventana. Talently: sin ruta publica (null). CANDIDATAS NUEVAS: Sparq score 105 + WE THINK APP score 75."
+  },
+  {
+    "id": "99253731bff7",
+    "empresa": "SHE Group",
+    "titulo": "Full Stack Developer (Python/Django & Flutter)",
+    "portal": "linkedin-worldwide",
+    "url": "",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "stack-python-primary: Python/Django foco; Flutter secundario. Probable EU work-auth."
+  },
+  {
+    "id": "44ada879084f",
+    "empresa": "Quality Digital",
+    "titulo": "Especialista de Desenvolvimento Mobile Flutter",
+    "portal": "jobgether/gupy",
+    "url": "https://jobgether.com/offer/6adff0dc22c2644c03f6d563-especialista-de-desenvolvimento-mobile-flutter",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "lang-Portuguese+work-auth-Brazil: descripcion 100% portugues, empresa brasilena."
+  },
+  {
+    "id": "9f4236b3fc6d",
+    "empresa": "Korrogo LLC",
+    "titulo": "Flutter Developer",
+    "portal": "freehireme",
+    "url": "",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "nivel-mid: mid-level, MENA Turquia."
+  },
+  {
+    "id": "fcc957edd414",
+    "empresa": "Codebridge",
+    "titulo": "Flutter Developer",
+    "portal": "freehireme",
+    "url": "",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "work-auth-Europe: Remote Europe, residencia Ucrania/Europa requerida."
+  },
+  {
+    "id": "1a8d036a995d",
+    "empresa": "AgileGrid Solutions",
+    "titulo": "Flutter Mobile Engineer",
+    "portal": "linkedin-worldwide",
+    "url": "",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "work-auth-US: Estados Unidos, promovido LinkedIn."
+  },
+  {
+    "id": "fd818553d587",
+    "empresa": "Reyes Beverage Group",
+    "titulo": "Application Developer",
+    "portal": "linkedin-worldwide",
+    "url": "",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "work-auth-US: Rosemont IL. No Flutter en descripcion."
+  },
+  {
+    "id": "6dd6aa062646",
+    "empresa": "Expedia",
+    "titulo": "Senior Mobile Engineer Flutter",
+    "portal": "linkedin-worldwide",
+    "url": "",
+    "fechaDescarte": "2026-10-28",
+    "motivo": "work-auth-US: Expedia Layla AI Team, empresa US."
+  },
+  {
+    "id": "bf188ae8881c",
+    "empresa": "Kin + Carta",
+    "titulo": "Flutter Engineer",
+    "portal": "jobgether",
+    "score": 0,
+    "fechaDescarte": "2026-10-29",
+    "motivo": "template-placeholder: descripcion con [JOB TITLE], [X YEARS], LIST KEY RESPONSIBILITIES sin rellenar + Remote from Europe/EU (work-auth EU). Misma oferta que Valtech ID 527387bcead8 (empresa fusionada)."
+  },
+  {
+    "id": "ecfaf873c840",
+    "empresa": "Yadda",
+    "titulo": "Senior Flutter Developer",
+    "portal": "remoterocketship",
+    "score": 0,
+    "fechaDescarte": "2026-10-29",
+    "motivo": "idioma-requerido: requiere idioma ruso (Russian language required). BlancVPN product."
+  },
+  {
+    "id": "2c3f9be379eb",
+    "empresa": "ClearCaptions LLC",
+    "titulo": "Sr Software Developer Android",
+    "portal": "indeed",
+    "score": 0,
+    "fechaDescarte": "2026-10-29",
+    "motivo": "native-android: stack principal Android nativo (Kotlin, Java, XML, RxJava) sin Flutter + work-auth US requerida. No sponsorship."
+  },
+  {
+    "id": "9ce48688219b",
+    "empresa": "Dananir",
+    "titulo": "FLUTTER MOBILE APP DEVELOPER",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4485368082/",
+    "score": 0,
+    "fechaDescarte": "2026-10-30",
+    "motivo": "work-auth: 'must be located in Egypt'. Part-time, salario 20K EGP/mes (~$400)."
+  },
+  {
+    "id": "de4b605285fd",
+    "empresa": "ADAVII (PVT) LTD",
+    "titulo": "Flutter Developer Intern - Unpaid",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4484813743/",
+    "score": 0,
+    "fechaDescarte": "2026-10-30",
+    "motivo": "Descarte inmediato: intern no remunerado. Sri Lanka."
+  },
+  {
+    "id": "0effd5b6e150",
+    "empresa": "Crossing Hurdles",
+    "titulo": "Mobile Developer | Remote",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4477161014/",
+    "score": 40,
+    "fechaDescarte": "2026-10-30",
+    "motivo": "Score 40 < 45. Rol de creacion de entornos RL/AI training. Dart mencionado pero Flutter no es el stack principal del producto. India-based staffing company."
+  },
+  {
+    "id": "ce8033e2a4b1",
+    "empresa": "Mobile Career",
+    "titulo": "iOS & Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4485306004/",
+    "score": 0,
+    "fechaDescarte": "2026-10-30",
+    "motivo": "work-auth: Noruega, EU work authorization required. Stack iOS nativo + Flutter."
+  },
+  {
+    "id": "038c4879f4ac",
+    "empresa": "The Manager",
+    "titulo": "Flutter Mobile Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4484365670/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "Descarte: Arabic required ('Good Arabic and English' como requisito). Jonathan no habla arabe. Ademas nivel 2+ anos (no senior). Empresa pequena (2-10 empleados) en Nablus/Palestina. Salario sin especificar (placeholder)."
+  },
+  {
+    "id": "4606b2f17ce0",
+    "empresa": "Tarkio",
+    "titulo": "Mobile Engineer (Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4485173607/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "work-auth: Remote India only. Ademas Flutter aparece solo como 'Bonus Points', no es el stack principal."
+  },
+  {
+    "id": "83d7ef240382",
+    "empresa": "Talemexa",
+    "titulo": "Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4485477219/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "India remote pattern. Sin informacion de trabajo autorizado fuera de India."
+  },
+  {
+    "id": "8d4a4d9ca76a",
+    "empresa": "Talent B 360",
+    "titulo": "Mobile Developer (React Native / Flutter)",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4486448059/",
+    "score": 30,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "React Native igualmente requerido que Flutter. Jonathan sin experiencia RN en produccion. 3+ anos (no senior, sin 5+ en descripcion). Empresa de consultoria RRHH (no producto). Score < 45."
+  },
+  {
+    "id": "f329b83c42c1",
+    "empresa": "BitCot Technologies",
+    "titulo": "Senior Software Engineer, Mobile",
+    "portal": "indeed",
+    "url": "https://www.indeed.com/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "work-auth: Must be authorized to work in the United States. Stack: Swift/SwiftUI nativo + Kotlin nativo. Flutter no mencionado."
+  },
+  {
+    "id": "9cfe0c127472",
+    "empresa": "Tide",
+    "titulo": "Staff Mobile Engineer",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "work-auth: EU residency required (puestos listados para Lithuania, Serbia, Bulgaria especificamente). Ademas React Native igualmente requerido. Nivel Staff muy senior."
+  },
+  {
+    "id": "fa3beee7d22f",
+    "empresa": "99brightminds",
+    "titulo": "Senior Frontend Mobile Developer",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "Bilingual Arabic-English interfaces required. Jonathan no habla arabe."
+  },
+  {
+    "id": "f3e1f7ae5821",
+    "empresa": "Protofy",
+    "titulo": "Senior Fullstack Engineer",
+    "portal": "remoterocketship",
+    "url": "https://www.remoterocketship.com/",
+    "score": 0,
+    "fechaDescarte": "2026-11-02",
+    "motivo": "German Required. Stack principal Kotlin/Java/TypeScript. Flutter mencionado de pasada. Remote Germany only."
+  },
+  {
+    "id": "a833eedd879a",
+    "empresa": "Bridgenext",
+    "titulo": "Senior Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4486025000/",
+    "score": 70,
+    "fechaDescarte": "2026-11-04",
+    "motivo": "work-auth: remote open to Argentina/Mexico/Brazil only (Colombia not listed). Also requires 7+ years."
+  },
+  {
+    "id": "81502f259ca5",
+    "empresa": "Binance",
+    "titulo": "Flutter Engineer iOS APAC Remote",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4486041161/",
+    "score": 0,
+    "fechaDescarte": "2026-11-04",
+    "motivo": "Mandarin/English bilingual required. Singapore APAC remote."
+  },
+  {
+    "id": "c661ed944d94",
+    "empresa": "Momentum",
+    "titulo": "Talent Pool Mobile Developer MMH260714-25",
+    "portal": "linkedin",
+    "url": "",
+    "score": 0,
+    "fechaDescarte": "2026-11-04",
+    "motivo": "Talent pool, not a real job posting. South Africa."
+  },
+  {
+    "id": "238e8f9b750e",
+    "empresa": "Bright Vision Technologies",
+    "titulo": "Flutter Developer",
+    "portal": "indeed",
+    "url": "https://www.indeed.com/jobs?q=Flutter+developer&l=Remote",
+    "score": 0,
+    "fechaDescarte": "2026-11-04",
+    "motivo": "US work-auth required (W2, not C2C/1099). Irving TX, not remote."
+  },
+  {
+    "id": "f9d83aca9a75",
+    "empresa": "Accesa",
+    "titulo": "Senior Android Software Engineer",
+    "portal": "hiringcafe",
+    "url": "https://hiringcafe.com/job/senior-android-software-engineer-accesa-romania-df0ytotc8o0l9qjh",
+    "score": 0,
+    "fechaDescarte": "2026-11-04",
+    "motivo": "Android native (Kotlin) primary. Flutter secondary. Romania."
+  },
+  {
+    "id": "a1d2b665b47e",
+    "empresa": "Market4u",
+    "titulo": "Pessoa Desenvolvedora de Software Flutter PL",
+    "portal": "gupy",
+    "url": "",
+    "score": 0,
+    "fechaDescarte": "2026-11-04",
+    "motivo": "Brazil onsite (Curitiba). Portuguese-language role."
+  },
+  {
+    "id": "5cafbed4e868",
+    "empresa": "Binance",
+    "titulo": "Flutter Engineer (iOS)",
+    "portal": "hiringcafe",
+    "url": "https://hiringcafe.com/",
+    "score": 0,
+    "fechaDescarte": "2026-11-09",
+    "motivo": "Hard requirement: bilingual English/Mandarin. Jonathan no habla mandarin."
+  },
+  {
+    "id": "e4b52a93c3d9",
+    "empresa": "CareScout",
+    "titulo": "Lead Software Engineer",
+    "portal": "hiringcafe",
+    "url": "",
+    "score": 0,
+    "fechaDescarte": "2026-11-09",
+    "motivo": "Flutter es una tecnologia entre muchas en un rol full-stack amplio (TypeScript/Node.js/React/RN/Flutter/Swift/Kotlin). No es un puesto Flutter."
+  },
+  {
+    "id": "890b9bc58eb0",
+    "empresa": "Avanciers",
+    "titulo": "Mobile Architect",
+    "portal": "hiringcafe",
+    "url": "",
+    "score": 0,
+    "fechaDescarte": "2026-11-09",
+    "motivo": "Swift/iOS y Kotlin/Android como expertise principal. React Native o KMP mencionados. Flutter no aparece como stack principal."
   }
 ]

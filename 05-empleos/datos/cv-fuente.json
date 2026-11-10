@@ -855,6 +855,27 @@
         "crash reporting"
       ],
       "confirmado": "2026-10-16"
+    },
+    {
+      "nombre": "OpenID Connect (OIDC)",
+      "nivel": "exposure",
+      "categoria": "backend",
+      "alias": [
+        "OIDC",
+        "OpenID",
+        "identity federation"
+      ],
+      "confirmado": "2026-11-09"
+    },
+    {
+      "nombre": "Grafana",
+      "nivel": "exposure",
+      "categoria": "devops",
+      "alias": [
+        "Grafana dashboards",
+        "observability dashboards"
+      ],
+      "confirmado": "2026-11-09"
     }
   ],
   "skillsDescartadas": [
@@ -886,6 +907,26 @@
     {
       "nombre": "MobX",
       "fecha": "2026-10-16",
+      "motivo": "no-conocida"
+    },
+    {
+      "nombre": "Google Apigee",
+      "fecha": "2026-11-09",
+      "motivo": "no-conocida"
+    },
+    {
+      "nombre": "Okta",
+      "fecha": "2026-11-09",
+      "motivo": "no-conocida"
+    },
+    {
+      "nombre": "OpenTelemetry",
+      "fecha": "2026-11-09",
+      "motivo": "no-conocida"
+    },
+    {
+      "nombre": "Application Insights",
+      "fecha": "2026-11-09",
       "motivo": "no-conocida"
     }
   ],

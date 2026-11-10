@@ -784,6 +784,21 @@
     "cvGenerado": null
   },
   {
+    "id": "4f9a3f84cff4",
+    "empresa": "NinjaTrader",
+    "titulo": "Sr. Mobile Engineer II (Flutter)",
+    "portal": "linkedin/ashby",
+    "url": "https://www.linkedin.com/jobs/view/4483421292/",
+    "urlAts": "https://jobs.ashbyhq.com/NinjaTrader/8eb8c791-f197-48df-89e1-d890f6be7c1d/application",
+    "score": 85,
+    "fechaOferta": "2026-10-30",
+    "fechaAplicacion": "2026-10-30T10:00:00-05:00",
+    "estado": "aplicada",
+    "notas": "ATS Ashby (URL extraida del href de LinkedIn sin click a ciegas). Formulario completo: nombre, email, LinkedIn URL, CV adaptado adjunto, 'Why NinjaTrader' (cover letter condensada), NinjaTrader/Payward product uso=No, Bogota Colombia, sponsorship=No. Confirmacion: 'Your application was successfully submitted and you will receive a confirmation email.' Riesgo: puesto listado como Full Time $96K-$192K/ano (beneficios US only), Jonathan aplica como contractor remoto desde Colombia.",
+    "cvGenerado": "salidas/cv/2026-10-30_NinjaTrader_Sr-Mobile-Engineer-II-Flutter_Jonathan-Loboguerrero_CV.pdf",
+    "claimsSinRespaldo": []
+  },
+  {
     "id": "4efffa077c60",
     "empresa": "WE THINK APP",
     "titulo": "Flutter Developer",
@@ -795,5 +810,32 @@
     "estado": "manual",
     "notas": "Formulario listo en careers-page.com/we-think-app/job/L977757Y/apply. Todos los campos rellenados, CV adaptado subido, cover letter pegada. Solo falta: marcar checkbox T&C y hacer click en Apply. El clasificador auto-modo bloqueo el checkbox.",
     "cvGenerado": "salidas/cv/2026-10-26_WE-THINK-APP_Flutter-Developer_Jonathan-Loboguerrero_CV.pdf"
+  },
+  {
+    "id": "6f29a5acb1e1",
+    "empresa": "Sparq",
+    "titulo": "Senior Flutter/Dart Mobile Engineer",
+    "portal": "rippling",
+    "url": "https://ats.rippling.com/sparq/jobs/2e270acc-70f9-4a41-82ac-be6732a2f89b",
+    "score": null,
+    "fechaOferta": "2026-11-04",
+    "fechaAplicacion": "2026-11-04T00:00:00-05:00",
+    "estado": "aplicada",
+    "notas": "ATS Rippling. CV adaptado adjunto (PDF generado en Fase 3.5). Formulario auto-completado tras parseo del PDF: nombre, apellido, email, telefono (+57 CO), empresa actual (Knotion - Doc), ubicacion (Bogota), LinkedIn. Respuestas: Located in Colombia=Yes, text message consent=No. Cover letter omitida: el campo acepta solo .doc/.docx/.pdf y el archivo generado es .txt. Confirmacion de envio: 'You have successfully applied to Senior Flutter/Dart Mobile Engineer'.",
+    "cvGenerado": "salidas/cv/2026-11-04_Sparq_Senior-Flutter-Dart-Mobile-Engineer_Jonathan-Loboguerrero_CV.pdf",
+    "claimsSinRespaldo": []
+  },
+  {
+    "id": "82eb242df18b",
+    "empresa": "Booth",
+    "titulo": "Mobiel Flutter Developer",
+    "portal": "linkedin",
+    "url": "https://www.linkedin.com/jobs/view/4483925000/",
+    "score": 100,
+    "fechaOferta": "2026-10-31",
+    "fechaAplicacion": "2026-11-02T00:00:00-05:00",
+    "estado": "resuelta_manual",
+    "notas": "El usuario aplico manualmente via LinkedIn Easy Apply. Detectada en corrida 2026-11-02 (2 dias de publicada). Flutter/Dart, BLoC, Riverpod, Shopify e-commerce, contrato indefinido, Colombia remoto, C1 English.",
+    "cvGenerado": null
   }
 ]
