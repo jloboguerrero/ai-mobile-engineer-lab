@@ -1,11 +1,15 @@
+import { leaksOf, SENSITIVE } from '@/features/employee/sensitive.fixture';
+
 import { to{{Entity}} } from './mappers';
 
 describe('to{{Entity}}', () => {
-  it('maps the fields the UI needs', () => {
+  it('keeps the fields the screen draws', () => {
     expect(to{{Entity}}({ id: '1', name: 'Vacation' })).toEqual({ id: '1', name: 'Vacation' });
   });
 
-  it('defaults missing name to empty string', () => {
-    expect(to{{Entity}}({ id: '1', name: undefined as unknown as string }).name).toBe('');
+  it('keeps nothing sensitive', () => {
+    // Put SENSITIVE values where shr-be puts them in this answer (see the API guide).
+    const raw = { id: '1', name: 'Vacation', ssn: SENSITIVE.ssn } as Parameters<typeof to{{Entity}}>[0];
+    expect(leaksOf(to{{Entity}}(raw))).toEqual([]);
   });
 });

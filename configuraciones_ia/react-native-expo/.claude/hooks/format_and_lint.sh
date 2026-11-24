@@ -11,7 +11,6 @@ file_path="$(echo "$input" | jq -r '.tool_input.file_path // .tool_input.path //
 [ -z "$file_path" ] && exit 0
 [[ "$file_path" != *.ts && "$file_path" != *.tsx ]] && exit 0
 [ ! -f "$file_path" ] && exit 0
-[[ "$file_path" == */generated/* ]] && exit 0
 
 cd "${CLAUDE_PROJECT_DIR:-$PWD}" || exit 0
 [ ! -d node_modules ] && exit 0   # project not installed yet — nothing to run

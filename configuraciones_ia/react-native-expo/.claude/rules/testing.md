@@ -4,51 +4,50 @@
 
 | Level | What | Tool |
 |---|---|---|
-| Unit | `domain/` rules & use cases, mappers, `toRequest`/`toFormValues`, Zod schemas, `ApiError` mapping | Jest |
-| Integration | hooks and screens against fake HTTP: real `api` client + real query client + MSW | RNTL + MSW |
-| E2E | login → Home, request time off, approve request, switch assignment | Maestro (`e2e/*.yaml`) |
+| Unit | `domain/` rules and use cases, mappers, `toRequest`, capabilities, `ApiError` | Jest |
+| Privacy | one contract test per mapper (`SENSITIVE` / `leaksOf`) | Jest |
+| Integration | fetchers with `stubNetwork`; hooks with `WithQueryClient`; components by role and name | RNTL 14 |
+| E2E | login → Home, request time off, approve request, switch assignment | Maestro against the mock API (later) |
 
-## Layout
+## Layout and helpers
 
-- Tests **next to the code**: `mappers.ts` → `mappers.test.ts`, `TimeOffScreen.tsx` → `TimeOffScreen.test.tsx`.
-- MSW handlers per feature: `features/x/mocks/handlers.ts`, fixtures `features/x/mocks/fixtures.ts`
-  built from the API guide examples (with fake PII). Global server in `test/msw/server.ts`.
-- Test utils in `test/`: `renderWithProviders` (QueryClient with `retry: false`, i18n `en`, theme,
-  safe-area), `createTestQueryClient`, `signInAs(profile)` store helper.
+- Tests **next to the code** as `name.test.ts(x)`, never under `src/app`.
+- Shared data in `*.fixture.ts` files that only tests import:
+  - `core/network.fixture.ts` — `stubNetwork`, `failureOf`
+  - `core/query.fixture.tsx` — `WithQueryClient`, `settledQuery`, `dropFinishedWrites`
+  - `core/secure-store.fixture.ts` — `memorySecureStore`
+  - `features/employee/sensitive.fixture.ts` — `SENSITIVE`, `leaksOf`
+- No mocking library and never a real server. Use cases take plain fakes as deps.
+- RNTL 14: `render`, `fireEvent`, `rerender` are async — await them. A file that renders a
+  `useMutation` calls `dropFinishedWrites()` or a single-file run never exits.
+- Tests run in America/Los_Angeles. Local days with `new Date(y, m, d)`; shr-be instants as ISO
+  strings with `Z`.
 
-## No mocks of our own modules
+## Privacy contract test (every mapper, same PR)
 
-Test real code: don't `jest.mock('../data/timeoffApi')`. Intercept HTTP with MSW. Use cases get
-plain fake deps (they take deps as args). `jest.mock` only for native modules without JS impl
-(secure-store, MMKV → in-memory mocks in `test/setup.ts`).
-
-## Must-have integration cases (SHR quirks)
-
-- 401 `message: 'Unauthorized'` → signs out with `reason: 'expired'`.
-- 401 other message → `denied`, stays signed in.
-- 428 → change-reason sheet → resend with headers.
-- Time off 400 "Request fufilled…" → treated as success.
-- 5xx → generic copy, body never rendered.
-- GET 503 retried; POST never retried (assert request count with MSW).
-
-## Shape
-
-```tsx
-describe('TimeOffScreen', () => {
-  it('shows balances when summary loads', async () => {
-    server.use(http.get('*/time-off/employee/:id/summary', () => HttpResponse.json(summaryFixture)));
-    renderWithProviders(<TimeOffScreen />, { session: signedInWorker });
-    expect(await screen.findByText('24 hours available')).toBeOnTheScreen();
-  });
+```ts
+it('keeps nothing sensitive', () => {
+  const raw = { ...rawSummary, ssn: SENSITIVE.ssn, bankAccounts: [SENSITIVE.account] };
+  expect(leaksOf(toSummary(raw))).toEqual([]);
 });
 ```
 
-- Query by role/text/label (what the user sees), `testID` only as last resort (and for Maestro).
-- `findBy*` for async, `userEvent` over `fireEvent`.
-- Descriptions read as behaviour: `'disables Send while the request is pending'`.
+## Must-have cases (SHR quirks)
+
+- 401 `Unauthorized` → session ends; any other 401 → `forbidden`, stays signed in.
+- GET 503 resent; a write never resent (assert one request).
+- Time off 400 "Request fufilled…" → success.
+- 5xx → generic sentence, body never rendered.
+- 428 → change-reason sheet → resend with headers.
+- `pickCurrentAssignment`: picked gone → stored → oldest.
+
+## Rules
+
+- **Every logic fix lands with a regression test that fails without it.**
+- No coverage percentage, no snapshot tests.
+- Query by role and accessible name (`getByRole('button', { name: 'Save' })`); `testID` only when
+  nothing accessible can tell elements apart (and for Maestro).
 
 ## Done means
 
-`npx tsc --noEmit`, `npm run lint`, `npm test` pass. New mapper/rule/schema/toRequest → unit test.
-New screen or mutation → at least one integration test covering success + one error kind.
-E2E login in tests: legacy QA account or token deep link, **development builds only**.
+`npm run verify` passes (at least typecheck, lint and tests).

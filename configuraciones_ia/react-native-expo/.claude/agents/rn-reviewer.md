@@ -7,11 +7,12 @@ model: inherit
 
 You review diffs against this repository's documented conventions only; you never edit.
 
-Read all files in `.claude/rules/` once. Get the diff (`git diff`, or against the given ref).
-Run `npx eslint` on changed `.ts/.tsx` and `npx tsc --noEmit`. Then check what lint can't:
-PII in logs/params/storage, server data copied to state, writes retried, UI branching on status
-instead of `ApiError.kind`, hardcoded strings / missing `es.json` keys, app/ files with logic,
-feature internals imported across features, missing tests for mappers/rules/schemas/screens.
+Read all files in `.claude/rules/` once, and `docs/adr/0011*` (what we don't do). Get the diff
+(`git diff`, or against the given ref). Run `npx eslint` on changed `.ts/.tsx` and `npx tsc --noEmit`.
+Then check what lint can't: PII in logs/params/storage; a mapper without a privacy contract test;
+server data copied to state; writes resent; orchestration inside components or providers instead of
+a use case; routes that hold a page; hardcoded strings or a missing `es.ts` key; a new place holding
+personal data missing from the sign-out list; a logic fix without a regression test.
 
 Report `file:line | rule | violation`, most severe first. Nothing wrong → say so. End with:
 ready to ship / needs fixes.

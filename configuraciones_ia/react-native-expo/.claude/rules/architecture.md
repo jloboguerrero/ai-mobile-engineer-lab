@@ -1,84 +1,109 @@
 # Architecture — feature-first + Clean Architecture "lite"
 
-Layers per feature: **data → domain → queries/hooks → ui**. Not every layer is mandatory:
-a feature that only reads one endpoint may have no `domain/rules.ts` and no `forms/`.
+Each feature has three layers: **domain → data → presentation**. Use cases only where a flow
+orchestrates. No repositories, no DI container, no barrels. A layer with nothing in it is not
+created (a read-only feature may have only `data/` and `presentation/`).
 
 ## Tree
 
 ```
-app/                              # Expo Router — routes ONLY
-  _layout.tsx                     # providers + Stack.Protected guards (allowed to have logic)
-  (auth)/sign-in.tsx ...
-  oauth/callback.tsx
-  terms.tsx · no-access.tsx
-  (app)/(tabs)/_layout.tsx        # tabs derived from profile (worker / dm / sm)
-  (app)/(tabs)/timeoff.tsx        # export { TimeOffScreen as default } from '@/features/timeoff';
-  (app)/pay/direct-deposit/_layout.tsx   # FormProvider shared by edit + review
-  dev/ui.tsx                      # component catalog (development builds only)
 src/
-  core/      api/ query/ session/ push/ files/ config/ i18n/ logger/
-  ui/        tokens/ theme/ primitives/ components/ form/ layout/ index.ts
-  features/  auth/ session/ announcements/ notifications/ work/ timeoff/
-             pay/ profile/ documents/ esign/ team-requests/ team-people/
-scripts/     tokens.ts (DS CSS → TS) · api-types.ts (openapi.json → DTO types)
-e2e/         Maestro flows
+  app/                           # Expo Router: routes and layouts ONLY
+    _layout.tsx                  # fonts, splash, restoreSession, Stack.Protected, sign-out cleanup list
+    sign-in.tsx · oauth/callback.tsx
+    (app)/_layout.tsx            # AccountProvider, TermsGate, top bar, Tabs (+ Tabs.Protected)
+    (app)/(home)/ work/ time-off/ pay/ me/ people/
+  app-config.ts                  # brand, User-Agent, storage prefix, cache folders, error-body adapter,
+                                 # dead-token rule. Imports nothing
+  translations.ts                # every i18n catalog; only the root layout imports it
+  core/                          # api, api-error, session, secure-store, query, cache, files, upload,
+                                 # file-caches(.web), hrefs, i18n, format/, monitoring, screen-privacy, form-state
+  ui/                            # theme.ts + kit components + locales/ (imports only ui)
+  features/
+    account/ employee/ auth/     # shared domain
+    <area>/                      # every other feature
+tools/  mock-api/ (scenarios + privacy-scan) · preview/ (screenshots vs prototype)
+docs/   architecture.md · adr/ · pull-request-template.md
 ```
 
 ## Feature anatomy
 
 ```
-features/timeoff/
-  data/       timeoffApi.ts   # createTimeOffApi(http) — endpoints, returns DOMAIN types
-              dto.ts          # Pick<> of generated types, only what we read/send
-              mappers.ts      # toSummary(dto) → TimeOffSummary  (drops unused/PII fields)
-  domain/     types.ts        # domain types (no axios, no react)
-              rules.ts        # pure functions: canRequest(summary), totalHours(days)
-              enums.ts
-              usecases/       # only when orchestrating several calls/rules
-  queries/    keys.ts         # timeoffKeys factory
-              queries.ts      # queryOptions(...) + useX hooks
-              mutations.ts    # useRequestTimeOff ...
-  forms/      schema.ts · toFormValues.ts · toRequest.ts
-  ui/         components/     # feature-only components (business components live here)
-              screens/        # TimeOffScreen.tsx, TimeOffHistoryScreen.tsx
-  i18n/       en.json · es.json
-  di.ts       export const timeoffApi = createTimeOffApi(api);
-  index.ts    public API: screens, hooks other features need, keys for invalidation
+features/time-off/
+  domain/          pure TS: no react, react-native, axios, tanstack, expo-router
+    types.ts       TimeOffSummary, TimeOffCard, TimeOffRequest…
+    dates.ts · request.ts · summary.ts   pure rules, tests next to them
+    usecases/      only flows that orchestrate (hooks-and-usecases.md)
+  data/
+    raw.ts         raw response types: ONLY the fields the app reads
+    fetchers.ts    fetchSummary(employeeId) → api.get → mapper; write functions
+    mappers.ts     raw → domain (allow-list) · domain → request body (toRequest)
+  presentation/
+    queries/
+      keys.ts      timeOffKeys
+      queries.ts   timeOffQueries (queryOptions + CachePolicy) + one-line hooks
+      mutations.ts useRequestTimeOff, invalidateTimeOff(), useRefreshTimeOff()
+    components/
+    screens/
+  locales/
+    en.ts · es.ts  `export const en = {…} as const`; es typed against en
 ```
 
-## Dependency rules (enforced by `eslint-plugin-boundaries`)
+## Dependency rules (lint: `import/no-restricted-paths`, zones read from disk)
 
 | From | May import |
 |---|---|
-| `src/ui` | only `src/ui` (no core, no features, no i18n instance — texts come in as props) |
-| `src/core` | `core`, `ui` |
-| `src/features/x` | `core`, `ui`, other features **only via `@/features/y` (index.ts)** |
-| `app/` | `@/features/*` index, `@/ui`, `@/core` (layouts/providers) |
+| `src/app` | features, ui, core, app-config; `translations.ts` only in the root layout |
+| `src/features/<x>` | its own folder, the shared domain (`account`, `employee`, `auth`), ui, core, app-config |
+| `src/ui` | only `src/ui` |
+| `src/core` | only `src/core` and `app-config.ts` |
+| `src/app-config.ts` | nothing |
 
 Inside a feature:
-- `domain/` imports nothing from `react`, `react-native`, `axios`, `@tanstack/*`. Pure TS.
-- `data/` never imports from `ui/` or `queries/`.
-- `ui/` never calls `xApi` directly — always through a hook in `queries/`.
+
+| Layer | May import |
+|---|---|
+| `domain` | only `domain` (and pure `@/core/format/*`) |
+| `data` | `domain`, `core` |
+| `presentation/queries` | `data`, `domain`, `core` |
+| `presentation/components`, `screens` | `presentation/queries`, `domain`, `ui`, `core` — **never `data`** |
+
+Other lint guards: `expo-secure-store` only in `core/secure-store.ts`; `axios` only in core;
+`account-provider` only in routes; no `.role` comparison outside `capabilities.ts`; no `try` and no
+`useQueryClient` in `.tsx`; `no-console` except `core/monitoring.ts`; `import/no-cycle`.
+
+When two features meet on one screen, **the route composes them**. Something two features need
+moves down to `core` or `ui`. Adding to `SHARED_FEATURES` is an ADR, not a lint fix.
 
 ## Principles
 
-1. **Server is the source of truth** → TanStack Query. Zustand only for session and current assignment.
-2. **Derive, don't store**: profile, tabs and scope are computed from the current assignment.
-3. **PII minimum**: mappers drop SSN, bank numbers, anything unused. Never persist the query cache.
-4. **Copyable**: `core`, `ui` and each feature must be copyable to the Staffology app without
-   dragging other features. If a feature needs another's internals, expose it in `index.ts`
-   or move it to `core`.
-5. **Business components live in their feature**; `src/ui` is generic (Button, Card, Sheet,
-   FormTextField…). Promote to `ui` only when a 2nd feature needs it and it has no business words.
+1. **Server is the source of truth** → TanStack Query. Client state is session, current
+   assignment, toast, URL params and local state.
+2. **Derive, don't store**: role, capabilities, tabs and scope come from the current assignment.
+3. **PII minimum, proven**: allow-list mappers + privacy contract tests; nothing persisted but
+   secure-store and the cache folders Log Out empties.
+4. **Copyable**: `core`, `ui`, `app-config.ts`, lint/TS/Jest config, tools and docs are copied to
+   Staffology; features and routes are replaced.
+5. **Decisions are recorded** in `docs/adr/`; changing one means a new ADR.
 
-## When adding something, where does it go?
+## Where does it go?
 
 | Thing | Place |
 |---|---|
-| New endpoint call | `features/x/data/xApi.ts` + mapper + dto |
-| Business rule (pure) | `features/x/domain/rules.ts` |
-| Data for a screen | hook in `features/x/queries/` |
-| Cross-cutting infra (http, session, files, push) | `src/core/*` |
-| Generic visual component | `src/ui/components/` |
-| New route | `app/...` 1-line file + screen in the feature |
-| Env value / flag | `src/core/config/env.ts` (Zod) / `flags.ts` |
+| New endpoint read | `data/raw.ts` + `data/mappers.ts` (+ privacy test) + `data/fetchers.ts` + query in `presentation/queries` |
+| New write | function in `data/fetchers.ts` + `useMutation` in `presentation/queries/mutations.ts` |
+| Business rule (pure) | `domain/<topic>.ts` |
+| Flow with several calls/rules | `domain/usecases/` |
+| Role decision | `features/account/capabilities.ts` |
+| Link to a page | builder in `core/hrefs.ts` |
+| Cross-cutting infra | `src/core/*` |
+| Generic visual component | `src/ui/*` |
+| New route | `src/app/...` thin route + screen in `presentation/screens` |
+| Words | `features/x/locales/en.ts` + `es.ts` |
+
+## What we don't do (binding — change only through a new ADR)
+
+Redux/Zustand/MobX · barrel `index.ts` per feature · generated API client or types · zod for
+responses · persisted query cache · repositories / DI container · wholesale Suspense · coverage
+gate · snapshot tests · Detox · Storybook · remote logging · Session Replay / screenshots to a
+crash reporter · `href: null` to hide a tab.

@@ -1,1 +1,8 @@
-export { {{Feature}}Screen as default } from '@/features/{{slug}}';
+// src/app/(app)/<tab>/{{slug}}.tsx — thin: account, capabilities and params in; a feature screen out.
+import { useAccount } from '@/features/account/account-provider';
+import { {{Feature}}Screen } from '@/features/{{slug}}/presentation/screens/{{slug}}-screen';
+
+export default function {{Feature}}Route() {
+  const { current } = useAccount();
+  return <{{Feature}}Screen id={current.id} />;
+}

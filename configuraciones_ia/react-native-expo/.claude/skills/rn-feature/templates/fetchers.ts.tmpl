@@ -1,0 +1,12 @@
+// data/fetchers.ts — plain functions over @/core/api, returning domain types.
+import { api } from '@/core/api';
+
+import type { {{Entity}} } from '../domain/types';
+
+import { to{{Entity}} } from './mappers';
+import type { Raw{{Entity}} } from './raw';
+
+export async function fetch{{Entity}}(id: string, signal?: AbortSignal): Promise<{{Entity}}> {
+  const response = await api.get<Raw{{Entity}}>(`{{path}}`, { signal });
+  return to{{Entity}}(response.data);
+}

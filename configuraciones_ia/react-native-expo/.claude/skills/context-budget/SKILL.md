@@ -9,7 +9,7 @@ allowed-tools: Read, Grep, Glob, Bash(wc:*)
 1. **Grep before read.** Search the symbol, then read only that region.
 2. **Ranged reads** for files > ~200 lines.
 3. **Subagents** (`Explore`) for "where/how is X done across the repo".
-4. **Never read** `node_modules/`, `ios/`, `android/`, `.expo/`, `generated/` (denied anyway).
+4. **Never read** `node_modules/`, `ios/`, `android/`, `.expo/` (denied anyway).
    For a library API, read its `.d.ts` via grep in `node_modules/<pkg>/**/*.d.ts` only if the
    user allows, otherwise ask or use docs.
 5. **Don't re-read** unchanged files already in context.

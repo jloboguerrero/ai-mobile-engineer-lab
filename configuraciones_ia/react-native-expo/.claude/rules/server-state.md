@@ -1,107 +1,100 @@
 # Server state — TanStack Query v5
 
-Almost everything in this app is server state. If it comes from the API, it lives here.
+Almost everything in this app is server state. If it comes from the API, it lives here, in
+`presentation/queries/`.
 
-## Keys — hierarchical factory per feature
+## Keys (`keys.ts`)
 
 ```ts
-// features/timeoff/queries/keys.ts   (perfectionist sort-objects off here: order = hierarchy)
-export const timeoffKeys = {
-  all: ['timeoff'] as const,
-  employee: (employeeId: string) => [...timeoffKeys.all, employeeId] as const,
-  summary: (employeeId: string) => [...timeoffKeys.employee(employeeId), 'summary'] as const,
-  history: (employeeId: string, filters: HistoryFilters) =>
-    [...timeoffKeys.employee(employeeId), 'history', filters] as const,
+export const timeOffKeys = {
+  all: ['time-off'] as const,
+  summary: (employeeId: string) => [...timeOffKeys.all, 'summary', employeeId] as const,
+  histories: (employeeId: string) => [...timeOffKeys.all, 'history', employeeId] as const,
+  history: (employeeId: string, year: string) => [...timeOffKeys.histories(employeeId), year] as const,
 };
 ```
 
-Exported from the feature `index.ts` for cross-feature invalidation.
+- Root `all`, then the **kind before the id**, so a prefix means one kind of read.
+- Ordering of this file carries meaning (perfectionist `sort-objects` is off here).
 
 | Data belongs to… | Key includes |
 |---|---|
 | Assignment (time off, job, timesheet) | `employeeId` |
-| Person (paystubs, tax, documents, signatures, notifications, profile) | `userId` / nothing |
-| Manager scope (people, requests, audience) | `scope` (`{ siteId }` or `{ departmentId }`) |
+| Person (paystubs, tax, documents, signatures, notifications, profile) | `userId` |
+| Manager team (people, requests) | `scope.key` |
 
-Switching assignment = changing `currentEmployeeId` in the store → keys change → refetch. No
-manual invalidation needed.
-
-## `queryOptions` + hook
+## Queries (`queries.ts`)
 
 ```ts
-// features/timeoff/queries/queries.ts
-import { queryOptions, useQuery } from '@tanstack/react-query';
-
-import { useCurrentEmployeeId } from '@/features/session';
-
-import { timeoffApi } from '../di';
-import { timeoffKeys } from './keys';
-
-export const summaryQuery = (employeeId: string) =>
-  queryOptions({
-    queryFn: () => timeoffApi.getSummary(employeeId),
-    queryKey: timeoffKeys.summary(employeeId),
-    staleTime: 60_000,
-  });
-
-export const useTimeOffSummary = () => {
-  const employeeId = useCurrentEmployeeId();
-  return useQuery(summaryQuery(employeeId));
+export const timeOffQueries = {
+  summary: (employeeId: string) =>
+    queryOptions({
+      queryFn: ({ signal }) => fetchSummary(employeeId, signal),
+      queryKey: timeOffKeys.summary(employeeId),
+      ...CachePolicy.standard,
+    }),
 };
+
+export function useTimeOffSummary(employeeId: string) {
+  return useQuery(timeOffQueries.summary(employeeId));
+}
 ```
 
-- Reuse the same `queryOptions` in hooks, `prefetchQuery`, `ensureQueryData`, `setQueryData`.
-- `select` for derived views (filtering, sorting); keep `queryFn` returning the full mapped model.
-- Hooks return the query object (or a narrow `{ data, isPending, error, refetch }`); screens
-  branch on `isPending` / `error` / `data`.
+- Hooks are one-liners (+ `enabled` or a stable `select`). They **take** whose data they read
+  (`userId`, `employeeId`); they never ask the session.
+- Reuse the same `xxxQueries.x(...)` for `prefetchQuery`, `ensureQueryData`, typed `setQueryData`.
+- `select` for derived views; `queryFn` returns the full mapped model.
+- `placeholderData: keepPreviousData` when a filter change must keep rows on screen.
 
-## Defaults (`src/core/query/queryClient.ts`)
+## `CachePolicy` (`core/cache.ts`) — spread one, don't write numbers
 
-- Queries: `retry: (n, e) => n < 3 && e instanceof ApiError && [502, 503, 504].includes(e.status ?? 0)`.
-- Mutations: `retry: false`. **Never retry writes.**
-- `focusManager` ↔ `AppState`; `onlineManager` ↔ NetInfo.
-- **Never persist the cache to disk** (PII). No `persistQueryClient`.
+| Policy | Settings | Used for |
+|---|---|---|
+| `standard` | stale 30 s | default |
+| `perSession` | stale 5 min | assignments, User, tax info, permissions |
+| `reference` | never stale | paycodes |
+| `live(ms)` | refetch every `ms` while in front | announcements (2 min), unread count (1 min) until push |
+| `sensitive` | stale 0, gc 60 s, `meta.sensitive` | Direct Deposit (full numbers) |
 
-| Data | staleTime |
-|---|---|
-| Session bootstrap | `Infinity` |
-| Catalogs (paycodes, titles, site names) | 1 h |
-| Paystubs, tax, documents | 5 min |
-| Time off, requests, notifications | 30–60 s |
+A query with its own rule writes its numbers next to the reason.
 
-## Lists
+## Client defaults (`core/query.ts`)
 
-Normalize pagination in `data/` to `Page<T>` → `useInfiniteQuery` + `FlashList`
-(`onEndReached` → `fetchNextPage` guarded by `hasNextPage && !isFetchingNextPage`).
-Non-paginated lists: `useQuery` + `select`.
+- Queries **and** mutations `retry: false` (the API client already resends GETs).
+- `focusManager` ↔ `AppState`: coming back refreshes what is on screen; timers stop in background.
+- Query/mutation caches report via `reportError` only: no answer, 5xx, or a non-`ApiError` (bug).
+- **Never persist the cache.** A future persister/devtools must drop `meta.sensitive` entries.
 
-## Mutations
+## Mutations (`mutations.ts`)
 
 ```ts
-export const useRequestTimeOff = () => {
-  const queryClient = useQueryClient();
-  const employeeId = useCurrentEmployeeId();
+export function useRequestTimeOff(employeeId: string) {
   return useMutation({
-    mutationFn: (values: TimeOffRequest) => timeoffApi.requestTimeOff(employeeId, values),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: timeoffKeys.employee(employeeId) }),
+    mutationFn: (request: TimeOffRequest) => sendTimeOffRequest(employeeId, request),
+    mutationKey: ['time-off', 'request'],
+    onSuccess: () => invalidateTimeOff(employeeId),
   });
-};
+}
 ```
 
-- Submit disabled with `isPending`. Invalidate by **prefix** in `onSuccess`.
+- `mutationKey: [root, verb]`. Never retried.
+- Cache work in the write function or the hook's `onSuccess` (runs even after the screen is gone);
+  UI reactions in `mutate(vars, { onSuccess, onError })`. A message the person must get even after
+  unmount goes in the hook's `onSuccess` too.
+- Variables with full bank numbers or a password: `meta: { sensitive: true }` + short `gcTime`.
 - Optimistic updates only for cheap & reversible things (mark notification read).
-- Single-flight for non-idempotent calls that must happen once (`iop-login` by `code`): guard
-  with a ref/`mutation.isPending` and `retry: 0`.
+- Single-flight for calls that must happen once (`iop-login` by `code`).
 
-## Outside TanStack
+## Cross-feature and screens
 
-Binary downloads (a "download & share" mutation, file deleted on close), pure UI state
-(`useState`), and disk persistence (none).
+- A feature never writes another's keys: export `invalidateXxx()` next to the keys.
+- **Screens don't use `useQueryClient`** (lint). Refresh/prefetch through hooks here:
+  `useRefreshTimeOff(employeeId)`, `usePullToRefresh(run)`, `useRefreshOnFocus(keys)`.
+- On an assignment switch, screens are keyed by `current.id` and start over.
 
 ## Anti-patterns
 
 - `useEffect(() => { fetch().then(setData) }, [])` — use `useQuery`.
-- `const [items, setItems] = useState(query.data)` — derive or use `select`.
-- Putting query data in Zustand.
-- String keys built ad hoc in a component (`['timeoff', id]`) — always use the factory.
-- `refetchInterval` polling in v1 except the documented notification Plan B (60 s, foreground only).
+- `const [items, setItems] = useState(query.data)` — derive or `select`.
+- Ad-hoc keys in a component (`['time-off', id]`) — always the factory.
+- Numbers for `staleTime` without a reason — spread a `CachePolicy`.

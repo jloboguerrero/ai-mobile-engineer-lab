@@ -1,18 +1,27 @@
+// presentation/queries/queries.ts — queryOptions + CachePolicy, and one-line hooks that take ids.
 import { queryOptions, useQuery } from '@tanstack/react-query';
 
-import { useCurrentEmployeeId } from '@/features/session';
+import { CachePolicy } from '@/core/cache';
+import { queryClient } from '@/core/query';
 
-import { {{feature}}Api } from '../di';
+import { fetch{{Entity}} } from '../../data/fetchers';
+
 import { {{feature}}Keys } from './keys';
 
-export const {{feature}}Query = (id: string) =>
-  queryOptions({
-    queryFn: () => {{feature}}Api.get{{Entity}}(id),
-    queryKey: {{feature}}Keys.detail(id),
-    staleTime: 60_000,
-  });
-
-export const use{{Entity}} = () => {
-  const employeeId = useCurrentEmployeeId();
-  return useQuery({{feature}}Query(employeeId));
+export const {{feature}}Queries = {
+  detail: (id: string) =>
+    queryOptions({
+      queryFn: ({ signal }) => fetch{{Entity}}(id, signal),
+      queryKey: {{feature}}Keys.detail(id),
+      ...CachePolicy.standard,
+    }),
 };
+
+export function use{{Entity}}(id: string) {
+  return useQuery({{feature}}Queries.detail(id));
+}
+
+/** For other features and routes: they never write these keys themselves. */
+export function invalidate{{Feature}}() {
+  return queryClient.invalidateQueries({ queryKey: {{feature}}Keys.all });
+}

@@ -2,82 +2,106 @@
 
 ## Routes are thin
 
-`app/**` files (except `_layout.tsx`) are one line:
+A route file under `src/app/` (not `_layout.tsx`) reads `useAccount()`, `useCapabilities()` and
+`useLocalSearchParams()`, builds links with `core/hrefs.ts`, and renders a feature screen with
+ids, flags and links as props. Nothing else: no queries, no `useState`, no sheets.
 
 ```tsx
-export { TimeOffScreen as default } from '@/features/timeoff';
+// src/app/(app)/pay/index.tsx
+export default function PayRoute() {
+  const { account, current } = useAccount();
+  const { view } = useLocalSearchParams<{ view?: string }>();
+  return (
+    <PayScreen
+      assignments={account.assignments}
+      employeeId={current.id}
+      statementHref={statementHref}
+      userId={account.userId}
+      view={view}
+    />
+  );
+}
 ```
 
-Params: read with `useLocalSearchParams<{ id: string }>()` **inside the feature screen**, validate
-with Zod if they come from deep links/push.
+- A page's sub-view lives in the URL (`?view=history`) so a link or notification can open it.
+- Route params carry ids and view names, never a name, email or number from a record.
+- Nothing that is not a route lives in `src/app` (tests included).
 
-## Guards — screens never navigate after login/logout
+## Guards — screens never navigate after sign-in/out
 
 ```tsx
-// app/_layout.tsx
-<Stack screenOptions={{ headerShown: false }}>
-  <Stack.Protected guard={!signedIn}>
-    <Stack.Screen name="(auth)" />
-  </Stack.Protected>
-  <Stack.Protected guard={signedIn && needsTerms}>
-    <Stack.Screen name="terms" />
-  </Stack.Protected>
-  <Stack.Protected guard={signedIn && bootError}>
-    <Stack.Screen name="no-access" />
-  </Stack.Protected>
-  <Stack.Protected guard={signedIn && ready}>
-    <Stack.Screen name="(app)" />
-  </Stack.Protected>
-</Stack>
+// src/app/_layout.tsx
+<Stack.Protected guard={signedIn}><Stack.Screen name="(app)" /></Stack.Protected>
+<Stack.Protected guard={!signedIn}><Stack.Screen name="sign-in" /></Stack.Protected>
 ```
 
-Sign-in/out changes **state**; the router redirects. No `router.replace('/home')` after login.
-Splash stays up (`SplashScreen.preventAutoHideAsync`) while `status === 'hydrating'`.
+Sign-in/out changes **state**; the router redirects. The splash stays up until fonts are loaded
+and `restoreSession()` has run.
 
-## Tabs by profile
+## Tabs by capability
 
-`(app)/(tabs)/_layout.tsx` reads `useProfile()` (derived from current assignment `jobPosition`,
-**never from the token groups**) and hides tabs with `href: null`:
-- worker: Home · My Work · Time Off · Pay · Me
-- dm / sm: Home · My Work · Time Off · Team · Me (Pay inside Me)
+```tsx
+// src/app/(app)/_layout.tsx
+export const unstable_settings = { anchor: '(home)' };
+<Tabs.Screen name="(home)" /> <Tabs.Screen name="work" /> <Tabs.Screen name="time-off" />
+<Tabs.Protected guard={capabilities.payTab}><Tabs.Screen name="pay" /></Tabs.Protected>
+<Tabs.Protected guard={capabilities.peopleTab}><Tabs.Screen name="people" /></Tabs.Protected>
+<Tabs.Screen name="me" />
+```
 
-## Single Sign (IOP) — PKCE
+- **Never `href: null`** to hide a tab. When a guard turns false the person lands on the anchor.
+- Manager Layout A: People in Pay's slot, Pay under Me.
+
+## Capabilities (`features/account/capabilities.ts`)
+
+- `managerScopeOf(assignment)` → `{ role: 'sm', siteId, key } | { role: 'dm', siteId, departmentId, key } | null`.
+- `capabilitiesOf(assignment)` → flags (`payTab`, `peopleTab`, `requests`, `editTimeOff`,
+  `requestCompensation`, `writeAnnouncements`…) + `scope`.
+- `scopeParams(scope)` / `grantParams(assignment)` → the scope id to send.
+- The role comes from the assignment's `jobPosition`, **never** from the token groups.
+- Lint refuses `.role === 'sm'` anywhere else. A new role or capability = one change here + test.
+
+## Single Sign (IOP) — PKCE (development build required)
 
 - `expo-auth-session` + PKCE; authorize endpoint hardcoded (discovery needs `platform_guid`).
 - Verifier and `state` only in memory.
-- `oauth/callback.tsx` receives the deep link → `POST /user/iop-login { code, redirectUri, codeVerifier }`
-  **exactly once**: single-flight by `code`, `retry: 0`, block double tap. Timeout → new authorize,
-  never resend the same code (IOP revokes the first tokens).
-- Scheme per environment: `simplifyhr-qa://oauth/callback` (from `app.config.ts` by `APP_VARIANT`).
+- `POST /user/iop-login { code, redirectUri, codeVerifier }` **exactly once**: single-flight by
+  `code`, no retry, block double tap. Timeout → new authorize, never resend the same code.
+- Scheme per environment (`simplifyhr-qa://oauth/callback`) from `app.config.ts`.
 
 ## Legacy (Cognito)
 
-`POST /user/signIn` (PascalCase response, Bearer = `IdToken`). `passwordResetRequired` → reset flow.
-Store `AccessToken` only to sign out of Cognito.
+`POST /user/signIn` (Bearer = `IdToken`). `passwordResetRequired` → reset flow. Keep
+`AccessToken` only for `POST /user/signOut` (not awaited on Log Out).
 
-## Terms (EULA)
+## Terms
 
-Single mutation (audit + email to HR) → `setQueryData(bootstrapKey, { …, needsTerms: false })`.
-"I Agree" enabled only at scroll end ("Go to end" button). Cancel = full signOut.
+`TermsGate` over the shell until accepted (inline on iOS, takes screen reader focus).
+`acceptOrFind` use case. Cancel = end of session.
 
 ## Session expiry (~1 h, no refresh)
 
-1. Proactive timer to `exp` (re-evaluated on `AppState → active`), warning ~5 min before.
-2. `exp` check before every request (interceptor).
-3. 401 with `message === 'Unauthorized'`.
-→ `signOut({ reason: 'expired' })` + banner "Continue with Single Sign" (1 tap while IOP cookie lives).
+1. `bearer()` checks `exp` before every call; expired → session ends, call never sent.
+2. A 401 with message exactly `Unauthorized` ends the session; any other 401 is `forbidden`.
+3. **Warning before expiry**: a timer at `exp − 5 min` (re-evaluated on `AppState → active`) opens
+   a sheet "Your session expires in 5 min" → **Stay signed in** re-authenticates with Single Sign
+   **in place** (no navigation; the IOP cookie usually makes it instant) and replaces the token.
+   An open form is not lost. "Later" dismisses it.
+4. If it expires anyway: `signedOut` with `expired: true` → Sign in says so.
 
-## Log out — order matters
+## Sign-out cleanup — one explicit list (`src/app/_layout.tsx`)
 
-1. Unregister push token (ignore failure)
-2. Cognito signOut if legacy (no retry, in `finally`)
-3. Clear secure-store keys
-4. `queryClient.clear()`
-5. Reset stores
-6. `status: 'signedOut', reason: 'manual'`
+However the session ends, `endSession` deletes the secure-store keys and the root layout runs:
+1. `queryClient.clear()`
+2. `clearFileCaches()`
+3. `Image.clearMemoryCache()` + `Image.clearDiskCache()`
+4. `clearToast()`
+5. (with push) unregister the device token
+
+A new place that holds personal data adds a line here in the same PR. No registry, no event bus.
 
 ## Deep links & push taps
 
-Push/deeplink while signed out → save pending route in memory → after bootstrap, navigate
-(switching assignment first if payload `employeeId` ≠ current). Payload validated with Zod;
-`routeFor(payload)` in `features/notifications` is the only place that maps payload → route.
+Signed out → keep the pending route in memory → after sign-in and `loadAccount`, navigate
+(switching assignment first if the payload's `employeeId` differs). Notification routing is
+role-aware (worker `/pay`, manager Pay under Me) and lives at app level.

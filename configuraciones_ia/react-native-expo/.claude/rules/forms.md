@@ -1,56 +1,54 @@
-# Forms — React Hook Form + Zod
+# Forms — local state + pure rules + `useFormState`
 
-## Three files per form (`features/x/forms/`)
+No form library (React Compiler compatibility, full control over custom forms such as Direct
+Deposit allocations or hours per day). What every form shares lives in one helper.
 
-| File | Responsibility |
-|---|---|
-| `schema.ts` | Zod schema with **UI types** (Date, number, enums) + `type XFormValues = z.infer<…>`. Messages are i18n keys |
-| `toFormValues.ts` | domain model → form values (defaults, `null` → `''`) |
-| `toRequest.ts` | form values → request DTO. Absorbs API quirks: `''` → `null`, `MM/dd/yyyy`, numbers vs strings, mutually exclusive keys, resending read-only fields |
+## Pieces
 
-All three are pure and unit-tested.
+| Piece | Where | Responsibility |
+|---|---|---|
+| Rules | `domain/<topic>.ts` (`request.ts`, `draft.ts`) | validation, totals, hints, `canSend` — pure, tested |
+| `useFormState` | `core/form-state.ts` | values + initial values → `isDirty`; field errors; server error mapping; submit state |
+| `toRequest` | `data/mappers.ts` | domain values → request body (API quirks) |
+| Mutation | `presentation/queries/mutations.ts` | the write, never retried |
+
+## `useFormState` contract
+
+```ts
+const form = useFormState({ initial: toFormValues(profile), mutation: save });
+form.values / form.set('mobilePhone', v) / form.isDirty
+form.fieldError('mobilePhone')   // local rule or a server 400 that names the field
+form.formError                    // any other failure, via errorText
+form.submit(() => save.mutate(toRequest(form.values, profile)))   // blocked while isPending
+```
+
+- Save disabled with `!form.isDirty || save.isPending`. The component keeps no busy flag.
+- A 400 that names a field (`emergencyContact.0.workEmail must be an email`) → that field's error;
+  anything else → `formError`.
+- No `try` in the component: the write is a mutation; react in `mutate`'s callbacks.
 
 ## Lifecycle
 
-```tsx
-const profile = useProfile();
-const mutation = useUpdateProfile();
-const form = useForm<ProfileFormValues>({
-  resolver: zodResolver(profileSchema),
-  values: profile.data ? toFormValues(profile.data) : undefined, // `values`, not defaultValues, for server data
-});
-
-const onSubmit = form.handleSubmit((values) =>
-  mutation.mutate(toRequest(values, profile.data), {
-    onError: (error) => applyServerError(form, error), // 400 with path → setError; rest → banner
-  }),
-);
-
-<Button disabled={!form.formState.isDirty || mutation.isPending} onPress={onSubmit} title={t('save')} />
-```
-
-- Fields only through `src/ui/form` wrappers: `FormTextField`, `FormPhoneField` (999-999-9999),
-  `FormSelect`, `FormDateField`, `FormCheckbox`… They wrap `Controller` and show the error.
-- `applyServerError` lives in `src/core/api` and uses `ApiError.fieldErrors`.
-- Keyboard: `KeyboardAwareScrollView` from `react-native-keyboard-controller`.
-- Multi-step flows sharing a form: `FormProvider` in the route `_layout.tsx` (Direct Deposit edit → review).
-- `useFieldArray` for repeated rows (hours per day, emergency contacts).
+- Every opening starts from a fresh form (`useOpenings` + `key`).
+- A refusal keeps the form as it is with shr-be's reason. Nothing is resent by itself.
+- Keyboard: `KeyboardAwareScreen` (keyboard-controller once the dev build has it).
+- Bank inputs: `autoCorrect={false}`, `autoComplete="off"`, `textContentType="none"`.
 
 ## Drafts
 
 | Form | Draft |
 |---|---|
 | Announcement | server (draft endpoint) |
-| Short forms | memory only |
-| Direct Deposit, compensation | **never persisted** (no MMKV, no autosave) |
+| Short forms | memory only, while mounted |
+| Direct Deposit, compensation, passwords | **never persisted**; `meta.sensitive`, short `gcTime` |
 
 ## Per-form notes (SHR)
 
 | Form | Note |
 |---|---|
-| Time Off | `useFieldArray` hours/day (default 8, max 8); 400 "Request fufilled…" = success; one component for Home and Time Off |
-| Direct Deposit | rules in `domain/allocation.ts` + `superRefine`; no autocorrect; one pending change at a time |
-| Emergency contacts | send full list on save |
-| Profile | fixed enums in `domain/enums.ts`; read-modify-write |
-| Compensation (SM) | OT 1.5× computed on change; min blocks / max warns; may hit 428 |
-| Announcement | tentap-editor limited to `p strong em u ul ol li a img`; audience as discriminated union |
+| Time Off | hours per day for the range (`daysOf`, `checkRequest`); 400 "Request fufilled…" = success; one component for Home and Time Off |
+| Direct Deposit | allocation rules in `domain/draft.ts`; editor + review; capture blocked; `submitOrFind` |
+| Emergency contacts / Profile | full list on save; fixed enums; read-modify-write |
+| Change Password | `gcTime: 0`; success message in the hook's `onSuccess` |
+| Compensation (SM) | OT 1.5× on rate change; min blocks / max warns; 428 |
+| Announcement | HTML limited to `p strong em u ul ol li a img`; exclusive audience keys |

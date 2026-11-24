@@ -1,6 +1,6 @@
-// Order = hierarchy (sort-objects is off for this file).
+// presentation/queries/keys.ts — order = hierarchy (sort-objects is off for this file).
+// Root, then the kind before the id: a prefix means one kind of read.
 export const {{feature}}Keys = {
   all: ['{{slug}}'] as const,
-  scope: (id: string) => [...{{feature}}Keys.all, id] as const,
-  detail: (id: string) => [...{{feature}}Keys.scope(id), 'detail'] as const,
+  detail: (id: string) => [...{{feature}}Keys.all, 'detail', id] as const,
 };

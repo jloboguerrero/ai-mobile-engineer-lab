@@ -1,41 +1,41 @@
-# Client state — Zustand
+# Client state — no store library
 
-Zustand holds **only** what the server can't tell us: who is signed in and which assignment
-is selected. 2–3 small stores, total. If you're about to add a 4th store, stop and ask.
+TanStack holds server data. What is left is small, and lives in the simplest place that works.
 
-## Stores
+| State | Where |
+|---|---|
+| Session (token, exp, kind, expired flag) | `core/session.ts`: external store with `useSyncExternalStore` (~30 lines), values in secure-store one key each |
+| Current assignment | `AccountProvider` (`features/account/account-provider.tsx`): `useState` for the picked id, persisted in secure-store |
+| Toast | `ui/toast.tsx` small store |
+| A page's sub-view (`?view=history`), a selected id | URL params (`useLocalSearchParams`) — a link or notification can open it |
+| Sheet open, filter, tab inside a component | local `useState` |
+| A flow shared by 2–3 screens (Direct Deposit edit → review) | Context scoped to that route's `_layout.tsx` |
 
-| Store | Holds | Persisted |
-|---|---|---|
-| `sessionStore` (`core/session`) | `SessionState` union | token parts in expo-secure-store (one key per value) |
-| `assignmentStore` (`features/session`) | `currentEmployeeId` | MMKV, keyed by `userId` |
-| `prefsStore` (optional) | language override, dismissed banners | MMKV |
+## Session
 
 ```ts
-type SessionState =
-  | { status: 'hydrating' }
-  | { session: Session; status: 'signedIn' }
-  | { reason?: 'expired' | 'manual'; status: 'signedOut' };
+type SessionState = {
+  expired: boolean;                       // Sign in says "your session expired"
+  session: Session | null;
+  status: 'loading' | 'signedIn' | 'signedOut';
+};
 ```
 
-Use a discriminated union, never a bag of booleans (`isLoggedIn`, `isLoading`…).
+- `useSession()` in React; `getSessionState()` outside React (interceptors, push listeners).
+- `restoreSession()` at launch, `startSession(session)`, `endSession({ expired })`.
+
+## Account
+
+- `useAccount()` → `{ account, current, switchTo }`; `useCapabilities()` → flags + scope.
+  **Routes only** (lint): a feature receives ids and flags as props.
+- Which assignment is current is decided by the use case `pickCurrentAssignment`
+  (picked → stored → oldest), not inline in the provider.
+- `switchTo` stores the choice and calls `invalidateAccount()`; queries keyed by `employeeId`
+  refetch by themselves.
 
 ## Rules
 
-1. **Select narrowly**: `useSessionStore((s) => s.status)` — never `useSessionStore()` whole.
-   For multiple fields use `useShallow`.
-2. **Actions live in the store** (`signIn`, `signOut`, `setCurrentEmployeeId`); components
-   don't `setState` directly.
-3. **Derive, don't store**: profile (`employee | dm | sm`), tabs and scope come from
-   `useCurrentAssignment()` = bootstrap query data + `currentEmployeeId`. Never store them.
-4. **No server data in stores** (see `server-state.md`).
-5. **Reset on logout**: `signOut` resets every store and calls `queryClient.clear()`.
-6. Outside React (interceptors, push listeners) use `useSessionStore.getState()`.
-7. Stores are created in plain modules; tests reset them in `beforeEach`
-   (`useSessionStore.setState(initialState, true)`).
-
-## UI state
-
-Local `useState`/`useReducer` for toggles, sheet open, selected tab. Shared between 2–3
-sibling screens of one flow → React Context scoped to that route `_layout` (e.g. the
-Direct Deposit `FormProvider`). Not Zustand.
+1. **Derive, don't store**: role, capabilities, tabs and scope come from `current`.
+2. **No server data in client state.**
+3. **Reset on sign-out**: the root layout's cleanup list (`navigation-auth.md`).
+4. Adding a store needs a reason written in an ADR; no store library.

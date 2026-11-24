@@ -8,11 +8,11 @@ hooks as guardrails, skills, agents, approved-spec gate) and rewrites the **conv
 
 | Idea | Flutter | React Native |
 |---|---|---|
-| Feature-first, layered | data/domain/presentation | data/domain/queries/forms/ui |
+| Feature-first, layered | data/domain/presentation | domain/data/presentation (queries · components · screens) |
 | Domain is pure | no `package:flutter` | no react/axios/tanstack in `domain/` |
 | Alphabetical ordering | named params | JSX props, object keys, type members (perfectionist, autofix) |
 | Grouped imports | dart → package → flutter → local → relative | react → expo → third-party → `@/` → relative → type |
-| Generated files untouchable | `*.g.dart` | `generated/` (API types, tokens), `ios/`, `android/` |
+| Generated files untouchable | `*.g.dart` | `ios/`, `android/` (CNG) |
 | Format + analyze on write | `dart format` + `flutter analyze` | prettier + `eslint --fix` (+ optional tsc) |
 | File size guard | 150 / 300 | 250 / 450 (TSX is denser in lines; screens compose more) |
 
@@ -20,12 +20,13 @@ hooks as guardrails, skills, agents, approved-spec gate) and rewrites the **conv
 
 - **Bloc trio, events, states, `isClosed`** → TanStack Query already models loading/error/data
   and ignores results for unmounted observers. Custom hooks replace blocs.
-- **Modular binds / DI container** → ES modules are singletons; factories + `di.ts`; tests use MSW
-  against the real code instead of injected mocks.
+- **Modular binds / DI container** → ES modules are singletons, imported directly; async use cases
+  receive the fetchers as a parameter; tests stub the network (`stubNetwork`)
+  and run the real code instead of injected mocks.
 - **`Result<T, E>` + try/catch in the bloc** → axios interceptor maps everything to `ApiError`;
   TanStack carries it to the UI; try/catch only in orchestration use cases.
-- **Three-tier barrels** → only one public `index.ts` per feature (barrels inside layers hurt
-  Metro/tree-shaking and create cycles).
+- **Barrels** → none at all, not even per feature (Metro doesn't tree-shake native bundles; barrels
+  load every file and create cycles).
 - **Member order inside classes** → no classes.
 
 ## Added (React / SHR specific)

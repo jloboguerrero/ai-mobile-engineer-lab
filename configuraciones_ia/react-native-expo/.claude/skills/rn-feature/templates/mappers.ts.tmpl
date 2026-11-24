@@ -1,8 +1,11 @@
-import type { {{Entity}}Dto } from './dto';
+// data/mappers.ts — allow-list: every kept field is named. Never forward SSN / bank numbers.
 import type { {{Entity}} } from '../domain/types';
 
-// Pure. Drops every field the UI doesn't use (never forward SSN / bank numbers).
-export const to{{Entity}} = (dto: {{Entity}}Dto): {{Entity}} => ({
-  id: dto.id,
-  name: dto.name ?? '',
-});
+import type { Raw{{Entity}} } from './raw';
+
+export function to{{Entity}}(raw: Raw{{Entity}}): {{Entity}} {
+  return {
+    id: raw.id ?? '',
+    name: raw.name ?? '',
+  };
+}

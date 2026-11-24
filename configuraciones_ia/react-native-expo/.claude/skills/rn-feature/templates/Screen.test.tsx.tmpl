@@ -1,23 +1,18 @@
-import { http, HttpResponse } from 'msw';
+import { render, screen } from '@testing-library/react-native';
 
-import { screen } from '@testing-library/react-native';
+import { stubNetwork } from '@/core/network.fixture';
+import { WithQueryClient } from '@/core/query.fixture';
 
-import { server } from '@/test/msw/server';
-import { renderWithProviders, signedInWorker } from '@/test/utils';
-
-import { {{feature}}Fixture } from '../../mocks/fixtures';
-import { {{Feature}}Screen } from './{{Feature}}Screen';
+import { {{Feature}}Screen } from './{{slug}}-screen';
 
 describe('{{Feature}}Screen', () => {
-  it('shows data when the request succeeds', async () => {
-    renderWithProviders(<{{Feature}}Screen />, { session: signedInWorker });
-    expect(await screen.findByText({{feature}}Fixture.name)).toBeOnTheScreen();
-  });
-
-  it('shows generic error on 500 without rendering the body', async () => {
-    server.use(http.get('*{{path}}', () => HttpResponse.json({ secret: 'x' }, { status: 500 })));
-    renderWithProviders(<{{Feature}}Screen />, { session: signedInWorker });
-    expect(await screen.findByRole('button', { name: 'Try again' })).toBeOnTheScreen();
-    expect(screen.queryByText(/secret/)).toBeNull();
+  it('shows the name once it loads', async () => {
+    stubNetwork([{ data: { id: '1', name: 'Vacation' }, status: 200 }]);
+    await render(
+      <WithQueryClient>
+        <{{Feature}}Screen id="1" />
+      </WithQueryClient>,
+    );
+    expect(await screen.findByText('Vacation')).toBeOnTheScreen();
   });
 });

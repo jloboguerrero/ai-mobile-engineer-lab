@@ -2,58 +2,54 @@
 
 ## Shape
 
-- Function components, **named exports** (`export function TimeOffCard`). Default export only
-  in `app/` route files (Expo Router requires it — done via re-export).
-- Props typed with a `type XProps = { … }` (sorted alphabetically, callbacks `on*` last).
-  Destructure in the signature.
-- One component per file; tiny private sub-components may live in the same file below it.
-- No business logic in JSX: compute in the hook or a `domain/` function, render the result.
+- Function components, **named exports**. Default export only in route files.
+- Props typed with `type XProps = { … }` (alphabetical, `on*` callbacks last). Destructure in
+  the signature.
+- One component per file; tiny private sub-components may live below it.
+- No business logic in JSX: compute in `domain/` or a hook, render the result.
+- No `try`, no `useQueryClient` in `.tsx` (lint).
 
-## Screen pattern
+## Screens (`presentation/screens`)
 
-```tsx
-export function TimeOffScreen() {
-  const { t } = useTranslation('timeoff');
-  const summary = useTimeOffSummary();
-
-  if (summary.isPending) return <ScreenSkeleton />;
-  if (summary.error) return <ErrorState error={summary.error} onRetry={summary.refetch} />;
-
-  return (
-    <Screen title={t('title')}>
-      <TimeOffBalances summary={summary.data} />
-    </Screen>
-  );
-}
-```
-
-- Screen = data hook(s) + state branches + composition of feature components.
-- Every screen handles **pending / error / empty / data**. `ErrorState` maps `ApiError.kind` → copy.
-- Pull-to-refresh with `refetch`; never a manual "reload" state.
-- Screens never navigate after sign-in/out (guards do it, see `navigation-auth.md`).
+- A screen receives whose data it shows (`userId`, `employeeId`), the viewer's flags and links
+  as props from the route. It never asks who is signed in.
+- A page is `Screen`, or `KeyboardAwareScreen` when it has fields.
+- First read: `PageLoading` / `PageError` (`ui/page-note.tsx`); a card: `CardLoading` / `CardNote`.
+  Each card loads and fails on its own (no wholesale Suspense).
+- Every screen handles pending / error / empty / data.
+- Pull to refresh with `usePullToRefresh(run)`; a tab that must refresh on focus uses
+  `useRefreshOnFocus(keys)`.
+- A pushed page goes back with `useStackBack(fallback)`; Android back closes what is on top
+  (`useAndroidBack`).
+- A screen keyed by `current.id` starts over on an assignment switch.
 
 ## Lists
 
-- `FlashList` for anything that can exceed ~20 rows; `estimatedItemSize` optional in v2 but give
-  `keyExtractor`. `renderItem` defined outside JSX or memoized.
-- Empty state via `ListEmptyComponent`; pagination via `onEndReached`.
+- FlatList today (every long list is paged); FlashList when a list becomes unbounded.
+- Stable `keyExtractor`; empty state via `ListEmptyComponent`; paging via `onEndReached`.
 
 ## Images
 
-`expo-image` (`Image` from `expo-image`), never RN `Image`. S3 photo URLs expire in 15 min →
-`cachePolicy="memory-disk"` with key independent of the signed query string.
+`expo-image`, never RN `Image`. S3 photo URLs expire in 15 min and load **without** the
+Authorization header; on failure re-read the profile once.
 
-## Accessibility (users: low-end Android, gloves, outdoors)
+## Sheets, dialogs, toasts
 
-- Touch targets ≥ 44 pt (`hitSlop` if visually smaller).
-- `accessibilityRole`, `accessibilityLabel` on every touchable/icon-only button (base components
-  in `src/ui` require them by type).
-- Dynamic Type: allow scaling, cap with `maxFontSizeMultiplier` (from tokens).
-- High contrast semantic tokens; never color as the only signal.
-- Plain words: "your employer", "pay", "hours". Never EOR, batch, bill code, paycode.
+`Sheet` / `Dialog` / `ToastHost` from `src/ui`, opened with `visible`. `<ToastHost onlyNew />` in
+the shell: nothing from a previous session is shown.
 
-## Performance
+## Accessibility (WCAG 2.2 AA)
 
-- Don't create objects/arrays/functions inline in props of memoized children or FlashList items.
-- Heavy screens: split into components so re-renders stay local.
-- Sheets: `@gorhom/bottom-sheet`; toasts: `sonner-native`; keyboard: `react-native-keyboard-controller`.
+1. Every control has a role and an accessible name, and reports its state.
+2. A name says what and whom: "Approve time off for Jordan Lee".
+3. Touch targets ≥ 44 pt / 48 dp (`hitSlop`).
+4. Text scales; cap `maxFontSizeMultiplier` only on fixed-height chrome.
+5. Contrast ≥ 4.5:1 with theme tokens; never colour alone.
+6. Sheets/dialogs modal to the screen reader; a surface over the app takes focus.
+7. Toasts and status lines are live regions.
+8. Animations beyond a fade respect Reduce Motion.
+9. Tests find elements by role and name; VoiceOver + TalkBack pass before review.
+
+## Plain words
+
+"your employer", "pay", "hours". Never EOR, batch, bill code, paycode.

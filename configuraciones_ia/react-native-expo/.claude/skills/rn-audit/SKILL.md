@@ -10,16 +10,19 @@ Mechanical pass — for correctness/design use `/code-review`.
 
 1. Diff: `git diff <ref>...HEAD` if a ref is given, else `git diff` + `git status --short`.
 2. Run `npx eslint <changed .ts/.tsx>` and `npx tsc --noEmit`; fold results in
-   (covers ordering, boundaries, no-console, hooks deps, any).
+   (covers ordering, layers, role comparisons, try/useQueryClient in tsx, no-console, hooks deps).
 3. Check by reading (lint can't): read each rule file once.
-   - `architecture.md` — app/ route files 1-line; ui/ doesn't call xApi; domain/ pure
-   - `data-and-api.md` — DTO is a Pick; mapper drops PII; no try/catch in UI/hooks; UI branches on `kind`
-   - `server-state.md` — key factory used; no query data copied to state/store; mutations no retry; prefix invalidation
-   - `client-state.md` — narrow selectors; no new store without reason
-   - `forms.md` — three files; `values` for server data; Save disabled rule
+   - `architecture.md` — thin routes; components don't import `data/`; domain pure; nothing from
+     the "what we don't do" list
+   - `data-and-api.md` — raw types only read fields; allow-list mapper; failures read with `apiErrorOf`
+   - `server-state.md` — key factory; `CachePolicy`; hooks take ids; no query data in state;
+     mutations never retried; other features' keys via `invalidateX()`
+   - `hooks-and-usecases.md` — orchestration in a use case, not in a component or provider
+   - `forms.md` — rules in domain; `useFormState`; Save disabled rule
    - `i18n.md` — no hardcoded strings; en + es both updated
-   - `styling-ds.md` — no hex / magic numbers; tokens only
-   - `security-pii.md` — no PII in logs/params/push/storage
-   - `testing.md` — new mapper/rule/schema has a test; new screen/mutation has integration test
+   - `styling-ds.md` — no hex / magic numbers outside `theme.ts`
+   - `security-pii.md` — no PII in logs/params/push/storage; sign-out list updated if a new
+     place holds personal data
+   - `testing.md` — new mapper has a privacy contract test; logic fix has a regression test
 4. Report `file:line | rule | violation`, most severe first. None found is a valid outcome.
 5. Don't fix unless asked.

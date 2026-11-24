@@ -1,62 +1,87 @@
 # Custom hooks vs use cases
 
-A **hook** (`useX`) gives a component state, data or effects. In React a custom hook replaces
-what a Bloc/Cubit did in Flutter. A **use case** is a plain async/pure function in `domain/`
-for orchestration or business rules — no React inside.
+A **hook** (`useX`) gives a component data, state or effects. The TanStack hooks in
+`presentation/queries` play the role a Bloc/Cubit played in Flutter. A **use case** is a business
+flow that orchestrates several calls or rules in order: a plain function in `domain/usecases/`,
+no React inside. **It is not state management** — state stays in TanStack.
 
 ## Decision
 
 | Situation | Do |
 |---|---|
-| Screen needs one endpoint | hook in `queries/` → `xApi` (no use case) |
-| Write to one endpoint | `useMutation` in `queries/mutations.ts` |
-| Several calls + rules (bootstrap, pick assignment, build timesheet weeks) | use case in `domain/usecases/` called from a `queryFn`/`mutationFn` |
-| Pure calculation (allocation sums 100 %, hours left) | function in `domain/rules.ts` |
-| Form state | React Hook Form (`forms.md`) |
-| Global auth state | Zustand (`client-state.md`) |
-| UI-only behaviour reused by screens (debounce, keyboard, countdown) | hook in `ui/` or `core/` |
+| Screen needs one endpoint | hook in `presentation/queries` → `data/fetchers` → mapper (no use case) |
+| Write to one endpoint | `useMutation` in `presentation/queries/mutations.ts` |
+| Several calls + rules in order | use case in `domain/usecases/`, called from a `queryFn`/`mutationFn` |
+| Pure calculation (allocation sums 100 %, hours per day, weeks) | function in `domain/<topic>.ts` |
+| Form state | local state + `useFormState` (`forms.md`) |
+| Who is signed in / current assignment | `core/session.ts`, `AccountProvider` (`client-state.md`) |
+| UI behaviour reused by screens (back, pull to refresh, keyboard) | hook in `ui/` or `core/` |
 
-## Flutter → React equivalences
+## Use cases in this app (5–8, not more)
 
-| Flutter | React here |
+| Use case | Feature |
 |---|---|
-| Bloc/Cubit that fetches | `useQuery` hook |
-| Bloc emitting loading/success/error states | `query.isPending` / `query.error` / `query.data` |
-| Form bloc | React Hook Form + Zod |
-| Global bloc (auth) | Zustand store |
-| `BlocListener` (side effect on state change) | `onSuccess`/`onError` of mutation, or route guard |
-| `isClosed` guard after await | not needed: TanStack ignores results for unmounted observers |
-| InheritedWidget / Provider | React Context |
-| `flutter_modular` binds | factories + `di.ts` |
-| `Modular.get<T>()` fallback in constructor | factory takes deps as args; tests use MSW |
-| Usecase class with `execute()` | plain function `bootstrapSession(deps, args)` |
-| ThemeData / ThemeExtension | Unistyles theme |
-| `Equatable` | not needed — structural data, compare with selectors/`useShallow` |
+| `loadAccount` — user + member access + assignments + sites + checks | account |
+| `pickCurrentAssignment` — picked → stored → oldest | account |
+| `submitOrFind` — send Direct Deposit; after no answer, look it up | pay |
+| `acceptOrFind` — accept Terms; after a refusal, re-read the record | terms |
+| `uploadBatch` — documents one at a time, re-read folders | documents |
+| `decideTimeOff` (manager) — still Pending? → PUT → refresh counts | requests |
+| `requestCompensation` (SM) — PUT with change reason (428) | people |
 
-## Use case shape
+## Shape
 
 ```ts
-// features/session/domain/usecases/bootstrapSession.ts
-export type BootstrapDeps = Pick<SessionApi, 'getEmployees' | 'getMemberAccess' | 'getSites' | 'getUser'>;
-
-export const bootstrapSession = async (deps: BootstrapDeps, session: Session): Promise<Bootstrap> => {
-  const [user, access, employees] = await Promise.all([
-    deps.getUser(session.email),
-    deps.getMemberAccess(session.userId),
-    deps.getEmployees(session.userId),
-  ]);
-  // validations as the web does …
-  return { assignments: toAssignments(employees, await deps.getSites(ids)), needsTerms: !user.agreedToTermsDate, user };
-};
+// features/account/domain/usecases/pick-current-assignment.ts — pure
+export function pickCurrentAssignment(assignments: Assignment[], pickedId: string | null, storedId: string | null) {
+  return (
+    assignments.find((a) => a.id === pickedId) ??
+    assignments.find((a) => a.id === storedId) ??
+    assignments[0] ??
+    null
+  );
+}
 ```
 
-Deps are passed in (typed as `Pick` of the API) → unit test with plain fakes, no MSW needed.
+- Pure use cases take plain values → unit tests without stubs.
+- Async use cases **receive the fetchers they call as a parameter** (a plain object of
+  functions), so `domain/` stays pure and lint keeps it so. The caller in
+  `presentation/queries` passes the real ones:
+
+```ts
+// domain/usecases/submit-or-find.ts
+export type SubmitOrFindDeps = {
+  findSince: (since: Date) => Promise<DepositRequest | null>;
+  submit: (draft: DepositDraft) => Promise<DepositRequest>;
+};
+export async function submitOrFind(draft: DepositDraft, deps: SubmitOrFindDeps, now = new Date()) { … }
+
+// presentation/queries/mutations.ts
+mutationFn: (draft) => submitOrFind(draft, { findSince: fetchRequestSince, submit: submitDeposit }),
+```
+
+- That is a parameter, not a DI layer: no container, no interfaces, no factories. Tests pass plain
+  fakes (or the real fetchers with `stubNetwork`).
+- `try` is allowed here (translating a known failure into an outcome), never in components/hooks.
+
+## Flutter → here
+
+| Flutter | Here |
+|---|---|
+| Bloc/Cubit that fetches | `useQuery` hook in `presentation/queries` |
+| Bloc states loading/success/error | `query.isPending` / `query.error` / `query.data` |
+| Form bloc | `useFormState` + pure rules in `domain` |
+| Global auth bloc | `core/session.ts` |
+| `BlocListener` | `onSuccess`/`onError`, or a route guard |
+| InheritedWidget / Provider | `AccountProvider` (Context) |
+| `flutter_modular` binds / `Modular.get` | direct imports; `.web.ts` siblings and fixtures to substitute |
+| UseCase `execute()` | function in `domain/usecases/` |
+| ThemeData | `ui/theme.ts` |
 
 ## Hook rules
 
 - Name `useX`; return an object, not a tuple, when > 2 values.
-- Complete dependency arrays (`react-hooks/exhaustive-deps` is an error).
-- Prefer deriving during render over `useEffect` + `setState`. `useEffect` is for syncing with
-  something **outside** React (AppState, timers, listeners) and always returns cleanup.
-- `useMemo`/`useCallback` only when there is a measured cost or a referential-equality need
-  (deps of another hook, memoized child, FlashList `renderItem`).
+- Complete dependency arrays. Derive during render instead of `useEffect` + `setState`;
+  `useEffect` only to sync with something outside React (AppState, timers), with cleanup.
+- No `try` inside `use*` hooks (React Compiler skips the hook silently).
+- `useMemo`/`useCallback` rarely: React Compiler memoizes.

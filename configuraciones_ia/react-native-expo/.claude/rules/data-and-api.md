@@ -1,109 +1,86 @@
-# Data layer — HTTP, DTOs, mappers, errors
+# Data layer — HTTP, raw types, mappers, errors
 
-## Clients (`src/core/api/client.ts`)
+## Clients (`src/core/api.ts`)
 
-- `api` — authenticated axios instance. Request interceptor: checks `exp` **before** sending
-  (expired → `signOut({ reason: 'expired' })` and abort), sets `Authorization: Bearer`, sets
-  `User-Agent` containing `iPhone` or `Android; Mobile` (shr-be audit trail needs it).
-- `publicApi` — no Authorization, only for the public routes (iop-login, signIn, forgot…).
-- Both: base URL from `env.API_URL`, timeout, response interceptor → `toApiError`.
-- shr-be has **no path prefix**: the path is exactly what you call (`/time-off/employee/:id/summary`).
+- `api` — authenticated axios instance. Request interceptor: `bearer()` checks `exp` **before**
+  sending (expired → `endSession({ expired: true })` and reject with `ApiError` kind `session`,
+  status 0, never sent), sets `Authorization: Bearer`. `User-Agent` from `app-config.ts`
+  (`iPhone` / `Android; Mobile`: shr-be's audit trail).
+- `publicApi` — no Authorization: sign-in and password routes only.
+- Response interceptor: axios error → `ApiError` (config, headers and body dropped: Bearer, bank
+  numbers). Resends **GET only** on 502/503/504, 3 times (200/400/800 ms). Never a write.
+- shr-be has **no path prefix**: the path is exactly what you call.
+- `axios` is imported only in core (lint).
 
-## `ApiError` (`src/core/api/ApiError.ts`)
-
-Every failure leaving `core/api` is an `ApiError`. Nothing above sees `AxiosError`.
+## `ApiError` (`src/core/api-error.ts`)
 
 ```ts
-export type ApiErrorKind =
-  | 'changeReason' // 428 — needs X-Change-Reason-Code/Note
-  | 'conflict'     // 409
-  | 'denied'       // 401 with message !== 'Unauthorized' → "not yours" / assignment ended
-  | 'forbidden'    // 403 'Forbidden resource' — role lacks permission
-  | 'network'      // no response / timeout
-  | 'notFound'     // 404
-  | 'server'       // 5xx — never show body
-  | 'sessionExpired' // 401 with message === 'Unauthorized'
-  | 'tooLarge'     // 413
-  | 'validation';  // 400 / 422
+type ApiErrorKind = 'changeReason' | 'forbidden' | 'invalid' | 'notFound' | 'offline' | 'server' | 'session';
+```
 
-export class ApiError extends Error {
-  constructor(
-    readonly kind: ApiErrorKind,
-    readonly status: number | undefined,
-    readonly userMessage: string,        // customData.title → message → generic
-    readonly fieldErrors?: Record<string, string>, // 400 with path → RHF setError
-    readonly changeReason?: { notice: string; reasonCodes: string[] },
-  ) { super(userMessage); }
+| Kind | When | Screen does |
+|---|---|---|
+| `offline` | status 0, timeout | "No connection"; for a write, find out whether it arrived |
+| `session` | 401 with message exactly `Unauthorized`, or expired token never sent | nothing: Sign in shows |
+| `forbidden` | any other 401, and 403 | the area's note; `isRecordUnavailable` → ended assignment |
+| `notFound` | 404 | the area's note |
+| `invalid` | other 4xx | shr-be's words via `errorText` |
+| `changeReason` | 428 | change-reason sheet → resend with `X-Change-Reason-Code/Note`, user-initiated, max 3 |
+| `server` | 5xx | "Something went wrong" — never the body |
+
+- Read with `apiErrorOf(error)`, never `instanceof` or a cast of `response.data`.
+- `errorText(error)`: `customData.title` → `message` → status. A feature with its own sentence
+  checks its case first and falls back (`saveErrorText`, `signInErrorText`).
+- The dead-token rule lives in `app-config.ts` (`isDeadToken`) with tests.
+
+## Raw types (`data/raw.ts`)
+
+- Written by hand, **only the fields the app reads**. Adding a field = the app depends on it.
+- No generated types, no zod. Guards against data that does not match its type stay
+  (`?? []`, `|| fallback`): shr-be's data is not always what its types say.
+
+## Mappers (`data/mappers.ts`) — the privacy rule
+
+- Every response goes through a mapper that **copies each kept field by name**. A raw answer never
+  reaches the cache or a component.
+- The Employee record keeps SSN last 4 and each bank account's last 4. Full bank numbers exist
+  only in Direct Deposit reads (tagged `sensitive`).
+- Nested objects are copied field by field too; copying one whole is allowed only on purpose and
+  documented (profile address and emergency contacts: the save sends them back).
+- **Every mapper has a privacy contract test** (`testing.md`): a raw answer carrying `SENSITIVE`
+  values where shr-be puts them → `leaksOf(mapped)` is empty.
+- `toRequest` (domain → body) absorbs API quirks: `''` → `null`, `MM/dd/yyyy`, numbers vs strings,
+  mutually exclusive keys, read-only fields resent as read.
+
+## Fetchers (`data/fetchers.ts`)
+
+```ts
+import { api } from '@/core/api';
+
+import type { TimeOffSummary } from '../domain/types';
+
+import { toSummary } from './mappers';
+import type { RawSummary } from './raw';
+
+export async function fetchSummary(employeeId: string, signal?: AbortSignal): Promise<TimeOffSummary> {
+  const response = await api.get<RawSummary>(`/time-off/employee/${employeeId}/summary`, { signal });
+  return toSummary(response.data);
 }
 ```
 
-- Text: `customData.title` → `message` → generic i18n key. A 500 **never** shows its body.
-- `sessionExpired` → interceptor calls `signOut({ reason: 'expired' })` once (single-flight).
-- `denied` does NOT sign out. If it's the current assignment → re-bootstrap, switch to the
-  first assignment, toast. Handled in `features/session`, not in each screen.
-- **428**: `useChangeReasonMutation` in `core/api` opens a sheet with `notice`/`reasonCodes`
-  and resends with headers. Max 3, always user-initiated. Closing = cancel.
-- Known quirks belong to the feature mapper, e.g. time off `400 "Request fufilled…"` = success
-  (handled in `timeoffApi.requestTimeOff`, documented with a comment).
-
-## No try/catch in UI or hooks
-
-- `xApi` functions throw `ApiError` (from the interceptor). They don't catch.
-- TanStack surfaces it: `query.error`, `mutation.error`, `onError`.
-- `try/catch` only in **use cases** that orchestrate and must translate a known failure into a
-  domain outcome (e.g. `bootstrapSession`: 400 "No Employee records" → `{ status: 'noAccess' }`).
-- UI decides by `error.kind`, never by status number or message string.
-
-## DTOs
-
-- Generated with **openapi-typescript** from shr-be Swagger into `src/core/api/generated/`
-  (`npm run api:types`; CI fails on drift). Never hand-edit.
-- `features/x/data/dto.ts` narrows: `type SummaryDto = Pick<components['schemas']['X'], 'a' | 'b'>`.
-  Only the fields we read. This documents what the app depends on.
-
-## Mappers
-
-- One mapper per endpoint response: `toSummary(dto): TimeOffSummary`. Pure, unit-tested.
-- The cache stores the **mapped** model, never the raw response.
-- Drop: SSN (keep `last4ssn` only), bank account/routing numbers (keep masked last4), anything unused.
-- Normalize: dates (`MM/dd/yyyy` / ISO → calendar date vs instant, see `i18n.md`), enums
-  (string → union), nullables (`''` → `null`), pagination → `Page<T> = { items; total; nextPage? }`.
-- Profile is read-modify-write: the model **does** keep `firstName`, `lastName`, `dob` to resend
-  them unchanged; never SSN or bank data.
-
-## API factory shape
-
-```ts
-// features/timeoff/data/timeoffApi.ts
-import type { AxiosInstance } from 'axios';
-
-import { toSummary } from './mappers';
-
-import type { SummaryDto } from './dto';
-import type { TimeOffSummary } from '../domain/types';
-
-export const createTimeOffApi = (http: AxiosInstance) => ({
-  getSummary: async (employeeId: string): Promise<TimeOffSummary> => {
-    const { data } = await http.get<SummaryDto>(`/time-off/employee/${employeeId}/summary`);
-    return toSummary(data);
-  },
-});
-
-export type TimeOffApi = ReturnType<typeof createTimeOffApi>;
-```
-
-```ts
-// features/timeoff/di.ts
-import { api } from '@/core/api';
-
-import { createTimeOffApi } from './data/timeoffApi';
-
-export const timeoffApi = createTimeOffApi(api);
-```
+- Plain exported functions; they return domain types. No factories, no classes.
+- Known quirks handled here (or in the use case) with a comment, e.g. time off
+  `400 "Request fufilled…"` = success.
+- A write decides what a lost answer means: look the result up (`submitOrFind`, `lostAnswer`)
+  or report "may have arrived" (`isUnanswered`). Never resend.
+- `try` belongs in these `.ts` modules, never in a component or a `use*` hook.
 
 ## Files (binary)
 
-Downloads (paystub PDF, signed docs) are authenticated binaries, no presigned links:
-`core/files/download.ts` → cache dir with Bearer → share → delete on close. Uploads:
-pick → normalize (HEIC→JPEG, resize, name + MIME) → validate (Zod) → upload. **Never retry uploads**;
-re-read state first. Profile photo: exactly 512×512 JPEG.
+- Downloads: `downloadFile` (`core/files.ts`) to a `CACHE_FOLDERS` folder, written to
+  `<name>.part` and renamed when complete; Bearer via `authorizedHeaders()`.
+- Native uploads: `uploadFile` (`core/upload.ts`), foreground session, never resent. Documents
+  one at a time (the API rewrites the document).
+- Normalize before upload: HEIC → JPEG, profile photo exactly 512×512, name with extension and a
+  real MIME type.
+- What differs on the web preview lives in a sibling `.web.ts` with the same exports.

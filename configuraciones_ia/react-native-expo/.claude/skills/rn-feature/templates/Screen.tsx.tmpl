@@ -1,19 +1,27 @@
+// presentation/screens/{{slug}}-screen.tsx — told whose data it shows; never asks the session.
 import { useTranslation } from 'react-i18next';
 
-import { ErrorState, Screen, ScreenSkeleton, Text } from '@/ui';
+import { PageError, PageLoading } from '@/ui/page-note';
+import { Screen } from '@/ui/screen';
+import { Text } from '@/ui/text';
 
-import { use{{Entity}} } from '../../queries/queries';
+import { use{{Entity}} } from '../queries/queries';
 
-export function {{Feature}}Screen() {
-  const { t } = useTranslation('{{slug}}');
-  const query = use{{Entity}}();
+export type {{Feature}}ScreenProps = {
+  id: string;
+};
 
-  if (query.isPending) return <ScreenSkeleton />;
-  if (query.error) return <ErrorState error={query.error} onRetry={query.refetch} />;
+export function {{Feature}}Screen({ id }: {{Feature}}ScreenProps) {
+  const { t } = useTranslation('{{feature}}');
+  const query = use{{Entity}}(id);
+
+  if (query.isPending) return <PageLoading />;
+  if (query.error) return <PageError text={t('loadError')} retrying={query.isFetching} onRetry={() => void query.refetch()} />;
 
   return (
-    <Screen title={t('title')} onRefresh={query.refetch}>
-      <Text variant="body">{query.data.name}</Text>
+    <Screen>
+      <Text variant="h3">{t('title')}</Text>
+      <Text>{query.data.name}</Text>
     </Screen>
   );
 }

@@ -6,30 +6,32 @@ alwaysApply: true
 
 # React Native + Expo — project rules
 
-Source of truth: `CLAUDE.md` and `.claude/rules/*.md`. Summary:
+Source of truth: `CLAUDE.md`, `.claude/rules/*.md` and `docs/adr/`. Summary:
 
 ## Stack
-Expo (dev build) · TS strict · Expo Router · TanStack Query v5 · Zustand · axios · RHF + Zod ·
-Unistyles 3 · i18next (en/es) · secure-store + MMKV · FlashList · expo-image · Jest/RNTL/MSW · Maestro.
+Expo (development build) · React Compiler · TS strict · Expo Router · TanStack Query v5 · axios ·
+i18next (en/es) · secure-store · StyleSheet + ui/theme.ts · expo-image · Jest/RNTL + network stubs · Maestro.
+No store library, no DI, no repositories, no barrels, no zod, no generated API types, no persisted cache.
 
 ## Structure
-- `app/` routes only: `export { XScreen as default } from '@/features/x';`
-- `src/core`, `src/ui` (design system, imports nothing), `src/features/<x>/{data,domain,queries,forms,ui,i18n,di.ts,index.ts}`.
-- Other features only via their `index.ts`.
+- `src/app` routes are thin: read useAccount/useCapabilities/params, build links in core/hrefs.ts, render a feature screen.
+- `src/core` (imports nothing above), `src/ui` (imports only ui), `src/features/<x>/{domain,data,presentation/{queries,components,screens},locales}`.
+- Components never import `data/`. Features import each other only from account, employee, auth.
+- Role decisions only in `features/account/capabilities.ts`.
 
 ## Data
-- axios `api`/`publicApi`; every error → `ApiError` with `kind`. 401 signs out only if `message === 'Unauthorized'`.
-- DTO = `Pick<>` of generated types; mapper per endpoint drops unused fields and PII.
-- TanStack for all server data; key factories; `queryOptions`; retry only GET 502/503/504; mutations never retried; invalidate by prefix; never persist cache.
-- Zustand only session + current assignment; derive profile/tabs/scope.
+- axios `api`/`publicApi`; failures are `ApiError` (`apiErrorOf`, `errorText`). 401 ends the session only if message is exactly `Unauthorized`.
+- Raw types only with read fields; allow-list mapper per response + privacy contract test.
+- `xxxKeys`, `xxxQueries` (queryOptions + CachePolicy), one-line hooks taking ids; GETs resent by the client only on 502/503/504; TanStack never retries; writes never resent.
+- Use cases only for orchestration, in `domain/usecases/`, receiving fetchers as a parameter.
 
 ## Code style
-- Named exports (except route files). `PascalCase.tsx` components, `camelCase.ts` modules, `useX` hooks.
+- kebab-case files, named exports (except routes).
 - Alphabetical: JSX props (key/ref first, on* last), object keys, type members, unions, named imports.
 - Imports grouped: react/react-native → expo → third-party → `@/` → relative → `import type`.
-- No `console.*` (logger), no `any`, no hex/magic numbers (tokens), no hardcoded text (i18n en+es).
-- Files ≤250 lines target, 450 max.
-- Never edit `ios/`, `android/`, `generated/`. Add deps with `npx expo install`.
+- No `console.*` (core/monitoring only), no `any`, no hex/magic numbers (theme tokens), no hardcoded text (en + es).
+- No `try` in .tsx or use* hooks. Files ≤250 lines target, 450 max.
+- Never edit `ios/`, `android/`. Add deps with `npx expo install`.
 
 ## Tests
-Next to code. Unit for pure code; RNTL + MSW for hooks/screens; no mocks of own modules.
+Next to code; fixtures in `*.fixture.ts`; privacy contract test per mapper; every logic fix with a regression test.

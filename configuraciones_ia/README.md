@@ -5,8 +5,9 @@ A portable, copy-pasteable set of Claude Code configuration, one payload per sta
 - `flutter/` — Flutter projects
   following feature-first Clean Architecture + `flutter_bloc` + `flutter_modular`, built by
   reverse-engineering a production monorepo (`docflutter`).
-- `react-native-expo/` — Expo + Expo Router + TanStack Query + Zustand + RHF/Zod + Unistyles,
-  feature-first "lite", built for the SimplifyHR Mobile app (Kraferd). Not a translation of the
+- `react-native-expo/` — Expo (development build) + Expo Router + TanStack Query, feature-first +
+  Clean Architecture "lite" (domain / data / presentation), no store library, no DI, built for the
+  SimplifyHR Mobile app (Kraferd) and aligned with its repo (`shr-mobile`). Not a translation of the
   Flutter kit: see `docs/05-react-native-notes.md`.
 
 ## What's here
@@ -26,7 +27,7 @@ configuraciones_ia/
 │       ├── commands/        /feature /audit /ship /ctx
 │       └── agents/          3 subagents (architect, reviewer, test writer)
 ├── react-native-expo/       ← RN payload: CLAUDE.md, eslint.config.js, .cursor/, .claude/
-│   └── .claude/             13 rules · 5 hooks (incl. PII guard) · 5 skills · 5 commands · 3 agents
+│   └── .claude/             13 rules · 5 hooks (incl. PII guard) · 5 skills · 4 commands · 3 agents
 ├── docs/                    the "why" — 5 short essays
 ├── scripts/loop.sh          headless iteration loop for an approved spec
 └── install.sh               copies a stack payload into a target project

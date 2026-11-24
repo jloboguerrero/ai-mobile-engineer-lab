@@ -1,0 +1,16 @@
+import { stubNetwork } from '@/core/network.fixture';
+
+import { fetch{{Entity}} } from './fetchers';
+
+describe('fetch{{Entity}}', () => {
+  it('maps the answer', async () => {
+    const { seen } = stubNetwork([{ data: { id: '1', name: 'Vacation' }, status: 200 }]);
+    await expect(fetch{{Entity}}('1')).resolves.toEqual({ id: '1', name: 'Vacation' });
+    expect(seen).toHaveLength(1);
+  });
+
+  it('rejects with an ApiError on a refusal', async () => {
+    stubNetwork([{ data: { message: 'Forbidden resource' }, status: 403 }]);
+    await expect(fetch{{Entity}}('1')).rejects.toMatchObject({ kind: 'forbidden' });
+  });
+});

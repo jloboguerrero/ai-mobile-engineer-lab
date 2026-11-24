@@ -1,0 +1,7 @@
+// locales/es.ts — typed against en: a missing key fails tsc.
+import type { en } from './en';
+
+export const es: { [K in keyof typeof en]: string } = {
+  loadError: 'No pudimos cargar esta página.',
+  title: '{{Feature}}',
+};
