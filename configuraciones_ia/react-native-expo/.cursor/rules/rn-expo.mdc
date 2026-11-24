@@ -1,0 +1,35 @@
+---
+description: React Native + Expo conventions for this repo (mirror of CLAUDE.md + .claude/rules)
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: true
+---
+
+# React Native + Expo — project rules
+
+Source of truth: `CLAUDE.md` and `.claude/rules/*.md`. Summary:
+
+## Stack
+Expo (dev build) · TS strict · Expo Router · TanStack Query v5 · Zustand · axios · RHF + Zod ·
+Unistyles 3 · i18next (en/es) · secure-store + MMKV · FlashList · expo-image · Jest/RNTL/MSW · Maestro.
+
+## Structure
+- `app/` routes only: `export { XScreen as default } from '@/features/x';`
+- `src/core`, `src/ui` (design system, imports nothing), `src/features/<x>/{data,domain,queries,forms,ui,i18n,di.ts,index.ts}`.
+- Other features only via their `index.ts`.
+
+## Data
+- axios `api`/`publicApi`; every error → `ApiError` with `kind`. 401 signs out only if `message === 'Unauthorized'`.
+- DTO = `Pick<>` of generated types; mapper per endpoint drops unused fields and PII.
+- TanStack for all server data; key factories; `queryOptions`; retry only GET 502/503/504; mutations never retried; invalidate by prefix; never persist cache.
+- Zustand only session + current assignment; derive profile/tabs/scope.
+
+## Code style
+- Named exports (except route files). `PascalCase.tsx` components, `camelCase.ts` modules, `useX` hooks.
+- Alphabetical: JSX props (key/ref first, on* last), object keys, type members, unions, named imports.
+- Imports grouped: react/react-native → expo → third-party → `@/` → relative → `import type`.
+- No `console.*` (logger), no `any`, no hex/magic numbers (tokens), no hardcoded text (i18n en+es).
+- Files ≤250 lines target, 450 max.
+- Never edit `ios/`, `android/`, `generated/`. Add deps with `npx expo install`.
+
+## Tests
+Next to code. Unit for pure code; RNTL + MSW for hooks/screens; no mocks of own modules.

@@ -1,9 +1,13 @@
-# AI Engineering Kit — Flutter
+# AI Engineering Kit — Flutter & React Native (Expo)
 
-A portable, copy-pasteable set of Claude Code configuration for Flutter projects
-following feature-first Clean Architecture + `flutter_bloc` + `flutter_modular`. Built
-by reverse-engineering the real conventions of a production monorepo
-(`docflutter`), not invented from a style guide.
+A portable, copy-pasteable set of Claude Code configuration, one payload per stack.
+
+- `flutter/` — Flutter projects
+  following feature-first Clean Architecture + `flutter_bloc` + `flutter_modular`, built by
+  reverse-engineering a production monorepo (`docflutter`).
+- `react-native-expo/` — Expo + Expo Router + TanStack Query + Zustand + RHF/Zod + Unistyles,
+  feature-first "lite", built for the SimplifyHR Mobile app (Kraferd). Not a translation of the
+  Flutter kit: see `docs/05-react-native-notes.md`.
 
 ## What's here
 
@@ -21,19 +25,22 @@ configuraciones_ia/
 │       ├── skills/          4 skills (feature scaffold, bloc, audit, token budget)
 │       ├── commands/        /feature /audit /ship /ctx
 │       └── agents/          3 subagents (architect, reviewer, test writer)
-├── docs/                    the "why" — 4 short essays
+├── react-native-expo/       ← RN payload: CLAUDE.md, eslint.config.js, .cursor/, .claude/
+│   └── .claude/             13 rules · 5 hooks (incl. PII guard) · 5 skills · 5 commands · 3 agents
+├── docs/                    the "why" — 5 short essays
 ├── scripts/loop.sh          headless iteration loop for an approved spec
-└── install.sh               copies flutter/ into a target project
+└── install.sh               copies a stack payload into a target project
 ```
 
 ## Install into a project
 
 ```bash
-./install.sh /path/to/flutter/project
-./install.sh /path/to/flutter/project --dry-run   # preview only
+./install.sh flutter /path/to/flutter/project
+./install.sh react-native-expo /path/to/expo/project
+./install.sh react-native-expo /path/to/expo/project --dry-run   # preview only
 ```
 
-Never overwrites an existing `CLAUDE.md`/`analysis_options.yaml` — writes a `.new`
+Never overwrites an existing `CLAUDE.md`/`analysis_options.yaml`/`eslint.config.js` — writes a `.new`
 file next to it instead.
 
 ## Read this first

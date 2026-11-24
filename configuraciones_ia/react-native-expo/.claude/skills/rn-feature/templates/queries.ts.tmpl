@@ -1,0 +1,18 @@
+import { queryOptions, useQuery } from '@tanstack/react-query';
+
+import { useCurrentEmployeeId } from '@/features/session';
+
+import { {{feature}}Api } from '../di';
+import { {{feature}}Keys } from './keys';
+
+export const {{feature}}Query = (id: string) =>
+  queryOptions({
+    queryFn: () => {{feature}}Api.get{{Entity}}(id),
+    queryKey: {{feature}}Keys.detail(id),
+    staleTime: 60_000,
+  });
+
+export const use{{Entity}} = () => {
+  const employeeId = useCurrentEmployeeId();
+  return useQuery({{feature}}Query(employeeId));
+};

@@ -97,3 +97,9 @@ subagentes para aislar exploración cara. El costo se diseña, no se improvisa.
 → Las seis reglas vienen de leer código real (`docflutter`): orden de miembros con
 `final` después del constructor, p90 de 134 líneas por archivo, el patrón de un solo
 `Model` por bloc. No es una plantilla de internet.
+
+## Anexo — kit React Native + Expo
+
+Mismo arnés, convenciones reescritas para React (`react-native-expo/`). Instalación:
+`./install.sh react-native-expo <proyecto>`. Diferencias y razones en `docs/05-react-native-notes.md`
+(Bloc → hooks/TanStack, Modular → factories, `Result` → `ApiError`; se agregan guard de PII y de CNG).

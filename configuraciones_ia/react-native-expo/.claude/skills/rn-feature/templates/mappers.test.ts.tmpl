@@ -1,0 +1,11 @@
+import { to{{Entity}} } from './mappers';
+
+describe('to{{Entity}}', () => {
+  it('maps the fields the UI needs', () => {
+    expect(to{{Entity}}({ id: '1', name: 'Vacation' })).toEqual({ id: '1', name: 'Vacation' });
+  });
+
+  it('defaults missing name to empty string', () => {
+    expect(to{{Entity}}({ id: '1', name: undefined as unknown as string }).name).toBe('');
+  });
+});

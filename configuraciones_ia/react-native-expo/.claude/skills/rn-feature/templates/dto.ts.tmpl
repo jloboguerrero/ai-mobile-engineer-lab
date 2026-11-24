@@ -1,0 +1,4 @@
+import type { components } from '@/core/api/generated/schema';
+
+// Only the fields this feature reads. Adding a field here = the app now depends on it.
+export type {{Entity}}Dto = Pick<components['schemas']['{{Entity}}ResponseDto'], 'id' | 'name'>;

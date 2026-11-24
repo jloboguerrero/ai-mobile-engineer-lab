@@ -1,0 +1,9 @@
+import { z } from 'zod';
+
+// Messages are i18n keys, translated by the Form* field.
+export const {{feature}}Schema = z.object({
+  name: z.string().trim().min(1, '{{slug}}:errors.nameRequired'),
+  notes: z.string().max(500, '{{slug}}:errors.notesTooLong'),
+});
+
+export type {{Entity}}FormValues = z.infer<typeof {{feature}}Schema>;

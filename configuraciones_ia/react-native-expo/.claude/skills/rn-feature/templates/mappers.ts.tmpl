@@ -1,0 +1,8 @@
+import type { {{Entity}}Dto } from './dto';
+import type { {{Entity}} } from '../domain/types';
+
+// Pure. Drops every field the UI doesn't use (never forward SSN / bank numbers).
+export const to{{Entity}} = (dto: {{Entity}}Dto): {{Entity}} => ({
+  id: dto.id,
+  name: dto.name ?? '',
+});

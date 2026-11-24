@@ -1,0 +1,7 @@
+import { http, HttpResponse } from 'msw';
+
+import { {{feature}}Fixture } from './fixtures';
+
+export const {{feature}}Handlers = [
+  http.get('*{{path}}', () => HttpResponse.json({{feature}}Fixture)),
+];

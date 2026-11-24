@@ -1,0 +1,23 @@
+import { http, HttpResponse } from 'msw';
+
+import { screen } from '@testing-library/react-native';
+
+import { server } from '@/test/msw/server';
+import { renderWithProviders, signedInWorker } from '@/test/utils';
+
+import { {{feature}}Fixture } from '../../mocks/fixtures';
+import { {{Feature}}Screen } from './{{Feature}}Screen';
+
+describe('{{Feature}}Screen', () => {
+  it('shows data when the request succeeds', async () => {
+    renderWithProviders(<{{Feature}}Screen />, { session: signedInWorker });
+    expect(await screen.findByText({{feature}}Fixture.name)).toBeOnTheScreen();
+  });
+
+  it('shows generic error on 500 without rendering the body', async () => {
+    server.use(http.get('*{{path}}', () => HttpResponse.json({ secret: 'x' }, { status: 500 })));
+    renderWithProviders(<{{Feature}}Screen />, { session: signedInWorker });
+    expect(await screen.findByRole('button', { name: 'Try again' })).toBeOnTheScreen();
+    expect(screen.queryByText(/secret/)).toBeNull();
+  });
+});

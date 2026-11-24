@@ -1,37 +1,39 @@
 #!/usr/bin/env bash
-# install.sh — copy the Flutter AI-engineering kit into a target project.
+# install.sh — copy an AI-engineering kit into a target project.
 #
 # Usage:
-#   ./install.sh <path-to-flutter-project> [--dry-run]
+#   ./install.sh <stack> <path-to-project> [--dry-run]
+#     stack: flutter | react-native-expo
+#   ./install.sh <path-to-project> [--dry-run]       # legacy form → flutter
 #
-# Copies flutter/{.claude,.cursor,AGENTS.md,analysis_options.yaml} into the
-# target. Never overwrites an existing CLAUDE.md — writes CLAUDE.md.new next
-# to it instead, and tells you to merge by hand. Makes hooks executable.
+# Never overwrites an existing CLAUDE.md or lint config — writes <file>.new next to it.
+# Makes hooks executable.
 
 set -euo pipefail
 
-KIT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/flutter"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STACK=""
 DEST=""
 DRY_RUN=0
 
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY_RUN=1 ;;
+    flutter|react-native-expo) STACK="$arg" ;;
     *) DEST="$arg" ;;
   esac
 done
+STACK="${STACK:-flutter}"
+KIT_DIR="$ROOT/$STACK"
 
 if [ -z "$DEST" ]; then
-  echo "Usage: $0 <path-to-flutter-project> [--dry-run]" >&2
+  echo "Usage: $0 <flutter|react-native-expo> <path-to-project> [--dry-run]" >&2
   exit 1
 fi
+[ -d "$DEST" ] || { echo "Target directory does not exist: $DEST" >&2; exit 1; }
+[ -d "$KIT_DIR" ] || { echo "Unknown stack: $STACK" >&2; exit 1; }
 
-if [ ! -d "$DEST" ]; then
-  echo "Target directory does not exist: $DEST" >&2
-  exit 1
-fi
-
-echo "Installing kit from $KIT_DIR into $DEST"
+echo "Installing $STACK kit from $KIT_DIR into $DEST"
 [ "$DRY_RUN" -eq 1 ] && echo "(dry run — nothing will be written)"
 
 copy() {
@@ -45,24 +47,33 @@ copy() {
   fi
 }
 
-# CLAUDE.md — never clobber an existing one.
-if [ -f "$DEST/CLAUDE.md" ]; then
-  echo "CLAUDE.md already exists at destination — writing CLAUDE.md.new instead."
-  copy "$KIT_DIR/CLAUDE.md" "$DEST/CLAUDE.md.new"
-else
-  copy "$KIT_DIR/CLAUDE.md" "$DEST/CLAUDE.md"
-fi
+copy_safe() {  # never clobber
+  local name="$1"
+  [ -e "$KIT_DIR/$name" ] || return 0
+  if [ -e "$DEST/$name" ]; then
+    echo "$name already exists — writing $name.new instead."
+    copy "$KIT_DIR/$name" "$DEST/$name.new"
+  else
+    copy "$KIT_DIR/$name" "$DEST/$name"
+  fi
+}
 
+copy_safe CLAUDE.md
 copy "$KIT_DIR/AGENTS.md" "$DEST/AGENTS.md"
 
-if [ -f "$DEST/analysis_options.yaml" ]; then
-  echo "analysis_options.yaml already exists — writing analysis_options.yaml.new instead."
-  copy "$KIT_DIR/analysis_options.yaml" "$DEST/analysis_options.yaml.new"
-else
-  copy "$KIT_DIR/analysis_options.yaml" "$DEST/analysis_options.yaml"
-fi
+case "$STACK" in
+  flutter) copy_safe analysis_options.yaml ;;
+  react-native-expo) copy_safe eslint.config.js ;;
+esac
 
-copy "$KIT_DIR/.claude" "$DEST/.claude"
+if [ -d "$DEST/.claude" ] && [ "$DRY_RUN" -eq 0 ]; then
+  # merge into existing .claude without deleting what's there
+  mkdir -p "$DEST/.claude"
+  cp -R "$KIT_DIR/.claude/." "$DEST/.claude/"
+  echo "merged: $DEST/.claude"
+else
+  copy "$KIT_DIR/.claude" "$DEST/.claude"
+fi
 copy "$KIT_DIR/.cursor" "$DEST/.cursor"
 
 if [ "$DRY_RUN" -eq 0 ]; then
@@ -70,5 +81,8 @@ if [ "$DRY_RUN" -eq 0 ]; then
 fi
 
 echo
-echo "Done. Review CLAUDE.md.new / analysis_options.yaml.new if they were created"
-echo "instead of overwriting existing files, and merge by hand."
+echo "Done. Merge any *.new files by hand."
+if [ "$STACK" = "react-native-expo" ]; then
+  echo "Lint deps: npx expo install -- --save-dev eslint eslint-config-expo eslint-plugin-perfectionist eslint-plugin-boundaries @tanstack/eslint-plugin-query eslint-config-prettier prettier"
+  echo "Hooks need: jq."
+fi

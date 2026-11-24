@@ -1,0 +1,19 @@
+import { useTranslation } from 'react-i18next';
+
+import { ErrorState, Screen, ScreenSkeleton, Text } from '@/ui';
+
+import { use{{Entity}} } from '../../queries/queries';
+
+export function {{Feature}}Screen() {
+  const { t } = useTranslation('{{slug}}');
+  const query = use{{Entity}}();
+
+  if (query.isPending) return <ScreenSkeleton />;
+  if (query.error) return <ErrorState error={query.error} onRetry={query.refetch} />;
+
+  return (
+    <Screen title={t('title')} onRefresh={query.refetch}>
+      <Text variant="body">{query.data.name}</Text>
+    </Screen>
+  );
+}

@@ -1,0 +1,6 @@
+// Order = hierarchy (sort-objects is off for this file).
+export const {{feature}}Keys = {
+  all: ['{{slug}}'] as const,
+  scope: (id: string) => [...{{feature}}Keys.all, id] as const,
+  detail: (id: string) => [...{{feature}}Keys.scope(id), 'detail'] as const,
+};
